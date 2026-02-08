@@ -35,7 +35,7 @@ const QuickBookingForm = () => {
               <option value="">Choose a tour...</option>
               {tours.map((t) => (
                 <option key={t.id} value={t.id}>
-                  {t.shortTitle} — ${t.price}
+                  {t.shortTitle} — ${t.price.adult}
                 </option>
               ))}
             </select>

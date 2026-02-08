@@ -30,7 +30,7 @@ const TourCard = ({ tour }: TourCardProps) => (
           {tour.originalPrice && (
             <span className="line-through opacity-60 mr-1 text-xs">${tour.originalPrice}</span>
           )}
-          ${tour.price}
+          ${tour.price.adult}
         </div>
       </div>
       {/* Placeholder gradient for missing images */}
@@ -49,7 +49,7 @@ const TourCard = ({ tour }: TourCardProps) => (
           <Clock className="h-3.5 w-3.5" /> {tour.duration}
         </span>
         <span className="flex items-center gap-1">
-          <Users className="h-3.5 w-3.5" /> {tour.groupSize}
+          <Users className="h-3.5 w-3.5" /> {tour.groupSize.type === "private" ? "Private" : `Max ${tour.groupSize.max}`}
         </span>
       </div>
 
