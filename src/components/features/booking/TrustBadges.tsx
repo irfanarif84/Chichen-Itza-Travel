@@ -7,18 +7,40 @@ const badges = [
   { icon: CreditCard, label: "Secure Checkout", sub: "256-bit SSL encryption" },
 ];
 
-const TrustBadges = () => (
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-    {badges.map((b) => (
-      <div key={b.label} className="flex items-start gap-3 p-3 rounded-lg bg-card shadow-card">
-        <b.icon className="h-5 w-5 text-success mt-0.5 shrink-0" />
-        <div>
-          <p className="font-heading font-semibold text-sm">{b.label}</p>
-          <p className="text-xs text-muted-foreground">{b.sub}</p>
-        </div>
+interface TrustBadgesProps {
+  variant?: "default" | "compact";
+}
+
+const TrustBadges = ({ variant = "default" }: TrustBadgesProps) => {
+  if (variant === "compact") {
+    return (
+      <div className="flex flex-wrap gap-3">
+        {badges.slice(0, 3).map((b) => (
+          <span
+            key={b.label}
+            className="flex items-center gap-1.5 text-xs text-muted-foreground"
+          >
+            <b.icon className="h-3.5 w-3.5 text-success" />
+            {b.label}
+          </span>
+        ))}
       </div>
-    ))}
-  </div>
-);
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {badges.map((b) => (
+        <div key={b.label} className="flex items-start gap-3 p-3 rounded-lg bg-card shadow-card">
+          <b.icon className="h-5 w-5 text-success mt-0.5 shrink-0" />
+          <div>
+            <p className="font-heading font-semibold text-sm">{b.label}</p>
+            <p className="text-xs text-muted-foreground">{b.sub}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default TrustBadges;

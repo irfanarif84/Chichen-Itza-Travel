@@ -5,6 +5,8 @@ import { homepageFAQs } from "@/lib/faqData";
 import Hero from "@/components/features/home/Hero";
 import PopularTours from "@/components/features/home/PopularTours";
 import WhyChooseUs from "@/components/features/home/WhyChooseUs";
+import SocialProof from "@/components/features/home/SocialProof";
+import VideoSection from "@/components/features/home/VideoSection";
 import DepartureSection from "@/components/features/home/DepartureSection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import FAQSection from "@/components/common/FAQ";
@@ -38,7 +40,9 @@ const Index = () => (
     </section>
 
     <PopularTours />
+    <VideoSection />
     <WhyChooseUs />
+    <SocialProof />
     <DepartureSection />
     <FAQSection faqs={homepageFAQs} subtitle="Everything you need to know before visiting Chichen Itza." />
     <CTASection />
