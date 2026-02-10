@@ -322,3 +322,71 @@ export const privateToursFAQs: FAQItem[] = [
     category: "customization",
   },
 ];
+
+// Cenote Tours FAQs
+export const cenoteToursFAQs: FAQItem[] = [
+  {
+    question: "What is a cenote?",
+    answer: "A cenote is a natural sinkhole formed by the collapse of limestone bedrock, revealing groundwater pools beneath. The Yucatán Peninsula has over 6,000 cenotes. The ancient Maya considered them sacred portals to the underworld.",
+    category: "general",
+  },
+  {
+    question: "Which cenote do Chichen Itza tours visit?",
+    answer: "Most tours visit Cenote Ik Kil, the most famous cenote in Mexico, located just 3 miles from Chichen Itza. Some tours visit Cenote Saamal in Valladolid or private, lesser-known cenotes for a more exclusive experience.",
+    category: "logistics",
+  },
+  {
+    question: "Do I need to know how to swim to visit a cenote?",
+    answer: "No! Life vests are provided at all cenotes and are mandatory at some. You can float comfortably even without swimming skills. Some cenotes also have shallow wading areas and platforms.",
+    category: "safety",
+  },
+  {
+    question: "What sunscreen can I use in cenotes?",
+    answer: "Only biodegradable sunscreen is allowed in cenotes to protect the delicate ecosystem. Regular sunscreen, insect repellent, and makeup should be washed off before entering. Biodegradable options are often available for purchase on-site.",
+    category: "preparation",
+  },
+  {
+    question: "How long do we spend at the cenote?",
+    answer: "Most tours allocate 30-45 minutes for cenote swimming. This includes changing time, swimming, and photos. Private tours offer flexibility to extend this time based on your preferences.",
+    category: "duration",
+  },
+  {
+    question: "Is cenote swimming safe for children?",
+    answer: "Yes, cenote swimming is safe for children. Life vests are provided in all sizes, and many cenotes have graduated depths and platforms. Our family tours choose cenotes with the safest conditions for young swimmers.",
+    category: "family",
+  },
+];
+
+// Sunrise Tours FAQs
+export const sunriseToursFAQs: FAQItem[] = [
+  {
+    question: "What time do sunrise tours depart?",
+    answer: "Sunrise tours depart at approximately 3:30 AM from Cancún and 4:00 AM from Playa del Carmen to arrive at Chichen Itza around 6:00-6:30 AM, before the site opens to general visitors at 8:00 AM.",
+    category: "logistics",
+  },
+  {
+    question: "Is the sunrise tour worth the early wake-up?",
+    answer: "Absolutely! Benefits include 50-70% fewer visitors, cooler temperatures (75-80°F vs 95°F midday), magical golden hour lighting, and experiencing the ruins in peaceful solitude. It's our highest-rated tour experience.",
+    category: "value",
+  },
+  {
+    question: "Do sunrise tours include breakfast?",
+    answer: "Yes! Most sunrise tours include a light snack and coffee during the drive, plus a full hot breakfast after arriving at or near Chichen Itza. A traditional buffet lunch is also included later in the day.",
+    category: "inclusions",
+  },
+  {
+    question: "Can I bring a tripod for sunrise photography?",
+    answer: "Yes, tripods are generally allowed during the early access period before the site gets crowded. However, drones and selfie sticks are strictly prohibited at all times. Professional photography equipment is welcome.",
+    category: "photography",
+  },
+  {
+    question: "How many people are on the sunrise tour?",
+    answer: "Sunrise tours are limited to a maximum of 12 people per group to maintain the intimate, exclusive atmosphere. This is significantly smaller than standard day tours (15-30 people).",
+    category: "logistics",
+  },
+  {
+    question: "What if it's cloudy on the day of my sunrise tour?",
+    answer: "Even on cloudy mornings, the experience is magical — the site is still nearly empty, temperatures are cool, and the diffused light is actually excellent for photography. The tour proceeds rain or shine, with free rescheduling offered only in cases of severe weather.",
+    category: "weather",
+  },
+];
