@@ -8,6 +8,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Index from "./pages/Index";
 import ToursPage from "./pages/tours/index";
+import DayToursPage from "./pages/tours/day-tours";
+import PrivateToursPage from "./pages/tours/private-tours";
+import CenoteToursPage from "./pages/tours/cenote-tours";
+import SunriseToursPage from "./pages/tours/sunrise-tours";
 import CancunToursPage from "./pages/tours-from/cancun";
 import PlayaDelCarmenToursPage from "./pages/tours-from/playa-del-carmen";
 import TulumToursPage from "./pages/tours-from/tulum";
@@ -32,6 +36,10 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/tours" element={<ToursPage />} />
+                <Route path="/tours/day-tours" element={<DayToursPage />} />
+                <Route path="/tours/private-tours" element={<PrivateToursPage />} />
+                <Route path="/tours/cenote-tours" element={<CenoteToursPage />} />
+                <Route path="/tours/sunrise-tours" element={<SunriseToursPage />} />
                 <Route path="/tours-from/cancun" element={<CancunToursPage />} />
                 <Route path="/tours-from/playa-del-carmen" element={<PlayaDelCarmenToursPage />} />
                 <Route path="/tours-from/tulum" element={<TulumToursPage />} />
