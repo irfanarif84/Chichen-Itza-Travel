@@ -4,9 +4,9 @@ import { Phone, Mail, MapPin } from "lucide-react";
 const Footer = () => (
   <footer className="bg-foreground text-primary-foreground">
     <div className="container py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
         {/* Brand */}
-        <div>
+        <div className="lg:col-span-1">
           <Link to="/" className="flex items-center gap-2 mb-4">
             <span className="text-2xl">🏛️</span>
             <div className="leading-tight">
@@ -40,8 +40,42 @@ const Footer = () => (
               { l: "Private Tours", h: "/tours/private-tours" },
               { l: "Sunrise Tours", h: "/tours/sunrise-tours" },
               { l: "Cenote Combo", h: "/tours/cenote-tours" },
-              { l: "Budget Tours", h: "/tour-types/budget" },
+              { l: "Small Group", h: "/tour-types/small-group" },
+              { l: "Luxury", h: "/tour-types/luxury" },
+              { l: "Budget", h: "/tour-types/budget" },
               { l: "Family Friendly", h: "/tour-types/family-friendly" },
+              { l: "VIP Skip the Line", h: "/tour-types/vip-skip-the-line" },
+            ].map((i) => (
+              <li key={i.h}>
+                <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Combo Tours & Departures */}
+        <div>
+          <h3 className="font-heading font-semibold text-accent mb-4">Combo Tours</h3>
+          <ul className="space-y-2 text-sm opacity-80 mb-6">
+            {[
+              { l: "Cenote Ik Kil", h: "/combo-tours/cenote-ik-kil" },
+              { l: "Coba Ruins", h: "/combo-tours/coba-ruins" },
+              { l: "Isla Mujeres", h: "/combo-tours/isla-mujeres" },
+              { l: "Multi-Day Yucatan", h: "/combo-tours/multi-day-yucatan" },
+            ].map((i) => (
+              <li key={i.h}>
+                <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
+              </li>
+            ))}
+          </ul>
+          <h3 className="font-heading font-semibold text-accent mb-3">Depart From</h3>
+          <ul className="space-y-2 text-sm opacity-80">
+            {[
+              { l: "Cancún", h: "/tours-from/cancun" },
+              { l: "Playa del Carmen", h: "/tours-from/playa-del-carmen" },
+              { l: "Tulum", h: "/tours-from/tulum" },
+              { l: "Riviera Maya", h: "/tours-from/riviera-maya" },
+              { l: "Mérida", h: "/tours-from/merida" },
             ].map((i) => (
               <li key={i.h}>
                 <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
@@ -61,6 +95,7 @@ const Footer = () => (
               { l: "How to Get There", h: "/guide/how-to-get-there" },
               { l: "Entrance Fees", h: "/guide/entrance-fees" },
               { l: "Photography Tips", h: "/guide/photography-tips" },
+              { l: "Dress Code & Rules", h: "/guide/dress-code-and-rules" },
             ].map((i) => (
               <li key={i.h}>
                 <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
@@ -69,27 +104,15 @@ const Footer = () => (
           </ul>
         </div>
 
-        {/* Departures & Info */}
+        {/* Support & Blog */}
         <div>
-          <h3 className="font-heading font-semibold text-accent mb-4">Depart From</h3>
+          <h3 className="font-heading font-semibold text-accent mb-4">Resources</h3>
           <ul className="space-y-2 text-sm opacity-80 mb-6">
-            {[
-              { l: "Cancún", h: "/tours-from/cancun" },
-              { l: "Playa del Carmen", h: "/tours-from/playa-del-carmen" },
-              { l: "Tulum", h: "/tours-from/tulum" },
-              { l: "Riviera Maya", h: "/tours-from/riviera-maya" },
-              { l: "Mérida", h: "/tours-from/merida" },
-            ].map((i) => (
-              <li key={i.h}>
-                <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
-              </li>
-            ))}
-          </ul>
-          <h3 className="font-heading font-semibold text-accent mb-3">Support</h3>
-          <ul className="space-y-2 text-sm opacity-80">
+            <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             <li><Link to="/practical/faq" className="hover:text-accent transition-colors">FAQ</Link></li>
             <li><Link to="/practical/contact" className="hover:text-accent transition-colors">Contact Us</Link></li>
             <li><Link to="/practical/cancellation-policy" className="hover:text-accent transition-colors">Cancellation Policy</Link></li>
+            <li><Link to="/practical/testimonials" className="hover:text-accent transition-colors">Testimonials</Link></li>
           </ul>
         </div>
       </div>
