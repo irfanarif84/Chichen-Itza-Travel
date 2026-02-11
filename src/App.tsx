@@ -19,6 +19,8 @@ import RivieraMayaToursPage from "./pages/tours-from/riviera-maya";
 import MeridaToursPage from "./pages/tours-from/merida";
 import BestTimeToVisitPage from "./pages/guide/best-time-to-visit";
 import WhatToBringPage from "./pages/guide/what-to-bring";
+import FAQPage from "./pages/practical/faq";
+import SmallGroupPage from "./pages/tour-types/small-group";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +49,8 @@ const App = () => (
                 <Route path="/tours-from/merida" element={<MeridaToursPage />} />
                 <Route path="/guide/best-time-to-visit" element={<BestTimeToVisitPage />} />
                 <Route path="/guide/what-to-bring" element={<WhatToBringPage />} />
+                <Route path="/practical/faq" element={<FAQPage />} />
+                <Route path="/tour-types/small-group" element={<SmallGroupPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

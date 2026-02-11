@@ -390,3 +390,76 @@ export const sunriseToursFAQs: FAQItem[] = [
     category: "weather",
   },
 ];
+
+// Small Group Tours FAQs
+export const smallGroupFAQs: FAQItem[] = [
+  {
+    question: "How many people are in a small group tour?",
+    answer: "Our small group tours are limited to 8-15 participants, depending on the specific tour. This ensures personalized attention from your guide, easier communication, and a more intimate experience compared to large 30+ person tours.",
+    category: "logistics",
+  },
+  {
+    question: "Why choose a small group over a large group tour?",
+    answer: "Small groups offer better guide interaction, more flexibility for questions, less waiting time at each stop, quieter experience at the ruins, and often include higher-quality transport. You'll also get better photo opportunities without crowds blocking your shots.",
+    category: "comparison",
+  },
+  {
+    question: "Are small group tours more expensive?",
+    answer: "Small group tours typically cost $10-30 more than large group options but offer significantly better value through personalized attention, better vehicles, and more intimate experiences. They're the sweet spot between budget and private tours.",
+    category: "pricing",
+  },
+  {
+    question: "Can I request a specific language for my small group?",
+    answer: "Most small group tours operate in English and Spanish. Due to smaller group sizes, you're more likely to be in a group that matches your language preference. Contact us for tours in French, German, or Italian.",
+    category: "logistics",
+  },
+  {
+    question: "Are small group tours suitable for solo travelers?",
+    answer: "Yes! Small group tours are ideal for solo travelers. The intimate group size makes it easy to connect with fellow travelers, and you'll receive more personal attention from the guide. Many solo travelers prefer small groups over private tours.",
+    category: "solo",
+  },
+];
+
+// Practical / General FAQ page data
+export const practicalFAQs: FAQItem[] = [
+  {
+    question: "How do I book a Chichen Itza tour?",
+    answer: "You can book directly through our website using the booking form on any tour page. Select your preferred tour, choose a date, enter the number of travelers, and complete the checkout. You'll receive an instant confirmation email with all details.",
+    category: "booking",
+  },
+  {
+    question: "What is your cancellation policy?",
+    answer: "We offer free cancellation up to 24 hours before your scheduled tour for a full refund. Cancellations within 24 hours are non-refundable. In cases of severe weather, we'll reschedule at no extra cost or provide a full refund.",
+    category: "booking",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. Payment is processed securely through our encrypted checkout. You can also pay in Mexican pesos or US dollars.",
+    category: "payment",
+  },
+  {
+    question: "Is travel insurance included?",
+    answer: "Basic travel insurance covering the tour duration is included in all our tour packages. For comprehensive coverage including trip cancellation and medical emergencies, we recommend purchasing additional travel insurance.",
+    category: "safety",
+  },
+  {
+    question: "What happens if it rains on tour day?",
+    answer: "Tours operate rain or shine — rain showers are usually brief and the site is still enjoyable. In cases of severe weather warnings, we'll offer free rescheduling or a full refund. Guides carry umbrellas and adjust itineraries as needed.",
+    category: "weather",
+  },
+  {
+    question: "Are tips expected for guides and drivers?",
+    answer: "Tips are not included in tour prices but are appreciated for good service. A typical tip is $5-10 USD per person for the guide and $3-5 for the driver. Tipping is entirely at your discretion based on your experience.",
+    category: "etiquette",
+  },
+  {
+    question: "Can I bring food or drinks into Chichen Itza?",
+    answer: "Sealed water bottles are allowed. Outside food is technically not permitted but small snacks are rarely an issue. Glass bottles, alcohol, and large coolers are prohibited. Vendors inside sell drinks and snacks.",
+    category: "rules",
+  },
+  {
+    question: "Is Chichen Itza wheelchair accessible?",
+    answer: "The main areas around El Castillo have relatively flat pathways suitable for wheelchairs. However, some areas have uneven terrain and steps. We recommend our private tours for travelers with mobility needs, as guides can adapt the route.",
+    category: "accessibility",
+  },
+];
