@@ -1,0 +1,169 @@
+import { Link } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { DollarSign, ChevronRight, Star, Bus, Clock, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import SEOHead from "@/components/common/SEOHead";
+import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import TourCard from "@/components/features/tours/TourCard";
+import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
+import TrustBadges from "@/components/features/booking/TrustBadges";
+import ComparisonTable from "@/components/guide/ComparisonTable";
+import TipBox from "@/components/guide/TipBox";
+import CTASection from "@/components/features/home/CTASection";
+import { tours } from "@/lib/tourData";
+import type { Tour } from "@/types/tour";
+
+const meta = getPageMeta({
+  title: "Budget Chichen Itza Tours – Affordable Day Trips from $49",
+  description: "Cheapest Chichen Itza tours from Cancun and Playa del Carmen. Professional guides, transport included. Budget-friendly from just $49. Book now!",
+  canonical: "/tour-types/budget",
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: "Home", url: "/" },
+      { name: "Tour Types", url: "/tours" },
+      { name: "Budget Tours" },
+    ]),
+  ],
+});
+
+const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
+  return allTours.filter((tour) => {
+    if (filters.duration.length > 0) {
+      const hours = tour.durationHours;
+      const match = filters.duration.some((d) => {
+        if (d === "short") return hours < 8;
+        if (d === "full") return hours >= 8 && hours <= 12;
+        if (d === "long") return hours > 12;
+        return false;
+      });
+      if (!match) return false;
+    }
+    return true;
+  });
+};
+
+const BudgetToursPage = () => {
+  const budgetTours = useMemo(
+    () => tours.filter((t) => t.category.includes("budget") || t.tourType === "budget" || t.price.adult <= 70),
+    []
+  );
+  const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
+  const filteredTours = useMemo(() => filterTours(budgetTours, filters), [budgetTours, filters]);
+
+  return (
+    <>
+      <SEOHead meta={meta} />
+
+      <section className="relative bg-gradient-to-br from-secondary/10 via-background to-primary/10 py-12 lg:py-16">
+        <div className="container">
+          <Breadcrumbs items={[{ label: "Tour Types", href: "/tours" }, { label: "Budget Tours" }]} />
+          <div className="mt-4 max-w-3xl">
+            <div className="flex items-center gap-0.5 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+              ))}
+              <span className="ml-2 text-sm text-muted-foreground">4.5/5 from 3,200+ budget travelers</span>
+            </div>
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
+              Budget Chichen Itza Tours – From Just $49
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+              See one of the New Seven Wonders of the World without breaking the bank. Professional guides, comfortable transport, and all entrance fees included at unbeatable prices.
+            </p>
+            <div className="flex flex-wrap gap-3 mb-6">
+              {[
+                { icon: DollarSign, text: "From $49/person" },
+                { icon: Bus, text: "Transport included" },
+                { icon: CheckCircle, text: "Entrance fees included" },
+                { icon: Clock, text: "Full day experience" },
+              ].map((item, i) => (
+                <span key={i} className="flex items-center gap-1.5 text-sm bg-card px-3 py-1.5 rounded-full border border-border">
+                  <item.icon className="h-4 w-4 text-primary" />
+                  {item.text}
+                </span>
+              ))}
+            </div>
+            <Button variant="cta" size="lg" asChild>
+              <a href="#tours">See Budget Tours <ChevronRight className="h-5 w-5" /></a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 lg:py-16">
+        <div className="container max-w-3xl">
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Our budget Chichen Itza tours prove you don't need to spend a fortune to experience one of the world's most incredible archaeological sites. These affordable tours include everything essential: comfortable air-conditioned transportation, a certified professional guide, and Chichen Itza entrance fees.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            While they may not include gourmet meals or private cenote access like our <Link to="/tour-types/luxury" className="text-primary hover:underline">luxury tours</Link>, budget tours cover all the major structures and deliver the same expert historical commentary. Perfect for backpackers, students, and value-conscious travelers.
+          </p>
+          <TipBox
+            type="tip"
+            title="Budget Tip"
+            content="Bring your own snacks and water to save on food costs. The on-site vendor market offers affordable lunch options from $5-8 USD. Budget tours still include professional guides who cover all the important structures."
+          />
+        </div>
+      </section>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container max-w-4xl">
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">Budget vs. Standard vs. Premium</h2>
+          <ComparisonTable
+            headers={["Budget", "Standard", "Premium"]}
+            highlightColumn={1}
+            rows={[
+              { label: "Price", values: ["From $49", "From $89", "From $189"] },
+              { label: "Transport", values: ["Tour bus", "Minivan", "Luxury SUV"] },
+              { label: "Group Size", values: ["20-30", "12-15", "1-6 (Private)"] },
+              { label: "Guide", values: ["Professional", "Certified expert", "Private archaeologist"] },
+              { label: "Lunch", values: ["Not included", "Buffet included", "Gourmet hacienda"] },
+              { label: "Cenote", values: ["Not included", "Included", "Private cenote"] },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section id="tours" className="py-12 lg:py-16">
+        <div className="container">
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2 text-center">Affordable Chichen Itza Tours</h2>
+          <p className="text-center text-muted-foreground mb-8">{budgetTours.length} budget-friendly options</p>
+          <TourFilters onFilterChange={setFilters} tourCount={filteredTours.length} className="mb-6" />
+          {filteredTours.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredTours.map((tour) => (<TourCard key={tour.id} tour={tour} />))}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-card rounded-lg border border-border">
+              <p className="text-muted-foreground mb-4">No tours match your filters.</p>
+              <Button variant="outline" onClick={() => setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })}>Clear All Filters</Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <div className="container py-8"><TrustBadges /></div>
+      <CTASection />
+
+      <section className="py-12 bg-muted/30 border-t border-border">
+        <div className="container">
+          <h2 className="font-heading font-semibold text-lg mb-6">Explore More</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[
+              { label: "Small Group Tours", href: "/tour-types/small-group" },
+              { label: "Day Tours", href: "/tours/day-tours" },
+              { label: "From Cancún", href: "/tours-from/cancun" },
+              { label: "From Playa del Carmen", href: "/tours-from/playa-del-carmen" },
+              { label: "All Tours", href: "/tours" },
+            ].map((link) => (
+              <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">{link.label} →</Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default BudgetToursPage;

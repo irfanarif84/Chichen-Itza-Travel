@@ -21,6 +21,14 @@ import BestTimeToVisitPage from "./pages/guide/best-time-to-visit";
 import WhatToBringPage from "./pages/guide/what-to-bring";
 import FAQPage from "./pages/practical/faq";
 import SmallGroupPage from "./pages/tour-types/small-group";
+import LuxuryToursPage from "./pages/tour-types/luxury";
+import BudgetToursPage from "./pages/tour-types/budget";
+import FamilyFriendlyPage from "./pages/tour-types/family-friendly";
+import VIPSkipTheLinePage from "./pages/tour-types/vip-skip-the-line";
+import CenoteIkKilComboPage from "./pages/combo-tours/cenote-ik-kil";
+import CobaRuinsComboPage from "./pages/combo-tours/coba-ruins";
+import IslaMujeresComboPage from "./pages/combo-tours/isla-mujeres";
+import MultiDayYucatanPage from "./pages/combo-tours/multi-day-yucatan";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +59,14 @@ const App = () => (
                 <Route path="/guide/what-to-bring" element={<WhatToBringPage />} />
                 <Route path="/practical/faq" element={<FAQPage />} />
                 <Route path="/tour-types/small-group" element={<SmallGroupPage />} />
+                <Route path="/tour-types/luxury" element={<LuxuryToursPage />} />
+                <Route path="/tour-types/budget" element={<BudgetToursPage />} />
+                <Route path="/tour-types/family-friendly" element={<FamilyFriendlyPage />} />
+                <Route path="/tour-types/vip-skip-the-line" element={<VIPSkipTheLinePage />} />
+                <Route path="/combo-tours/cenote-ik-kil" element={<CenoteIkKilComboPage />} />
+                <Route path="/combo-tours/coba-ruins" element={<CobaRuinsComboPage />} />
+                <Route path="/combo-tours/isla-mujeres" element={<IslaMujeresComboPage />} />
+                <Route path="/combo-tours/multi-day-yucatan" element={<MultiDayYucatanPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
