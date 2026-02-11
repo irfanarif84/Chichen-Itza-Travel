@@ -19,6 +19,11 @@ import RivieraMayaToursPage from "./pages/tours-from/riviera-maya";
 import MeridaToursPage from "./pages/tours-from/merida";
 import BestTimeToVisitPage from "./pages/guide/best-time-to-visit";
 import WhatToBringPage from "./pages/guide/what-to-bring";
+import HistoryAndFactsPage from "./pages/guide/history-and-facts";
+import HowToGetTherePage from "./pages/guide/how-to-get-there";
+import EntranceFeesPage from "./pages/guide/entrance-fees";
+import PhotographyTipsPage from "./pages/guide/photography-tips";
+import DressCodePage from "./pages/guide/dress-code-and-rules";
 import FAQPage from "./pages/practical/faq";
 import SmallGroupPage from "./pages/tour-types/small-group";
 import LuxuryToursPage from "./pages/tour-types/luxury";
@@ -29,6 +34,8 @@ import CenoteIkKilComboPage from "./pages/combo-tours/cenote-ik-kil";
 import CobaRuinsComboPage from "./pages/combo-tours/coba-ruins";
 import IslaMujeresComboPage from "./pages/combo-tours/isla-mujeres";
 import MultiDayYucatanPage from "./pages/combo-tours/multi-day-yucatan";
+import BlogIndexPage from "./pages/blog/index";
+import BlogPostPage from "./pages/blog/[slug]";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +64,11 @@ const App = () => (
                 <Route path="/tours-from/merida" element={<MeridaToursPage />} />
                 <Route path="/guide/best-time-to-visit" element={<BestTimeToVisitPage />} />
                 <Route path="/guide/what-to-bring" element={<WhatToBringPage />} />
+                <Route path="/guide/history-and-facts" element={<HistoryAndFactsPage />} />
+                <Route path="/guide/how-to-get-there" element={<HowToGetTherePage />} />
+                <Route path="/guide/entrance-fees" element={<EntranceFeesPage />} />
+                <Route path="/guide/photography-tips" element={<PhotographyTipsPage />} />
+                <Route path="/guide/dress-code-and-rules" element={<DressCodePage />} />
                 <Route path="/practical/faq" element={<FAQPage />} />
                 <Route path="/tour-types/small-group" element={<SmallGroupPage />} />
                 <Route path="/tour-types/luxury" element={<LuxuryToursPage />} />
@@ -67,6 +79,8 @@ const App = () => (
                 <Route path="/combo-tours/coba-ruins" element={<CobaRuinsComboPage />} />
                 <Route path="/combo-tours/isla-mujeres" element={<IslaMujeresComboPage />} />
                 <Route path="/combo-tours/multi-day-yucatan" element={<MultiDayYucatanPage />} />
+                <Route path="/blog" element={<BlogIndexPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
