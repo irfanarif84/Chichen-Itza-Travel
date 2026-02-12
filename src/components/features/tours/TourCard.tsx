@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Star, Clock, Users, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import type { Tour } from "@/types/tour";
 
@@ -8,11 +9,19 @@ interface TourCardProps {
 }
 
 const TourCard = ({ tour }: TourCardProps) => (
-  <div className="group bg-card rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col">
+  <motion.div
+    whileHover={{ y: -6 }}
+    transition={{ duration: 0.25, ease: "easeOut" }}
+    className="group bg-card rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-300 flex flex-col"
+  >
     {/* Image */}
     <div className="relative h-48 bg-muted overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent z-10" />
-      <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors z-10" />
+      <motion.div
+        className="absolute inset-0 bg-primary/20 z-10"
+        whileHover={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      />
       {tour.badge && (
         <span className="absolute top-3 left-3 z-20 bg-accent text-accent-foreground text-xs font-bold px-2.5 py-1 rounded-md">
           {tour.badge}
@@ -59,7 +68,7 @@ const TourCard = ({ tour }: TourCardProps) => (
         </Link>
       </Button>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default TourCard;

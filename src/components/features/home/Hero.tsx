@@ -1,24 +1,33 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Star, ArrowRight, ShieldCheck } from "lucide-react";
 import heroImage from "@/assets/hero-chichen-itza.jpg";
 
 const Hero = () => (
-  <section className="relative min-h-[85vh] flex items-center">
+  <section className="relative min-h-[85vh] flex items-center overflow-hidden">
     {/* Background */}
     <div className="absolute inset-0">
-      <img
+      <motion.img
         src={heroImage}
         alt="El Castillo pyramid at Chichen Itza during golden hour sunset"
         className="w-full h-full object-cover"
         loading="eager"
+        initial={{ scale: 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.8, ease: "easeOut" }}
       />
       <div className="absolute inset-0 bg-gradient-hero" />
     </div>
 
     {/* Content */}
     <div className="container relative z-10 py-20">
-      <div className="max-w-2xl">
+      <motion.div
+        className="max-w-2xl"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+      >
         <div className="flex items-center gap-2 mb-4">
           <div className="flex items-center gap-0.5">
             {[...Array(5)].map((_, i) => (
@@ -38,7 +47,12 @@ const Hero = () => (
           Explore one of the New Seven Wonders of the World. Book guided tours from Cancún, Playa del Carmen & Tulum with free cancellation.
         </p>
 
-        <div className="flex flex-wrap gap-3 mb-8">
+        <motion.div
+          className="flex flex-wrap gap-3 mb-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+        >
           <Button variant="hero" size="lg" asChild>
             <Link to="/tours">
               Explore All Tours <ArrowRight className="h-5 w-5 ml-1" />
@@ -47,7 +61,7 @@ const Hero = () => (
           <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 hover:text-primary-foreground font-semibold" asChild>
             <Link to="/practical/contact">Get a Free Quote</Link>
           </Button>
-        </div>
+        </motion.div>
 
         <div className="flex flex-wrap gap-4 text-primary-foreground/80 text-sm">
           {["Free Cancellation", "Instant Confirmation", "Best Price Guarantee"].map((t) => (
@@ -56,7 +70,7 @@ const Hero = () => (
             </span>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );

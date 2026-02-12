@@ -12,6 +12,7 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
+import AnimatedSection from "@/components/common/AnimatedSection";
 
 const meta = getPageMeta({
   title: "Chichen Itza Tours – Best Guided Tours & Day Trips 2026",
@@ -26,26 +27,42 @@ const Index = () => (
     <Hero />
 
     {/* Quick booking + trust strip */}
-    <section className="py-8 -mt-12 relative z-10">
-      <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <TrustBadges />
-          </div>
-          <div className="lg:-mt-20">
-            <QuickBookingForm />
+    <AnimatedSection>
+      <section className="py-8 -mt-12 relative z-10">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <TrustBadges />
+            </div>
+            <div className="lg:-mt-20">
+              <QuickBookingForm />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedSection>
 
-    <PopularTours />
-    <VideoSection />
-    <WhyChooseUs />
-    <SocialProof />
-    <DepartureSection />
-    <FAQSection faqs={homepageFAQs} subtitle="Everything you need to know before visiting Chichen Itza." />
-    <CTASection />
+    <AnimatedSection>
+      <PopularTours />
+    </AnimatedSection>
+    <AnimatedSection>
+      <VideoSection />
+    </AnimatedSection>
+    <AnimatedSection>
+      <WhyChooseUs />
+    </AnimatedSection>
+    <AnimatedSection>
+      <SocialProof />
+    </AnimatedSection>
+    <AnimatedSection>
+      <DepartureSection />
+    </AnimatedSection>
+    <AnimatedSection>
+      <FAQSection faqs={homepageFAQs} subtitle="Everything you need to know before visiting Chichen Itza." />
+    </AnimatedSection>
+    <AnimatedSection>
+      <CTASection />
+    </AnimatedSection>
   </>
 );
 
