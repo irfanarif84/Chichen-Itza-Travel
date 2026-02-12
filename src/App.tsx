@@ -25,6 +25,10 @@ import EntranceFeesPage from "./pages/guide/entrance-fees";
 import PhotographyTipsPage from "./pages/guide/photography-tips";
 import DressCodePage from "./pages/guide/dress-code-and-rules";
 import FAQPage from "./pages/practical/faq";
+import ContactPage from "./pages/practical/contact";
+import CancellationPolicyPage from "./pages/practical/cancellation-policy";
+import TestimonialsPage from "./pages/practical/testimonials";
+import BookingInfoPage from "./pages/practical/booking-info";
 import SmallGroupPage from "./pages/tour-types/small-group";
 import LuxuryToursPage from "./pages/tour-types/luxury";
 import BudgetToursPage from "./pages/tour-types/budget";
@@ -70,6 +74,10 @@ const App = () => (
                 <Route path="/guide/photography-tips" element={<PhotographyTipsPage />} />
                 <Route path="/guide/dress-code-and-rules" element={<DressCodePage />} />
                 <Route path="/practical/faq" element={<FAQPage />} />
+                <Route path="/practical/contact" element={<ContactPage />} />
+                <Route path="/practical/cancellation-policy" element={<CancellationPolicyPage />} />
+                <Route path="/practical/testimonials" element={<TestimonialsPage />} />
+                <Route path="/practical/booking-info" element={<BookingInfoPage />} />
                 <Route path="/tour-types/small-group" element={<SmallGroupPage />} />
                 <Route path="/tour-types/luxury" element={<LuxuryToursPage />} />
                 <Route path="/tour-types/budget" element={<BudgetToursPage />} />
