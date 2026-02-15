@@ -8,6 +8,7 @@ import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
 import InfoBox from "@/components/guide/InfoBox";
 import { guideSchemas } from "@/lib/schema";
+import { guideImages } from "@/lib/tourImages";
 
 const meta = getPageMeta({
   title: "What to Bring to Chichen Itza - Essential Packing List 2026",
@@ -76,8 +77,9 @@ const WhatToBringPage = () => {
       <SEOHead meta={meta} />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16 overflow-hidden">
+        <img src={guideImages["what-to-bring"]} alt="Travel essentials flat lay for visiting Chichen Itza" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" />
+        <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />
 
           <div className="max-w-3xl mt-4">

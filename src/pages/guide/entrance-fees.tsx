@@ -9,6 +9,7 @@ import TipBox from "@/components/guide/TipBox";
 import InfoBox from "@/components/guide/InfoBox";
 import FAQSection from "@/components/common/FAQ";
 import { generalChichenItzaFAQs } from "@/lib/faqData";
+import { guideImages } from "@/lib/tourImages";
 
 const meta = getPageMeta({
   title: "Chichen Itza Entrance Fees 2026 – Complete Price Guide",
@@ -33,8 +34,9 @@ const EntranceFeesPage = () => {
     <>
       <SEOHead meta={meta} />
 
-      <section className="bg-gradient-to-br from-accent/10 via-background to-success/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative bg-gradient-to-br from-accent/10 via-background to-success/10 py-12 lg:py-16 overflow-hidden">
+        <img src={guideImages["entrance-fees"]} alt="Tourists at Chichen Itza entrance gate" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" />
+        <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />
           <div className="max-w-3xl mt-4">
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
