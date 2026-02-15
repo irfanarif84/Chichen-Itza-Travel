@@ -10,6 +10,7 @@ import TipBox from "@/components/guide/TipBox";
 import InfoBox from "@/components/guide/InfoBox";
 import { guideSchemas } from "@/lib/schema";
 import { generalChichenItzaFAQs } from "@/lib/faqData";
+import { guideImages } from "@/lib/tourImages";
 
 const meta = getPageMeta({
   title: "Best Time to Visit Chichen Itza - Complete 2026 Guide",
@@ -56,8 +57,9 @@ const BestTimeToVisitPage = () => {
       <SEOHead meta={meta} />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-accent/10 via-background to-primary/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative bg-gradient-to-br from-accent/10 via-background to-primary/10 py-12 lg:py-16 overflow-hidden">
+        <img src={guideImages["best-time-to-visit"]} alt="Chichen Itza El Castillo pyramid in golden afternoon light" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" />
+        <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />
 
           <div className="max-w-3xl mt-4">

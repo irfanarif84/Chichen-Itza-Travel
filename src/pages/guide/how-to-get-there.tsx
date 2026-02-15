@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
 import ComparisonTable from "@/components/guide/ComparisonTable";
+import { guideImages } from "@/lib/tourImages";
 
 const meta = getPageMeta({
   title: "How to Get to Chichen Itza – Transport Guide 2026",
@@ -36,8 +37,9 @@ const HowToGetTherePage = () => (
   <>
     <SEOHead meta={meta} />
 
-    <section className="bg-gradient-to-br from-secondary/10 via-background to-primary/10 py-12 lg:py-16">
-      <div className="container">
+    <section className="relative bg-gradient-to-br from-secondary/10 via-background to-primary/10 py-12 lg:py-16 overflow-hidden">
+      <img src={guideImages["how-to-get-there"]} alt="Scenic road through Yucatan jungle leading to Chichen Itza" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" />
+      <div className="container relative z-10">
         <Breadcrumbs items={breadcrumbs} />
         <div className="max-w-3xl mt-4">
           <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">

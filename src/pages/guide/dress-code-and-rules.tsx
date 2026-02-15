@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
 import InfoBox from "@/components/guide/InfoBox";
+import { guideImages } from "@/lib/tourImages";
 
 const meta = getPageMeta({
   title: "Chichen Itza Dress Code & Rules – Visitor Guide 2026",
@@ -28,8 +29,9 @@ const DressCodePage = () => (
   <>
     <SEOHead meta={meta} />
 
-    <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16">
-      <div className="container">
+    <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16 overflow-hidden">
+      <img src={guideImages["dress-code-and-rules"]} alt="Travel outfit flat lay for visiting Chichen Itza" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="eager" />
+      <div className="container relative z-10">
         <Breadcrumbs items={breadcrumbs} />
         <div className="max-w-3xl mt-4">
           <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
