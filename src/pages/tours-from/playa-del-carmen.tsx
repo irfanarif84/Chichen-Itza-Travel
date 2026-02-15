@@ -16,6 +16,7 @@ import TipBox from "@/components/guide/TipBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
 import { playaDelCarmenFAQs, playaDelCarmenPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
+import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
 import type { Tour } from "@/types/tour";
 
@@ -87,8 +88,18 @@ const PlayaDelCarmenToursPage = () => {
       <SEOHead meta={meta} />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative py-12 lg:py-16 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={locationImages["playa-del-carmen"]}
+            alt="Playa del Carmen Fifth Avenue and Caribbean beach"
+            className="w-full h-full object-cover"
+            width={1920}
+            height={1080}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        </div>
+        <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />
 
           <div className="grid lg:grid-cols-2 gap-8 items-center mt-4">
