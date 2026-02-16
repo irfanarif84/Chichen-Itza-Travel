@@ -12,6 +12,9 @@ import DayToursPage from "./pages/tours/day-tours";
 import PrivateToursPage from "./pages/tours/private-tours";
 import CenoteToursPage from "./pages/tours/cenote-tours";
 import SunriseToursPage from "./pages/tours/sunrise-tours";
+import EkBalamToursPage from "./pages/tours/ek-balam-tours";
+import ValladolidToursPage from "./pages/tours/valladolid-tours";
+import NightToursPage from "./pages/tours/night-tours";
 import CancunToursPage from "./pages/tours-from/cancun";
 import PlayaDelCarmenToursPage from "./pages/tours-from/playa-del-carmen";
 import TulumToursPage from "./pages/tours-from/tulum";
@@ -61,6 +64,9 @@ const App = () => (
                 <Route path="/tours/private-tours" element={<PrivateToursPage />} />
                 <Route path="/tours/cenote-tours" element={<CenoteToursPage />} />
                 <Route path="/tours/sunrise-tours" element={<SunriseToursPage />} />
+                <Route path="/tours/ek-balam-tours" element={<EkBalamToursPage />} />
+                <Route path="/tours/valladolid-tours" element={<ValladolidToursPage />} />
+                <Route path="/tours/night-tours" element={<NightToursPage />} />
                 <Route path="/tours-from/cancun" element={<CancunToursPage />} />
                 <Route path="/tours-from/playa-del-carmen" element={<PlayaDelCarmenToursPage />} />
                 <Route path="/tours-from/tulum" element={<TulumToursPage />} />
