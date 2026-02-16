@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Palmtree } from "lucide-react";
+import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Palmtree, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
@@ -13,6 +13,11 @@ import CTASection from "@/components/features/home/CTASection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TimelineItem from "@/components/features/tours/TimelineItem";
 import TipBox from "@/components/guide/TipBox";
+import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
+import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
+import CTABox from "@/components/features/tours/CTABox";
+import ComboTourCard from "@/components/features/tours/ComboTourCard";
+import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
 import { tulumFAQs, tulumPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
@@ -37,6 +42,37 @@ const meta = getPageMeta({
 });
 
 const breadcrumbs = [{ label: "Tours from Tulum" }];
+
+const comboTours = [
+  {
+    title: "Chichen Itza + Cenote Ik Kil",
+    price: 99,
+    description: "Explore the ruins and swim in the iconic Cenote Ik Kil. Includes buffet lunch.",
+    duration: "12 hours",
+    link: "/combo-tours/cenote-ik-kil",
+  },
+  {
+    title: "Chichen Itza + Cobá Ruins",
+    price: 119,
+    description: "Two magnificent Mayan sites in one day. Climb the Nohoch Mul pyramid at Cobá.",
+    duration: "14 hours",
+    link: "/combo-tours/coba-ruins",
+  },
+  {
+    title: "Chichen Itza + Valladolid",
+    price: 89,
+    description: "Ancient ruins paired with the charming colonial city and its colorful streets.",
+    duration: "13 hours",
+    link: "/tours/day-tours",
+  },
+  {
+    title: "Multi-Day Yucatán Explorer",
+    price: 299,
+    description: "3-day immersive experience: Chichen Itza, Uxmal, Mérida, cenotes, and more.",
+    duration: "3 days",
+    link: "/combo-tours/multi-day-yucatan",
+  },
+];
 
 const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
   return tours.filter((tour) => {
@@ -115,11 +151,11 @@ const TulumToursPage = () => {
               </div>
 
               <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
-                {location.h1}
+                Chichen Itza Tours from Tulum — Day Trips & Packages 2026
               </h1>
 
               <p className="text-lg text-muted-foreground mb-6 max-w-xl">
-                Compare two incredible Mayan experiences! Visit Chichen Itza from Tulum 
+                Compare two incredible Mayan experiences! Visit Chichen Itza from Tulum
                 and return to the beautiful Caribbean coast by sunset.
               </p>
 
@@ -178,165 +214,253 @@ const TulumToursPage = () => {
         </div>
       </section>
 
-      {/* Intro content */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto prose prose-neutral">
-            {tulumPageContent.intro.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="text-muted-foreground leading-relaxed mb-4">
-                {paragraph}
+      {/* Main Content + Sidebar Layout */}
+      <div className="container py-12 lg:py-16">
+        <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+          {/* Main content */}
+          <div>
+            {/* Introduction */}
+            <section className="prose prose-neutral max-w-none mb-12">
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Experience the best of both worlds with <strong>Chichen Itza tours from Tulum</strong>.
+                While Tulum offers stunning coastal Mayan ruins overlooking the Caribbean, Chichen
+                Itza showcases the massive inland pyramids that earned its place as one of the New
+                Seven Wonders of the World.
               </p>
-            ))}
-          </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Located approximately 95 miles ({location.driveTime}) from Tulum, Chichen Itza makes
+                an excellent day trip. Our tours are designed to get you there early, before the crowds
+                arrive from <Link to="/tours-from/cancun" className="text-primary hover:underline">Cancún</Link>,
+                giving you time to explore both the archaeological site and a refreshing cenote.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Tulum's bohemian atmosphere and eco-conscious vibe extend to our tours. Choose from{" "}
+                <Link to="/tours/private-tours" className="text-primary hover:underline">private tours</Link>,{" "}
+                <Link to="/tour-types/small-group" className="text-primary hover:underline">small group experiences</Link>, or{" "}
+                <Link to="/tours/sunrise-tours" className="text-primary hover:underline">sunrise access</Link>.
+                Return to Tulum's beautiful beaches by late afternoon for the perfect end to your day.
+              </p>
+            </section>
 
-          <div className="max-w-3xl mx-auto mt-8">
-            <TipBox
-              type="info"
-              title="Two UNESCO Sites, One Trip"
-              content="Tulum and Chichen Itza offer completely different Mayan experiences. Tulum's dramatic clifftop ruins overlook the turquoise Caribbean, while Chichen Itza's massive inland pyramids showcase Mayan architectural mastery. Visiting both gives you a complete picture of this fascinating civilization."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Tours Grid */}
-      <section id="tours" className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
-              Top Chichen Itza Tours Departing from Tulum
-            </h2>
-            <p className="text-muted-foreground">
-              {allTulumTours.length} tours available with hotel pickup from Tulum
-            </p>
-          </div>
-
-          <TourFilters
-            onFilterChange={setFilters}
-            tourCount={filteredTours.length}
-            className="mb-6"
-          />
-
-          {filteredTours.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTours.map((tour) => (
-                <TourCard key={tour.id} tour={tour} />
-              ))}
+            <div className="mb-12">
+              <TipBox
+                type="info"
+                title="Two UNESCO Sites, One Trip"
+                content="Tulum and Chichen Itza offer completely different Mayan experiences. Tulum's dramatic clifftop ruins overlook the turquoise Caribbean, while Chichen Itza's massive inland pyramids showcase Mayan architectural mastery. Visiting both gives you a complete picture of this fascinating civilization."
+              />
             </div>
-          ) : (
-            <div className="text-center py-12 bg-card rounded-lg border border-border">
-              <p className="text-muted-foreground mb-4">No tours match your filters.</p>
-              <Button
-                variant="outline"
-                onClick={() =>
-                  setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
-                }
-              >
-                Clear All Filters
-              </Button>
-            </div>
-          )}
-        </div>
-      </section>
 
-      {/* Timeline Section */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
-              What to Expect on Your Tulum to Chichen Itza Tour
-            </h2>
-            
-            <div className="space-y-0">
-              {tulumPageContent.timeline.map((step, i) => (
-                <TimelineItem
-                  key={i}
-                  time={step.time}
-                  title={step.title}
-                  description={step.description}
-                  isLast={i === tulumPageContent.timeline.length - 1}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* Tours Grid */}
+            <section id="tours" className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Top Chichen Itza Tours Departing from Tulum
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                {allTulumTours.length} tours available with hotel pickup from Tulum
+              </p>
 
-      {/* Comparison Table */}
-      <section className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">
-            Guided Tour vs. Self-Drive from Tulum
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <ComparisonTable
-              headers={["Guided Tour", "Self-Drive"]}
-              highlightColumn={1}
-              rows={tulumPageContent.comparisonTable.rows.map((row) => ({
-                label: row[0],
-                values: [row[1], row[2]],
-              }))}
-            />
-          </div>
-        </div>
-      </section>
+              <TourFilters
+                onFilterChange={setFilters}
+                tourCount={filteredTours.length}
+                className="mb-6"
+              />
 
-      {/* Best Time Section */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
-              Best Time to Visit Chichen Itza from Tulum
-            </h2>
-            <div className="prose prose-neutral">
-              {tulumPageContent.bestTime.split("\n\n").map((paragraph, i) => (
-                <div key={i} className="mb-4">
-                  {paragraph.split("\n").map((line, j) => {
-                    if (line.startsWith("**")) {
-                      const text = line.replace(/\*\*/g, "");
-                      return (
-                        <p key={j} className="font-semibold text-foreground mb-1">
-                          {text}
-                        </p>
-                      );
-                    }
-                    return (
-                      <p key={j} className="text-muted-foreground">
-                        {line}
-                      </p>
-                    );
-                  })}
+              {filteredTours.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {filteredTours.map((tour) => (
+                    <TourCard key={tour.id} tour={tour} />
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-6">
-              <Button variant="outline" asChild>
-                <Link to="/guide/best-time-to-visit">
-                  Read Full Guide <ChevronRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+              ) : (
+                <div className="text-center py-12 bg-card rounded-lg border border-border">
+                  <p className="text-muted-foreground mb-4">No tours match your filters.</p>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
+                    }
+                  >
+                    Clear All Filters
+                  </Button>
+                </div>
+              )}
+            </section>
+
+            {/* What to Expect Timeline */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                What to Expect on Your Tulum to Chichen Itza Tour
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                A typical day tour timeline from Tulum
+              </p>
+
+              <div className="space-y-0">
+                {tulumPageContent.timeline.map((step, i) => (
+                  <TimelineItem
+                    key={i}
+                    time={step.time}
+                    title={step.title}
+                    description={step.description}
+                    isLast={i === tulumPageContent.timeline.length - 1}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <InfoBox
+                  title="What's Included"
+                  icon="✓"
+                  variant="success"
+                  items={[
+                    "Air-conditioned transport from your hotel",
+                    "Expert Mayan guide (bilingual)",
+                    "All entrance fees to Chichen Itza",
+                    "Sacred cenote swimming stop",
+                    "Traditional Yucatecan buffet lunch",
+                    "Bottled water throughout the day",
+                  ]}
+                />
+                <InfoBox
+                  title="What to Bring"
+                  icon="🎒"
+                  variant="info"
+                  items={[
+                    "Comfortable walking shoes",
+                    "Biodegradable sunscreen (for cenotes)",
+                    "Swimsuit and towel for cenote",
+                    "Camera for photos",
+                    "Cash for tips and souvenirs",
+                    "Light layers for early morning",
+                  ]}
+                />
+              </div>
+            </section>
+
+            {/* Comparison Table */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Guided Tour vs. Self-Drive from Tulum
+              </h2>
+              <ComparisonTable
+                headers={["Guided Tour", "Self-Drive"]}
+                highlightColumn={1}
+                rows={tulumPageContent.comparisonTable.rows.map((row) => ({
+                  label: row[0],
+                  values: [row[1], row[2]],
+                }))}
+              />
+              <div className="mt-6">
+                <TipBox
+                  type="tip"
+                  title="Pro Tip: Save Time for the Beach"
+                  content="A guided tour handles all the logistics so you can relax on the journey. Most Tulum tours return by 4:30 PM — just in time to catch Tulum's famous sunset from the beach."
+                />
+              </div>
+            </section>
+
+            {/* Best Time */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Best Time to Visit Chichen Itza from Tulum
+              </h2>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sun className="h-5 w-5 text-accent" />
+                    <h3 className="font-heading font-semibold">Best Season</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">November–April</strong> offers ideal weather
+                    with comfortable temperatures. The rainy season (May-Oct) brings afternoon showers
+                    but also smaller crowds and lower prices.
+                  </p>
+                </div>
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <h3 className="font-heading font-semibold">Best Time of Day</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">Depart by 6:30 AM</strong> to arrive before
+                    9 AM. This beats the midday heat and afternoon crowds from cruise ships. Our{" "}
+                    <Link to="/tours/sunrise-tours" className="text-primary hover:underline">
+                      sunrise tours
+                    </Link>{" "}
+                    offer the most magical experience.
+                  </p>
+                </div>
+              </div>
+
+              <TipBox
+                type="info"
+                title="Multi-Day Tip"
+                content="If you're staying multiple days in Tulum, consider a sunrise tour for photography or an afternoon tour that includes the Chichen Itza light show."
+              />
+
+              <div className="mt-4">
+                <Button variant="outline" asChild>
+                  <Link to="/guide/best-time-to-visit">
+                    Read Full Guide <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </section>
+
+            {/* Map */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4">
+                Tulum to Chichen Itza Route
+              </h2>
+              <MapEmbed
+                title="Tulum to Chichen Itza Route"
+                from="Tulum, Mexico"
+                to="Chichen Itza, Mexico"
+              />
+              <p className="text-sm text-muted-foreground mt-3">
+                The journey from Tulum to Chichen Itza takes you through scenic Yucatán
+                countryside, passing traditional Mayan villages and jungle landscape. The
+                modern highway ensures a smooth, comfortable 2-2.5 hour ride.
+              </p>
+            </section>
+
+            {/* Combo Tours */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Popular Combo Tours from Tulum
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Maximize your day with these popular combinations that pair Chichen Itza with other Yucatán attractions:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-5">
+                {comboTours.map((combo) => (
+                  <ComboTourCard key={combo.title} {...combo} />
+                ))}
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="mb-12">
+              <FAQSection
+                faqs={tulumFAQs}
+                title="Frequently Asked Questions"
+                subtitle="Common questions about Chichen Itza tours from Tulum"
+              />
+            </section>
           </div>
-        </div>
-      </section>
 
-      {/* Map */}
-      <section className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <MapEmbed
-            title="Tulum to Chichen Itza Route"
-            from="Tulum, Mexico"
-            to="Chichen Itza, Mexico"
-          />
+          {/* Sidebar */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 space-y-6">
+              <QuickBookingForm />
+              <PopularToursWidget departureCity="tulum" />
+              <CTABox />
+              <TrustBadges variant="compact" />
+            </div>
+          </aside>
         </div>
-      </section>
-
-      {/* FAQ */}
-      <FAQSection
-        faqs={tulumFAQs}
-        title="Frequently Asked Questions"
-        subtitle="Common questions about Chichen Itza tours from Tulum"
-      />
+      </div>
 
       {/* CTA */}
       <CTASection />
@@ -352,12 +476,17 @@ const TulumToursPage = () => {
               { label: "From Cancún", href: "/tours-from/cancun" },
               { label: "From Playa del Carmen", href: "/tours-from/playa-del-carmen" },
               { label: "From Riviera Maya", href: "/tours-from/riviera-maya" },
+              { label: "From Mérida", href: "/tours-from/merida" },
               { label: "Private Tours", href: "/tours/private-tours" },
               { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
               { label: "Cenote Tours", href: "/tours/cenote-tours" },
+              { label: "Budget Tours", href: "/tour-types/budget" },
               { label: "Family Tours", href: "/tour-types/family-friendly" },
+              { label: "Luxury Tours", href: "/tour-types/luxury" },
               { label: "Best Time to Visit", href: "/guide/best-time-to-visit" },
               { label: "What to Bring", href: "/guide/what-to-bring" },
+              { label: "Entrance Fees", href: "/guide/entrance-fees" },
+              { label: "How to Get There", href: "/guide/how-to-get-there" },
               { label: "All Tours", href: "/tours" },
             ].map((link) => (
               <Link

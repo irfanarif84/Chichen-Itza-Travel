@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Hotel } from "lucide-react";
+import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Hotel, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
@@ -12,6 +12,12 @@ import MapEmbed from "@/components/common/MapEmbed";
 import CTASection from "@/components/features/home/CTASection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TimelineItem from "@/components/features/tours/TimelineItem";
+import TipBox from "@/components/guide/TipBox";
+import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
+import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
+import CTABox from "@/components/features/tours/CTABox";
+import ComboTourCard from "@/components/features/tours/ComboTourCard";
+import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
 import { rivieraMayaFAQs, rivieraMayaPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
@@ -36,6 +42,37 @@ const meta = getPageMeta({
 });
 
 const breadcrumbs = [{ label: "Tours from Riviera Maya" }];
+
+const comboTours = [
+  {
+    title: "Chichen Itza + Cenote Ik Kil",
+    price: 99,
+    description: "Explore the ruins and swim in the iconic Cenote Ik Kil. Includes buffet lunch.",
+    duration: "11 hours",
+    link: "/combo-tours/cenote-ik-kil",
+  },
+  {
+    title: "Chichen Itza + Cobá Ruins",
+    price: 119,
+    description: "Visit two magnificent Mayan sites in one day. Climb the Nohoch Mul pyramid.",
+    duration: "13 hours",
+    link: "/combo-tours/coba-ruins",
+  },
+  {
+    title: "Chichen Itza + Isla Mujeres",
+    price: 159,
+    description: "Combine ancient Mayan history with a Caribbean island paradise experience.",
+    duration: "2 days",
+    link: "/combo-tours/isla-mujeres",
+  },
+  {
+    title: "Multi-Day Yucatán Explorer",
+    price: 299,
+    description: "3-day immersive experience: Chichen Itza, Uxmal, Mérida, cenotes, and more.",
+    duration: "3 days",
+    link: "/combo-tours/multi-day-yucatan",
+  },
+];
 
 const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
   return tours.filter((tour) => {
@@ -114,11 +151,11 @@ const RivieraMayaToursPage = () => {
               </div>
 
               <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
-                {location.h1}
+                Chichen Itza Tours from Riviera Maya — All-Inclusive Day Trips
               </h1>
 
               <p className="text-lg text-muted-foreground mb-6 max-w-xl">
-                Convenient Chichen Itza tours with pickup from any hotel along the 
+                Convenient Chichen Itza tours with pickup from any hotel along the
                 Riviera Maya corridor. From Puerto Morelos to Akumal, we've got you covered.
               </p>
 
@@ -177,118 +214,246 @@ const RivieraMayaToursPage = () => {
         </div>
       </section>
 
-      {/* Intro content */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto prose prose-neutral">
-            {rivieraMayaPageContent.intro.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="text-muted-foreground leading-relaxed mb-4">
-                {paragraph}
+      {/* Main Content + Sidebar Layout */}
+      <div className="container py-12 lg:py-16">
+        <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+          {/* Main content */}
+          <div>
+            {/* Introduction */}
+            <section className="prose prose-neutral max-w-none mb-12">
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Discover Chichen Itza with convenient <strong>tours departing from anywhere in
+                the Riviera Maya</strong>. Whether you're staying in Puerto Aventuras, Akumal,
+                Xpu-Ha, or any resort along Mexico's famous Caribbean coastline, we offer
+                hassle-free pickup and transportation to one of the world's most spectacular
+                archaeological sites.
               </p>
-            ))}
-          </div>
-        </div>
-      </section>
+              <p className="text-muted-foreground leading-relaxed">
+                The Riviera Maya's central location means drive times of {location.driveTime} depending
+                on your exact hotel. Our tour coordinators optimize pickup routes to minimize wait
+                times while ensuring everyone arrives at Chichen Itza for an early morning experience.
+                Compare with tours from{" "}
+                <Link to="/tours-from/cancun" className="text-primary hover:underline">Cancún</Link>,{" "}
+                <Link to="/tours-from/playa-del-carmen" className="text-primary hover:underline">Playa del Carmen</Link>, or{" "}
+                <Link to="/tours-from/tulum" className="text-primary hover:underline">Tulum</Link>.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                All-inclusive resorts especially benefit from our day tours — step away from the
+                beach for a day of culture, history, and adventure, then return to your resort's
+                amenities by late afternoon. Choose from{" "}
+                <Link to="/tours/private-tours" className="text-primary hover:underline">private tours</Link>,{" "}
+                <Link to="/tour-types/small-group" className="text-primary hover:underline">small group experiences</Link>, or{" "}
+                <Link to="/tour-types/family-friendly" className="text-primary hover:underline">family-friendly options</Link>.
+              </p>
+            </section>
 
-      {/* Tours Grid */}
-      <section id="tours" className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
-              Chichen Itza Tours from Riviera Maya Resorts
-            </h2>
-            <p className="text-muted-foreground">
-              {allRivieraTours.length} tours available with resort pickup
-            </p>
-          </div>
+            {/* Tours Grid */}
+            <section id="tours" className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Chichen Itza Tours from Riviera Maya Resorts
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                {allRivieraTours.length} tours available with resort pickup
+              </p>
 
-          <TourFilters
-            onFilterChange={setFilters}
-            tourCount={filteredTours.length}
-            className="mb-6"
-          />
+              <TourFilters
+                onFilterChange={setFilters}
+                tourCount={filteredTours.length}
+                className="mb-6"
+              />
 
-          {filteredTours.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTours.map((tour) => (
-                <TourCard key={tour.id} tour={tour} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12 bg-card rounded-lg border border-border">
-              <p className="text-muted-foreground mb-4">No tours match your filters.</p>
-              <Button
-                variant="outline"
-                onClick={() =>
-                  setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
-                }
-              >
-                Clear All Filters
-              </Button>
-            </div>
-          )}
-        </div>
-      </section>
+              {filteredTours.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {filteredTours.map((tour) => (
+                    <TourCard key={tour.id} tour={tour} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 bg-card rounded-lg border border-border">
+                  <p className="text-muted-foreground mb-4">No tours match your filters.</p>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
+                    }
+                  >
+                    Clear All Filters
+                  </Button>
+                </div>
+              )}
+            </section>
 
-      {/* Timeline Section */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
-              Your Riviera Maya to Chichen Itza Day
-            </h2>
-            
-            <div className="space-y-0">
-              {rivieraMayaPageContent.timeline.map((step, i) => (
-                <TimelineItem
-                  key={i}
-                  time={step.time}
-                  title={step.title}
-                  description={step.description}
-                  isLast={i === rivieraMayaPageContent.timeline.length - 1}
+            {/* What to Expect Timeline */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Your Riviera Maya to Chichen Itza Day
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                A typical day tour timeline from Riviera Maya resorts
+              </p>
+
+              <div className="space-y-0">
+                {rivieraMayaPageContent.timeline.map((step, i) => (
+                  <TimelineItem
+                    key={i}
+                    time={step.time}
+                    title={step.title}
+                    description={step.description}
+                    isLast={i === rivieraMayaPageContent.timeline.length - 1}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <InfoBox
+                  title="What's Included"
+                  icon="✓"
+                  variant="success"
+                  items={[
+                    "Door-to-door resort pickup & drop-off",
+                    "Certified bilingual archaeologist guide",
+                    "All entrance fees to Chichen Itza",
+                    "Cenote swimming stop",
+                    "Traditional Yucatecan buffet lunch",
+                    "Bottled water and snacks on board",
+                  ]}
                 />
-              ))}
+                <InfoBox
+                  title="What to Bring"
+                  icon="🎒"
+                  variant="info"
+                  items={[
+                    "Comfortable walking shoes",
+                    "Sunscreen and hat",
+                    "Swimsuit and towel for cenote",
+                    "Camera or smartphone",
+                    "Cash for tips and souvenirs",
+                    "Light jacket for air-conditioned van",
+                  ]}
+                />
+              </div>
+            </section>
+
+            {/* Comparison Table */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Guided Tour vs. Self-Drive from Your Resort
+              </h2>
+              <ComparisonTable
+                headers={["Guided Tour", "Self-Drive"]}
+                highlightColumn={1}
+                rows={rivieraMayaPageContent.comparisonTable.rows.map((row) => ({
+                  label: row[0],
+                  values: [row[1], row[2]],
+                }))}
+              />
+              <div className="mt-6">
+                <TipBox
+                  type="tip"
+                  title="Pro Tip: Resort Convenience"
+                  content="All-inclusive guests get maximum value from a guided tour — no need to arrange car rental, navigate unfamiliar roads, or worry about parking. Your tour handles everything from lobby pickup to evening drop-off."
+                />
+              </div>
+            </section>
+
+            {/* Best Time */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Best Time to Visit Chichen Itza from Riviera Maya
+              </h2>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sun className="h-5 w-5 text-accent" />
+                    <h3 className="font-heading font-semibold">Best Season</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">November–April</strong> offers dry weather
+                    and comfortable temperatures. All-inclusive guests have more flexibility to book
+                    last-minute during shoulder seasons.
+                  </p>
+                </div>
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <h3 className="font-heading font-semibold">Pickup Times</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">Varies by location:</strong> Puerto Morelos
+                    6:15 AM, Playa del Carmen 6:30-7:00 AM, Puerto Aventuras/Akumal 6:45-7:15 AM.
+                  </p>
+                </div>
+              </div>
+
+              <TipBox
+                type="info"
+                title="Resort Concierge Tip"
+                content="Ask your resort concierge about partnered tours — some resorts offer exclusive packages or discounts for their guests."
+              />
+
+              <div className="mt-4">
+                <Button variant="outline" asChild>
+                  <Link to="/guide/best-time-to-visit">
+                    Read Full Guide <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </section>
+
+            {/* Map */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4">
+                Riviera Maya to Chichen Itza Route
+              </h2>
+              <MapEmbed
+                title="Riviera Maya to Chichen Itza Route"
+                from="Riviera Maya, Mexico"
+                to="Chichen Itza, Mexico"
+              />
+              <p className="text-sm text-muted-foreground mt-3">
+                The journey from the Riviera Maya corridor takes you west through the scenic
+                Yucatán Peninsula. Drive times vary by pickup location, from 1.5 hours (northern
+                resorts) to 2.5 hours (southern resorts near Tulum).
+              </p>
+            </section>
+
+            {/* Combo Tours */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Popular Combo Tours from Riviera Maya
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Maximize your day with these popular combinations that pair Chichen Itza with other Yucatán attractions:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-5">
+                {comboTours.map((combo) => (
+                  <ComboTourCard key={combo.title} {...combo} />
+                ))}
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="mb-12">
+              <FAQSection
+                faqs={rivieraMayaFAQs}
+                title="Frequently Asked Questions"
+                subtitle="Common questions about Chichen Itza tours from Riviera Maya"
+              />
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 space-y-6">
+              <QuickBookingForm />
+              <PopularToursWidget departureCity="riviera-maya" />
+              <CTABox />
+              <TrustBadges variant="compact" />
             </div>
-          </div>
+          </aside>
         </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">
-            Guided Tour vs. Self-Drive from Your Resort
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <ComparisonTable
-              headers={["Guided Tour", "Self-Drive"]}
-              highlightColumn={1}
-              rows={rivieraMayaPageContent.comparisonTable.rows.map((row) => ({
-                label: row[0],
-                values: [row[1], row[2]],
-              }))}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Map */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <MapEmbed
-            title="Riviera Maya to Chichen Itza Route"
-            from="Riviera Maya, Mexico"
-            to="Chichen Itza, Mexico"
-          />
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <FAQSection
-        faqs={rivieraMayaFAQs}
-        title="Frequently Asked Questions"
-        subtitle="Common questions about Chichen Itza tours from Riviera Maya"
-      />
+      </div>
 
       {/* CTA */}
       <CTASection />
@@ -308,8 +473,13 @@ const RivieraMayaToursPage = () => {
               { label: "Private Tours", href: "/tours/private-tours" },
               { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
               { label: "Cenote Tours", href: "/tours/cenote-tours" },
+              { label: "Budget Tours", href: "/tour-types/budget" },
+              { label: "Family Tours", href: "/tour-types/family-friendly" },
+              { label: "Luxury Tours", href: "/tour-types/luxury" },
               { label: "Best Time to Visit", href: "/guide/best-time-to-visit" },
               { label: "What to Bring", href: "/guide/what-to-bring" },
+              { label: "Entrance Fees", href: "/guide/entrance-fees" },
+              { label: "How to Get There", href: "/guide/how-to-get-there" },
               { label: "All Tours", href: "/tours" },
             ].map((link) => (
               <Link

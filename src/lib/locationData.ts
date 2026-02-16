@@ -130,6 +130,18 @@ Whether you prefer an early sunrise experience before the crowds, a private VIP 
 **For the Serpent Shadow:** The Spring and Fall Equinoxes (March 20-21 and September 22-23) create the famous serpent shadow on El Castillo. However, expect massive crowds.
 
 **To Avoid:** July and August are the hottest months with frequent afternoon rain. December and January are busiest due to holiday travelers.`,
+
+  timeline: [
+    { time: "6:00 AM", title: "Hotel Pickup", description: "Comfortable AC van picks you up from your Cancún Hotel Zone property" },
+    { time: "7:00 AM", title: "Scenic Drive", description: "Relax on the 2.5-hour journey through the Yucatán countryside" },
+    { time: "8:30 AM", title: "Arrive at Chichen Itza", description: "Beat the crowds with early arrival at the archaeological zone" },
+    { time: "8:45 AM", title: "Guided Tour Begins", description: "Expert archaeologist guide reveals the secrets of El Castillo" },
+    { time: "11:00 AM", title: "Free Exploration", description: "Explore independently, photograph the ruins, browse artisan market" },
+    { time: "12:00 PM", title: "Cenote Swimming", description: "Cool off in the crystal-clear waters of Cenote Ik Kil" },
+    { time: "1:30 PM", title: "Buffet Lunch", description: "Traditional Yucatecan cuisine at a local restaurant" },
+    { time: "3:00 PM", title: "Return Journey", description: "Relaxing drive back to Cancún with time to rest" },
+    { time: "5:30 PM", title: "Hotel Drop-off", description: "Return to your Cancún hotel in time for dinner" },
+  ],
 };
 
 export const playaDelCarmenPageContent = {

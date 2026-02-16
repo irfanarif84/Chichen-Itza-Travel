@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Building } from "lucide-react";
+import { MapPin, Clock, Car, Star, ChevronRight, Shield, Calendar, Building, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
@@ -13,6 +13,11 @@ import CTASection from "@/components/features/home/CTASection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TimelineItem from "@/components/features/tours/TimelineItem";
 import TipBox from "@/components/guide/TipBox";
+import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
+import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
+import CTABox from "@/components/features/tours/CTABox";
+import ComboTourCard from "@/components/features/tours/ComboTourCard";
+import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
 import { meridaFAQs, meridaPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
@@ -37,6 +42,37 @@ const meta = getPageMeta({
 });
 
 const breadcrumbs = [{ label: "Tours from Mérida" }];
+
+const comboTours = [
+  {
+    title: "Chichen Itza + Izamal (Yellow City)",
+    price: 109,
+    description: "Visit the ancient ruins then explore the stunning all-yellow colonial town of Izamal.",
+    duration: "10 hours",
+    link: "/combo-tours/multi-day-yucatan",
+  },
+  {
+    title: "Chichen Itza + Cenote Hacienda",
+    price: 99,
+    description: "Explore the ruins and swim in a private hacienda cenote away from tourist crowds.",
+    duration: "9 hours",
+    link: "/combo-tours/cenote-ik-kil",
+  },
+  {
+    title: "Chichen Itza + Uxmal Ruins",
+    price: 189,
+    description: "Two-day tour visiting both of Yucatán's most impressive archaeological sites.",
+    duration: "2 days",
+    link: "/combo-tours/multi-day-yucatan",
+  },
+  {
+    title: "Multi-Day Yucatán Explorer",
+    price: 299,
+    description: "3-day immersive experience: Chichen Itza, Uxmal, cenotes, Izamal, and more.",
+    duration: "3 days",
+    link: "/combo-tours/multi-day-yucatan",
+  },
+];
 
 const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
   return tours.filter((tour) => {
@@ -115,11 +151,11 @@ const MeridaToursPage = () => {
               </div>
 
               <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
-                {location.h1}
+                Chichen Itza Tours from Mérida — Shortest Route 2026
               </h1>
 
               <p className="text-lg text-muted-foreground mb-6 max-w-xl">
-                The shortest route to Chichen Itza! Just {location.driveTime} from the 
+                The shortest route to Chichen Itza! Just {location.driveTime} from the
                 colonial capital of Yucatán. Experience authentic Yucatecan culture with local guides.
               </p>
 
@@ -178,126 +214,254 @@ const MeridaToursPage = () => {
         </div>
       </section>
 
-      {/* Intro content */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto prose prose-neutral">
-            {meridaPageContent.intro.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="text-muted-foreground leading-relaxed mb-4">
-                {paragraph}
+      {/* Main Content + Sidebar Layout */}
+      <div className="container py-12 lg:py-16">
+        <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+          {/* Main content */}
+          <div>
+            {/* Introduction */}
+            <section className="prose prose-neutral max-w-none mb-12">
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Mérida offers the shortest and most convenient route to Chichen Itza — just 75
+                miles (1.5 hours) from the white city to the ancient Mayan capital. This proximity
+                means more relaxed mornings, longer exploration time, and early returns to enjoy
+                Mérida's vibrant plazas and colonial architecture.
               </p>
-            ))}
-          </div>
+              <p className="text-muted-foreground leading-relaxed">
+                As the cultural heart of the Yucatán Peninsula, Mérida provides a different
+                perspective on <strong>Chichen Itza tours</strong>. Local Yucatecan guides share
+                deeper cultural connections and regional insights you won't get from coastal tour
+                operators. Unlike tours from{" "}
+                <Link to="/tours-from/cancun" className="text-primary hover:underline">Cancún (2.5 hours)</Link> or{" "}
+                <Link to="/tours-from/tulum" className="text-primary hover:underline">Tulum (2-2.5 hours)</Link>,
+                you'll arrive before the coastal tour buses.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Beyond the shorter drive, Mérida-based tours often include authentic Yucatecan
+                experiences: visits to traditional haciendas, lesser-known cenotes, and the
+                picturesque Yellow City of Izamal. Choose from{" "}
+                <Link to="/tours/private-tours" className="text-primary hover:underline">private tours</Link>,{" "}
+                <Link to="/tour-types/small-group" className="text-primary hover:underline">small groups</Link>, or{" "}
+                <Link to="/tour-types/luxury" className="text-primary hover:underline">luxury experiences</Link>.
+              </p>
+            </section>
 
-          <div className="max-w-3xl mx-auto mt-8">
-            <TipBox
-              type="success"
-              title="Best Kept Secret: Mérida's Proximity"
-              content="Most tourists book from Cancún (2.5 hours) when Mérida is just 1.5 hours from Chichen Itza. You'll arrive before the coastal tour buses, explore in cooler morning hours, and experience authentic Yucatecan hospitality."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Tours Grid */}
-      <section id="tours" className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
-              Chichen Itza Tours Departing from Mérida
-            </h2>
-            <p className="text-muted-foreground">
-              {allMeridaTours.length} tours available with pickup from Mérida
-            </p>
-          </div>
-
-          <TourFilters
-            onFilterChange={setFilters}
-            tourCount={filteredTours.length}
-            className="mb-6"
-          />
-
-          {filteredTours.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTours.map((tour) => (
-                <TourCard key={tour.id} tour={tour} />
-              ))}
+            <div className="mb-12">
+              <TipBox
+                type="success"
+                title="Best Kept Secret: Mérida's Proximity"
+                content="Most tourists book from Cancún (2.5 hours) when Mérida is just 1.5 hours from Chichen Itza. You'll arrive before the coastal tour buses, explore in cooler morning hours, and experience authentic Yucatecan hospitality."
+              />
             </div>
-          ) : (
-            <div className="text-center py-12 bg-card rounded-lg border border-border">
-              <p className="text-muted-foreground mb-4">No tours match your filters.</p>
-              <Button
-                variant="outline"
-                onClick={() =>
-                  setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
-                }
-              >
-                Clear All Filters
-              </Button>
-            </div>
-          )}
-        </div>
-      </section>
 
-      {/* Timeline Section */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
-              Your Mérida to Chichen Itza Experience
-            </h2>
-            
-            <div className="space-y-0">
-              {meridaPageContent.timeline.map((step, i) => (
-                <TimelineItem
-                  key={i}
-                  time={step.time}
-                  title={step.title}
-                  description={step.description}
-                  isLast={i === meridaPageContent.timeline.length - 1}
+            {/* Tours Grid */}
+            <section id="tours" className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Chichen Itza Tours Departing from Mérida
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                {allMeridaTours.length} tours available with pickup from Mérida
+              </p>
+
+              <TourFilters
+                onFilterChange={setFilters}
+                tourCount={filteredTours.length}
+                className="mb-6"
+              />
+
+              {filteredTours.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {filteredTours.map((tour) => (
+                    <TourCard key={tour.id} tour={tour} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 bg-card rounded-lg border border-border">
+                  <p className="text-muted-foreground mb-4">No tours match your filters.</p>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      setFilters({ priceRange: "all", duration: [], tourType: [], category: [] })
+                    }
+                  >
+                    Clear All Filters
+                  </Button>
+                </div>
+              )}
+            </section>
+
+            {/* What to Expect Timeline */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Your Mérida to Chichen Itza Experience
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                A typical day tour timeline from Mérida
+              </p>
+
+              <div className="space-y-0">
+                {meridaPageContent.timeline.map((step, i) => (
+                  <TimelineItem
+                    key={i}
+                    time={step.time}
+                    title={step.title}
+                    description={step.description}
+                    isLast={i === meridaPageContent.timeline.length - 1}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <InfoBox
+                  title="What's Included"
+                  icon="✓"
+                  variant="success"
+                  items={[
+                    "Air-conditioned transport from your hotel",
+                    "Local Yucatecan archaeologist guide",
+                    "All entrance fees to Chichen Itza",
+                    "Hacienda cenote swimming stop",
+                    "Authentic Yucatecan lunch",
+                    "Bottled water and snacks",
+                  ]}
                 />
-              ))}
+                <InfoBox
+                  title="What to Bring"
+                  icon="🎒"
+                  variant="info"
+                  items={[
+                    "Comfortable walking shoes",
+                    "Sunscreen and wide-brimmed hat",
+                    "Swimsuit and towel for cenote",
+                    "Camera for photos",
+                    "Mexican pesos for artisan market",
+                    "Light clothing (Mérida is warmer)",
+                  ]}
+                />
+              </div>
+            </section>
+
+            {/* Comparison Table */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Guided Tour vs. Self-Drive or Bus from Mérida
+              </h2>
+              <ComparisonTable
+                headers={["Guided Tour", "Self-Drive/Bus"]}
+                highlightColumn={1}
+                rows={meridaPageContent.comparisonTable.rows.map((row) => ({
+                  label: row[0],
+                  values: [row[1], row[2]],
+                }))}
+              />
+              <div className="mt-6">
+                <TipBox
+                  type="tip"
+                  title="Pro Tip: Cultural Immersion"
+                  content="Mérida-based guides often have deep Mayan heritage and cultural connections. A guided tour provides insights into regional traditions, food, and history that you simply can't get from a self-guided visit."
+                />
+              </div>
+            </section>
+
+            {/* Best Time */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
+                Best Time to Visit Chichen Itza from Mérida
+              </h2>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sun className="h-5 w-5 text-accent" />
+                    <h3 className="font-heading font-semibold">Best Season</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">November–February</strong> offers the most
+                    comfortable temperatures. Mérida is warmer than coastal areas — avoid April-May
+                    (hottest months) if possible.
+                  </p>
+                </div>
+                <div className="bg-card rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <h3 className="font-heading font-semibold">Departure Times</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">7:30–8:30 AM</strong> — Mérida tours can leave
+                    slightly later thanks to the shorter drive. You'll still arrive before the Cancún
+                    buses at 10 AM.
+                  </p>
+                </div>
+              </div>
+
+              <TipBox
+                type="info"
+                title="Stay a Night in Mérida"
+                content="Consider staying a night in Mérida before or after your tour. The city's Sunday cultural events, incredible food scene, and colonial architecture are absolutely worth exploring."
+              />
+
+              <div className="mt-4">
+                <Button variant="outline" asChild>
+                  <Link to="/guide/best-time-to-visit">
+                    Read Full Guide <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </section>
+
+            {/* Map */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4">
+                Mérida to Chichen Itza Route
+              </h2>
+              <MapEmbed
+                title="Mérida to Chichen Itza Route"
+                from="Mérida, Mexico"
+                to="Chichen Itza, Mexico"
+              />
+              <p className="text-sm text-muted-foreground mt-3">
+                The 1.5-hour journey east from Mérida takes you through the heartland of the
+                Yucatán Peninsula. The well-maintained toll highway passes traditional Mayan
+                villages, henequen plantations, and lush vegetation.
+              </p>
+            </section>
+
+            {/* Combo Tours */}
+            <section className="mb-12">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">
+                Popular Combo Tours from Mérida
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Maximize your Yucatán experience with these popular combinations unique to Mérida:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-5">
+                {comboTours.map((combo) => (
+                  <ComboTourCard key={combo.title} {...combo} />
+                ))}
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="mb-12">
+              <FAQSection
+                faqs={meridaFAQs}
+                title="Frequently Asked Questions"
+                subtitle="Common questions about Chichen Itza tours from Mérida"
+              />
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 space-y-6">
+              <QuickBookingForm />
+              <PopularToursWidget departureCity="merida" />
+              <CTABox />
+              <TrustBadges variant="compact" />
             </div>
-          </div>
+          </aside>
         </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section className="py-12 lg:py-16 bg-muted/30">
-        <div className="container">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">
-            Guided Tour vs. Self-Drive or Bus from Mérida
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <ComparisonTable
-              headers={["Guided Tour", "Self-Drive/Bus"]}
-              highlightColumn={1}
-              rows={meridaPageContent.comparisonTable.rows.map((row) => ({
-                label: row[0],
-                values: [row[1], row[2]],
-              }))}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Map */}
-      <section className="py-12 lg:py-16">
-        <div className="container">
-          <MapEmbed
-            title="Mérida to Chichen Itza Route"
-            from="Mérida, Mexico"
-            to="Chichen Itza, Mexico"
-          />
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <FAQSection
-        faqs={meridaFAQs}
-        title="Frequently Asked Questions"
-        subtitle="Common questions about Chichen Itza tours from Mérida"
-      />
+      </div>
 
       {/* CTA */}
       <CTASection />
@@ -317,8 +481,13 @@ const MeridaToursPage = () => {
               { label: "Private Tours", href: "/tours/private-tours" },
               { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
               { label: "Cenote Tours", href: "/tours/cenote-tours" },
+              { label: "Budget Tours", href: "/tour-types/budget" },
+              { label: "Family Tours", href: "/tour-types/family-friendly" },
+              { label: "Luxury Tours", href: "/tour-types/luxury" },
               { label: "Best Time to Visit", href: "/guide/best-time-to-visit" },
               { label: "What to Bring", href: "/guide/what-to-bring" },
+              { label: "Entrance Fees", href: "/guide/entrance-fees" },
+              { label: "How to Get There", href: "/guide/how-to-get-there" },
               { label: "All Tours", href: "/tours" },
             ].map((link) => (
               <Link
