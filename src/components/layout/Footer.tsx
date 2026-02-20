@@ -96,6 +96,7 @@ const Footer = () => (
               { l: "Entrance Fees", h: "/guide/entrance-fees" },
               { l: "Photography Tips", h: "/guide/photography-tips" },
               { l: "Dress Code & Rules", h: "/guide/dress-code-and-rules" },
+              { l: "vs Other Ruins", h: "/guide/vs-other-ruins" },
             ].map((i) => (
               <li key={i.h}>
                 <Link to={i.h} className="hover:text-accent transition-colors">{i.l}</Link>
