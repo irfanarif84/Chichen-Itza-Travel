@@ -1,88 +1,120 @@
 
+# Internal Linking Audit & Fix Plan
 
-# Implementation Plan
+## Root Cause: Missing Dynamic Tour Detail Route & Pages
 
-## Summary
+Every `TourCard` component links to `/tours/${tour.slug}`, and every `PopularToursWidget` item links the same way. There are **13 tours** in `tourData.ts` — each with a unique slug — but `App.tsx` has **no `/tours/:slug` route** registered. This means every "View Details" button across the entire site (home page, all category pages, combo pages, location pages) lands on the **404 Not Found page**.
 
-Four tasks: create ReviewCard/ReviewGrid components, integrate reviews into the testimonials page, add "vs Other Ruins" to the Footer, and add a reviews section to tour category pages.
-
-The vs-other-ruins page, reviewsData.ts, Header navigation, and schema are already complete from prior work. This plan covers the remaining gaps.
-
----
-
-## Task 1: Create ReviewCard and ReviewGrid Components
-
-Create two reusable components in `/components/features/reviews/`:
-
-**ReviewCard.tsx**
-- Displays a single review with quote icon, star rating, author name, location, tour category badge, date, and verified checkmark
-- Accepts a `Review` object from reviewsData.ts
-- Uses the same card styling pattern as existing TourCard (rounded-lg, shadow-card, hover lift)
-
-**ReviewGrid.tsx**
-- Renders a responsive grid of ReviewCard components (1 col mobile, 2 col tablet, 3 col desktop)
-- Accepts `reviews: Review[]` and optional `limit` prop
-- Includes an optional heading and aggregate star rating display at the top
+The affected linking components:
+- `TourCard.tsx` — line 75: `<Link to={/tours/${tour.slug}}>` 
+- `PopularToursWidget.tsx` — line 30: `<Link to={/tours/${tour.slug}}>`
 
 ---
 
-## Task 2: Integrate reviewsData.ts into Testimonials Page
+## The 13 Broken Tour Slugs
 
-Rewrite `/pages/practical/testimonials.tsx` to:
-- Import reviews from `@/lib/reviewsData` instead of hardcoded data
-- Add filter controls (tour category dropdown and departure city dropdown) using existing Select component
-- Use the new ReviewGrid component to display filtered results
-- Show aggregate rating computed via `getAverageRating()`
-- Add JSON-LD Review schema using `generateReviewSchema()`
-- Keep existing SEO metadata, breadcrumbs, hero section, and CTA
-
-Filter options:
-- Tour category: All, Day Tour, Private, Sunrise, Cenote, Night, Ek Balam, Valladolid
-- Departure city: All, Cancun, Playa del Carmen, Tulum, Riviera Maya, Merida
+| Tour ID | Slug | Destination URL |
+|---|---|---|
+| classic-day-tour | chichen-itza-day-tour-from-cancun | /tours/chichen-itza-day-tour-from-cancun |
+| private-vip-tour | chichen-itza-private-vip-tour | /tours/chichen-itza-private-vip-tour |
+| sunrise-tour | chichen-itza-sunrise-early-access-tour | /tours/chichen-itza-sunrise-early-access-tour |
+| cenote-ik-kil-combo | chichen-itza-cenote-ik-kil-combo-tour | /tours/chichen-itza-cenote-ik-kil-combo-tour |
+| budget-express | chichen-itza-budget-express-tour | /tours/chichen-itza-budget-express-tour |
+| family-adventure | chichen-itza-family-adventure-tour | /tours/chichen-itza-family-adventure-tour |
+| night-light-show | chichen-itza-night-light-show-tour | /tours/chichen-itza-night-light-show-tour |
+| chichen-valladolid-combo | chichen-itza-valladolid-colonial-tour | /tours/chichen-itza-valladolid-colonial-tour |
+| private-sunrise-tour | chichen-itza-private-sunrise-tour | /tours/chichen-itza-private-sunrise-tour |
+| budget-day-playa | chichen-itza-budget-tour-playa-del-carmen | /tours/chichen-itza-budget-tour-playa-del-carmen |
+| cenote-saamal-combo | chichen-itza-cenote-saamal-combo-tour | /tours/chichen-itza-cenote-saamal-combo-tour |
+| ek-balam-combo | chichen-itza-ek-balam-combo-tour | /tours/chichen-itza-ek-balam-combo-tour |
+| merida-cultural-tour | chichen-itza-merida-cultural-tour | /tours/chichen-itza-merida-cultural-tour |
 
 ---
 
-## Task 3: Add "vs Other Ruins" to Footer
+## Solution: Single Dynamic Tour Detail Page
 
-Add one entry to the Travel Guide column in `src/components/layout/Footer.tsx`:
+The best approach is to create **one dynamic page** at `src/pages/tours/[slug].tsx` that reads the slug from the URL, looks up the tour in `tourData.ts` via `getTourBySlug()`, and renders a full tour detail layout. This is architecturally correct: one page handles all 13 tours, and future tours added to `tourData.ts` are automatically covered.
 
-```text
-{ l: "vs Other Ruins", h: "/guide/vs-other-ruins" }
+---
+
+## Implementation
+
+### Step 1: Create `src/pages/tours/[slug].tsx`
+
+A full tour detail page composed from existing components with this layout:
+
+**Above the fold:**
+- Breadcrumbs (Home > Tours > [Category] > [Tour Title])
+- Tour hero with background image from `tourImages[tour.id]`
+- H1 from `tour.h1`
+- Star rating + review count
+- Price badge + badge label
+- Duration and group size chips
+- Two CTAs: "Book This Tour" (scrolls to booking form) + "View All Tours"
+
+**Main content (two-column layout on desktop):**
+
+Left column (article):
+1. Tour highlights (checklist with green ticks)
+2. Itinerary (using existing `TimelineItem` component pattern)
+3. What's Included / Excluded (two-column InfoBox using existing `InfoBox` component)
+4. Departure cities (chip grid)
+5. Meeting point info
+6. Related reviews (via `getReviewsByTourCategory()` filtered by first category)
+7. Related tours (using `RelatedTours` or filtered `TourCard` grid — 3 other tours from the same category)
+
+Right sidebar (sticky on desktop):
+1. Price card with adult/child pricing
+2. `QuickBookingForm` component (already exists)
+3. `TrustBadges` component (already exists)
+4. `PopularToursWidget` with current tour excluded
+
+**Below the fold:**
+- FAQ section using `generalChichenItzaFAQs` filtered by category
+- `CTASection`
+- Internal link footer (5-8 relevant links)
+
+**404 handling:** If no tour matches the slug, redirect to `/tours` with a helpful message.
+
+**SEO per tour:** Use `tour.metaTitle`, `tour.metaDescription`, and `tour.keywords` from `tourData.ts`. JSON-LD: `TouristTrip` + `Product` + `BreadcrumbList` schemas via existing `schema.ts` helpers.
+
+### Step 2: Register the Route in `src/App.tsx`
+
+Add one line — a dynamic route with `:slug` parameter — **before** the existing static routes so it doesn't shadow them:
+
+```
+import TourDetailPage from "./pages/tours/[slug]";
+// inside <Routes>:
+<Route path="/tours/:slug" element={<TourDetailPage />} />
 ```
 
-Added after the existing "Dress Code & Rules" entry (line 98).
-
----
-
-## Task 4: Add Reviews Section to Tour Category Pages
-
-Add a reviews section to the main tour category pages (day-tours, private-tours, sunrise-tours, cenote-tours, ek-balam-tours, valladolid-tours, night-tours) by:
-
-- Importing `getReviewsByTourCategory` from reviewsData
-- Importing ReviewGrid component
-- Adding a section between TrustBadges and FAQ that shows 3 filtered reviews for that tour category
-- Using existing section styling patterns (alternating bg-muted/30 backgrounds)
-
-Each page will filter reviews by its category string (e.g., "day-tour", "sunrise", "private", etc.) and display them with a "See All Reviews" link to /practical/testimonials.
+This must be placed **after** the explicit static routes (`/tours/day-tours`, `/tours/private-tours`, etc.) because React Router v6 uses specificity-based matching — exact static paths win over dynamic `:slug` parameters, so ordering doesn't actually matter in v6, but placing it after keeps the code readable.
 
 ---
 
 ## Technical Details
 
-**New files:**
-- `src/components/features/reviews/ReviewCard.tsx`
-- `src/components/features/reviews/ReviewGrid.tsx`
+**Files to create:**
+- `src/pages/tours/[slug].tsx` — dynamic tour detail page
 
-**Modified files:**
-- `src/pages/practical/testimonials.tsx` - replace hardcoded data with reviewsData + filters
-- `src/components/layout/Footer.tsx` - add vs Other Ruins link (line 98)
-- `src/pages/tours/day-tours.tsx` - add reviews section
-- `src/pages/tours/private-tours.tsx` - add reviews section
-- `src/pages/tours/sunrise-tours.tsx` - add reviews section
-- `src/pages/tours/cenote-tours.tsx` - add reviews section
-- `src/pages/tours/ek-balam-tours.tsx` - add reviews section
-- `src/pages/tours/valladolid-tours.tsx` - add reviews section
-- `src/pages/tours/night-tours.tsx` - add reviews section
+**Files to modify:**
+- `src/App.tsx` — add `<Route path="/tours/:slug" element={<TourDetailPage />} />`
 
-**No new dependencies required** - uses existing shadcn Select, Lucide icons, and Framer Motion.
+**Components reused (no new components needed):**
+- `SEOHead`, `Breadcrumbs`, `TrustBadges` — from existing layout/common
+- `QuickBookingForm` — sidebar booking
+- `PopularToursWidget` — sidebar related tours
+- `TourCard` — related tours grid
+- `ReviewGrid` — filtered reviews
+- `FAQSection` — bottom FAQ
+- `CTASection` — bottom CTA
+- `InfoBox`, `TipBox` — inclusions/exclusions
+- `TourImages` via `tourImages[tour.id]`
 
+**Data used:**
+- `getTourBySlug(slug)` from `tourData.ts`
+- `getReviewsByTourCategory(category)` from `reviewsData.ts`
+- `getToursByCategory(category)` for related tours
+- `generateTourSchema(tour)` + `createBreadcrumbSchema()` from `schema.ts`
+
+**No new dependencies required.**
