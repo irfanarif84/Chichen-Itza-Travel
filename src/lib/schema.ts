@@ -248,4 +248,26 @@ export const guideSchemas = {
     datePublished: "2025-01-20",
     dateModified: "2026-02-01",
   },
+
+  "vs-other-ruins": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Chichen Itza vs Other Mayan Ruins - Complete Comparison Guide",
+    description:
+      "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
+    author: {
+      "@type": "Organization",
+      name: "Maya Explorer Tours",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Maya Explorer Tours",
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/logo.png`,
+      },
+    },
+    datePublished: "2025-02-01",
+    dateModified: "2026-02-15",
+  },
 };

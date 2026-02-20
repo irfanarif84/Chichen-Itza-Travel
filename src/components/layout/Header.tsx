@@ -9,6 +9,9 @@ const tourLinks = [
   { label: "Private Tours", href: "/tours/private-tours" },
   { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
   { label: "Cenote Tours", href: "/tours/cenote-tours" },
+  { label: "Ek Balam Tours", href: "/tours/ek-balam-tours" },
+  { label: "Valladolid Tours", href: "/tours/valladolid-tours" },
+  { label: "Night Tours", href: "/tours/night-tours" },
 ];
 
 const tourTypeLinks = [
@@ -42,6 +45,7 @@ const guideLinks = [
   { label: "Entrance Fees", href: "/guide/entrance-fees" },
   { label: "Photography Tips", href: "/guide/photography-tips" },
   { label: "Dress Code & Rules", href: "/guide/dress-code-and-rules" },
+  { label: "vs Other Ruins", href: "/guide/vs-other-ruins" },
 ];
 
 const Header = () => {
