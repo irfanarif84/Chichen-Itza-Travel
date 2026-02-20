@@ -27,6 +27,7 @@ import HowToGetTherePage from "./pages/guide/how-to-get-there";
 import EntranceFeesPage from "./pages/guide/entrance-fees";
 import PhotographyTipsPage from "./pages/guide/photography-tips";
 import DressCodePage from "./pages/guide/dress-code-and-rules";
+import VsOtherRuinsPage from "./pages/guide/vs-other-ruins";
 import FAQPage from "./pages/practical/faq";
 import ContactPage from "./pages/practical/contact";
 import CancellationPolicyPage from "./pages/practical/cancellation-policy";
@@ -79,6 +80,7 @@ const App = () => (
                 <Route path="/guide/entrance-fees" element={<EntranceFeesPage />} />
                 <Route path="/guide/photography-tips" element={<PhotographyTipsPage />} />
                 <Route path="/guide/dress-code-and-rules" element={<DressCodePage />} />
+                <Route path="/guide/vs-other-ruins" element={<VsOtherRuinsPage />} />
                 <Route path="/practical/faq" element={<FAQPage />} />
                 <Route path="/practical/contact" element={<ContactPage />} />
                 <Route path="/practical/cancellation-policy" element={<CancellationPolicyPage />} />
