@@ -44,6 +44,7 @@ import IslaMujeresComboPage from "./pages/combo-tours/isla-mujeres";
 import MultiDayYucatanPage from "./pages/combo-tours/multi-day-yucatan";
 import BlogIndexPage from "./pages/blog/index";
 import BlogPostPage from "./pages/blog/[slug]";
+import TourDetailPage from "./pages/tours/[slug]";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -95,6 +96,7 @@ const App = () => (
                 <Route path="/combo-tours/coba-ruins" element={<CobaRuinsComboPage />} />
                 <Route path="/combo-tours/isla-mujeres" element={<IslaMujeresComboPage />} />
                 <Route path="/combo-tours/multi-day-yucatan" element={<MultiDayYucatanPage />} />
+                <Route path="/tours/:slug" element={<TourDetailPage />} />
                 <Route path="/blog" element={<BlogIndexPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
