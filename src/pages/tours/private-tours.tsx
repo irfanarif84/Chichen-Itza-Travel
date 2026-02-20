@@ -14,6 +14,8 @@ import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
 import { privateToursFAQs } from "@/lib/faqData";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import type { Tour } from "@/types/tour";
 
 const meta = getPageMeta({
@@ -208,6 +210,12 @@ const PrivateToursPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={getReviewsByTourCategory("private")} limit={3} title="Private Tour Reviews" showAllLink />
+        </div>
+      </section>
 
       <FAQSection faqs={privateToursFAQs} title="Private Tour FAQs" subtitle="Common questions about private Chichen Itza tours" />
 

@@ -13,6 +13,8 @@ import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
 import type { FAQItem } from "@/lib/faqData";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import type { Tour } from "@/types/tour";
 
 const ekBalamFAQs: FAQItem[] = [
@@ -239,6 +241,12 @@ const EkBalamToursPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={getReviewsByTourCategory("ek-balam")} limit={3} title="Ek Balam Tour Reviews" showAllLink />
+        </div>
+      </section>
 
       <FAQSection faqs={ekBalamFAQs} title="Ek Balam Tour FAQs" subtitle="Common questions about Chichen Itza + Ek Balam combo tours" />
 

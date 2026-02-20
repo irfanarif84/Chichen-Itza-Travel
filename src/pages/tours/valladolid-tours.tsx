@@ -13,6 +13,8 @@ import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
 import type { FAQItem } from "@/lib/faqData";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import type { Tour } from "@/types/tour";
 
 const valladolidFAQs: FAQItem[] = [
@@ -239,6 +241,12 @@ const ValladolidToursPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={getReviewsByTourCategory("valladolid")} limit={3} title="Valladolid Tour Reviews" showAllLink />
+        </div>
+      </section>
 
       <FAQSection faqs={valladolidFAQs} title="Valladolid Tour FAQs" subtitle="Common questions about Chichen Itza + Valladolid combo tours" />
 
