@@ -1,120 +1,89 @@
 
-# Internal Linking Audit & Fix Plan
 
-## Root Cause: Missing Dynamic Tour Detail Route & Pages
+# Tour Detail Page Enhancements
 
-Every `TourCard` component links to `/tours/${tour.slug}`, and every `PopularToursWidget` item links the same way. There are **13 tours** in `tourData.ts` — each with a unique slug — but `App.tsx` has **no `/tours/:slug` route** registered. This means every "View Details" button across the entire site (home page, all category pages, combo pages, location pages) lands on the **404 Not Found page**.
+## Summary
 
-The affected linking components:
-- `TourCard.tsx` — line 75: `<Link to={/tours/${tour.slug}}>` 
-- `PopularToursWidget.tsx` — line 30: `<Link to={/tours/${tour.slug}}>`
+Four changes to the tour detail page (`src/pages/tours/[slug].tsx`) plus one new component file. The cenote-tours page already exists and needs no changes.
 
 ---
 
-## The 13 Broken Tour Slugs
+## Task 1: Create TourGallery Component
 
-| Tour ID | Slug | Destination URL |
-|---|---|---|
-| classic-day-tour | chichen-itza-day-tour-from-cancun | /tours/chichen-itza-day-tour-from-cancun |
-| private-vip-tour | chichen-itza-private-vip-tour | /tours/chichen-itza-private-vip-tour |
-| sunrise-tour | chichen-itza-sunrise-early-access-tour | /tours/chichen-itza-sunrise-early-access-tour |
-| cenote-ik-kil-combo | chichen-itza-cenote-ik-kil-combo-tour | /tours/chichen-itza-cenote-ik-kil-combo-tour |
-| budget-express | chichen-itza-budget-express-tour | /tours/chichen-itza-budget-express-tour |
-| family-adventure | chichen-itza-family-adventure-tour | /tours/chichen-itza-family-adventure-tour |
-| night-light-show | chichen-itza-night-light-show-tour | /tours/chichen-itza-night-light-show-tour |
-| chichen-valladolid-combo | chichen-itza-valladolid-colonial-tour | /tours/chichen-itza-valladolid-colonial-tour |
-| private-sunrise-tour | chichen-itza-private-sunrise-tour | /tours/chichen-itza-private-sunrise-tour |
-| budget-day-playa | chichen-itza-budget-tour-playa-del-carmen | /tours/chichen-itza-budget-tour-playa-del-carmen |
-| cenote-saamal-combo | chichen-itza-cenote-saamal-combo-tour | /tours/chichen-itza-cenote-saamal-combo-tour |
-| ek-balam-combo | chichen-itza-ek-balam-combo-tour | /tours/chichen-itza-ek-balam-combo-tour |
-| merida-cultural-tour | chichen-itza-merida-cultural-tour | /tours/chichen-itza-merida-cultural-tour |
+**New file:** `src/components/features/tours/TourGallery.tsx`
+
+A responsive 2x2 image grid with full-screen lightbox overlay:
+- Accepts `images: string[]`, `heroImage?: string`, and `tourTitle: string`
+- If `images` is empty, repeats the hero image 4 times as placeholders
+- Clicking any image opens a lightbox with prev/next navigation
+- Keyboard support: Escape to close, arrow keys to navigate
+- Close on background click
+- Shows "image X of Y" counter at bottom
+- Uses existing design tokens (rounded-lg, hover scale effect)
 
 ---
 
-## Solution: Single Dynamic Tour Detail Page
+## Task 2: Modify Tour Detail Page
 
-The best approach is to create **one dynamic page** at `src/pages/tours/[slug].tsx` that reads the slug from the URL, looks up the tour in `tourData.ts` via `getTourBySlug()`, and renders a full tour detail layout. This is architecturally correct: one page handles all 13 tours, and future tours added to `tourData.ts` are automatically covered.
+**File:** `src/pages/tours/[slug].tsx`
 
----
+Three additions to this page:
 
-## Implementation
+### 2a. Import new dependencies (top of file)
 
-### Step 1: Create `src/pages/tours/[slug].tsx`
+Add imports for:
+- `StickyBookingBar` from `@/components/layout/StickyBookingBar`
+- `TourGallery` from `@/components/features/tours/TourGallery`
+- `FAQSection` from `@/components/common/FAQ`
+- FAQ arrays from `@/lib/faqData`: `generalChichenItzaFAQs`, `dayToursFAQs`, `privateToursFAQs`, `cenoteToursFAQs`, `sunriseToursFAQs`, `smallGroupFAQs`
+- `createFAQSchema` from `@/lib/seo`
 
-A full tour detail page composed from existing components with this layout:
+### 2b. Add category-to-FAQ mapping logic
 
-**Above the fold:**
-- Breadcrumbs (Home > Tours > [Category] > [Tour Title])
-- Tour hero with background image from `tourImages[tour.id]`
-- H1 from `tour.h1`
-- Star rating + review count
-- Price badge + badge label
-- Duration and group size chips
-- Two CTAs: "Book This Tour" (scrolls to booking form) + "View All Tours"
-
-**Main content (two-column layout on desktop):**
-
-Left column (article):
-1. Tour highlights (checklist with green ticks)
-2. Itinerary (using existing `TimelineItem` component pattern)
-3. What's Included / Excluded (two-column InfoBox using existing `InfoBox` component)
-4. Departure cities (chip grid)
-5. Meeting point info
-6. Related reviews (via `getReviewsByTourCategory()` filtered by first category)
-7. Related tours (using `RelatedTours` or filtered `TourCard` grid — 3 other tours from the same category)
-
-Right sidebar (sticky on desktop):
-1. Price card with adult/child pricing
-2. `QuickBookingForm` component (already exists)
-3. `TrustBadges` component (already exists)
-4. `PopularToursWidget` with current tour excluded
-
-**Below the fold:**
-- FAQ section using `generalChichenItzaFAQs` filtered by category
-- `CTASection`
-- Internal link footer (5-8 relevant links)
-
-**404 handling:** If no tour matches the slug, redirect to `/tours` with a helpful message.
-
-**SEO per tour:** Use `tour.metaTitle`, `tour.metaDescription`, and `tour.keywords` from `tourData.ts`. JSON-LD: `TouristTrip` + `Product` + `BreadcrumbList` schemas via existing `schema.ts` helpers.
-
-### Step 2: Register the Route in `src/App.tsx`
-
-Add one line — a dynamic route with `:slug` parameter — **before** the existing static routes so it doesn't shadow them:
+Inside the component, after the existing `reviews` variable, add a mapping object and compute the FAQ list:
 
 ```
-import TourDetailPage from "./pages/tours/[slug]";
-// inside <Routes>:
-<Route path="/tours/:slug" element={<TourDetailPage />} />
+Category mapping:
+  "day-tours" -> dayToursFAQs
+  "private-tours" -> privateToursFAQs
+  "cenote-tours" -> cenoteToursFAQs
+  "sunrise-tours" -> sunriseToursFAQs
+  "small-group" -> smallGroupFAQs
+  all others -> generalChichenItzaFAQs only
 ```
 
-This must be placed **after** the explicit static routes (`/tours/day-tours`, `/tours/private-tours`, etc.) because React Router v6 uses specificity-based matching — exact static paths win over dynamic `:slug` parameters, so ordering doesn't actually matter in v6, but placing it after keeps the code readable.
+Combine the category-specific FAQs with `generalChichenItzaFAQs`, deduplicate by question text, and limit to 6 items. Also generate a FAQ JSON-LD schema and add it to the `jsonLd` array in the SEOHead.
+
+### 2c. Add TourGallery section
+
+Insert the `TourGallery` component between the Description section (line 228) and Highlights section (line 232). Pass `images={[]}` (tours don't have an images array in the current data), `heroImage={heroImg}`, and `tourTitle={tour.title}`.
+
+### 2d. Add FAQ section
+
+Insert the `FAQSection` component in the left article column, between the "Related Tours" section and the "Internal links" section (before line 382). Pass the computed FAQ array and a title like "Frequently Asked Questions".
+
+### 2e. Add StickyBookingBar
+
+Render `<StickyBookingBar price={tour.price.adult} tourSlug={tour.slug} />` just before the closing `</>` fragment (after CTASection, before line 482). This component already returns null on desktop, so no conditional logic needed.
+
+### 2f. Add mobile bottom padding
+
+On the main content container (line 221), add `pb-20 lg:pb-0` classes to prevent content from being hidden behind the sticky bar on mobile.
 
 ---
 
-## Technical Details
+## Task 3: Cenote Tours Page -- Already Complete
 
-**Files to create:**
-- `src/pages/tours/[slug].tsx` — dynamic tour detail page
+No changes needed. `src/pages/tours/cenote-tours.tsx` already exists with hero, tour grid, reviews, FAQ, and CTA sections. Route is registered in App.tsx.
 
-**Files to modify:**
-- `src/App.tsx` — add `<Route path="/tours/:slug" element={<TourDetailPage />} />`
+---
 
-**Components reused (no new components needed):**
-- `SEOHead`, `Breadcrumbs`, `TrustBadges` — from existing layout/common
-- `QuickBookingForm` — sidebar booking
-- `PopularToursWidget` — sidebar related tours
-- `TourCard` — related tours grid
-- `ReviewGrid` — filtered reviews
-- `FAQSection` — bottom FAQ
-- `CTASection` — bottom CTA
-- `InfoBox`, `TipBox` — inclusions/exclusions
-- `TourImages` via `tourImages[tour.id]`
+## Files Summary
 
-**Data used:**
-- `getTourBySlug(slug)` from `tourData.ts`
-- `getReviewsByTourCategory(category)` from `reviewsData.ts`
-- `getToursByCategory(category)` for related tours
-- `generateTourSchema(tour)` + `createBreadcrumbSchema()` from `schema.ts`
+| Action | File |
+|--------|------|
+| Create | `src/components/features/tours/TourGallery.tsx` |
+| Modify | `src/pages/tours/[slug].tsx` |
 
-**No new dependencies required.**
+No new dependencies required.
+
