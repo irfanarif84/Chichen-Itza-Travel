@@ -86,6 +86,7 @@ const meta = getPageMeta({
   description:
     "Essential packing list for Chichen Itza. What to bring, what NOT to bring, clothing tips, photography gear, and seasonal recommendations.",
   canonical: "/guide/what-to-bring",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },

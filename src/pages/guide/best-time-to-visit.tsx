@@ -57,6 +57,7 @@ const meta = getPageMeta({
   title: "Best Time to Visit Chichen Itza – Complete 2026 Guide",
   description: "Discover the best time to visit Chichen Itza. Weather, crowds, and prices by month. Expert tips for planning your perfect trip, updated for 2026.",
   canonical: "/guide/best-time-to-visit",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
