@@ -458,117 +458,178 @@ const BestTimeToVisitPage = () => {
             {/* ---- Crowd Avoidance ---- */}
             <section id="crowd-tips">
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">How to Avoid Crowds at Chichen Itza</h2>
-              <InfoBox
-                title="Top Crowd-Avoidance Strategies"
-                icon="🎯"
-                items={[
-                  "Visit on a Tuesday, Wednesday, or Thursday — weekends and Mondays are busiest",
-                  "Arrive before 8:30 AM, or after 3:00 PM for the 'golden window'",
-                  "Choose November, May-June, or September-October over December-March",
-                  "Book a sunrise tour for 7:00 AM early access with 70% fewer visitors",
-                  "Explore the lesser-visited structures first while crowds gather at El Castillo",
-                  "If visiting during peak season, book a private tour for a faster-paced, flexible experience",
-                ]}
-                variant="info"
-              />
-              <p className="text-muted-foreground mt-4">
+              <p className="text-muted-foreground mb-6">
+                Chichen Itza welcomes over 2.6 million visitors annually — roughly 7,000 people per day.
+                Crowds are manageable with the right strategy:
+              </p>
+              <div className="space-y-4">
+                {([
+                  { rank: 1, title: "Book a Sunrise Tour (Most Effective)", desc: "Sunrise tours with 7:00 AM early access give you 60-90 minutes before the main crowd wave. The plaza in front of El Castillo will be nearly empty — impossible to achieve otherwise.", link: "/tours/sunrise-tours", linkLabel: "View Sunrise Tours", badge: "Most Effective", badgeClass: "bg-success/15 text-success" },
+                  { rank: 2, title: "Arrive at Opening (8:00 AM)", desc: "Most Cancún-based tours arrive 9:30-10:00 AM. Those extra 90 minutes make an enormous difference. Book from Playa del Carmen (closer, 7:30 AM arrival) or drive from Valladolid.", link: "", linkLabel: "", badge: "Highly Effective", badgeClass: "bg-secondary/15 text-secondary" },
+                  { rank: 3, title: "Visit on Weekdays (Tue-Thu Best)", desc: "Weekend crowds are 40-50% larger. Tuesday, Wednesday, and Thursday consistently have the fewest visitors. Monday can be busy from weekend stragglers; Friday starts the weekend rush early.", link: "", linkLabel: "", badge: "Effective", badgeClass: "bg-accent/15 text-accent" },
+                  { rank: 4, title: "Choose Shoulder Season Months", desc: "May, June, September, and October have 40-60% fewer visitors. More space, easier photos, and more personal guide interaction. The trade-off is afternoon rain (avoidable with morning tours) and higher heat.", link: "", linkLabel: "", badge: "Good Strategy", badgeClass: "bg-primary/15 text-primary" },
+                  { rank: 5, title: "Avoid Holiday Periods", desc: "Christmas week (Dec 20-Jan 3), Spring Break (mid-March to mid-April), and Easter week see 3-4x normal crowds. If your dates overlap, book sunrise tours exclusively and arrive at absolute opening time.", link: "", linkLabel: "", badge: "Essential Tip", badgeClass: "bg-destructive/15 text-destructive" },
+                  { rank: 6, title: "Book Private Tours for Flexibility", desc: "Private tours let you control arrival time, pace, and duration. Your guide can advise which areas are currently least crowded and adjust the route in real time.", link: "/tours/private-tours", linkLabel: "View Private Tours", badge: "Premium Option", badgeClass: "bg-primary/15 text-primary" },
+                ]).map((s) => (
+                  <div key={s.rank} className="bg-card rounded-xl p-5 border border-border flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <span className="font-heading font-bold text-primary">#{s.rank}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="font-heading font-semibold text-base">{s.title}</h3>
+                        <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${s.badgeClass}`}>{s.badge}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-2">{s.desc}</p>
+                      {s.link && (
+                        <Link to={s.link} className="text-sm text-primary hover:underline font-medium">{s.linkLabel} →</Link>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-muted-foreground mt-6">
                 For the ultimate crowd-free experience, combine a <Link to="/tours/sunrise-tours" className="text-primary hover:underline">sunrise tour</Link> on
-                a Tuesday in November. You'll have the plazas nearly to yourself for golden-hour
-                photography before the tour buses arrive from <Link to="/tours-from/cancun" className="text-primary hover:underline">Cancún</Link> around 10 AM.
+                a Tuesday in November. You'll have the plazas nearly to yourself before the tour buses arrive from <Link to="/tours-from/cancun" className="text-primary hover:underline">Cancún</Link> around 10 AM.
               </p>
             </section>
 
             {/* ---- Special Events ---- */}
             <section id="special-events">
-              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Special Events & Phenomena</h2>
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Special Events & Festivals at Chichen Itza</h2>
+              <p className="text-muted-foreground mb-6">Several annual events dramatically affect the experience. Some are worth planning around; others are best avoided:</p>
 
               <div className="space-y-6">
-                <InfoBox
-                  title="Spring Equinox (March 20-21)"
-                  icon="🌅"
-                  items={[
-                    "Famous serpent shadow appears on El Castillo pyramid",
-                    "Occurs around 3-4 PM as the sun sets",
-                    "10,000+ visitors on equinox days — arrive by 8 AM",
-                    "Book tours 3+ months in advance",
-                    "Consider March 19 or 22 for similar effect with 90% fewer crowds",
-                  ]}
-                  variant="info"
-                />
+                {/* Spring Equinox */}
+                <div className="bg-card rounded-xl p-6 border border-border">
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl">🐍</span>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="font-heading font-semibold text-lg">Spring Equinox — March 20-21</h3>
+                        <span className="text-xs font-bold bg-accent/15 text-accent px-2.5 py-0.5 rounded-full">Bucket List But Crowded</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">The Maya engineered El Castillo to create a spectacular shadow "serpent" descending the northern staircase. The illusion occurs for several weeks around the equinox, with the clearest effect on March 20-21.</p>
+                      <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="font-semibold text-success mb-1">✓ Why It's Special</p>
+                          <ul className="text-muted-foreground space-y-1"><li>• Once-a-year astronomical phenomenon</li><li>• Deep insight into Mayan engineering</li><li>• Unique photography opportunity</li></ul>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-destructive mb-1">✗ The Reality</p>
+                          <ul className="text-muted-foreground space-y-1"><li>• 10,000-15,000 visitors on peak day</li><li>• Tour prices 50-100% premium</li><li>• Effect visible 2 weeks before/after</li></ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                <InfoBox
-                  title="Fall Equinox (September 22-23)"
-                  icon="🌄"
-                  items={[
-                    "Same serpent shadow phenomenon as spring",
-                    "Far fewer tourists than March equinox",
-                    "Part of rainy season — bring rain gear",
-                    "Magical atmosphere with possible dramatic cloud formations",
-                  ]}
-                  variant="info"
-                />
+                {/* Fall Equinox */}
+                <div className="bg-card rounded-xl p-6 border-2 border-success">
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl">🍂</span>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="font-heading font-semibold text-lg">Fall Equinox — September 21-22</h3>
+                        <span className="text-xs font-bold bg-success/15 text-success px-2.5 py-0.5 rounded-full">Best Equinox Option</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">Same serpent shadow phenomenon but September is low season — a fraction of the March crowds. The savvy traveler's choice.</p>
+                      <div className="text-sm text-muted-foreground space-y-1">
+                        <p><strong>Attendance:</strong> 3,000-5,000 (vs 10,000-15,000 in March)</p>
+                        <p><strong>Weather:</strong> Hot (89°F), some rain, mornings usually clear</p>
+                        <p><strong>Prices:</strong> Normal low-season rates (no premium)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                <InfoBox
-                  title="Noches de Kukulkán (Night Light Show)"
-                  icon="🌙"
-                  items={[
-                    "Stunning light and sound show projected onto El Castillo",
-                    "Runs Wednesday through Saturday evenings",
-                    "Separate ticket required — book via our night tours",
-                    "Unique experience available year-round",
-                  ]}
-                  variant="default"
-                />
+                {/* Night Show */}
+                <div className="bg-card rounded-xl p-6 border border-border">
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl">✨</span>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="font-heading font-semibold text-lg">Noches de Kukulcán — Year-Round</h3>
+                        <span className="text-xs font-bold bg-secondary/15 text-secondary px-2.5 py-0.5 rounded-full">Unique Experience</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">Stunning 3D projection mapping transforms El Castillo into a canvas for Mayan storytelling. Runs Tue-Sun (high season Nov-Apr) and Fri-Sun (low season).</p>
+                      <Link to="/tours/night-tours" className="text-sm text-primary hover:underline font-medium">Book Night Light Show Tour →</Link>
+                    </div>
+                  </div>
+                </div>
 
-                <TipBox
-                  type="warning"
-                  title="Equinox Crowd Warning"
-                  content="The equinox events are spectacular but extremely crowded. If experiencing the serpent shadow is your goal, arrive by 8 AM and stake out a viewing spot. Otherwise, visit a few days before or after for similar conditions with 90% fewer tourists."
-                />
+                {/* Día de Muertos */}
+                <div className="bg-card rounded-xl p-6 border border-border">
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl">💀</span>
+                    <div className="flex-1">
+                      <h3 className="font-heading font-semibold text-lg mb-2">Día de Muertos — November 1-2</h3>
+                      <p className="text-sm text-muted-foreground mb-2">Mexico's Day of the Dead coincides with excellent November weather. Nearby Valladolid has remarkable celebrations worth combining with your visit. Crowds are moderate — not extreme but noticeably higher than surrounding weeks.</p>
+                      <Link to="/tours/valladolid-tours" className="text-sm text-primary hover:underline font-medium">View Chichen Itza + Valladolid Tour →</Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
             {/* ---- Peak Season Tips ---- */}
             <section id="peak-season">
-              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Tips for Visiting in Peak Season</h2>
-              <InfoBox
-                title="Peak Season Survival Guide (Nov-Apr)"
-                icon="☀️"
-                items={[
-                  "Book tours at least 1-2 weeks in advance — popular options sell out",
-                  "Choose the earliest departure time available to beat crowds",
-                  "Bring 2+ liters of water, sunscreen SPF 50+, and a wide-brimmed hat",
-                  "Consider a private tour for flexible scheduling and skip-the-line access",
-                  "Wear light, breathable clothing — cotton or moisture-wicking fabric",
-                  "Start at the back of the site (Group of a Thousand Columns) while crowds gather at El Castillo",
-                  "Budget 15-30% extra for peak season pricing on tours and hotels",
-                ]}
-                variant="success"
-              />
-              <p className="text-muted-foreground mt-4">
-                Peak season visitors benefit most from <Link to="/tour-types/vip-skip-the-line" className="text-primary hover:underline">VIP skip-the-line tours</Link> and <Link to="/tours/private-tours" className="text-primary hover:underline">private tours</Link> that
-                offer flexibility and personalized pacing.
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Tips for Visiting in Peak Season (November–April)</h2>
+              <p className="text-muted-foreground mb-6">Already booked during peak season? These strategies maximize your experience even at the busiest times:</p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {([
+                  { icon: "📅", title: "Book 2-3 Weeks Ahead", desc: "Peak season tours — especially sunrise and private — sell out quickly. Popular December-January dates can be fully booked 1 month in advance." },
+                  { icon: "⏰", title: "Choose Earliest Tour Time", desc: "Being there at 8 AM vs 10 AM can mean 1,500 vs 5,000 visitors simultaneously. The early bird genuinely wins here." },
+                  { icon: "🌅", title: "Upgrade to Sunrise Tour", desc: "The 20-30% premium pays for itself in experience quality. Having El Castillo virtually to yourself while everyone else is at hotel breakfast is priceless." },
+                  { icon: "👥", title: "Choose Small Group Tours", desc: "Standard bus tours pack 40+ people. Small group tours (max 12-15) provide dramatically better guide interaction, mobility, and photo opportunities." },
+                  { icon: "💧", title: "Prepare for Heat", desc: "Bring minimum 2 liters of water per person, high-SPF sunscreen, wide-brim hat, and UV-protective clothing. Refill water at site restaurants." },
+                  { icon: "📸", title: "Strategic Photography", desc: "Move to lesser-visited structures (Observatory, Platform of Eagles) mid-morning when El Castillo is packed. Return near closing (4 PM) for crowd-free shots." },
+                  { icon: "🍽️", title: "Eat Before the Rush", desc: "Most tours schedule lunch at 12-1 PM. Request eating at 11 AM to beat restaurant queues. On private tours, simply tell your guide." },
+                  { icon: "🔒", title: "Confirm 24-48 Hours Before", desc: "Peak season means higher cancellation rates. Confirm your tour 1-2 days ahead and arrive at the meeting point 10-15 minutes early." },
+                ] as const).map((tip, i) => (
+                  <div key={i} className="bg-card rounded-lg p-5 border border-border">
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl">{tip.icon}</span>
+                      <div>
+                        <h4 className="font-heading font-semibold text-sm mb-1">{tip.title}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{tip.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-muted-foreground mt-6">
+                Peak season visitors benefit most from <Link to="/tour-types/vip-skip-the-line" className="text-primary hover:underline">VIP skip-the-line tours</Link> and <Link to="/tours/private-tours" className="text-primary hover:underline">private tours</Link> for flexibility and personalized pacing.
               </p>
             </section>
 
             {/* ---- Low Season Tips ---- */}
             <section id="low-season">
-              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Tips for Visiting in Low Season</h2>
-              <InfoBox
-                title="Low Season Strategy Guide (May-Oct)"
-                icon="🌧️"
-                items={[
-                  "Book morning tours (departing before 7 AM) to avoid afternoon rain",
-                  "Bring a light rain jacket or poncho — showers typically last 30-60 minutes",
-                  "Take advantage of 25-30% lower prices on tours, hotels, and flights",
-                  "Enjoy lush, green jungle scenery perfect for dramatic photography",
-                  "Purchase travel insurance that covers weather-related cancellations",
-                  "Stay hydrated — humidity makes heat feel 10-15°F hotter",
-                  "Check hurricane forecasts a week before travel (direct hits are very rare inland)",
-                ]}
-                variant="info"
-              />
-              <p className="text-muted-foreground mt-4">
+              <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">Tips for Visiting in Low Season (May–October)</h2>
+              <p className="text-muted-foreground mb-6">Low season visitors enjoy significant advantages: lower prices, fewer crowds, and lush jungle scenery. Here's how to make the most of it:</p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {([
+                  { icon: "☀️", title: "Always Book Morning Tours", desc: "Non-negotiable in rainy season. Tours departing by 7:30-8:00 AM almost always complete the site visit before afternoon rain arrives (typically 2-4 PM)." },
+                  { icon: "☂️", title: "Pack a Light Rain Poncho", desc: "Compact rain ponchos ($1-2 at Cancún pharmacies) are essential insurance. Even morning tours occasionally encounter light rain. Better than umbrellas for navigating the site." },
+                  { icon: "💰", title: "Negotiate Better Rates", desc: "Tour operators often offer 10-20% discounts for direct bookings, especially groups of 4+. Ask about current promotions or last-minute availability discounts." },
+                  { icon: "🌿", title: "Embrace the Jungle", desc: "Rainy season transforms the surrounding jungle into vibrant emerald green. Stunning photography opportunities with wildlife more active: iguanas, tropical birds, and butterflies." },
+                  { icon: "🌡️", title: "Start Earlier to Beat Heat", desc: "Humidity (80-90%) makes heat feel more intense. Arriving at 7:30-8:00 AM takes advantage of the coolest window. Wear moisture-wicking clothing and hydrate aggressively." },
+                  { icon: "🏨", title: "Stay in Valladolid", desc: "25 miles from Chichen Itza — arrive very early before coastal tour buses. Explore nearby cenotes Dzitnup and Samulá in the afternoon. Hotel rates 50-70% lower than Cancún." },
+                  { icon: "🦟", title: "Use Mosquito Repellent", desc: "Rainy season means more mosquitoes, especially early morning and late afternoon. Bring DEET-based repellent (30%+ concentration). Long-sleeved lightweight shirts also help." },
+                  { icon: "📱", title: "Monitor Weather Day Before", desc: "Check forecasts for Yucatán/Tinum (nearest town) rather than Cancún — coastal weather differs significantly from inland. Apps like Windy are more accurate for jungle forecasts." },
+                ] as const).map((tip, i) => (
+                  <div key={i} className="bg-card rounded-lg p-5 border border-border">
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl">{tip.icon}</span>
+                      <div>
+                        <h4 className="font-heading font-semibold text-sm mb-1">{tip.title}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{tip.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-muted-foreground mt-6">
                 Low-season visitors should explore <Link to="/tour-types/budget" className="text-primary hover:underline">budget tour options</Link> and consider
                 combining Chichen Itza with a <Link to="/combo-tours/cenote-ik-kil" className="text-primary hover:underline">cenote swim at Ik Kil</Link> —
                 the cool underground waters are especially refreshing in summer heat.
