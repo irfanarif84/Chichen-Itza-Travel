@@ -3,6 +3,7 @@ import { ChevronRight, BookOpen, Landmark, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { guideSchemas } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
@@ -50,12 +51,14 @@ const meta = getPageMeta({
   description:
     "Discover Chichen Itza history, fascinating facts about El Castillo, Mayan civilization, UNESCO status, New Seven Wonders. Expert guide to this ancient wonder.",
   canonical: "/guide/history-and-facts",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Guide", url: "/guide" },
       { name: "History & Facts" },
     ]),
+    guideSchemas["history-and-facts"],
     createFAQSchema(faqData),
   ],
 });

@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { guideSchemas } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
@@ -60,12 +61,14 @@ const meta = getPageMeta({
   description:
     "Expert photography tips for Chichen Itza. Best times, camera settings, composition techniques, prohibited equipment. Capture stunning photos of El Castillo.",
   canonical: "/guide/photography-tips",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Guide", url: "/guide" },
       { name: "Photography Tips" },
     ]),
+    guideSchemas["photography-tips"],
     createFAQSchema(faqData),
   ],
 });

@@ -28,6 +28,7 @@ import EntranceFeesPage from "./pages/guide/entrance-fees";
 import PhotographyTipsPage from "./pages/guide/photography-tips";
 import DressCodePage from "./pages/guide/dress-code-and-rules";
 import VsOtherRuinsPage from "./pages/guide/vs-other-ruins";
+import GuideIndexPage from "./pages/guide/index";
 import FAQPage from "./pages/practical/faq";
 import ContactPage from "./pages/practical/contact";
 import CancellationPolicyPage from "./pages/practical/cancellation-policy";
@@ -74,6 +75,7 @@ const App = () => (
                 <Route path="/tours-from/tulum" element={<TulumToursPage />} />
                 <Route path="/tours-from/riviera-maya" element={<RivieraMayaToursPage />} />
                 <Route path="/tours-from/merida" element={<MeridaToursPage />} />
+                <Route path="/guide" element={<GuideIndexPage />} />
                 <Route path="/guide/best-time-to-visit" element={<BestTimeToVisitPage />} />
                 <Route path="/guide/what-to-bring" element={<WhatToBringPage />} />
                 <Route path="/guide/history-and-facts" element={<HistoryAndFactsPage />} />

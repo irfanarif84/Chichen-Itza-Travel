@@ -3,6 +3,7 @@ export interface PageMeta {
   description: string;
   canonical?: string;
   ogImage?: string;
+  ogType?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 

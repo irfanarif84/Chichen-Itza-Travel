@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ChevronRight, Mountain, Waves, TreePalm, Pyramid, Landmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
@@ -11,25 +11,6 @@ import InfoBox from "@/components/guide/InfoBox";
 import ComparisonTable from "@/components/guide/ComparisonTable";
 import { guideSchemas } from "@/lib/schema";
 import type { FAQItem } from "@/lib/faqData";
-
-const meta = getPageMeta({
-  title: "Chichen Itza vs Tulum, Coba, Ek Balam, Uxmal - 2026 Guide",
-  description: "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
-  canonical: "/guide/vs-other-ruins",
-  jsonLd: [
-    createBreadcrumbSchema([
-      { name: "Home", url: "/" },
-      { name: "Guide", url: "/guide" },
-      { name: "vs Other Ruins" },
-    ]),
-    guideSchemas["vs-other-ruins"],
-  ],
-});
-
-const breadcrumbs = [
-  { label: "Guide", href: "/guide" },
-  { label: "vs Other Ruins" },
-];
 
 const comparisonFAQs: FAQItem[] = [
   {
@@ -68,6 +49,28 @@ const comparisonFAQs: FAQItem[] = [
     category: "comparison",
   },
 ];
+
+const meta = getPageMeta({
+  title: "Chichen Itza vs Tulum, Coba, Ek Balam, Uxmal - 2026 Guide",
+  description: "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
+  canonical: "/guide/vs-other-ruins",
+  ogType: "article",
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: "Home", url: "/" },
+      { name: "Guide", url: "/guide" },
+      { name: "vs Other Ruins" },
+    ]),
+    guideSchemas["vs-other-ruins"],
+    createFAQSchema(comparisonFAQs),
+  ],
+});
+
+const breadcrumbs = [
+  { label: "Guide", href: "/guide" },
+  { label: "vs Other Ruins" },
+];
+
 
 const VsOtherRuinsPage = () => {
   return (

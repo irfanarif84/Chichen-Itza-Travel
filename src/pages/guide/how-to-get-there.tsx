@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { guideSchemas } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
@@ -62,12 +63,14 @@ const meta = getPageMeta({
   description:
     "Complete guide to reaching Chichen Itza from Cancun, Playa del Carmen, Tulum. Tours, rental cars, buses, distances, costs. Expert travel tips.",
   canonical: "/guide/how-to-get-there",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Guide", url: "/guide" },
       { name: "How to Get There" },
     ]),
+    guideSchemas["how-to-get-there"],
     createFAQSchema(faqData),
   ],
 });
