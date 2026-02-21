@@ -149,7 +149,7 @@ const EntranceFeesPage = () => (
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mt-4">
-                <strong>Bottom line:</strong> Guided tours offer better value when you factor in transportation, guide expertise, and lunch. See detailed breakdown below.
+                <strong>Bottom line:</strong> Guided tours offer better value when you factor in transportation, guide expertise, and lunch. Check our <Link to="/guide/how-to-get-there" className="text-primary hover:underline">how to get there guide</Link> if you're considering a DIY visit.
               </p>
             </div>
 
@@ -221,6 +221,10 @@ const EntranceFeesPage = () => (
               </div>
 
               <TipBox type="warning" title="Payment Tip" content="Bring Mexican pesos cash for the fastest entry. Credit cards are accepted but processing can be slow during peak hours. USD is accepted at unfavorable exchange rates." />
+
+              <p className="text-sm text-muted-foreground mt-4">
+                Before you visit, review the <Link to="/guide/dress-code-and-rules" className="text-primary hover:underline">dress code and site rules</Link> to ensure you don't bring prohibited items, and check our <Link to="/guide/photography-tips" className="text-primary hover:underline">photography tips</Link> to decide whether you need the $45 camera permit.
+              </p>
             </div>
 
             {/* Additional Fees */}
@@ -270,7 +274,7 @@ const EntranceFeesPage = () => (
                 Guided Tour vs DIY: Total Cost Comparison
               </h2>
               <p className="text-muted-foreground mb-6">
-                Many visitors assume visiting independently is cheaper. However, when you factor in all costs, guided tours often provide better value:
+                Many visitors assume visiting independently is cheaper. However, when you factor in all costs, guided tours often provide better value. See how Chichen Itza <Link to="/guide/vs-other-ruins" className="text-primary hover:underline">compares to other ruins</Link> if you're planning multiple site visits.
               </p>
 
               <ComparisonTable

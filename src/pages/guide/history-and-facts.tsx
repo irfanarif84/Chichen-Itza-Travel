@@ -216,8 +216,8 @@ const HistoryAndFactsPage = () => (
                 <Landmark className="h-6 w-6 text-accent" />
                 El Castillo: The Temple of Kukulkan
               </h2>
-              <p className="text-muted-foreground mb-6">
-                El Castillo (Spanish for "The Castle") is the centerpiece of Chichen Itza and one of the most recognizable structures in the world. This step-pyramid temple dedicated to the feathered serpent god Kukulkan showcases the Maya's extraordinary astronomical and mathematical knowledge.
+                <p className="text-muted-foreground mb-6">
+                El Castillo (Spanish for "The Castle") is the centerpiece of Chichen Itza and one of the most recognizable structures in the world. This step-pyramid temple dedicated to the feathered serpent god Kukulkan showcases the Maya's extraordinary astronomical and mathematical knowledge. For tips on capturing stunning photos of the pyramid, see our <Link to="/guide/photography-tips" className="text-primary hover:underline">photography guide</Link>.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -255,7 +255,7 @@ const HistoryAndFactsPage = () => (
                   In the 1930s, archaeologists discovered an earlier, smaller pyramid buried inside El Castillo. The Maya built the current structure over the older one, a common practice called "temple encapsulation." The interior pyramid contains a red jaguar throne with jade inlays and a chacmool statue.
                 </p>
                 <p className="text-sm text-muted-foreground italic">
-                  Note: The interior pyramid was open to tourists until 2006 but is now permanently closed due to structural concerns.
+                  Note: The interior pyramid was open to tourists until 2006 but is now permanently closed due to structural concerns. Review the full list of <Link to="/guide/dress-code-and-rules" className="text-primary hover:underline">site rules and restrictions</Link> before visiting.
                 </p>
               </div>
             </div>
@@ -335,7 +335,7 @@ const HistoryAndFactsPage = () => (
                 Experience This Ancient Wonder Yourself
               </h2>
               <p className="text-sm text-muted-foreground mb-4">
-                Book a guided tour with expert historians who bring Chichen Itza's fascinating past to life
+                Book a guided tour with expert historians who bring Chichen Itza's fascinating past to life. Learn <Link to="/guide/how-to-get-there" className="text-primary hover:underline">how to get there</Link> or see how Chichen Itza <Link to="/guide/vs-other-ruins" className="text-primary hover:underline">compares to other ruins</Link>.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Button variant="cta" asChild>
