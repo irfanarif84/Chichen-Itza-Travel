@@ -41,9 +41,12 @@ const TourGallery = ({ images, heroImage, tourTitle }: TourGalleryProps) => {
           >
             <img
               src={src}
-              alt={`${tourTitle} - photo ${i + 1}`}
+              alt={`${tourTitle} - ${['panoramic view', 'activity highlight', 'experience detail', 'scenic moment'][i] ?? `photo ${i + 1}`}`}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
+              width={800}
+              height={600}
+              decoding="async"
             />
             <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
           </button>
