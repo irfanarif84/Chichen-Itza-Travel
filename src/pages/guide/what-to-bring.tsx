@@ -513,73 +513,202 @@ const WhatToBringPage = () => {
                   Clothing Recommendations: What to Wear
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-card rounded-xl p-6 border-2 border-success">
-                    <div className="flex items-center gap-3 mb-4">
-                      <CheckCircle className="h-6 w-6 text-success" />
-                      <h3 className="font-heading font-semibold text-lg">Recommended</h3>
-                    </div>
-                    <ul className="space-y-2">
-                      {[
-                        "Light, breathable fabric (cotton or moisture-wicking)",
-                        "Comfortable walking shoes with good grip",
-                        "Wide-brimmed hat for face and neck shade",
-                        "Light colors that reflect heat",
-                        "Swimsuit under clothes (if cenote tour)",
-                        "Loose-fitting shorts or lightweight pants",
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <p className="text-muted-foreground mb-8">
+                  Choosing the right clothing can make or break your comfort level at Chichen Itza.
+                  You'll be walking 2-3 miles on stone surfaces in heat and humidity, so prioritize
+                  breathability, sun protection, and comfort over fashion.
+                </p>
 
-                  <div className="bg-card rounded-xl p-6 border-2 border-destructive">
-                    <div className="flex items-center gap-3 mb-4">
-                      <XCircle className="h-6 w-6 text-destructive" />
-                      <h3 className="font-heading font-semibold text-lg">Avoid</h3>
+                {/* Top/Shirt */}
+                <div className="mb-8">
+                  <h3 className="font-heading font-semibold text-xl mb-4 flex items-center gap-2">
+                    <Shirt className="h-5 w-5 text-primary" /> Top / Shirt Options
+                  </h3>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-card rounded-xl p-5 border-2 border-success">
+                      <p className="text-xs font-bold uppercase tracking-wider text-success mb-2">✓ Best Choice</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Moisture-wicking t-shirt (polyester or nylon)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Light-colored (reflects heat better)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Loose-fitting (allows air circulation)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Optional: UPF 50+ sun protection shirt</li>
+                      </ul>
+                      <p className="text-xs text-success mt-3">Why: Dries 3x faster than cotton when you sweat</p>
                     </div>
-                    <ul className="space-y-2">
-                      {[
-                        "Flip flops or open-back sandals",
-                        "Brand new shoes (blisters guaranteed)",
-                        "Dark colors that absorb heat",
-                        "Heavy jeans or restrictive clothing",
-                        "High heels or dress shoes",
-                        "Anything you wouldn't want to sweat through",
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="bg-card rounded-xl p-5 border-2 border-accent">
+                      <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">○ Acceptable</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• Light cotton t-shirt (breathable but holds sweat)</li>
+                        <li>• Tank top or sleeveless (cooler but less sun protection)</li>
+                        <li>• Linen shirt (breathable but wrinkles easily)</li>
+                      </ul>
+                      <p className="text-xs text-muted-foreground mt-3">Note: Cotton gets heavy when soaked with sweat</p>
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border-2 border-destructive">
+                      <p className="text-xs font-bold uppercase tracking-wider text-destructive mb-2">✗ Avoid</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Dark colors (black/navy absorb heat)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Heavy fabrics (denim, thick cotton)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Tight-fitting tops (restricts airflow)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />No shirt/sports bra only (sunburn guaranteed)</li>
+                      </ul>
+                      <p className="text-xs text-destructive mt-3">You'll overheat within 30 minutes</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="bg-card rounded-xl p-6 border border-border">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Footprints className="h-6 w-6 text-primary" />
-                    <h3 className="font-heading font-semibold text-lg">Shoe Guide</h3>
+                {/* Bottom/Pants */}
+                <div className="mb-8">
+                  <h3 className="font-heading font-semibold text-xl mb-4">Bottom / Pants Options</h3>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-card rounded-xl p-5 border-2 border-success">
+                      <p className="text-xs font-bold uppercase tracking-wider text-success mb-2">✓ Best Choice</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Lightweight hiking shorts (quick-dry synthetic)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Athletic shorts with built-in liner</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Knee-length or longer (sun protection)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Loose fit for comfort while walking</li>
+                      </ul>
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border-2 border-accent">
+                      <p className="text-xs font-bold uppercase tracking-wider text-accent mb-2">○ Acceptable</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li>• Cotton shorts (comfortable but slow to dry)</li>
+                        <li>• Capri pants (more coverage than shorts)</li>
+                        <li>• Lightweight sundress (easy but less practical)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border-2 border-destructive">
+                      <p className="text-xs font-bold uppercase tracking-wider text-destructive mb-2">✗ Avoid</p>
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Jeans (too hot, restrictive movement)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Very short shorts (inner thigh chafing)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />White or very light pants (shows dirt/sweat)</li>
+                        <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Skirts (difficult on stairs, wind issues)</li>
+                      </ul>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground mb-3">
-                    Your shoe choice is arguably the most important packing decision. You'll walk 2-3 miles
-                    over uneven stone pathways, gravel, and occasional grass. Here's what works best:
-                  </p>
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    {[
-                      { label: "Best Choice", shoes: "Trail runners or light hikers", why: "Grip, support, breathability" },
-                      { label: "Good Choice", shoes: "Athletic sneakers", why: "Comfortable, broken-in pairs only" },
-                      { label: "Acceptable", shoes: "Sport sandals (Teva/Keen)", why: "Closed-toe with straps only" },
-                    ].map((opt) => (
-                      <div key={opt.label} className="text-center bg-muted/30 rounded-lg p-3">
-                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">{opt.label}</p>
-                        <p className="font-semibold text-sm">{opt.shoes}</p>
-                        <p className="text-xs text-muted-foreground">{opt.why}</p>
+                </div>
+
+                {/* Footwear */}
+                <div className="mb-8">
+                  <h3 className="font-heading font-semibold text-xl mb-4 flex items-center gap-2">
+                    <Footprints className="h-5 w-5 text-primary" /> Footwear: The Most Important Decision
+                  </h3>
+
+                  <TipBox
+                    type="warning"
+                    title="Critical: Your Shoes Make or Break Your Experience"
+                    content="Wrong shoes = blisters, sore feet, possible injury on uneven surfaces. More visitors regret their footwear choice than any other packing decision. This is NOT the place to break in new shoes or wear fashion over function."
+                  />
+
+                  <div className="grid md:grid-cols-3 gap-4 mt-6">
+                    <div className="bg-card rounded-xl p-5 border-2 border-success">
+                      <p className="text-xs font-bold uppercase tracking-wider text-success mb-1 flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5" /> BEST: Closed-Toe Walking Shoes</p>
+                      <p className="text-xs font-semibold mb-2">Ideal Options:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground mb-3">
+                        <li>• Trail running shoes (lightweight, good grip)</li>
+                        <li>• Hiking shoes or low hiking boots</li>
+                        <li>• Well-worn athletic sneakers</li>
+                        <li>• Walking shoes for all-day comfort</li>
+                      </ul>
+                      <p className="text-xs font-semibold mb-2">Must-Have Features:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Broken in (worn at least 5-10 times)</li>
+                        <li>• Good tread for grip on smooth stone</li>
+                        <li>• Breathable mesh (feet will sweat)</li>
+                        <li>• Ankle support for uneven surfaces</li>
+                        <li>• Cushioned insole for comfort</li>
+                      </ul>
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border-2 border-accent">
+                      <p className="text-xs font-bold uppercase tracking-wider text-accent mb-1">○ ACCEPTABLE: Sport Sandals (Risky)</p>
+                      <p className="text-xs font-semibold mb-2">If You Must Wear Sandals:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground mb-3">
+                        <li>• Teva, Chaco, or Keen sport sandals ONLY</li>
+                        <li>• Secure straps (no slip-on styles)</li>
+                        <li>• Thick sole with tread</li>
+                        <li>• Toe protection (closed-toe sandals)</li>
+                      </ul>
+                      <p className="text-xs font-semibold mb-2">The Downsides:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li>• Feet get dusty and dirty quickly</li>
+                        <li>• Sunburn on top of feet (common!)</li>
+                        <li>• Small stones get stuck</li>
+                        <li>• Less stability on stairs</li>
+                      </ul>
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border-2 border-destructive">
+                      <p className="text-xs font-bold uppercase tracking-wider text-destructive mb-1 flex items-center gap-1"><XCircle className="h-3.5 w-3.5" /> NEVER WEAR</p>
+                      <p className="text-xs font-semibold mb-2">Absolutely Forbidden:</p>
+                      <ul className="space-y-1.5 text-sm text-muted-foreground mb-3">
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Flip-flops — dangerous on stairs</li>
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />High heels or wedges</li>
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Brand new shoes — guaranteed blisters</li>
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Crocs — slippery on smooth stone</li>
+                      </ul>
+                      <p className="text-xs font-semibold mb-2">Poor Choices:</p>
+                      <ul className="space-y-1.5 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Slip-on canvas shoes — no support</li>
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Ballet flats or loafers</li>
+                        <li className="flex items-start gap-1.5"><XCircle className="h-3.5 w-3.5 text-destructive mt-0.5 flex-shrink-0" />Minimalist/barefoot shoes</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Accessories */}
+                <div className="mb-8">
+                  <h3 className="font-heading font-semibold text-xl mb-4">Essential Accessories</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-card rounded-xl p-5 border border-border">
+                      <p className="font-heading font-semibold mb-3">🧢 Hat Selection</p>
+                      <div className="space-y-2 text-sm">
+                        <div><span className="text-success font-semibold">✓ Best:</span> <span className="text-muted-foreground">Wide-brim hat (3-4 inch brim min), bucket hat with neck flap, safari hat with chin strap</span></div>
+                        <div><span className="text-accent font-semibold">○ Okay:</span> <span className="text-muted-foreground">Baseball cap (only protects face, not ears/neck)</span></div>
+                        <div><span className="text-destructive font-semibold">✗ Avoid:</span> <span className="text-muted-foreground">Straw hats without chin strap (blow away), visors (no top-of-head protection)</span></div>
                       </div>
-                    ))}
+                    </div>
+                    <div className="bg-card rounded-xl p-5 border border-border">
+                      <p className="font-heading font-semibold mb-3">🕶️ Sunglasses</p>
+                      <ul className="space-y-1.5 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />100% UV protection (UVA and UVB)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Polarized lenses (reduce glare from stone)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Wraparound style (side protection)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Secure fit (won't fall off looking up)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Strap or retainer cord recommended</li>
+                      </ul>
+                      <p className="text-xs text-muted-foreground mt-2">💡 Bring a hard case — sunglasses in bags get crushed.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual Outfit Comparison */}
+                <div className="mb-6">
+                  <h3 className="font-heading font-semibold text-xl mb-4">👤 The Perfect Chichen Itza Outfit</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-success/5 rounded-xl p-5 border-2 border-success">
+                      <p className="text-success font-bold text-sm mb-3">✓ Example: Well-Prepared Visitor</p>
+                      <div className="space-y-2 text-sm">
+                        <p><span className="font-semibold">Head:</span> <span className="text-muted-foreground">Wide-brim hat, sunglasses on strap</span></p>
+                        <p><span className="font-semibold">Top:</span> <span className="text-muted-foreground">Light gray moisture-wicking shirt</span></p>
+                        <p><span className="font-semibold">Bottom:</span> <span className="text-muted-foreground">Khaki quick-dry hiking shorts</span></p>
+                        <p><span className="font-semibold">Feet:</span> <span className="text-muted-foreground">Broken-in trail runners + synthetic socks</span></p>
+                        <p><span className="font-semibold">Bag:</span> <span className="text-muted-foreground">Small backpack with water, sunscreen</span></p>
+                      </div>
+                      <p className="text-success text-xs font-semibold mt-3">This person will be comfortable all day!</p>
+                    </div>
+                    <div className="bg-destructive/5 rounded-xl p-5 border-2 border-destructive">
+                      <p className="text-destructive font-bold text-sm mb-3">✗ Example: Unprepared Visitor</p>
+                      <div className="space-y-2 text-sm">
+                        <p><span className="font-semibold">Head:</span> <span className="text-muted-foreground">Baseball cap, no sunglasses</span></p>
+                        <p><span className="font-semibold">Top:</span> <span className="text-muted-foreground">Black cotton t-shirt</span></p>
+                        <p><span className="font-semibold">Bottom:</span> <span className="text-muted-foreground">Dark blue jeans</span></p>
+                        <p><span className="font-semibold">Feet:</span> <span className="text-muted-foreground">Brand new white sneakers</span></p>
+                        <p><span className="font-semibold">Bag:</span> <span className="text-muted-foreground">Shoulder purse, no water</span></p>
+                      </div>
+                      <p className="text-destructive text-xs font-semibold mt-3">This person will be miserable within an hour!</p>
+                    </div>
                   </div>
                 </div>
 
@@ -594,53 +723,148 @@ const WhatToBringPage = () => {
               {/* ==================== PHOTOGRAPHY ==================== */}
               <section id="photography">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
-                  Photography Gear Guide
+                  <Camera className="inline h-7 w-7 text-primary mr-2" />Photography Gear Guide
                 </h2>
 
-                <div className="space-y-4">
+                <p className="text-muted-foreground mb-6">
+                  Chichen Itza is one of the most photographed sites in the world. Whether you're a smartphone
+                  snapper or serious photographer, here's what to bring for the best shots while complying with site rules.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  {/* Smartphone */}
                   <div className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Smartphone className="h-6 w-6 text-primary" />
-                      <h3 className="font-heading font-semibold text-lg">Smartphone Photography (Most Visitors)</h3>
+                    <h3 className="font-heading font-semibold text-lg mb-4 flex items-center gap-2">
+                      <Smartphone className="h-5 w-5 text-primary" /> 📱 Smartphone Photography (Most Common)
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">What to Bring:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Fully charged smartphone (100% morning of tour)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Portable battery pack (10,000+ mAh)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Charging cable (keep in bag)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Lens cleaning cloth (microfiber)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Phone case with wrist strap</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Pro Tips:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Clear storage before trip (50+ GB recommended)</li>
+                          <li>• Turn on HDR for better dynamic range</li>
+                          <li>• Use portrait mode for people + ruins</li>
+                          <li>• Shoot in RAW if your phone supports it</li>
+                          <li>• Download cloud backup app beforehand</li>
+                          <li>• Close background apps to preserve battery</li>
+                        </ul>
+                      </div>
                     </div>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Clean your lens before entering (dust and humidity are constant)</li>
-                      <li>• Use burst mode for group shots at El Castillo</li>
-                      <li>• Enable HDR for high-contrast stone/sky shots</li>
-                      <li>• Bring a portable battery pack — GPS + camera drains fast</li>
-                      <li>• Download your guide's contact info in case you get separated</li>
-                    </ul>
                   </div>
 
+                  {/* Compact Camera */}
                   <div className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Camera className="h-6 w-6 text-primary" />
-                      <h3 className="font-heading font-semibold text-lg">Camera Equipment (Enthusiasts)</h3>
+                    <h3 className="font-heading font-semibold text-lg mb-4">📷 Compact Camera / Point-and-Shoot</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">What to Bring:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Compact camera (Sony RX100, Canon G7X, etc.)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Extra battery (fully charged)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />32GB+ memory card</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Padded camera case</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Wrist strap or neck strap</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Settings Recommendations:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Auto mode is fine for most shots</li>
+                          <li>• Aperture priority (A/Av) for depth control</li>
+                          <li>• ISO 100-400 in bright sun, 800-1600 in shade</li>
+                          <li>• Better zoom range than smartphones</li>
+                          <li>• Doesn't drain phone battery</li>
+                        </ul>
+                      </div>
                     </div>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• <strong>Remember:</strong> Tripods, monopods, and selfie sticks are banned</li>
-                      <li>• Professional cameras with detachable lenses require a $45 USD permit</li>
-                      <li>• Bring a polarizing filter to reduce glare from stone surfaces</li>
-                      <li>• Wide-angle lens (16-35mm) captures entire pyramid beautifully</li>
-                      <li>• Wrist strap is more secure than neck strap in crowds</li>
-                      <li>• Extra batteries — heat drains batteries 30-50% faster</li>
-                      <li>• Lens cleaning cloth and blower (dust is constant)</li>
-                    </ul>
                   </div>
 
-                  <TipBox
-                    type="info"
-                    title="Golden Hour at Chichen Itza"
-                    content="The best light for photography is at opening (8 AM) and near closing (4 PM). Midday sun creates harsh shadows on the pyramid. Book a sunrise tour for the ultimate photography experience with almost no other visitors."
-                  />
+                  {/* DSLR / Mirrorless */}
+                  <div className="bg-card rounded-xl p-6 border border-border">
+                    <h3 className="font-heading font-semibold text-lg mb-4">📸 DSLR / Mirrorless Camera (Advanced)</h3>
 
-                  <p className="text-sm text-muted-foreground">
-                    → Read our complete{" "}
-                    <Link to="/guide/photography-tips" className="text-primary hover:underline font-medium">
-                      photography tips for Chichen Itza
-                    </Link>
-                  </p>
+                    <TipBox
+                      type="warning"
+                      title="Professional Equipment Permit Required"
+                      content="Cameras with detachable lenses, external flashes, and professional video equipment require a special INAH permit costing $45 USD (paid on-site at entrance). Security will stop you and require payment. This applies even to hobbyists with DSLRs/mirrorless cameras."
+                    />
+
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">What to Bring:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Wide-angle lens (16-35mm ideal for architecture)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Standard zoom (24-70mm versatile)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Telephoto optional (70-200mm for details)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />2-3 extra batteries (heat drains faster)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Multiple memory cards (64GB+ each)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Circular polarizing filter</li>
+                        </ul>
+                        <p className="text-xs font-semibold mt-3 mb-2">What NOT to Bring:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Tripod/monopod — strictly prohibited</li>
+                          <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />External flash/strobes — not allowed</li>
+                          <li className="flex items-start gap-2"><XCircle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />Gimbal stabilizers — professional equipment</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Camera Settings for Chichen Itza:</p>
+                        <div className="space-y-2">
+                          {[
+                            { scene: "General Daylight", settings: "ISO 100-200 • f/8-f/11 • 1/250-1/500s" },
+                            { scene: "Architecture (Max Sharpness)", settings: "ISO 100 • f/8-f/13 • Aperture Priority" },
+                            { scene: "Portraits (People + Ruins)", settings: "ISO 100-400 • f/2.8-f/5.6 • 1/250s+" },
+                            { scene: "Details/Carvings", settings: "ISO 100-400 • f/5.6-f/8 • Focus carefully" },
+                          ].map((s) => (
+                            <div key={s.scene} className="bg-muted/30 rounded-lg p-2.5">
+                              <p className="text-xs font-semibold">{s.scene}:</p>
+                              <p className="text-xs text-muted-foreground">{s.settings}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Photography Tips Grid */}
+                <div className="mb-6">
+                  <h3 className="font-heading font-semibold text-xl mb-4">📸 Photography Tips from the Pros</h3>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {[
+                      { tip: "Arrive Early", detail: "Sunrise tours offer the best light and empty plazas." },
+                      { tip: "Shoot in RAW", detail: "More flexibility editing later. Most phones support it." },
+                      { tip: "Include People for Scale", detail: "El Castillo is 79 feet tall — hard to convey without people." },
+                      { tip: "Unique Angles", detail: "Walk around the pyramid for fresh perspectives." },
+                      { tip: "Capture Details", detail: "Zoom in on serpent heads, glyphs, and carvings." },
+                      { tip: "Use Leading Lines", detail: "Pathways and columns create natural lines to El Castillo." },
+                      { tip: "Wait for the Moment", detail: "Be patient — wait for people to move out of frame." },
+                      { tip: "Bracket Exposures", detail: "Bright sky + dark stone is challenging. Merge in post." },
+                    ].map((item) => (
+                      <div key={item.tip} className="bg-card rounded-lg p-4 border border-border">
+                        <p className="font-semibold text-sm mb-1">{item.tip}</p>
+                        <p className="text-xs text-muted-foreground">{item.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-sm text-muted-foreground">
+                  → Read our complete{" "}
+                  <Link to="/guide/photography-tips" className="text-primary hover:underline font-medium">
+                    Chichen Itza photography guide
+                  </Link>
+                </p>
               </section>
 
               {/* ==================== SPECIAL CONSIDERATIONS ==================== */}
@@ -649,81 +873,116 @@ const WhatToBringPage = () => {
                   Special Considerations
                 </h2>
 
-                <div className="space-y-4">
+                <p className="text-muted-foreground mb-6">
+                  Certain situations require additional planning. Here's what to bring based on your specific needs:
+                </p>
+
+                <div className="space-y-6">
                   {/* Cenote */}
                   <div className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Droplet className="h-6 w-6 text-secondary" />
-                      <h3 className="font-heading font-semibold text-lg">If Your Tour Includes a Cenote</h3>
-                    </div>
-                    <p className="text-muted-foreground mb-3">
-                      Most popular tours include a cenote swim. Add these to your packing list:
+                    <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2">
+                      <Droplet className="h-5 w-5 text-secondary" /> 💧 If Your Tour Includes Cenote Swimming
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Many tours combine Chichen Itza with swimming in nearby cenotes. Add these items:
                     </p>
-                    <ul className="grid sm:grid-cols-2 gap-1.5 text-sm text-muted-foreground">
-                      {[
-                        "Swimsuit (wear under clothes)",
-                        "Quick-dry towel or microfiber towel",
-                        "Water shoes or sport sandals",
-                        "Waterproof phone pouch ($5-10)",
-                        "Biodegradable sunscreen (required)",
-                        "Change of dry clothes for bus ride",
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
-                          <CheckCircle className="h-3.5 w-3.5 text-secondary mt-0.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      to="/tours/cenote-tours"
-                      className="inline-block mt-3 text-sm text-primary hover:underline font-medium"
-                    >
-                      View Cenote Tour Packages →
-                    </Link>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Additional Items Needed:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Swimsuit (wear under clothes or pack separately)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Quick-dry towel or microfiber towel (or rent $3-5)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Biodegradable sunscreen ONLY (regular prohibited)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Water shoes or sandals (rocks can be slippery)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Waterproof bag or dry sack (protect phone)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Change of clothes (dry shirt/shorts after swimming)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />Plastic bag (for wet swimsuit)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Cenote Rules:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• No regular sunscreen (chemicals harm ecosystem)</li>
+                          <li>• No makeup or body oils</li>
+                          <li>• Shower before entering (most cenotes require this)</li>
+                          <li>• Life jackets often mandatory (provided free)</li>
+                          <li>• Lockers available ($2-5) for valuables</li>
+                          <li>• Water temperature: 72-78°F year-round</li>
+                        </ul>
+                        <Link to="/tours/cenote-tours" className="inline-block mt-3 text-sm text-primary hover:underline font-medium">
+                          View Chichen Itza + Cenote Tours →
+                        </Link>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Families */}
                   <div className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Baby className="h-6 w-6 text-primary" />
-                      <h3 className="font-heading font-semibold text-lg">Families with Children</h3>
+                    <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2">
+                      <Baby className="h-5 w-5 text-primary" /> 👨‍👩‍👧‍👦 Traveling with Children
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Extra Items for Kids:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Extra water (kids dehydrate faster — 1L per child min)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />More snacks than you think (energy bars, crackers, fruit)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Kids' sunscreen stick (easier than lotion)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Child carrier/backpack (for toddlers who tire quickly)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Wet wipes (multi-purpose cleaning)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Small first aid kit (band-aids, children's pain reliever)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Change of clothes (kids get messy)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Stroller (check with tour operator — some sites restrict)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Tips for Kids:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Book <Link to="/tour-types/family-friendly" className="text-primary hover:underline">family-friendly tours</Link> with breaks</li>
+                          <li>• Morning tours better (kids have more energy)</li>
+                          <li>• Bring tablet/device for bus ride (download content ahead)</li>
+                          <li>• Teach kids not to touch ruins (oils damage stone)</li>
+                          <li>• Frequent bathroom stops needed (bathrooms are limited)</li>
+                          <li>• Make it educational: download kid-friendly Mayan history</li>
+                        </ul>
+                        <Link to="/tour-types/family-friendly" className="inline-block mt-3 text-sm text-primary hover:underline font-medium">
+                          View Family-Friendly Tours →
+                        </Link>
+                      </div>
                     </div>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Lightweight stroller or carrier for toddlers (main paths are accessible)</li>
-                      <li>• Extra snacks and water (children dehydrate faster)</li>
-                      <li>• Entertainment for the drive (2-2.5 hours each way)</li>
-                      <li>• Child-sized sun hat and kid-safe sunscreen</li>
-                      <li>• Comfortable walking shoes (no sandals for kids either)</li>
-                      <li>• Small backpack kids can carry (builds engagement)</li>
-                    </ul>
-                    <Link
-                      to="/tour-types/family-friendly"
-                      className="inline-block mt-3 text-sm text-primary hover:underline font-medium"
-                    >
-                      View Family-Friendly Tours →
-                    </Link>
                   </div>
 
                   {/* Seniors / Mobility */}
                   <div className="bg-card rounded-xl p-6 border border-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Accessibility className="h-6 w-6 text-primary" />
-                      <h3 className="font-heading font-semibold text-lg">Seniors & Limited Mobility</h3>
+                    <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2">
+                      <Accessibility className="h-5 w-5 text-primary" /> 🦽 Seniors & Mobility Considerations
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Additional Items:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Walking stick or trekking poles (stability on uneven surfaces)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Portable folding seat/cane combo (rest when needed)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Prescription medications (keep in carry-on, bring extras)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Compression socks (reduce swelling from walking/heat)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Cushioned insoles (add to shoes for comfort)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Important Notes:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li>• Wheelchairs available at entrance (free, limited quantity)</li>
+                          <li>• Main plaza is wheelchair accessible via paved paths</li>
+                          <li>• Many structures have steep stairs (not wheelchair accessible)</li>
+                          <li>• Shaded rest areas available throughout site</li>
+                          <li>• <Link to="/tours/private-tours" className="text-primary hover:underline">Private tours</Link> can go at slower pace</li>
+                          <li>• Electric scooters NOT allowed on-site</li>
+                        </ul>
+                        <Link to="/tours/private-tours" className="inline-block mt-3 text-sm text-primary hover:underline font-medium">
+                          View Private Tour Options →
+                        </Link>
+                      </div>
                     </div>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Walking cane or trekking pole (allowed and helpful on uneven terrain)</li>
-                      <li>• Cushioned, supportive shoes with excellent grip</li>
-                      <li>• Portable folding seat for rest breaks</li>
-                      <li>• Extra water — older adults dehydrate faster</li>
-                      <li>• Prescription medications in original packaging</li>
-                      <li>• Consider a private tour for flexible pacing</li>
-                    </ul>
-                    <Link
-                      to="/tours/private-tours"
-                      className="inline-block mt-3 text-sm text-primary hover:underline font-medium"
-                    >
-                      View Private Tour Options →
-                    </Link>
                   </div>
                 </div>
               </section>
@@ -734,59 +993,103 @@ const WhatToBringPage = () => {
                   Day-of Packing & Final Checklist
                 </h2>
 
+                <p className="text-muted-foreground mb-6">
+                  The night before and morning of your tour, follow this systematic process to ensure you're perfectly prepared:
+                </p>
+
                 <div className="space-y-6">
-                  {[
-                    {
-                      icon: "⏰",
-                      title: "Night Before",
-                      tips: [
-                        "Charge phone, camera, and portable battery fully",
-                        "Set out clothes, shoes, and hat",
-                        "Pre-apply sunscreen bottle near your bag",
-                        "Fill and refrigerate water bottles",
-                        "Print or screenshot tour confirmation",
-                        "Set alarm — most tours depart 6:00-7:00 AM",
-                      ],
-                    },
-                    {
-                      icon: "🌅",
-                      title: "Morning Of",
-                      tips: [
-                        "Apply sunscreen 15 minutes before departure",
-                        "Eat a solid breakfast (you'll need energy)",
-                        "Wear your walking shoes — don't pack them",
-                        "Put swimsuit on under clothes (if cenote tour)",
-                        "Grab water bottles from fridge",
-                        "Double-check: wallet, phone, hat, sunglasses",
-                      ],
-                    },
-                    {
-                      icon: "✅",
-                      title: "Final Bag Check",
-                      tips: [
+                  {/* Night Before */}
+                  <div className="bg-card rounded-xl p-6 border border-border">
+                    <h3 className="font-heading font-bold text-lg mb-4 flex items-center gap-2">
+                      <span className="text-xl">🌙</span> The Night Before Your Tour
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Charge Everything:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Smartphone to 100%</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Portable battery pack</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Camera batteries (all of them)</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Smartwatch if bringing</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2">Prepare Your Bag:</p>
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Layout all items from checklist</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Pack everything except perishables</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Place bag by door so you don't forget</li>
+                          <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />Set out clothes you'll wear</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider mb-2">Other Preparations:</p>
+                      <ul className="space-y-1 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Check weather forecast one last time</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Confirm pickup time and location with tour company</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Set 2 alarms (phone + backup)</li>
+                        <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />Get good sleep (7-8 hours minimum)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Morning Of */}
+                  <div className="bg-card rounded-xl p-6 border border-border">
+                    <h3 className="font-heading font-bold text-lg mb-4 flex items-center gap-2">
+                      <span className="text-xl">☀️</span> Morning of Your Tour (60-90 Min Before Pickup)
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="bg-muted/30 rounded-lg p-4">
+                        <p className="text-xs font-bold text-primary mb-2">⏰ First 15 Minutes:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li><span className="text-primary font-medium">1.</span> Wake up, shower if desired</li>
+                          <li><span className="text-primary font-medium">2.</span> Check phone for any tour company messages</li>
+                          <li><span className="text-primary font-medium">3.</span> Get dressed in prepared outfit</li>
+                        </ul>
+                      </div>
+                      <div className="bg-muted/30 rounded-lg p-4">
+                        <p className="text-xs font-bold text-primary mb-2">⏰ Next 30 Minutes:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li><span className="text-primary font-medium">4.</span> Eat light breakfast (tours include lunch)</li>
+                          <li><span className="text-primary font-medium">5.</span> Apply first coat of sunscreen (takes 15 min to absorb)</li>
+                          <li><span className="text-primary font-medium">6.</span> Fill water bottles (freeze one overnight if possible)</li>
+                          <li><span className="text-primary font-medium">7.</span> Add perishable items to bag (snacks, ice)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-muted/30 rounded-lg p-4">
+                        <p className="text-xs font-bold text-primary mb-2">⏰ Final 15 Minutes:</p>
+                        <ul className="space-y-1 text-sm text-muted-foreground">
+                          <li><span className="text-primary font-medium">8.</span> Put on walking shoes (wear them, don't pack)</li>
+                          <li><span className="text-primary font-medium">9.</span> Put swimsuit on under clothes (if cenote tour)</li>
+                          <li><span className="text-primary font-medium">10.</span> Double-check wallet, phone, hat, sunglasses</li>
+                          <li><span className="text-primary font-medium">11.</span> Head to pickup point 5 min early</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Final Bag Check */}
+                  <div className="bg-card rounded-xl p-5 border border-border">
+                    <h3 className="font-heading font-bold text-lg mb-3 flex items-center gap-2">
+                      <span className="text-xl">✅</span> Final Bag Check
+                    </h3>
+                    <ul className="space-y-1.5">
+                      {[
                         "Sunscreen ✓ | Hat ✓ | Sunglasses ✓",
                         "Water (2L+) ✓ | Snacks ✓",
                         "Cash (pesos) ✓ | Tour confirmation ✓",
                         "Camera/phone charged ✓ | Battery pack ✓",
                         "Rain poncho (rainy season) ✓",
                         "Towel + dry clothes (cenote tours) ✓",
-                      ],
-                    },
-                  ].map((block) => (
-                    <div key={block.title} className="bg-card rounded-xl p-5 border border-border">
-                      <h3 className="font-heading font-bold text-lg mb-3 flex items-center gap-2">
-                        <span className="text-xl">{block.icon}</span> {block.title}
-                      </h3>
-                      <ul className="space-y-1.5">
-                        {block.tips.map((tip, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary font-medium">{i + 1}.</span>
-                            {tip}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                      ].map((tip, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <span className="text-primary font-medium">{i + 1}.</span>
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </section>
 
