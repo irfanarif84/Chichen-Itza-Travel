@@ -1,56 +1,52 @@
 
 
-# Upgrade MonthlyChart and Expand Guide Sections
+# Expand Clothing, Photography, and Special Considerations Sections
 
 ## Overview
 
-Two main changes: (1) replace the simple table-based MonthlyChart with an interactive tabbed version featuring clickable months, and (2) expand the crowd avoidance, special events, peak season, and low season sections from their current compact InfoBox format to richer card-based layouts with more detail.
+The current `what-to-bring.tsx` (916 lines) already has functional Clothing (lines 510-592), Photography (594-643), Special Considerations (646-728), and Day-of (731-791) sections, but they use compact lists. The user's template provides much richer content with detailed sub-sections, visual comparison cards, and more granular advice.
 
-The existing ComparisonTable component already works well and does not need changes.
+## Changes to `src/pages/guide/what-to-bring.tsx`
 
-## Files to Modify
+### 1. Clothing Section (lines 510-592) -- EXPAND
 
-### 1. `src/components/guide/MonthlyChart.tsx` (REWRITE)
+Replace the current simple "Recommended vs Avoid" two-column grid and shoe guide with:
 
-Replace the current 85-line simple table with an interactive tabbed component featuring:
-- **5 tabs**: Overview, Temperature, Rainfall, Crowds, Price
-- **Overview tab**: Clickable month cards with crowd indicator dots, temperature, rain drops, price level, and "best month" badges. Clicking a month opens a detail panel with all stats
-- **Temperature tab**: Horizontal bar chart color-coded (green/orange/red) by heat level
-- **Rainfall tab**: Blue bar chart with dry/moderate/rainy labels
-- **Crowds tab**: 5-dot indicator per month with crowd tips
-- **Price tab**: Dollar-sign indicators with best-value callouts
-- **Legend** shown on the overview tab
-- Uses `useState` for active month and active tab
-- Typed crowd/price configs for color mapping
+- **Top/Shirt sub-section**: Three-tier card layout (Best Choice / Acceptable / Avoid) with specific fabric recommendations, color advice, and "why" explanations
+- **Bottom/Pants sub-section**: Same three-tier format with shorts vs pants vs dresses guidance
+- **Footwear sub-section**: Elevated to a major sub-section with a warning TipBox ("Critical: Your Shoes Make or Break Your Experience"), three detailed cards (Best / Acceptable / Never Wear) with specific shoe brands and a list of "absolutely forbidden" items with X icons
+- **Accessories sub-section**: Hat selection (best/okay/avoid tiers), sunglasses feature checklist
+- **Visual outfit comparison**: Side-by-side "Well-Prepared Visitor" vs "Unprepared Visitor" cards showing head-to-toe outfit descriptions with success/failure styling
 
-### 2. `src/pages/guide/best-time-to-visit.tsx` -- Sections 458-576 (EXPAND)
+### 2. Photography Section (lines 594-643) -- EXPAND
 
-Replace the compact InfoBox-based sections with richer content:
+Replace the two compact cards and TipBox with:
 
-**Crowd Avoidance (section id="crowd-tips")** -- Replace single InfoBox with 6 numbered strategy cards, each with:
-- Rank number badge
-- Title and description paragraph
-- Effectiveness badge (color-coded)
-- Optional link to relevant tour page
+- **Three-tier camera equipment cards**: Smartphone (with pro tips list), Compact Camera (with settings recommendations), DSLR/Mirrorless (with permit warning TipBox, lens recommendations, and camera settings table for 4 scenarios: General Daylight, Architecture, Portraits, Details)
+- **Photography tips grid**: 8-item grid of pro tips (Arrive Early, Shoot RAW, Include People for Scale, Unique Angles, Capture Details, Leading Lines, Wait for Moment, Bracket Exposures) each with title and description
+- Keep existing link to photography tips guide
 
-Strategies: Sunrise Tour, Arrive at Opening, Visit Weekdays, Choose Shoulder Season, Avoid Holidays, Book Private Tours
+### 3. Special Considerations Section (lines 646-728) -- EXPAND
 
-**Special Events (section id="special-events")** -- Replace InfoBox list with 4 detailed event cards:
-- Spring Equinox (March 20-21) with pros/cons columns and "Bucket List But Crowded" badge
-- Fall Equinox (September 21-22) with "Best Equinox Option" badge and attendance comparison
-- Noches de Kukulcan night show with schedule info and booking link
-- Dia de Muertos (November 1-2) with Valladolid combination suggestion
+Replace the three compact cards with richer versions:
 
-**Peak Season Tips (section id="peak-season")** -- Replace single InfoBox with 8 individual tip cards, each with emoji icon, bold title, and detailed paragraph covering: booking ahead, earliest tour times, sunrise upgrade, small group preference, heat preparation, photography strategy, meal timing, and booking confirmation.
+- **Cenote sub-section**: Add detailed checklist with CheckCircle icons, plus a "Cenote Rules" list (no regular sunscreen, shower requirement, life jacket info, water temperature, locker costs)
+- **Families sub-section**: Expand to include separate "Extra Items" checklist and "Tips for Kids" list (morning tours better, tablet for bus, teach not to touch ruins, bathroom stops note)
+- **Seniors sub-section**: Add compression socks, cushioned insoles, wheelchair availability info, electric scooter prohibition, and note about private tour pacing
 
-**Low Season Tips (section id="low-season")** -- Replace single InfoBox with 8 individual tip cards covering: morning tours, rain poncho, negotiating rates, jungle atmosphere, early starts, Valladolid stay, mosquito repellent, and weather monitoring.
+### 4. Day-of Section (lines 731-791) -- EXPAND
+
+Replace three compact tip cards with a more detailed multi-step timeline:
+
+- **Night Before**: Split into "Charge Everything" checklist (phone, battery, camera, smartwatch) and "Prepare Your Bag" checklist, plus "Other Preparations" (weather check, confirm pickup, set 2 alarms, sleep early)
+- **Morning Of**: Three timed blocks (First 15 min, Next 30 min, Final 15 min) with specific numbered steps for each
+- Keep existing Final Bag Check format
 
 ## Technical Details
 
-- MonthlyChart interface stays compatible -- same `MonthData` shape with `month`, `temp`, `rain`, `crowds`, `price`
-- No changes needed to the page's data definitions or imports
-- ComparisonTable is NOT changed (already functional)
-- All internal links preserved and expanded
-- Page grows from ~661 lines to ~1000+ lines
-- No new dependencies
+- No new imports needed (all icons already imported: CheckCircle, XCircle, Footprints, Camera, Smartphone, etc.)
+- No new components needed -- all content uses existing Tailwind patterns and TipBox
+- Page grows from ~916 lines to ~1300+ lines
+- All existing internal links preserved
+- No changes to data arrays, SEO, sidebar, or page structure outside these four sections
 
