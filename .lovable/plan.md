@@ -1,107 +1,59 @@
 
 
-# Add Hero Images and Image Galleries to All 4 Combo Tour Pages
+# Rebuild Best Time to Visit Guide Page
 
 ## Overview
 
-All 4 combo tour pages currently have text-only gradient hero sections with no photographs and no image galleries. This plan adds a full-width hero image to each page and integrates the existing TourGallery component with 15 unique, SEO-optimized images per combo tour -- totaling **4 hero images + 60 gallery images = 64 new WebP assets**.
+The current page (381 lines) is functional but the user wants a much more comprehensive version (~2,500+ words) with a two-column sidebar layout, richer content sections, and additional components. This requires creating missing components and significantly expanding the page content.
 
----
+## Compatibility Analysis
 
-## Current State
+The user's template references several things that don't exist in the codebase:
+- `generateGuideMetadata`, `generateArticleSchema`, `generateBreadcrumbSchema` (from seo.ts) -- these don't exist; the codebase uses `getPageMeta`, `createBreadcrumbSchema`, and `guideSchemas` from schema.ts
+- `MonthlyChart` component -- doesn't exist
+- `ImageGallery` common component -- doesn't exist (only inline in tour detail page)
+- `generateFAQPageSchema` -- exists as `createFAQSchema` in seo.ts
 
-The 4 combo pages (`coba-ruins`, `cenote-ik-kil`, `isla-mujeres`, `multi-day-yucatan`) have:
-- Plain gradient background hero sections (no photographs)
-- No image gallery component
-- No ImageObject JSON-LD schema
+The plan adapts the template to use the existing infrastructure rather than introducing breaking changes.
 
----
+## Files to Create
 
-## New Assets: 64 WebP Images
+### 1. `src/components/guide/MonthlyChart.tsx` (NEW)
 
-### 4 Hero Images (1200x675px, target under 80KB)
+A visual bar/table chart showing temperature, rainfall, crowds, and pricing by month. Will use Tailwind for styling (no charting library needed). Accepts monthly data as props.
 
-| File | Subject |
-|------|---------|
-| `src/assets/combo-tours/coba-ruins-hero.webp` | Nohoch Mul pyramid at Coba surrounded by jungle canopy |
-| `src/assets/combo-tours/cenote-ik-kil-hero.webp` | Cenote Ik Kil overhead view with hanging vines and turquoise water |
-| `src/assets/combo-tours/isla-mujeres-hero.webp` | Isla Mujeres Playa Norte with turquoise Caribbean water and white sand |
-| `src/assets/combo-tours/multi-day-yucatan-hero.webp` | Panoramic Yucatan landscape with Uxmal pyramid and colonial architecture |
+### 2. `src/components/common/ImageGallery.tsx` (NEW)
 
-### 60 Gallery Images (800x600px, 15 per combo, target under 50KB)
+A simple responsive image gallery component with optional lightbox behavior. Accepts an array of images with alt texts.
 
-**coba-ruins** (1-15):
-Nohoch Mul pyramid front, climbing the 120 steps, jungle canopy view from top, ancient sacbe road, Coba ball court, jungle-covered ruins, bicycle path through jungle, Coba stele gallery, El Castillo at Chichen for comparison, Coba lagoon, group at pyramid base, rope handrail on steps, Coba entrance gate, Mayan carvings at Coba, panoramic view from summit
+## Files to Modify
 
-**cenote-ik-kil** (1-15):
-Cenote Ik Kil from above, hanging vines and waterfalls, swimmers in turquoise water, stone staircase descent, sunlight through opening, platform for jumping, underwater view, lush vegetation surround, El Castillo nearby, changing room facilities, cenote panoramic wide shot, floating in crystal water, tropical fish, wooden walkway to cenote, cenote at midday with light beams
+### 3. `src/pages/guide/best-time-to-visit.tsx` (MAJOR REWRITE)
 
-**isla-mujeres** (1-15):
-Playa Norte beach panorama, MUSA underwater sculptures, Punta Sur cliffs, golf cart island exploration, turquoise Caribbean from above, Ixchel temple ruins, colorful island downtown, snorkeling with fish, ferry from Cancun, sunset over island, local seafood restaurant, hammock on beach, coral reef snorkeling, island lighthouse, Playa Norte palm trees
+Complete rebuild with:
+- **Two-column layout**: Main content (left) + sticky sidebar (right) with QuickBookingForm, TrustBadges, PopularToursWidget, and guide links
+- **Table of contents** with jump links (anchor IDs on each section)
+- **Quick answer box** at the top
+- **Expanded month-by-month breakdown** split into Dry Season (Nov-Apr) and Rainy Season (May-Oct) with badges like "BEST OVERALL", "BEST VALUE", "LEAST CROWDED"
+- **Best time of day section** with 4 detailed cards (Early Morning, Mid-Morning, Midday, Late Afternoon) with pros/cons
+- **MonthlyChart** integration for visual weather data
+- **Crowd avoidance tips** section
+- **Special events** section (equinoxes, night show)
+- **Peak season tips** and **Low season tips** sections
+- **Dedicated FAQ** with 8 timing-specific questions and FAQ schema markup
+- **Final CTA** with tour links
 
-**multi-day-yucatan** (1-15):
-Uxmal Governor's Palace, Merida cathedral plaza, hacienda cenote swimming, Valladolid colorful street, Celestun flamingo reserve, Izamal yellow city, Kabah ruins arch, colonial hacienda hotel, Yucatecan cuisine spread, Paseo Montejo mansions, local market produce, Chichen Itza with guide, Uxmal Pyramid of the Magician, jungle road between sites, group at sunset viewpoint
+Uses existing imports: `getPageMeta`, `createBreadcrumbSchema`, `createFAQSchema`, `guideSchemas`, `SEOHead`, `Breadcrumbs`, `FAQSection`, `CTASection`, `TipBox`, `InfoBox`, `QuickBookingForm`, `TrustBadges`, `PopularToursWidget`
 
----
+SEO enhancements: Adds `createFAQSchema` to the jsonLd array for the page-specific FAQs.
 
-## Code Changes
+## Technical Details
 
-### 1. `src/lib/tourImages.ts`
-- Add 4 hero image imports from `src/assets/combo-tours/`
-- Add 60 gallery image imports (15 per combo) from `src/assets/combo-tours/gallery/`
-- Add entries to `tourImages` map for combo hero images
-- Add entries to `tourGalleryImages` map for combo galleries (15 images each)
-- Add entries to `tourGalleryAltTexts` with unique, keyword-rich descriptions for all 60 gallery images
-
-### 2. All 4 Combo Tour Pages
-Each page (`coba-ruins.tsx`, `cenote-ik-kil.tsx`, `isla-mujeres.tsx`, `multi-day-yucatan.tsx`) will be updated to:
-
-- **Replace gradient hero with full-width hero image**: Add a background image with dark overlay, text on top, and `fetchpriority="high"` for LCP optimization
-- **Add TourGallery component** below the hero section with all 15 images and SEO alt texts
-- **Add ImageObject JSON-LD schema** for rich search results listing all gallery images
-
-### 3. Layout Pattern for Each Combo Page
-
-```text
-+--------------------------------------------------+
-|  HERO IMAGE (full-width, dark overlay)           |
-|  [Breadcrumbs]                                    |
-|  [Stars + Rating]                                 |
-|  [H1 Title]                                       |
-|  [Description]                                    |
-|  [Feature badges]                                 |
-|  [CTA Button]                                     |
-+--------------------------------------------------+
-|  TOUR GALLERY (masonry hero + thumbnail strip)    |
-|  [15 images with lightbox]                        |
-+--------------------------------------------------+
-|  ... existing content sections unchanged ...      |
-+--------------------------------------------------+
-```
-
----
-
-## SEO Specifications
-
-- All hero images: `fetchpriority="high"`, `loading="eager"`, descriptive alt text
-- All gallery images: `loading="lazy"`, `width={800}`, `height={600}`, `decoding="async"`
-- Every image gets a unique keyword-rich alt text (10-125 chars)
-- ImageObject JSON-LD schema added to each page's metadata
-- Image filenames are descriptive and hyphenated for URL SEO
-
----
-
-## File Summary
-
-| Action | Files |
-|--------|-------|
-| Generate | 4 files in `src/assets/combo-tours/*.webp` (hero images) |
-| Generate | 60 files in `src/assets/combo-tours/gallery/*.webp` (15 per combo) |
-| Modify | `src/lib/tourImages.ts` (64 new imports + alt text data) |
-| Modify | `src/pages/combo-tours/coba-ruins.tsx` (hero image + gallery + schema) |
-| Modify | `src/pages/combo-tours/cenote-ik-kil.tsx` (hero image + gallery + schema) |
-| Modify | `src/pages/combo-tours/isla-mujeres.tsx` (hero image + gallery + schema) |
-| Modify | `src/pages/combo-tours/multi-day-yucatan.tsx` (hero image + gallery + schema) |
-
-Total: 64 new image assets + 5 code file modifications.
+- No changes to `seo.ts`, `schema.ts`, or any shared utilities
+- No new dependencies required
+- MonthlyChart uses pure Tailwind CSS for the visual bars (colored based on temperature/rain ranges)
+- ImageGallery is a simple grid with optional click-to-expand using Radix Dialog
+- All sections get `id` attributes for table-of-contents jump links
+- Page grows from ~381 lines to ~800+ lines with 2,500+ words of SEO content
+- Internal linking: 15+ links to other guide pages, tour pages, and location pages
 
