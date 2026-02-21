@@ -10,10 +10,22 @@ import TourCard from "@/components/features/tours/TourCard";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import CTASection from "@/components/features/home/CTASection";
 import TimelineItem from "@/components/features/tours/TimelineItem";
+import TourGallery from "@/components/features/tours/TourGallery";
+import FAQSection from "@/components/common/FAQ";
+import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
 import { tourImages } from "@/lib/tourImages";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
+import {
+  generalChichenItzaFAQs,
+  dayToursFAQs,
+  privateToursFAQs,
+  cenoteToursFAQs,
+  sunriseToursFAQs,
+  smallGroupFAQs,
+} from "@/lib/faqData";
+import type { FAQItem } from "@/lib/faqData";
 
 // Map category IDs to review category strings
 const categoryToReviewMap: Record<string, string> = {
@@ -82,6 +94,30 @@ const TourDetailPage = () => {
   const reviewCategory = categoryToReviewMap[primaryCategory] ?? "day-tour";
   const reviews = getReviewsByTourCategory(reviewCategory).slice(0, 3);
 
+  // FAQ mapping by category
+  const categoryFAQMap: Record<string, FAQItem[]> = {
+    "day-tours": dayToursFAQs,
+    "private-tours": privateToursFAQs,
+    "cenote-tours": cenoteToursFAQs,
+    "sunrise-tours": sunriseToursFAQs,
+    "small-group": smallGroupFAQs,
+  };
+  const categoryFaqs = categoryFAQMap[primaryCategory] ?? [];
+  const seen = new Set<string>();
+  const combinedFaqs = [...categoryFaqs, ...generalChichenItzaFAQs]
+    .filter((f) => { if (seen.has(f.question)) return false; seen.add(f.question); return true; })
+    .slice(0, 6);
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: combinedFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
   // JSON-LD
   const productSchema = generateTourProductSchema(tour);
   const breadcrumbSchema = {
@@ -105,7 +141,7 @@ const TourDetailPage = () => {
           description: tour.metaDescription,
           canonical: `https://chichenitzatours.com/tours/${tour.slug}`,
           ogImage: heroImg,
-          jsonLd: [productSchema, breadcrumbSchema],
+          jsonLd: [productSchema, breadcrumbSchema, faqSchema],
         }}
       />
 
@@ -214,11 +250,14 @@ const TourDetailPage = () => {
       <div className="bg-card border-b border-border py-4">
         <div className="container">
           <TrustBadges variant="compact" />
-        </div>
+            </div>
+
+            {/* Photo Gallery */}
+            <TourGallery images={[]} heroImage={heroImg} tourTitle={tour.title} />
       </div>
 
       {/* ── Main content ── */}
-      <div className="container py-10 lg:py-14">
+      <div className="container py-10 lg:py-14 pb-24 lg:pb-14">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
           {/* ── Left: Article ── */}
           <article className="lg:col-span-2 space-y-10">
@@ -378,6 +417,11 @@ const TourDetailPage = () => {
               </section>
             )}
 
+            {/* FAQ */}
+            {combinedFaqs.length > 0 && (
+              <FAQSection faqs={combinedFaqs} title="Frequently Asked Questions" />
+            )}
+
             {/* Internal links */}
             <section className="border-t border-border pt-8">
               <h3 className="font-heading font-semibold text-lg mb-4">Explore More</h3>
@@ -479,6 +523,9 @@ const TourDetailPage = () => {
 
       {/* ── CTA Section ── */}
       <CTASection />
+
+      {/* Mobile sticky booking bar */}
+      <StickyBookingBar price={tour.price.adult} tourSlug={tour.slug} />
     </>
   );
 };
