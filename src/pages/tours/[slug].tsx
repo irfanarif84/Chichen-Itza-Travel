@@ -14,7 +14,7 @@ import TourGallery from "@/components/features/tours/TourGallery";
 import FAQSection from "@/components/common/FAQ";
 import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
-import { tourImages } from "@/lib/tourImages";
+import { tourImages, tourGalleryImages } from "@/lib/tourImages";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
 import {
@@ -253,7 +253,7 @@ const TourDetailPage = () => {
             </div>
 
             {/* Photo Gallery */}
-            <TourGallery images={[]} heroImage={heroImg} tourTitle={tour.title} />
+            <TourGallery images={tourGalleryImages[tour.id] || []} heroImage={heroImg} tourTitle={tour.title} />
       </div>
 
       {/* ── Main content ── */}
