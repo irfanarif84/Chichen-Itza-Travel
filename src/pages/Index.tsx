@@ -1,6 +1,6 @@
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta } from "@/lib/seo";
-import { createFAQSchema } from "@/lib/seo";
+import { getPageMeta, createFAQSchema } from "@/lib/seo";
+import { organizationSchema, chichenItzaAttractionSchema } from "@/lib/schema";
 import { homepageFAQs } from "@/lib/faqData";
 import Hero from "@/components/features/home/Hero";
 import PopularTours from "@/components/features/home/PopularTours";
@@ -18,7 +18,11 @@ const meta = getPageMeta({
   title: "Chichen Itza Tours – Best Guided Tours & Day Trips 2026",
   description: "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Private tours, sunrise visits, cenote combos. Free cancellation & instant confirmation.",
   canonical: "/",
-  jsonLd: createFAQSchema(homepageFAQs),
+  jsonLd: [
+    organizationSchema,
+    chichenItzaAttractionSchema,
+    createFAQSchema(homepageFAQs),
+  ],
 });
 
 const Index = () => (

@@ -3,6 +3,7 @@ import { ChevronRight, DollarSign, Camera, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { guideSchemas } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
@@ -51,12 +52,14 @@ const meta = getPageMeta({
   description:
     "Complete guide to Chichen Itza entrance fees, tickets, payment methods, discounts. Updated 2026 pricing for tours vs independent visits.",
   canonical: "/guide/entrance-fees",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Guide", url: "/guide" },
       { name: "Entrance Fees" },
     ]),
+    guideSchemas["entrance-fees"],
     createFAQSchema(faqData),
   ],
 });

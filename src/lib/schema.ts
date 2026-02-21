@@ -61,13 +61,8 @@ export const chichenItzaAttractionSchema = {
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
+      "Monday", "Tuesday", "Wednesday", "Thursday",
+      "Friday", "Saturday", "Sunday",
     ],
     opens: "08:00",
     closes: "17:00",
@@ -119,19 +114,10 @@ export const locationSchemas = {
     description:
       "Best Chichen Itza day trips from Cancún. #1 rated tours with thousands of 5-star reviews. Book your UNESCO World Heritage adventure today.",
     url: `${BASE_URL}/tours-from/cancun`,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "21.1619",
-      longitude: "-86.8515",
-    },
+    geo: { "@type": "GeoCoordinates", latitude: "21.1619", longitude: "-86.8515" },
     tourBookingPage: `${BASE_URL}/tours-from/cancun`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "2891",
-    },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "2891" },
   },
-
   "playa-del-carmen": {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
@@ -139,19 +125,10 @@ export const locationSchemas = {
     description:
       "Premium Chichen Itza day tours departing from Playa del Carmen. Only 1.5 hours away with expert guides, small groups, and free cancellation.",
     url: `${BASE_URL}/tours-from/playa-del-carmen`,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "20.6296",
-      longitude: "-87.0739",
-    },
+    geo: { "@type": "GeoCoordinates", latitude: "20.6296", longitude: "-87.0739" },
     tourBookingPage: `${BASE_URL}/tours-from/playa-del-carmen`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1847",
-    },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "1847" },
   },
-
   tulum: {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
@@ -159,19 +136,10 @@ export const locationSchemas = {
     description:
       "Explore Chichen Itza with guided tours from Tulum. Visit two incredible Mayan sites in one trip with expert guides.",
     url: `${BASE_URL}/tours-from/tulum`,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "20.2114",
-      longitude: "-87.4654",
-    },
+    geo: { "@type": "GeoCoordinates", latitude: "20.2114", longitude: "-87.4654" },
     tourBookingPage: `${BASE_URL}/tours-from/tulum`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "1234",
-    },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "1234" },
   },
-
   "riviera-maya": {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
@@ -179,14 +147,9 @@ export const locationSchemas = {
     description:
       "Convenient Chichen Itza tours from anywhere in the Riviera Maya. Hotel pickup from Puerto Aventuras, Akumal, and all major resorts.",
     url: `${BASE_URL}/tours-from/riviera-maya`,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "20.5118",
-      longitude: "-87.4341",
-    },
+    geo: { "@type": "GeoCoordinates", latitude: "20.5118", longitude: "-87.4341" },
     tourBookingPage: `${BASE_URL}/tours-from/riviera-maya`,
   },
-
   merida: {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
@@ -194,80 +157,82 @@ export const locationSchemas = {
     description:
       "The shortest route to Chichen Itza! Day tours from Mérida take just 1.5 hours. Explore the ancient Mayan wonder with expert local guides.",
     url: `${BASE_URL}/tours-from/merida`,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "20.9674",
-      longitude: "-89.5926",
-    },
+    geo: { "@type": "GeoCoordinates", latitude: "20.9674", longitude: "-89.5926" },
     tourBookingPage: `${BASE_URL}/tours-from/merida`,
   },
 };
 
-// Guide page schemas
-export const guideSchemas = {
-  "best-time-to-visit": {
+// Helper to create Article schema for guide pages
+function createGuideArticleSchema(config: {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Time to Visit Chichen Itza - Complete 2026 Guide",
-    description:
-      "Discover the best time to visit Chichen Itza for perfect weather, fewer crowds, and unforgettable photos. Month-by-month breakdown and insider tips.",
-    author: {
-      "@type": "Organization",
-      name: "Maya Explorer Tours",
-    },
+    headline: config.headline,
+    description: config.description,
+    author: { "@type": "Organization", name: "Maya Explorer Tours" },
     publisher: {
       "@type": "Organization",
       name: "Maya Explorer Tours",
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
-      },
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
     },
+    datePublished: config.datePublished,
+    dateModified: config.dateModified,
+  };
+}
+
+// Guide page schemas — all 8 guides
+export const guideSchemas = {
+  "best-time-to-visit": createGuideArticleSchema({
+    headline: "Best Time to Visit Chichen Itza - Complete 2026 Guide",
+    description: "Discover the best time to visit Chichen Itza for perfect weather, fewer crowds, and unforgettable photos. Month-by-month breakdown and insider tips.",
     datePublished: "2025-01-15",
     dateModified: "2026-02-01",
-  },
-
-  "what-to-bring": {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  }),
+  "what-to-bring": createGuideArticleSchema({
     headline: "What to Bring to Chichen Itza - Essential Packing List",
-    description:
-      "Complete packing list for visiting Chichen Itza. Essential items, what to wear, prohibited items, and pro tips from experienced guides.",
-    author: {
-      "@type": "Organization",
-      name: "Maya Explorer Tours",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Maya Explorer Tours",
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
-      },
-    },
+    description: "Complete packing list for visiting Chichen Itza. Essential items, what to wear, prohibited items, and pro tips from experienced guides.",
     datePublished: "2025-01-20",
     dateModified: "2026-02-01",
-  },
-
-  "vs-other-ruins": {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Chichen Itza vs Other Mayan Ruins - Complete Comparison Guide",
-    description:
-      "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
-    author: {
-      "@type": "Organization",
-      name: "Maya Explorer Tours",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Maya Explorer Tours",
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
-      },
-    },
+  }),
+  "history-and-facts": createGuideArticleSchema({
+    headline: "Chichen Itza History & Facts – Ancient Mayan Wonder",
+    description: "Explore the fascinating 1,400-year history of Chichen Itza. Timeline, El Castillo facts, major structures, and 25 amazing facts about this UNESCO site.",
+    datePublished: "2025-01-25",
+    dateModified: "2026-02-15",
+  }),
+  "how-to-get-there": createGuideArticleSchema({
+    headline: "How to Get to Chichen Itza – Complete Transportation Guide 2026",
+    description: "Complete guide to reaching Chichen Itza from Cancun, Playa del Carmen, Tulum. Tours, rental cars, buses, distances, and costs compared.",
+    datePublished: "2025-01-28",
+    dateModified: "2026-02-15",
+  }),
+  "entrance-fees": createGuideArticleSchema({
+    headline: "Chichen Itza Entrance Fees 2026 – Complete Pricing Guide",
+    description: "Complete guide to Chichen Itza entrance fees, tickets, payment methods, discounts. Updated 2026 pricing for tours vs independent visits.",
     datePublished: "2025-02-01",
     dateModified: "2026-02-15",
-  },
+  }),
+  "photography-tips": createGuideArticleSchema({
+    headline: "Chichen Itza Photography Tips – Complete Guide 2026",
+    description: "Expert photography tips for Chichen Itza. Best times, camera settings, composition techniques, prohibited equipment. Capture stunning photos.",
+    datePublished: "2025-02-05",
+    dateModified: "2026-02-15",
+  }),
+  "dress-code-and-rules": createGuideArticleSchema({
+    headline: "Chichen Itza Dress Code & Rules – Complete Visitor Guide 2026",
+    description: "Complete guide to Chichen Itza dress code, rules, prohibited items, visitor etiquette. What to wear, what not to bring, cultural respect guidelines.",
+    datePublished: "2025-02-08",
+    dateModified: "2026-02-15",
+  }),
+  "vs-other-ruins": createGuideArticleSchema({
+    headline: "Chichen Itza vs Other Mayan Ruins – Complete Comparison Guide",
+    description: "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
+    datePublished: "2025-02-01",
+    dateModified: "2026-02-15",
+  }),
 };

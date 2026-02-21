@@ -3,6 +3,7 @@ import { ChevronRight, ShieldAlert, Camera, CheckCircle, XCircle, AlertTriangle 
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { guideSchemas } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import TipBox from "@/components/guide/TipBox";
@@ -50,12 +51,14 @@ const meta = getPageMeta({
   description:
     "Complete guide to Chichen Itza dress code, rules, prohibited items, visitor etiquette. What to wear, what not to bring, cultural respect guidelines.",
   canonical: "/guide/dress-code-and-rules",
+  ogType: "article",
   jsonLd: [
     createBreadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Guide", url: "/guide" },
       { name: "Dress Code & Rules" },
     ]),
+    guideSchemas["dress-code-and-rules"],
     createFAQSchema(faqData),
   ],
 });
