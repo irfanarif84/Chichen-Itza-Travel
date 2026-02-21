@@ -12,8 +12,9 @@ import MonthlyChart from "@/components/guide/MonthlyChart";
 import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
+import ImageGallery from "@/components/common/ImageGallery";
 import { guideSchemas } from "@/lib/schema";
-import { guideImages } from "@/lib/tourImages";
+import { guideImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
 
 /* ------------------------------------------------------------------ */
 /*  Page-specific FAQ data                                            */
@@ -432,6 +433,25 @@ const BestTimeToVisitPage = () => {
               <p className="text-muted-foreground mb-6">Understanding Chichen Itza's weather patterns helps you pack appropriately and set realistic expectations.</p>
               <div className="bg-card rounded-xl border border-border p-4">
                 <MonthlyChart data={monthlyWeatherData} />
+              </div>
+
+              {/* Seasonal Photo Gallery */}
+              <div className="mt-10">
+                <h3 className="font-heading font-bold text-xl mb-2">Chichen Itza Through the Seasons</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Dry season (Nov-Apr) brings clear blue skies and golden light, while rainy season (May-Oct) transforms the jungle into lush green canopy.
+                </p>
+                <ImageGallery
+                  columns={3}
+                  images={[
+                    { src: (tourGalleryImages["sunrise-tour"] || [])[1], alt: tourGalleryAltTexts["sunrise-tour"]?.[1] || "Golden sunrise behind El Castillo pyramid" },
+                    { src: (tourGalleryImages["classic-day-tour"] || [])[0], alt: tourGalleryAltTexts["classic-day-tour"]?.[0] || "El Castillo pyramid under clear blue sky" },
+                    { src: (tourGalleryImages["sunrise-tour"] || [])[3], alt: tourGalleryAltTexts["sunrise-tour"]?.[3] || "Empty plaza at dawn before crowds arrive" },
+                    { src: (tourGalleryImages["cenote-ik-kil-combo"] || [])[2], alt: tourGalleryAltTexts["cenote-ik-kil-combo"]?.[2] || "Lush green jungle during rainy season at Chichen Itza" },
+                    { src: (tourGalleryImages["classic-day-tour"] || [])[14], alt: tourGalleryAltTexts["classic-day-tour"]?.[14] || "Golden sunset over Chichen Itza archaeological zone" },
+                    { src: (tourGalleryImages["night-light-show"] || [])[0], alt: tourGalleryAltTexts["night-light-show"]?.[0] || "Chichen Itza night light show on El Castillo" },
+                  ]}
+                />
               </div>
             </section>
 
