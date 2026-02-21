@@ -24,7 +24,7 @@ const TourCard = ({ tour }: TourCardProps) => {
         {heroSrc ? (
           <img
             src={heroSrc}
-            alt={tour.title}
+            alt={`${tour.title} - Chichen Itza tour photo`}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             width={1024}

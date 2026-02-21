@@ -153,11 +153,12 @@ const TourDetailPage = () => {
         {heroImg && (
           <img
             src={heroImg}
-            alt={tour.title}
+            alt={`${tour.title} - Chichen Itza tour hero image`}
             className="absolute inset-0 w-full h-full object-cover opacity-60"
             width={1920}
             height={1080}
             loading="eager"
+            fetchPriority="high"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
