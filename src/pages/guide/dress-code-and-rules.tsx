@@ -49,7 +49,7 @@ const faqData = [
 const meta = getPageMeta({
   title: "Chichen Itza Dress Code & Rules – Visitor Guide 2026",
   description:
-    "Complete guide to Chichen Itza dress code, rules, prohibited items, visitor etiquette. What to wear, what not to bring, cultural respect guidelines.",
+    "Complete guide to Chichen Itza dress code, visitor rules, prohibited items, and cultural etiquette. Know what to wear and what not to bring before you visit.",
   canonical: "/guide/dress-code-and-rules",
   ogType: "article",
   jsonLd: [
@@ -219,7 +219,10 @@ const DressCodePage = () => (
                 </div>
               </div>
 
-              <TipBox type="tip" title="Pro Tip" content="Wear light-colored, moisture-wicking fabric. You'll walk 2-3 miles in intense heat. Dark colors absorb heat and cotton holds sweat. See our complete What to Bring guide for detailed clothing recommendations." />
+              <TipBox type="tip" title="Pro Tip" content="Wear light-colored, moisture-wicking fabric. You'll walk 2-3 miles in intense heat. Dark colors absorb heat and cotton holds sweat." />
+              <p className="text-sm text-muted-foreground mt-3">
+                See our complete <Link to="/guide/what-to-bring" className="text-primary hover:underline">what to bring checklist</Link> for detailed clothing and gear recommendations.
+              </p>
             </div>
 
             {/* Major Rules */}
@@ -258,6 +261,9 @@ const DressCodePage = () => (
                   <Camera className="h-5 w-5 text-primary" />
                   <h3 className="font-heading font-semibold text-lg">Photography & Equipment Rules</h3>
                 </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  For detailed camera advice and composition techniques, see our <Link to="/guide/photography-tips" className="text-primary hover:underline">Chichen Itza photography tips</Link>. Professional cameras require a <Link to="/guide/entrance-fees" className="text-primary hover:underline">$45 permit fee</Link>.
+                </p>
                 <div className="grid md:grid-cols-3 gap-4 text-sm">
                   <div>
                     <p className="font-semibold text-success mb-2">✓ ALLOWED:</p>
@@ -370,7 +376,7 @@ const DressCodePage = () => (
                 Cultural Respect & Etiquette
               </h2>
               <p className="text-muted-foreground mb-6">
-                Chichen Itza is a sacred site for Maya culture and a UNESCO World Heritage Site. Beyond formal rules, respectful behavior honors both the ancient civilization and modern Maya descendants.
+                Chichen Itza is a sacred site for Maya culture and a UNESCO World Heritage Site. Learn about the <Link to="/guide/history-and-facts" className="text-primary hover:underline">fascinating history behind the ruins</Link> to deepen your appreciation. Beyond formal rules, respectful behavior honors both the ancient civilization and modern Maya descendants.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -401,6 +407,10 @@ const DressCodePage = () => (
               </div>
 
               <TipBox type="info" title="Cultural Context" content="Over 6 million Maya descendants live across Mexico and Central America today. Chichen Itza remains culturally significant to these communities. Your respect as a visitor helps preserve both the physical site and its living heritage." />
+
+              <p className="text-sm text-muted-foreground mt-3">
+                Explore how Chichen Itza <Link to="/guide/vs-other-ruins" className="text-primary hover:underline">compares to other Mayan ruins</Link>, or browse our <Link to="/tours" className="text-primary hover:underline">guided tour packages</Link> led by culturally knowledgeable experts.
+              </p>
             </div>
 
             {/* Accessibility */}
