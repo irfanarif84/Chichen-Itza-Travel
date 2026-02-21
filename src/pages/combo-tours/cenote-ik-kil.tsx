@@ -5,10 +5,12 @@ import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
+import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
+import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
 
 const meta = getPageMeta({
@@ -30,24 +32,38 @@ const CenoteIkKilComboPage = () => {
     []
   );
 
+  const heroImage = comboHeroImages["cenote-ik-kil"];
+  const galleryImages = comboGalleryImages["cenote-ik-kil"] || [];
+  const galleryAlts = comboGalleryAltTexts["cenote-ik-kil"] || [];
+
   return (
     <>
       <SEOHead meta={meta} />
 
-      <section className="relative bg-gradient-to-br from-secondary/15 via-background to-primary/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative min-h-[400px] lg:min-h-[500px] flex items-end">
+        <img
+          src={heroImage}
+          alt="Cenote Ik Kil overhead view with hanging vines and turquoise water"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+          loading="eager"
+          width={1200}
+          height={672}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-foreground/10" />
+        <div className="container relative z-10 pb-10 pt-20">
           <Breadcrumbs items={[{ label: "Combo Tours" }, { label: "Cenote Ik Kil" }]} />
           <div className="mt-4 max-w-3xl">
             <div className="flex items-center gap-0.5 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-accent text-accent" />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.8/5 from 2,500+ combo travelers</span>
+              <span className="ml-2 text-sm text-primary-foreground/80">4.8/5 from 2,500+ combo travelers</span>
             </div>
-            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 text-primary-foreground">
               Chichen Itza + Cenote Ik Kil Combo Tour
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+            <p className="text-lg text-primary-foreground/90 mb-6 max-w-xl">
               Explore the ancient Mayan ruins then cool off with a refreshing swim in Mexico's most famous cenote — a stunning natural sinkhole with hanging vines and crystal-clear water.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -57,8 +73,8 @@ const CenoteIkKilComboPage = () => {
                 { icon: Leaf, text: "Natural wonder" },
                 { icon: MapPin, text: "Just 3 miles apart" },
               ].map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm bg-card px-3 py-1.5 rounded-full border border-border">
-                  <item.icon className="h-4 w-4 text-secondary" />
+                <span key={i} className="flex items-center gap-1.5 text-sm bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full border border-primary-foreground/20">
+                  <item.icon className="h-4 w-4" />
                   {item.text}
                 </span>
               ))}
@@ -67,6 +83,12 @@ const CenoteIkKilComboPage = () => {
               <a href="#tours">View Combo Tours <ChevronRight className="h-5 w-5" /></a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 lg:py-12">
+        <div className="container">
+          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle="Chichen Itza + Cenote Ik Kil Combo Tour" />
         </div>
       </section>
 

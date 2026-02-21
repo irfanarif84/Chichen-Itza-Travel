@@ -234,6 +234,80 @@ import meridaCultural13 from "@/assets/tours/gallery/merida-cultural-13.webp";
 import meridaCultural14 from "@/assets/tours/gallery/merida-cultural-14.webp";
 import meridaCultural15 from "@/assets/tours/gallery/merida-cultural-15.webp";
 
+// ── Combo Tour Hero Images ──
+import cobaRuinsHero from "@/assets/combo-tours/coba-ruins-hero.webp";
+import cenoteIkKilHero from "@/assets/combo-tours/cenote-ik-kil-hero.webp";
+import islaMujeresHero from "@/assets/combo-tours/isla-mujeres-hero.webp";
+import multiDayYucatanHero from "@/assets/combo-tours/multi-day-yucatan-hero.webp";
+
+// ── Coba Ruins Combo Gallery (1-15) ──
+import cobaRuins1 from "@/assets/combo-tours/gallery/coba-ruins-1.webp";
+import cobaRuins2 from "@/assets/combo-tours/gallery/coba-ruins-2.webp";
+import cobaRuins3 from "@/assets/combo-tours/gallery/coba-ruins-3.webp";
+import cobaRuins4 from "@/assets/combo-tours/gallery/coba-ruins-4.webp";
+import cobaRuins5 from "@/assets/combo-tours/gallery/coba-ruins-5.webp";
+import cobaRuins6 from "@/assets/combo-tours/gallery/coba-ruins-6.webp";
+import cobaRuins7 from "@/assets/combo-tours/gallery/coba-ruins-7.webp";
+import cobaRuins8 from "@/assets/combo-tours/gallery/coba-ruins-8.webp";
+import cobaRuins9 from "@/assets/combo-tours/gallery/coba-ruins-9.webp";
+import cobaRuins10 from "@/assets/combo-tours/gallery/coba-ruins-10.webp";
+import cobaRuins11 from "@/assets/combo-tours/gallery/coba-ruins-11.webp";
+import cobaRuins12 from "@/assets/combo-tours/gallery/coba-ruins-12.webp";
+import cobaRuins13 from "@/assets/combo-tours/gallery/coba-ruins-13.webp";
+import cobaRuins14 from "@/assets/combo-tours/gallery/coba-ruins-14.webp";
+import cobaRuins15 from "@/assets/combo-tours/gallery/coba-ruins-15.webp";
+
+// ── Cenote Ik Kil Combo Gallery (1-15) ──
+import cenoteIkKil1 from "@/assets/combo-tours/gallery/cenote-ik-kil-1.webp";
+import cenoteIkKil2 from "@/assets/combo-tours/gallery/cenote-ik-kil-2.webp";
+import cenoteIkKil3 from "@/assets/combo-tours/gallery/cenote-ik-kil-3.webp";
+import cenoteIkKil4 from "@/assets/combo-tours/gallery/cenote-ik-kil-4.webp";
+import cenoteIkKil5 from "@/assets/combo-tours/gallery/cenote-ik-kil-5.webp";
+import cenoteIkKil6 from "@/assets/combo-tours/gallery/cenote-ik-kil-6.webp";
+import cenoteIkKil7 from "@/assets/combo-tours/gallery/cenote-ik-kil-7.webp";
+import cenoteIkKil8 from "@/assets/combo-tours/gallery/cenote-ik-kil-8.webp";
+import cenoteIkKil9 from "@/assets/combo-tours/gallery/cenote-ik-kil-9.webp";
+import cenoteIkKil10 from "@/assets/combo-tours/gallery/cenote-ik-kil-10.webp";
+import cenoteIkKil11 from "@/assets/combo-tours/gallery/cenote-ik-kil-11.webp";
+import cenoteIkKil12 from "@/assets/combo-tours/gallery/cenote-ik-kil-12.webp";
+import cenoteIkKil13 from "@/assets/combo-tours/gallery/cenote-ik-kil-13.webp";
+import cenoteIkKil14 from "@/assets/combo-tours/gallery/cenote-ik-kil-14.webp";
+import cenoteIkKil15 from "@/assets/combo-tours/gallery/cenote-ik-kil-15.webp";
+
+// ── Isla Mujeres Combo Gallery (1-15) ──
+import islaMujeres1 from "@/assets/combo-tours/gallery/isla-mujeres-1.webp";
+import islaMujeres2 from "@/assets/combo-tours/gallery/isla-mujeres-2.webp";
+import islaMujeres3 from "@/assets/combo-tours/gallery/isla-mujeres-3.webp";
+import islaMujeres4 from "@/assets/combo-tours/gallery/isla-mujeres-4.webp";
+import islaMujeres5 from "@/assets/combo-tours/gallery/isla-mujeres-5.webp";
+import islaMujeres6 from "@/assets/combo-tours/gallery/isla-mujeres-6.webp";
+import islaMujeres7 from "@/assets/combo-tours/gallery/isla-mujeres-7.webp";
+import islaMujeres8 from "@/assets/combo-tours/gallery/isla-mujeres-8.webp";
+import islaMujeres9 from "@/assets/combo-tours/gallery/isla-mujeres-9.webp";
+import islaMujeres10 from "@/assets/combo-tours/gallery/isla-mujeres-10.webp";
+import islaMujeres11 from "@/assets/combo-tours/gallery/isla-mujeres-11.webp";
+import islaMujeres12 from "@/assets/combo-tours/gallery/isla-mujeres-12.webp";
+import islaMujeres13 from "@/assets/combo-tours/gallery/isla-mujeres-13.webp";
+import islaMujeres14 from "@/assets/combo-tours/gallery/isla-mujeres-14.webp";
+import islaMujeres15 from "@/assets/combo-tours/gallery/isla-mujeres-15.webp";
+
+// ── Multi-Day Yucatan Combo Gallery (1-15) ──
+import multiDayYucatan1 from "@/assets/combo-tours/gallery/multi-day-yucatan-1.webp";
+import multiDayYucatan2 from "@/assets/combo-tours/gallery/multi-day-yucatan-2.webp";
+import multiDayYucatan3 from "@/assets/combo-tours/gallery/multi-day-yucatan-3.webp";
+import multiDayYucatan4 from "@/assets/combo-tours/gallery/multi-day-yucatan-4.webp";
+import multiDayYucatan5 from "@/assets/combo-tours/gallery/multi-day-yucatan-5.webp";
+import multiDayYucatan6 from "@/assets/combo-tours/gallery/multi-day-yucatan-6.webp";
+import multiDayYucatan7 from "@/assets/combo-tours/gallery/multi-day-yucatan-7.webp";
+import multiDayYucatan8 from "@/assets/combo-tours/gallery/multi-day-yucatan-8.webp";
+import multiDayYucatan9 from "@/assets/combo-tours/gallery/multi-day-yucatan-9.webp";
+import multiDayYucatan10 from "@/assets/combo-tours/gallery/multi-day-yucatan-10.webp";
+import multiDayYucatan11 from "@/assets/combo-tours/gallery/multi-day-yucatan-11.webp";
+import multiDayYucatan12 from "@/assets/combo-tours/gallery/multi-day-yucatan-12.webp";
+import multiDayYucatan13 from "@/assets/combo-tours/gallery/multi-day-yucatan-13.webp";
+import multiDayYucatan14 from "@/assets/combo-tours/gallery/multi-day-yucatan-14.webp";
+import multiDayYucatan15 from "@/assets/combo-tours/gallery/multi-day-yucatan-15.webp";
+
 // Location hero images
 import cancun from "@/assets/locations/cancun.webp";
 import playaDelCarmen from "@/assets/locations/playa-del-carmen.webp";
@@ -266,6 +340,13 @@ export const tourImages: Record<string, string> = {
   "merida-cultural-tour": meridaCultural,
 };
 
+export const comboHeroImages: Record<string, string> = {
+  "coba-ruins": cobaRuinsHero,
+  "cenote-ik-kil": cenoteIkKilHero,
+  "isla-mujeres": islaMujeresHero,
+  "multi-day-yucatan": multiDayYucatanHero,
+};
+
 /** Gallery images per tour – 15 unique photos each */
 export const tourGalleryImages: Record<string, string[]> = {
   "classic-day-tour": [classicDay1, classicDay2, classicDay3, classicDay4, classicDay5, classicDay6, classicDay7, classicDay8, classicDay9, classicDay10, classicDay11, classicDay12, classicDay13, classicDay14, classicDay15],
@@ -281,6 +362,13 @@ export const tourGalleryImages: Record<string, string[]> = {
   "cenote-saamal-combo": [cenoteSaamal1, cenoteSaamal2, cenoteSaamal3, cenoteSaamal4, cenoteSaamal5, cenoteSaamal6, cenoteSaamal7, cenoteSaamal8, cenoteSaamal9, cenoteSaamal10, cenoteSaamal11, cenoteSaamal12, cenoteSaamal13, cenoteSaamal14, cenoteSaamal15],
   "ek-balam-combo": [ekBalam1, ekBalam2, ekBalam3, ekBalam4, ekBalam5, ekBalam6, ekBalam7, ekBalam8, ekBalam9, ekBalam10, ekBalam11, ekBalam12, ekBalam13, ekBalam14, ekBalam15],
   "merida-cultural-tour": [meridaCultural1, meridaCultural2, meridaCultural3, meridaCultural4, meridaCultural5, meridaCultural6, meridaCultural7, meridaCultural8, meridaCultural9, meridaCultural10, meridaCultural11, meridaCultural12, meridaCultural13, meridaCultural14, meridaCultural15],
+};
+
+export const comboGalleryImages: Record<string, string[]> = {
+  "coba-ruins": [cobaRuins1, cobaRuins2, cobaRuins3, cobaRuins4, cobaRuins5, cobaRuins6, cobaRuins7, cobaRuins8, cobaRuins9, cobaRuins10, cobaRuins11, cobaRuins12, cobaRuins13, cobaRuins14, cobaRuins15],
+  "cenote-ik-kil": [cenoteIkKil1, cenoteIkKil2, cenoteIkKil3, cenoteIkKil4, cenoteIkKil5, cenoteIkKil6, cenoteIkKil7, cenoteIkKil8, cenoteIkKil9, cenoteIkKil10, cenoteIkKil11, cenoteIkKil12, cenoteIkKil13, cenoteIkKil14, cenoteIkKil15],
+  "isla-mujeres": [islaMujeres1, islaMujeres2, islaMujeres3, islaMujeres4, islaMujeres5, islaMujeres6, islaMujeres7, islaMujeres8, islaMujeres9, islaMujeres10, islaMujeres11, islaMujeres12, islaMujeres13, islaMujeres14, islaMujeres15],
+  "multi-day-yucatan": [multiDayYucatan1, multiDayYucatan2, multiDayYucatan3, multiDayYucatan4, multiDayYucatan5, multiDayYucatan6, multiDayYucatan7, multiDayYucatan8, multiDayYucatan9, multiDayYucatan10, multiDayYucatan11, multiDayYucatan12, multiDayYucatan13, multiDayYucatan14, multiDayYucatan15],
 };
 
 /** SEO-optimized alt text for every gallery image */
@@ -505,6 +593,77 @@ export const tourGalleryAltTexts: Record<string, string[]> = {
     "Traditional Yucatecan folk dancers in colorful dresses",
     "Yucatecan food market with fresh fruits and spices",
     "Sunset over Merida city skyline with church dome",
+  ],
+};
+
+export const comboGalleryAltTexts: Record<string, string[]> = {
+  "coba-ruins": [
+    "Nohoch Mul pyramid front view at Coba ruins",
+    "Tourists climbing 120 stone steps at Coba pyramid",
+    "Panoramic jungle canopy view from Coba summit",
+    "Ancient Mayan sacbe raised stone road at Coba",
+    "Ball court ruins at Coba archaeological site",
+    "Jungle-covered Mayan ruins at Coba Yucatan",
+    "Bicycle path through dense jungle at Coba",
+    "Ancient Mayan stelae gallery under thatched roof",
+    "El Castillo pyramid at Chichen Itza blue sky",
+    "Serene lagoon reflecting jungle trees at Coba",
+    "Tour group at base of Nohoch Mul pyramid",
+    "Rope handrail on steep Coba pyramid steps",
+    "Coba archaeological site entrance and ticket area",
+    "Detailed Mayan stone carvings and glyphs at Coba",
+    "Panoramic summit view over endless jungle canopy",
+  ],
+  "cenote-ik-kil": [
+    "Cenote Ik Kil dramatic view from above",
+    "Hanging green vines and waterfalls inside cenote",
+    "Swimmers in turquoise crystal water at cenote",
+    "Stone staircase descending into Cenote Ik Kil",
+    "Sunlight beams through cenote circular opening",
+    "Jumping platform at Cenote Ik Kil swimming hole",
+    "Underwater view of crystal cenote with fish",
+    "Lush tropical vegetation around cenote entrance",
+    "El Castillo pyramid near Cenote Ik Kil",
+    "Thatched roof changing facilities at cenote",
+    "Wide panoramic shot of Cenote Ik Kil cavern",
+    "Person floating peacefully in turquoise cenote",
+    "Colorful tropical fish in clear cenote water",
+    "Wooden walkway path to Cenote Ik Kil entrance",
+    "Cenote at midday with dramatic light beams",
+  ],
+  "isla-mujeres": [
+    "Playa Norte beach panorama white sand turquoise water",
+    "MUSA underwater museum sculptures with snorkeler",
+    "Punta Sur dramatic cliffs overlooking Caribbean sea",
+    "Golf cart exploration of colorful Isla Mujeres streets",
+    "Aerial view turquoise Caribbean around Isla Mujeres",
+    "Ancient Ixchel temple ruins on Punta Sur cliff",
+    "Colorful downtown street shops Isla Mujeres",
+    "Snorkeling with tropical fish Caribbean coral reef",
+    "Ultramar ferry departing Cancun to Isla Mujeres",
+    "Stunning sunset over Isla Mujeres Caribbean water",
+    "Beachfront seafood restaurant with ocean view",
+    "Hammock between palm trees on Caribbean beach",
+    "Sea turtle swimming over coral reef snorkeling",
+    "Colorful lighthouse on Isla Mujeres island",
+    "Palm trees over Playa Norte beach turquoise water",
+  ],
+  "multi-day-yucatan": [
+    "Uxmal Governor's Palace intricate stone facade",
+    "Merida cathedral and central plaza colonial architecture",
+    "Swimming in hacienda cenote turquoise water",
+    "Colorful colonial street in Valladolid Yucatan",
+    "Pink flamingos at Celestun biosphere reserve",
+    "Izamal Yellow City bright colonial buildings",
+    "Kabah ruins ornate stone arch facade",
+    "Colonial hacienda hotel room traditional decor",
+    "Traditional Yucatecan cuisine cochinita pibil spread",
+    "Paseo Montejo tree-lined boulevard colonial mansions",
+    "Local market with fresh tropical fruits and spices",
+    "Tour guide at Chichen Itza with traveler group",
+    "Uxmal Pyramid of the Magician ancient ruins",
+    "Scenic jungle road through Yucatan Peninsula",
+    "Travelers watching sunset from Mayan ruins viewpoint",
   ],
 };
 

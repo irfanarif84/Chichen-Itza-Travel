@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import { Mountain, ChevronRight, Star, ArrowUpRight, Compass, Camera, TreePine } from "lucide-react";
+import { Mountain, ChevronRight, Star, ArrowUpRight, Compass, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
+import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import ComparisonTable from "@/components/guide/ComparisonTable";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
+import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
 
 const meta = getPageMeta({
@@ -31,24 +33,38 @@ const CobaRuinsComboPage = () => {
     []
   );
 
+  const heroImage = comboHeroImages["coba-ruins"];
+  const galleryImages = comboGalleryImages["coba-ruins"] || [];
+  const galleryAlts = comboGalleryAltTexts["coba-ruins"] || [];
+
   return (
     <>
       <SEOHead meta={meta} />
 
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative min-h-[400px] lg:min-h-[500px] flex items-end">
+        <img
+          src={heroImage}
+          alt="Nohoch Mul pyramid at Coba surrounded by jungle canopy"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+          loading="eager"
+          width={1200}
+          height={672}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-foreground/10" />
+        <div className="container relative z-10 pb-10 pt-20">
           <Breadcrumbs items={[{ label: "Combo Tours" }, { label: "Coba Ruins" }]} />
           <div className="mt-4 max-w-3xl">
             <div className="flex items-center gap-0.5 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-accent text-accent" />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.8/5 from adventure travelers</span>
+              <span className="ml-2 text-sm text-primary-foreground/80">4.8/5 from adventure travelers</span>
             </div>
-            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 text-primary-foreground">
               Chichen Itza + Coba Ruins Combo Tour
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+            <p className="text-lg text-primary-foreground/90 mb-6 max-w-xl">
               Experience two spectacular Mayan sites in one day. Explore Chichen Itza's iconic El Castillo, then climb the 138-foot Nohoch Mul pyramid at Coba — the tallest climbable pyramid in the Yucatan Peninsula.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -58,8 +74,8 @@ const CobaRuinsComboPage = () => {
                 { icon: TreePine, text: "Jungle setting" },
                 { icon: Compass, text: "Two sites" },
               ].map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm bg-card px-3 py-1.5 rounded-full border border-border">
-                  <item.icon className="h-4 w-4 text-primary" />
+                <span key={i} className="flex items-center gap-1.5 text-sm bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full border border-primary-foreground/20">
+                  <item.icon className="h-4 w-4" />
                   {item.text}
                 </span>
               ))}
@@ -68,6 +84,12 @@ const CobaRuinsComboPage = () => {
               <a href="#tours">View Combo Tours <ChevronRight className="h-5 w-5" /></a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 lg:py-12">
+        <div className="container">
+          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle="Chichen Itza + Coba Ruins Combo Tour" />
         </div>
       </section>
 
