@@ -1,89 +1,91 @@
 
 
-# Tour Detail Page Enhancements
+# Replace All Tour Images with Real, Compressed, SEO-Optimized WebP Assets
 
-## Summary
+## Overview
 
-Four changes to the tour detail page (`src/pages/tours/[slug].tsx`) plus one new component file. The cenote-tours page already exists and needs no changes.
-
----
-
-## Task 1: Create TourGallery Component
-
-**New file:** `src/components/features/tours/TourGallery.tsx`
-
-A responsive 2x2 image grid with full-screen lightbox overlay:
-- Accepts `images: string[]`, `heroImage?: string`, and `tourTitle: string`
-- If `images` is empty, repeats the hero image 4 times as placeholders
-- Clicking any image opens a lightbox with prev/next navigation
-- Keyboard support: Escape to close, arrow keys to navigate
-- Close on background click
-- Shows "image X of Y" counter at bottom
-- Uses existing design tokens (rounded-lg, hover scale effect)
+Regenerate all 52 tour-related image assets (13 hero images + 39 gallery images) as high-quality, realistic, compressed WebP photographs. Also improve SEO attributes (alt text, width/height, descriptive filenames) across all components that render these images.
 
 ---
 
-## Task 2: Modify Tour Detail Page
+## Scope: 52 Image Assets to Regenerate
 
-**File:** `src/pages/tours/[slug].tsx`
+### 13 Hero Images (used in TourCard + tour detail hero)
 
-Three additions to this page:
+| File | Subject |
+|------|---------|
+| `classic-day-tour.webp` | El Castillo pyramid with tourists on a sunny day |
+| `private-vip-tour.webp` | Private guide explaining carvings at Chichen Itza |
+| `sunrise-tour.webp` | Golden sunrise behind El Castillo pyramid |
+| `cenote-combo.webp` | Swimmers in Cenote Ik Kil with hanging vines |
+| `budget-express.webp` | Aerial view of Chichen Itza archaeological zone |
+| `family-adventure.webp` | Family with children exploring Mayan ruins |
+| `night-show.webp` | Light and sound show projected on El Castillo at night |
+| `valladolid-combo.webp` | Colorful colonial street in Valladolid town |
+| `private-sunrise.webp` | Silhouette of El Castillo at dawn with orange sky |
+| `budget-playa.webp` | Tour bus arriving at Chichen Itza entrance |
+| `cenote-saamal.webp` | Open cenote with turquoise water and lush vegetation |
+| `ek-balam-combo.webp` | Ek Balam pyramid with jungle backdrop |
+| `merida-cultural.webp` | Merida cathedral and cultural plaza |
 
-### 2a. Import new dependencies (top of file)
+### 39 Gallery Images (3 per tour, used in TourGallery lightbox)
 
-Add imports for:
-- `StickyBookingBar` from `@/components/layout/StickyBookingBar`
-- `TourGallery` from `@/components/features/tours/TourGallery`
-- `FAQSection` from `@/components/common/FAQ`
-- FAQ arrays from `@/lib/faqData`: `generalChichenItzaFAQs`, `dayToursFAQs`, `privateToursFAQs`, `cenoteToursFAQs`, `sunriseToursFAQs`, `smallGroupFAQs`
-- `createFAQSchema` from `@/lib/seo`
+Each tour gets 3 unique photos showing different moments/angles:
 
-### 2b. Add category-to-FAQ mapping logic
-
-Inside the component, after the existing `reviews` variable, add a mapping object and compute the FAQ list:
-
-```
-Category mapping:
-  "day-tours" -> dayToursFAQs
-  "private-tours" -> privateToursFAQs
-  "cenote-tours" -> cenoteToursFAQs
-  "sunrise-tours" -> sunriseToursFAQs
-  "small-group" -> smallGroupFAQs
-  all others -> generalChichenItzaFAQs only
-```
-
-Combine the category-specific FAQs with `generalChichenItzaFAQs`, deduplicate by question text, and limit to 6 items. Also generate a FAQ JSON-LD schema and add it to the `jsonLd` array in the SEOHead.
-
-### 2c. Add TourGallery section
-
-Insert the `TourGallery` component between the Description section (line 228) and Highlights section (line 232). Pass `images={[]}` (tours don't have an images array in the current data), `heroImage={heroImg}`, and `tourTitle={tour.title}`.
-
-### 2d. Add FAQ section
-
-Insert the `FAQSection` component in the left article column, between the "Related Tours" section and the "Internal links" section (before line 382). Pass the computed FAQ array and a title like "Frequently Asked Questions".
-
-### 2e. Add StickyBookingBar
-
-Render `<StickyBookingBar price={tour.price.adult} tourSlug={tour.slug} />` just before the closing `</>` fragment (after CTASection, before line 482). This component already returns null on desktop, so no conditional logic needed.
-
-### 2f. Add mobile bottom padding
-
-On the main content container (line 221), add `pb-20 lg:pb-0` classes to prevent content from being hidden behind the sticky bar on mobile.
+- **classic-day**: El Castillo close-up, Cenote Ik Kil swimming, Valladolid lunch scene
+- **private-vip**: VIP guide at Ball Court, exclusive temple access, gourmet lunch
+- **sunrise**: Pre-dawn setup, golden light on pyramid, empty ruins at dawn
+- **cenote-combo**: Underground cenote, swimming with stalactites, jungle path
+- **budget-express**: Group photo at ruins, main plaza overview, souvenir market
+- **family-adventure**: Kids exploring, family at cenote, interactive guide moment
+- **night-show**: Light projections on temple, crowd watching show, colorful illumination
+- **valladolid-combo**: Colonial architecture, local market, convent of San Bernardino
+- **private-sunrise**: Misty morning ruins, photographer at work, breakfast setup
+- **budget-playa**: Departure from Playa, ruins walkway, group at Observatory
+- **cenote-saamal**: Cenote Saamal entrance, swimming platform, tropical garden
+- **ek-balam**: Climbing Ek Balam, stucco facade detail, jungle canopy view
+- **merida-cultural**: Paseo Montejo mansions, local cuisine, Mayan museum artifacts
 
 ---
 
-## Task 3: Cenote Tours Page -- Already Complete
+## SEO Improvements to Components
 
-No changes needed. `src/pages/tours/cenote-tours.tsx` already exists with hero, tour grid, reviews, FAQ, and CTA sections. Route is registered in App.tsx.
+### TourCard.tsx
+- Add descriptive `alt` text: `alt={`${tour.title} - Chichen Itza tour photo`}`
+- Already has `loading="lazy"`, `width`, `height` -- keep as-is
+
+### TourGallery.tsx
+- Improve alt text per image position: `alt={`${tourTitle} - ${['panoramic view', 'activity highlight', 'experience detail', 'scenic moment'][i]}`}`
+- Add `width={800}` and `height={600}` for CLS prevention
+- Add `decoding="async"` for non-blocking decode
+
+### Tour Detail Page Hero ([slug].tsx)
+- Add `fetchpriority="high"` to hero image (above-fold, should not be lazy)
+- Remove `loading="lazy"` from hero (it's LCP element)
+- Add `width={1920}` `height={1080}` for CLS
 
 ---
 
-## Files Summary
+## Image Specifications
+
+All regenerated images will follow these specs:
+- **Format**: WebP (already the file extension)
+- **Hero images**: 1200x675px, quality 80, target under 80KB each
+- **Gallery images**: 800x600px, quality 75, target under 50KB each
+- **Color profile**: sRGB
+- **Filenames**: Already SEO-friendly (descriptive, hyphenated)
+
+---
+
+## Files Modified
 
 | Action | File |
 |--------|------|
-| Create | `src/components/features/tours/TourGallery.tsx` |
-| Modify | `src/pages/tours/[slug].tsx` |
+| Regenerate | 13 files in `src/assets/tours/*.webp` |
+| Regenerate | 39 files in `src/assets/tours/gallery/*.webp` |
+| Modify | `src/components/features/tours/TourGallery.tsx` (SEO attrs) |
+| Modify | `src/components/features/tours/TourCard.tsx` (alt text) |
+| Modify | `src/pages/tours/[slug].tsx` (hero image attrs) |
 
-No new dependencies required.
+No new dependencies. No structural changes to `tourImages.ts`.
 
