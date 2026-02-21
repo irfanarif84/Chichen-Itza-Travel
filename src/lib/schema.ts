@@ -6,7 +6,7 @@ const BASE_URL = "https://chichenitzatours.com";
 // Generate Organization schema (use on homepage)
 export const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "TourOperator",
+  "@type": "TravelAgency",
   name: "Maya Explorer Tours",
   description:
     "Premier Chichen Itza tour operator offering day trips, private tours, and guided experiences from Cancun, Playa del Carmen, and Tulum.",
@@ -166,6 +166,7 @@ export const locationSchemas = {
 function createGuideArticleSchema(config: {
   headline: string;
   description: string;
+  slug: string;
   datePublished: string;
   dateModified: string;
 }) {
@@ -174,6 +175,11 @@ function createGuideArticleSchema(config: {
     "@type": "Article",
     headline: config.headline,
     description: config.description,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/guide/${config.slug}`,
+    },
+    image: `${BASE_URL}/images/guides/${config.slug}.jpg`,
     author: { "@type": "Organization", name: "Maya Explorer Tours" },
     publisher: {
       "@type": "Organization",
@@ -190,48 +196,56 @@ export const guideSchemas = {
   "best-time-to-visit": createGuideArticleSchema({
     headline: "Best Time to Visit Chichen Itza - Complete 2026 Guide",
     description: "Discover the best time to visit Chichen Itza for perfect weather, fewer crowds, and unforgettable photos. Month-by-month breakdown and insider tips.",
+    slug: "best-time-to-visit",
     datePublished: "2025-01-15",
     dateModified: "2026-02-01",
   }),
   "what-to-bring": createGuideArticleSchema({
     headline: "What to Bring to Chichen Itza - Essential Packing List",
     description: "Complete packing list for visiting Chichen Itza. Essential items, what to wear, prohibited items, and pro tips from experienced guides.",
+    slug: "what-to-bring",
     datePublished: "2025-01-20",
     dateModified: "2026-02-01",
   }),
   "history-and-facts": createGuideArticleSchema({
     headline: "Chichen Itza History & Facts – Ancient Mayan Wonder",
     description: "Explore the fascinating 1,400-year history of Chichen Itza. Timeline, El Castillo facts, major structures, and 25 amazing facts about this UNESCO site.",
+    slug: "history-and-facts",
     datePublished: "2025-01-25",
     dateModified: "2026-02-15",
   }),
   "how-to-get-there": createGuideArticleSchema({
     headline: "How to Get to Chichen Itza – Complete Transportation Guide 2026",
     description: "Complete guide to reaching Chichen Itza from Cancun, Playa del Carmen, Tulum. Tours, rental cars, buses, distances, and costs compared.",
+    slug: "how-to-get-there",
     datePublished: "2025-01-28",
     dateModified: "2026-02-15",
   }),
   "entrance-fees": createGuideArticleSchema({
     headline: "Chichen Itza Entrance Fees 2026 – Complete Pricing Guide",
     description: "Complete guide to Chichen Itza entrance fees, tickets, payment methods, discounts. Updated 2026 pricing for tours vs independent visits.",
+    slug: "entrance-fees",
     datePublished: "2025-02-01",
     dateModified: "2026-02-15",
   }),
   "photography-tips": createGuideArticleSchema({
     headline: "Chichen Itza Photography Tips – Complete Guide 2026",
     description: "Expert photography tips for Chichen Itza. Best times, camera settings, composition techniques, prohibited equipment. Capture stunning photos.",
+    slug: "photography-tips",
     datePublished: "2025-02-05",
     dateModified: "2026-02-15",
   }),
   "dress-code-and-rules": createGuideArticleSchema({
     headline: "Chichen Itza Dress Code & Rules – Complete Visitor Guide 2026",
     description: "Complete guide to Chichen Itza dress code, rules, prohibited items, visitor etiquette. What to wear, what not to bring, cultural respect guidelines.",
+    slug: "dress-code-and-rules",
     datePublished: "2025-02-08",
     dateModified: "2026-02-15",
   }),
   "vs-other-ruins": createGuideArticleSchema({
     headline: "Chichen Itza vs Other Mayan Ruins – Complete Comparison Guide",
     description: "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
+    slug: "vs-other-ruins",
     datePublished: "2025-02-01",
     dateModified: "2026-02-15",
   }),
