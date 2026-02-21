@@ -5,11 +5,13 @@ import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
+import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TimelineItem from "@/components/features/tours/TimelineItem";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
+import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
 
 const meta = getPageMeta({
@@ -28,24 +30,38 @@ const meta = getPageMeta({
 const MultiDayYucatanPage = () => {
   const topTours = useMemo(() => tours.filter((t) => t.featured).slice(0, 6), []);
 
+  const heroImage = comboHeroImages["multi-day-yucatan"];
+  const galleryImages = comboGalleryImages["multi-day-yucatan"] || [];
+  const galleryAlts = comboGalleryAltTexts["multi-day-yucatan"] || [];
+
   return (
     <>
       <SEOHead meta={meta} />
 
-      <section className="relative bg-gradient-to-br from-accent/10 via-background to-primary/15 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative min-h-[400px] lg:min-h-[500px] flex items-end">
+        <img
+          src={heroImage}
+          alt="Panoramic Yucatan landscape with Uxmal pyramid and colonial architecture"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+          loading="eager"
+          width={1200}
+          height={672}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-foreground/10" />
+        <div className="container relative z-10 pb-10 pt-20">
           <Breadcrumbs items={[{ label: "Combo Tours" }, { label: "Multi-Day Yucatan" }]} />
           <div className="mt-4 max-w-3xl">
             <div className="flex items-center gap-0.5 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-accent text-accent" />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.9/5 from multi-day travelers</span>
+              <span className="ml-2 text-sm text-primary-foreground/80">4.9/5 from multi-day travelers</span>
             </div>
-            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 text-primary-foreground">
               Multi-Day Yucatan Tour – Chichen Itza, Uxmal, Mérida & More
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+            <p className="text-lg text-primary-foreground/90 mb-6 max-w-xl">
               Go beyond the day trip. Explore the full richness of the Yucatan Peninsula over 2-4 days, visiting multiple archaeological sites, colonial cities, cenotes, and hidden gems most tourists never see.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -55,8 +71,8 @@ const MultiDayYucatanPage = () => {
                 { icon: Hotel, text: "Hotels included" },
                 { icon: Compass, text: "Deep exploration" },
               ].map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm bg-card px-3 py-1.5 rounded-full border border-border">
-                  <item.icon className="h-4 w-4 text-accent" />
+                <span key={i} className="flex items-center gap-1.5 text-sm bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full border border-primary-foreground/20">
+                  <item.icon className="h-4 w-4" />
                   {item.text}
                 </span>
               ))}
@@ -65,6 +81,12 @@ const MultiDayYucatanPage = () => {
               <a href="#itinerary">See Sample Itinerary <ChevronRight className="h-5 w-5" /></a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 lg:py-12">
+        <div className="container">
+          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle="Multi-Day Yucatan Tour" />
         </div>
       </section>
 

@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import { Ship, ChevronRight, Star, Waves, Sun, Fish, Palmtree } from "lucide-react";
+import { Ship, ChevronRight, Star, Waves, Sun, Fish } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
+import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
+import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
 
 const meta = getPageMeta({
@@ -30,24 +32,38 @@ const IslaMujeresComboPage = () => {
     []
   );
 
+  const heroImage = comboHeroImages["isla-mujeres"];
+  const galleryImages = comboGalleryImages["isla-mujeres"] || [];
+  const galleryAlts = comboGalleryAltTexts["isla-mujeres"] || [];
+
   return (
     <>
       <SEOHead meta={meta} />
 
-      <section className="relative bg-gradient-to-br from-secondary/15 via-background to-accent/10 py-12 lg:py-16">
-        <div className="container">
+      <section className="relative min-h-[400px] lg:min-h-[500px] flex items-end">
+        <img
+          src={heroImage}
+          alt="Isla Mujeres Playa Norte with turquoise Caribbean water and white sand"
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+          loading="eager"
+          width={1200}
+          height={672}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-foreground/10" />
+        <div className="container relative z-10 pb-10 pt-20">
           <Breadcrumbs items={[{ label: "Combo Tours" }, { label: "Isla Mujeres" }]} />
           <div className="mt-4 max-w-3xl">
             <div className="flex items-center gap-0.5 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-accent text-accent" />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.7/5 from multi-experience travelers</span>
+              <span className="ml-2 text-sm text-primary-foreground/80">4.7/5 from multi-experience travelers</span>
             </div>
-            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 text-primary-foreground">
               Chichen Itza + Isla Mujeres – Ancient Ruins Meets Caribbean Paradise
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+            <p className="text-lg text-primary-foreground/90 mb-6 max-w-xl">
               The ultimate Yucatan experience: explore the ancient Mayan ruins of Chichen Itza one day, then sail to the stunning Isla Mujeres for crystal-clear Caribbean waters, snorkeling, and white-sand beaches.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
@@ -57,8 +73,8 @@ const IslaMujeresComboPage = () => {
                 { icon: Sun, text: "Beach paradise" },
                 { icon: Fish, text: "Marine life" },
               ].map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-sm bg-card px-3 py-1.5 rounded-full border border-border">
-                  <item.icon className="h-4 w-4 text-secondary" />
+                <span key={i} className="flex items-center gap-1.5 text-sm bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full border border-primary-foreground/20">
+                  <item.icon className="h-4 w-4" />
                   {item.text}
                 </span>
               ))}
@@ -67,6 +83,12 @@ const IslaMujeresComboPage = () => {
               <a href="#tours">View Related Tours <ChevronRight className="h-5 w-5" /></a>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-8 lg:py-12">
+        <div className="container">
+          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle="Chichen Itza + Isla Mujeres Combo Tour" />
         </div>
       </section>
 
