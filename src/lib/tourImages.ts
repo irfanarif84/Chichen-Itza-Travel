@@ -13,6 +13,26 @@ import cenoteSaamal from "@/assets/tours/cenote-saamal.webp";
 import ekBalamCombo from "@/assets/tours/ek-balam-combo.webp";
 import meridaCultural from "@/assets/tours/merida-cultural.webp";
 
+// Gallery images
+import budgetExpress1 from "@/assets/tours/gallery/budget-express-1.webp";
+import budgetExpress2 from "@/assets/tours/gallery/budget-express-2.webp";
+import budgetExpress3 from "@/assets/tours/gallery/budget-express-3.webp";
+import familyAdventure1 from "@/assets/tours/gallery/family-adventure-1.webp";
+import familyAdventure2 from "@/assets/tours/gallery/family-adventure-2.webp";
+import familyAdventure3 from "@/assets/tours/gallery/family-adventure-3.webp";
+import nightShow1 from "@/assets/tours/gallery/night-show-1.webp";
+import nightShow2 from "@/assets/tours/gallery/night-show-2.webp";
+import nightShow3 from "@/assets/tours/gallery/night-show-3.webp";
+import valladolidCombo1 from "@/assets/tours/gallery/valladolid-combo-1.webp";
+import valladolidCombo2 from "@/assets/tours/gallery/valladolid-combo-2.webp";
+import valladolidCombo3 from "@/assets/tours/gallery/valladolid-combo-3.webp";
+import budgetPlaya1 from "@/assets/tours/gallery/budget-playa-1.webp";
+import budgetPlaya2 from "@/assets/tours/gallery/budget-playa-2.webp";
+import budgetPlaya3 from "@/assets/tours/gallery/budget-playa-3.webp";
+import meridaCultural1 from "@/assets/tours/gallery/merida-cultural-1.webp";
+import meridaCultural2 from "@/assets/tours/gallery/merida-cultural-2.webp";
+import meridaCultural3 from "@/assets/tours/gallery/merida-cultural-3.webp";
+
 // Location hero images
 import cancun from "@/assets/locations/cancun.webp";
 import playaDelCarmen from "@/assets/locations/playa-del-carmen.webp";
@@ -43,6 +63,16 @@ export const tourImages: Record<string, string> = {
   "cenote-saamal-combo": cenoteSaamal,
   "ek-balam-combo": ekBalamCombo,
   "merida-cultural-tour": meridaCultural,
+};
+
+/** Gallery images per tour (resolved asset URLs) */
+export const tourGalleryImages: Record<string, string[]> = {
+  "budget-express": [budgetExpress1, budgetExpress2, budgetExpress3],
+  "family-adventure": [familyAdventure1, familyAdventure2, familyAdventure3],
+  "night-light-show": [nightShow1, nightShow2, nightShow3],
+  "chichen-valladolid-combo": [valladolidCombo1, valladolidCombo2, valladolidCombo3],
+  "budget-day-playa": [budgetPlaya1, budgetPlaya2, budgetPlaya3],
+  "merida-cultural-tour": [meridaCultural1, meridaCultural2, meridaCultural3],
 };
 
 export const locationImages: Record<string, string> = {
