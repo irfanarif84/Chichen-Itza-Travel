@@ -14,7 +14,7 @@ import TourGallery from "@/components/features/tours/TourGallery";
 import FAQSection from "@/components/common/FAQ";
 import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
-import { tourImages, tourGalleryImages } from "@/lib/tourImages";
+import { tourImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
 import {
@@ -133,6 +133,22 @@ const TourDetailPage = () => {
 
   const savings = tour.originalPrice ? tour.originalPrice - tour.price.adult : 0;
 
+  // ImageObject schema for gallery SEO
+  const galleryImgs = tourGalleryImages[tour.id] || [];
+  const galleryAlts = tourGalleryAltTexts[tour.id] || [];
+  const imageObjectSchema = galleryImgs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: `${tour.title} Photo Gallery`,
+    about: { "@type": "TouristAttraction", name: "Chichen Itza" },
+    image: galleryImgs.map((url, i) => ({
+      "@type": "ImageObject",
+      contentUrl: url,
+      name: galleryAlts[i] ?? `${tour.title} photo ${i + 1}`,
+      description: galleryAlts[i] ?? `${tour.title} - Chichen Itza tour photo ${i + 1}`,
+    })),
+  } : null;
+
   return (
     <>
       <SEOHead
@@ -141,7 +157,7 @@ const TourDetailPage = () => {
           description: tour.metaDescription,
           canonical: `https://chichenitzatours.com/tours/${tour.slug}`,
           ogImage: heroImg,
-          jsonLd: [productSchema, breadcrumbSchema, faqSchema],
+          jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
         }}
       />
 
@@ -254,7 +270,7 @@ const TourDetailPage = () => {
             </div>
 
             {/* Photo Gallery */}
-            <TourGallery images={tourGalleryImages[tour.id] || []} heroImage={heroImg} tourTitle={tour.title} />
+            <TourGallery images={tourGalleryImages[tour.id] || []} altTexts={tourGalleryAltTexts[tour.id]} heroImage={heroImg} tourTitle={tour.title} />
       </div>
 
       {/* ── Main content ── */}
