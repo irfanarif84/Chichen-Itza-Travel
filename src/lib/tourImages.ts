@@ -32,6 +32,27 @@ import budgetPlaya3 from "@/assets/tours/gallery/budget-playa-3.webp";
 import meridaCultural1 from "@/assets/tours/gallery/merida-cultural-1.webp";
 import meridaCultural2 from "@/assets/tours/gallery/merida-cultural-2.webp";
 import meridaCultural3 from "@/assets/tours/gallery/merida-cultural-3.webp";
+import classicDay1 from "@/assets/tours/gallery/classic-day-1.webp";
+import classicDay2 from "@/assets/tours/gallery/classic-day-2.webp";
+import classicDay3 from "@/assets/tours/gallery/classic-day-3.webp";
+import privateVip1 from "@/assets/tours/gallery/private-vip-1.webp";
+import privateVip2 from "@/assets/tours/gallery/private-vip-2.webp";
+import privateVip3 from "@/assets/tours/gallery/private-vip-3.webp";
+import sunrise1 from "@/assets/tours/gallery/sunrise-1.webp";
+import sunrise2 from "@/assets/tours/gallery/sunrise-2.webp";
+import sunrise3 from "@/assets/tours/gallery/sunrise-3.webp";
+import cenoteCombo1 from "@/assets/tours/gallery/cenote-combo-1.webp";
+import cenoteCombo2 from "@/assets/tours/gallery/cenote-combo-2.webp";
+import cenoteCombo3 from "@/assets/tours/gallery/cenote-combo-3.webp";
+import privateSunrise1 from "@/assets/tours/gallery/private-sunrise-1.webp";
+import privateSunrise2 from "@/assets/tours/gallery/private-sunrise-2.webp";
+import privateSunrise3 from "@/assets/tours/gallery/private-sunrise-3.webp";
+import cenoteSaamal1 from "@/assets/tours/gallery/cenote-saamal-1.webp";
+import cenoteSaamal2 from "@/assets/tours/gallery/cenote-saamal-2.webp";
+import cenoteSaamal3 from "@/assets/tours/gallery/cenote-saamal-3.webp";
+import ekBalam1 from "@/assets/tours/gallery/ek-balam-1.webp";
+import ekBalam2 from "@/assets/tours/gallery/ek-balam-2.webp";
+import ekBalam3 from "@/assets/tours/gallery/ek-balam-3.webp";
 
 // Location hero images
 import cancun from "@/assets/locations/cancun.webp";
@@ -67,11 +88,18 @@ export const tourImages: Record<string, string> = {
 
 /** Gallery images per tour (resolved asset URLs) */
 export const tourGalleryImages: Record<string, string[]> = {
+  "classic-day-tour": [classicDay1, classicDay2, classicDay3],
+  "private-vip-tour": [privateVip1, privateVip2, privateVip3],
+  "sunrise-tour": [sunrise1, sunrise2, sunrise3],
+  "cenote-ik-kil-combo": [cenoteCombo1, cenoteCombo2, cenoteCombo3],
   "budget-express": [budgetExpress1, budgetExpress2, budgetExpress3],
   "family-adventure": [familyAdventure1, familyAdventure2, familyAdventure3],
   "night-light-show": [nightShow1, nightShow2, nightShow3],
   "chichen-valladolid-combo": [valladolidCombo1, valladolidCombo2, valladolidCombo3],
+  "private-sunrise-tour": [privateSunrise1, privateSunrise2, privateSunrise3],
   "budget-day-playa": [budgetPlaya1, budgetPlaya2, budgetPlaya3],
+  "cenote-saamal-combo": [cenoteSaamal1, cenoteSaamal2, cenoteSaamal3],
+  "ek-balam-combo": [ekBalam1, ekBalam2, ekBalam3],
   "merida-cultural-tour": [meridaCultural1, meridaCultural2, meridaCultural3],
 };
 
