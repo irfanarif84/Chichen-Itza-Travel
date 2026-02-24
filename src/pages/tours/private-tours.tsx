@@ -112,13 +112,13 @@ const PrivateToursPage = () => {
       <section className="py-12 lg:py-16">
         <div className="container max-w-3xl">
           <p className="text-muted-foreground leading-relaxed mb-4">
-            A private Chichen Itza tour is the premium way to experience this UNESCO World Heritage Site. Unlike group tours with fixed schedules and 15-30 people, a private tour is exclusively for you and your party — with a dedicated archaeologist guide, luxury vehicle, and the freedom to explore at your own pace.
+            A private Chichen Itza tour is the premium way to experience this UNESCO World Heritage Site. Unlike group tours with fixed schedules and 15-30 people, a private tour is exclusively for you and your party — with a dedicated archaeologist guide, luxury vehicle, and the freedom to explore at your own pace. For more on Chichen Itza's fascinating past, see our <Link to="/guide/history-and-facts" className="text-primary hover:underline">history and facts guide</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Our private tours include VIP skip-the-line entrance, meaning you bypass the general admission queue and enter through a priority gate. Your personal guide — a certified archaeologist fluent in your language — reveals secrets and stories that group tours simply don't have time for.
+            Our private tours include VIP skip-the-line entrance, meaning you bypass the general admission queue and enter through a priority gate. Your personal guide — a certified archaeologist fluent in your language — reveals secrets and stories that group tours simply don't have time for. Check <Link to="/guide/entrance-fees" className="text-primary hover:underline">entrance fees</Link> for full pricing details.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Perfect for couples, families, photographers, and anyone who wants an intimate, unhurried experience. Customize your itinerary to include hidden cenotes, the colonial town of Valladolid, or the lesser-known Ek Balam ruins.
+            Perfect for couples, families, photographers, and anyone who wants an intimate, unhurried experience. Customize your itinerary to include hidden cenotes, the colonial town of <Link to="/tours/valladolid-tours" className="text-primary hover:underline">Valladolid</Link>, or the lesser-known <Link to="/tours/ek-balam-tours" className="text-primary hover:underline">Ek Balam ruins</Link>.
           </p>
         </div>
       </section>
