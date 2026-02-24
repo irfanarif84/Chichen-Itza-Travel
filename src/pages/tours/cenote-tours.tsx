@@ -111,13 +111,13 @@ const CenoteToursPage = () => {
       <section className="py-12 lg:py-16">
         <div className="container max-w-3xl">
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Cenotes — natural limestone sinkholes filled with crystal-clear water — are one of the Yucatán's greatest treasures. The ancient Maya considered them sacred portals to the underworld, and today they offer an unforgettable swimming experience unlike anywhere else on Earth.
+            Cenotes — natural limestone sinkholes filled with crystal-clear water — are one of the Yucatán's greatest treasures. The ancient Maya considered them sacred portals to the underworld, and today they offer an unforgettable swimming experience unlike anywhere else on Earth. Learn more about their significance in our <Link to="/guide/history-and-facts" className="text-primary hover:underline">history and facts guide</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Our Chichen Itza + Cenote combo tours pair the awe of exploring a New Seven Wonders site with the refreshing thrill of swimming in these natural pools. After 2-3 hours exploring the ruins in the Yucatan heat, there's nothing better than plunging into the cool, turquoise waters of a cenote.
+            Our Chichen Itza + Cenote combo tours pair the awe of exploring a New Seven Wonders site with the refreshing thrill of swimming in these natural pools. After 2-3 hours exploring the ruins in the Yucatan heat, there's nothing better than plunging into the cool, turquoise waters of a cenote. Don't forget to check our <Link to="/guide/what-to-bring" className="text-primary hover:underline">packing list</Link> for cenote-specific essentials like biodegradable sunscreen.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Most tours visit <strong className="text-foreground">Cenote Ik Kil</strong>, the most famous cenote in Mexico with its dramatic hanging vines and 85-foot depth. Other options include Cenote Saamal, Cenote Hubiku, or private cenotes with fewer crowds.
+            Most tours visit <strong className="text-foreground">Cenote Ik Kil</strong>, the most famous cenote in Mexico with its dramatic hanging vines and 85-foot depth. Other options include Cenote Saamal, Cenote Hubiku, or private cenotes with fewer crowds. See our <Link to="/combo-tours/cenote-ik-kil" className="text-primary hover:underline">Cenote Ik Kil combo</Link> for the most popular package.
           </p>
         </div>
       </section>
@@ -224,7 +224,12 @@ const CenoteToursPage = () => {
               { label: "Day Tours", href: "/tours/day-tours" },
               { label: "Private Tours", href: "/tours/private-tours" },
               { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
+              { label: "Ek Balam Tours", href: "/tours/ek-balam-tours" },
+              { label: "Cenote Ik Kil Combo", href: "/combo-tours/cenote-ik-kil" },
               { label: "From Cancún", href: "/tours-from/cancun" },
+              { label: "From Playa del Carmen", href: "/tours-from/playa-del-carmen" },
+              { label: "What to Bring", href: "/guide/what-to-bring" },
+              { label: "Dress Code", href: "/guide/dress-code-and-rules" },
               { label: "All Tours", href: "/tours" },
             ].map((link) => (
               <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">

@@ -123,13 +123,13 @@ const SunriseToursPage = () => {
       <section className="py-12 lg:py-16">
         <div className="container max-w-3xl">
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Imagine standing before El Castillo pyramid as the first rays of sunlight paint it in shades of gold and amber — with barely another soul in sight. That's the magic of our Chichen Itza sunrise tour, consistently rated our #1 experience by photographers, history buffs, and travelers seeking something truly special.
+            Imagine standing before El Castillo pyramid as the first rays of sunlight paint it in shades of gold and amber — with barely another soul in sight. That's the magic of our Chichen Itza sunrise tour, consistently rated our #1 experience by photographers, history buffs, and travelers seeking something truly special. See our <Link to="/guide/photography-tips" className="text-primary hover:underline">photography tips guide</Link> for the best camera settings and angles.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            While standard day tours arrive at 9-10 AM alongside hundreds of other visitors, our sunrise tours grant early access before the site officially opens to the general public. You'll experience the ruins in peaceful solitude, with cooler temperatures (75-80°F vs. 95°F at midday) and the most beautiful natural light of the day.
+            While standard <Link to="/tours/day-tours" className="text-primary hover:underline">day tours</Link> arrive at 9-10 AM alongside hundreds of other visitors, our sunrise tours grant early access before the site officially opens to the general public. You'll experience the ruins in peaceful solitude, with cooler temperatures (75-80°F vs. 95°F at midday) and the most beautiful natural light of the day. Check our <Link to="/guide/best-time-to-visit" className="text-primary hover:underline">seasonal guide</Link> for the best months.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Yes, the 3:30 AM pickup requires an early alarm — but every traveler who's done it says the same thing: <strong className="text-foreground">"It was absolutely worth it."</strong> The empty plazas, the golden light, and the sense of discovery make this an experience you'll remember for a lifetime.
+            Yes, the 3:30 AM pickup requires an early alarm — but every traveler who's done it says the same thing: <strong className="text-foreground">"It was absolutely worth it."</strong> The empty plazas, the golden light, and the sense of discovery make this an experience you'll remember for a lifetime. Review our <Link to="/guide/what-to-bring" className="text-primary hover:underline">what to bring checklist</Link> for early morning essentials.
           </p>
         </div>
       </section>
