@@ -50,7 +50,7 @@ const faqData = [
 const meta = getPageMeta({
   title: "Chichen Itza Entrance Fees 2026 – Complete Price Guide",
   description:
-    "Complete guide to Chichen Itza entrance fees, tickets, payment methods, discounts. Updated 2026 pricing for tours vs independent visits.",
+    "Complete guide to Chichen Itza entrance fees and ticket prices. Updated 2026 pricing, payment methods, discounts, and tour vs independent costs.",
   canonical: "/guide/entrance-fees",
   ogType: "article",
   jsonLd: [

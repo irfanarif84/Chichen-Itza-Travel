@@ -84,7 +84,7 @@ const faqData = [
 const meta = getPageMeta({
   title: "What to Bring to Chichen Itza – Packing List 2026",
   description:
-    "Essential packing list for Chichen Itza. What to bring, what NOT to bring, clothing tips, photography gear, and seasonal recommendations.",
+    "Essential packing list for Chichen Itza. What to bring, what NOT to bring, clothing tips, photography gear, and seasonal advice for 2026 visits.",
   canonical: "/guide/what-to-bring",
   ogType: "article",
   jsonLd: [

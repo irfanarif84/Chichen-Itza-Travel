@@ -61,7 +61,7 @@ const faqData = [
 const meta = getPageMeta({
   title: "How to Get to Chichen Itza – Complete Transport Guide 2026",
   description:
-    "Complete guide to reaching Chichen Itza from Cancun, Playa del Carmen, Tulum. Tours, rental cars, buses, distances, costs. Expert travel tips.",
+    "Complete guide to reaching Chichen Itza from Cancun, Playa del Carmen, and Tulum. Compare tours, rental cars, buses, distances, and costs.",
   canonical: "/guide/how-to-get-there",
   ogType: "article",
   jsonLd: [
