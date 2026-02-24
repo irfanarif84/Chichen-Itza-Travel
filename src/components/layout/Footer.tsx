@@ -122,14 +122,22 @@ const Footer = () => (
 
     {/* Bottom bar */}
     <div className="border-t border-primary-foreground/10">
-      <div className="container py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs opacity-60">
-        <p>© 2026 Chichen Itza Tours. All rights reserved.</p>
-        <div className="flex items-center gap-4">
-          <span>Visa</span>
-          <span>Mastercard</span>
-          <span>PayPal</span>
-          <span>Amex</span>
+      <div className="container py-4 flex flex-col items-center gap-2 text-xs opacity-60">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-2">
+          <p>© 2026 Chichen Itza Tours. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <span>Visa</span>
+            <span>Mastercard</span>
+            <span>PayPal</span>
+            <span>Amex</span>
+          </div>
         </div>
+        <p className="text-center">
+          Website Development & SEO by{" "}
+          <a href="https://marketingsolos.com/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline">
+            Marketing Solos
+          </a>
+        </p>
       </div>
     </div>
   </footer>
