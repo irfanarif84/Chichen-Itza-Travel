@@ -113,7 +113,7 @@ const VsOtherRuinsPage = () => {
             <div className="mt-8 prose prose-neutral">
               <h2 className="font-heading font-bold text-2xl mb-4">Overview</h2>
               <p className="text-muted-foreground">
-                The Yucatan Peninsula is home to dozens of ancient Mayan cities, but five sites stand out as the most popular and accessible for visitors: <strong>Chichen Itza</strong>, <strong>Tulum</strong>, <strong>Coba</strong>, <strong>Ek Balam</strong>, and <strong>Uxmal</strong>. Each offers a distinct experience — from Chichen Itza's monumental architecture and astronomical precision to Tulum's dramatic clifftop ocean views, Coba's jungle-wrapped climbable pyramid, Ek Balam's intimate uncrowded atmosphere, and Uxmal's ornate Puuc-style stone mosaics. This guide compares all five across the factors that matter most: size, crowds, entrance fees, climbability, travel time, and what each site is best for.
+                The Yucatan Peninsula is home to dozens of ancient Mayan cities, but five sites stand out as the most popular and accessible for visitors: <strong>Chichen Itza</strong>, <strong>Tulum</strong>, <strong>Coba</strong>, <strong>Ek Balam</strong>, and <strong>Uxmal</strong>. Each offers a distinct experience — from Chichen Itza's monumental architecture and astronomical precision to Tulum's dramatic clifftop ocean views, Coba's jungle-wrapped climbable pyramid, Ek Balam's intimate uncrowded atmosphere, and Uxmal's ornate Puuc-style stone mosaics. This guide compares all five across the factors that matter most: size, crowds, <Link to="/guide/entrance-fees" className="text-primary hover:underline">entrance fees</Link>, climbability, <Link to="/guide/how-to-get-there" className="text-primary hover:underline">travel time</Link>, and what each site is best for.
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ const VsOtherRuinsPage = () => {
                 <h2 className="font-heading font-bold text-2xl">Chichen Itza</h2>
               </div>
               <p className="text-muted-foreground mb-4">
-                The crown jewel of Mayan archaeology, Chichen Itza was a major political and economic hub from 600-1200 AD. The site spans over 5 square kilometers and features El Castillo (the iconic step pyramid), the Great Ball Court (largest in Mesoamerica), the Temple of Warriors, and the Sacred Cenote. Its astronomical precision — particularly the serpent shadow during equinoxes — demonstrates remarkable scientific achievement. Over 2.6 million visitors come annually, making it the most visited archaeological site in Mexico.
+                The crown jewel of Mayan archaeology, Chichen Itza was a major political and economic hub from 600-1200 AD. The site spans over 5 square kilometers and features El Castillo (the iconic step pyramid), the Great Ball Court (largest in Mesoamerica), the Temple of Warriors, and the Sacred Cenote. Its astronomical precision — particularly the serpent shadow during equinoxes — demonstrates remarkable scientific achievement. Learn more in our <Link to="/guide/history-and-facts" className="text-primary hover:underline">complete history and facts guide</Link>. Over 2.6 million visitors come annually, making it the most visited archaeological site in Mexico.
               </p>
               <InfoBox
                 title="Why Visit Chichen Itza"
@@ -288,7 +288,7 @@ const VsOtherRuinsPage = () => {
               </div>
               <div className="bg-card rounded-xl p-6 border border-border">
                 <h3 className="font-heading font-semibold text-lg mb-2">Photography Enthusiasts</h3>
-                <p className="text-sm text-muted-foreground">Tulum for ocean-backdrop shots, Chichen Itza sunrise tours for El Castillo without crowds, Ek Balam for canopy views.</p>
+                <p className="text-sm text-muted-foreground">Tulum for ocean-backdrop shots, <Link to="/tours/sunrise-tours" className="text-primary hover:underline">Chichen Itza sunrise tours</Link> for El Castillo without crowds, Ek Balam for canopy views. See our <Link to="/guide/photography-tips" className="text-primary hover:underline">photography tips guide</Link> for camera settings and best angles.</p>
               </div>
               <div className="bg-card rounded-xl p-6 border border-border">
                 <h3 className="font-heading font-semibold text-lg mb-2">History Buffs</h3>
@@ -299,7 +299,7 @@ const VsOtherRuinsPage = () => {
             <TipBox
               type="tip"
               title="Pro Tip: Combine Sites for Value"
-              content="Our combo tours pair Chichen Itza with Ek Balam, cenotes, and colonial Valladolid for a full-day experience at better value than visiting separately. See our Coba combo and cenote combo packages."
+              content="Our combo tours pair Chichen Itza with Ek Balam, cenotes, and colonial Valladolid for a full-day experience at better value than visiting separately. See our Coba combo and cenote combo packages. Don't forget to check our photography tips guide to capture the best shots at whichever ruins you choose."
             />
           </div>
         </div>

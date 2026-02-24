@@ -272,7 +272,7 @@ const PhotographyTipsPage = () => (
                 Best Time for Photography
               </h2>
               <p className="text-muted-foreground mb-6">
-                Timing is everything in photography. At Chichen Itza, the difference between good and great photos often comes down to when you arrive and shoot.
+                Timing is everything in photography. At Chichen Itza, the difference between good and great photos often comes down to when you arrive and shoot. Check our <Link to="/guide/best-time-to-visit" className="text-primary hover:underline">best time to visit guide</Link> for seasonal weather and crowd patterns that affect lighting conditions.
               </p>
 
               <div className="space-y-4">
@@ -421,7 +421,7 @@ const PhotographyTipsPage = () => (
                 Composition Techniques
               </h2>
               <p className="text-muted-foreground mb-6">
-                Great composition separates amateur snapshots from compelling photographs. These techniques will dramatically improve your Chichen Itza images.
+                Great composition separates amateur snapshots from compelling photographs. These techniques will dramatically improve your Chichen Itza images. For context on the structures you'll be photographing, read our <Link to="/guide/history-and-facts" className="text-primary hover:underline">history and facts guide</Link> — understanding what you're shooting helps tell a better visual story.
               </p>
 
               <div className="space-y-4">
@@ -518,11 +518,11 @@ const PhotographyTipsPage = () => (
               <div className="bg-accent/5 border border-accent/20 rounded-xl p-6">
                 <h3 className="font-heading font-semibold text-base mb-2">💰 Professional Equipment Permit</h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  DSLRs, mirrorless cameras, and any camera with detachable lenses require a <strong>$45 USD permit</strong> purchased on-site. This applies to <strong>ALL</strong> visitors, even hobbyists. Security checks at entrance. Smartphones and compact point-and-shoot cameras don't require permits.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  <em>Note: The permit fee is per person, not per camera. Bring the receipt as it may be checked again inside.</em>
-                </p>
+                   DSLRs, mirrorless cameras, and any camera with detachable lenses require a <strong>$45 USD permit</strong> purchased on-site. This applies to <strong>ALL</strong> visitors, even hobbyists. Security checks at entrance. Smartphones and compact point-and-shoot cameras don't require permits. See our <Link to="/guide/entrance-fees" className="text-primary hover:underline">entrance fees breakdown</Link> for full pricing details.
+                 </p>
+                 <p className="text-sm text-muted-foreground">
+                   <em>Note: The permit fee is per person, not per camera. Bring the receipt as it may be checked again inside. Review the <Link to="/guide/dress-code-and-rules" className="text-primary hover:underline">dress code and site rules</Link> for other items that may be restricted at the entrance.</em>
+                 </p>
               </div>
             </div>
 
