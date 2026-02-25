@@ -1,233 +1,150 @@
 
 
-# SEO Audit Report - Chichen Itza Tours Website
+# Spanish Language (i18n) Implementation Plan — URL Prefix `/es/`
 
-## Executive Summary
+## Scope
 
-The website has a strong content foundation with 8 comprehensive guide pages (~24,000 words), well-structured tour data, and proper use of react-helmet-async for meta tags. However, there are several critical SEO gaps: missing sitemap.xml, incomplete robots.txt, missing Organization/LocalBusiness schema on the homepage, missing OG image tags across all pages, no `og:type` or Twitter Card meta tags in SEOHead, and the vs-other-ruins page is missing FAQPage schema. The silo architecture and internal linking are well-implemented through the Header mega-menu and Footer. Overall SEO Health Score: **72/100**.
+Full bilingual site: every page gets a Spanish equivalent under `/es/`. Google will index both language versions independently, maximizing organic reach for Spanish-speaking travelers searching terms like "tours a Chichen Itzá desde Cancún."
 
-## SEO Score Breakdown
+---
 
-| Category | Score | Notes |
-|----------|-------|-------|
-| Meta Tags | 75/100 | Present on all pages, but missing og:type, twitter tags, og:image |
-| Schema Markup | 70/100 | Good FAQ + Breadcrumb coverage, missing Organization on homepage, missing Article schemas on 6 of 8 guides |
-| Content Quality | 90/100 | Excellent depth, keyword targeting, and freshness signals |
-| Internal Linking | 85/100 | Strong silo via Header/Footer, good cross-links in content |
-| Technical SEO | 55/100 | No sitemap.xml, weak robots.txt, no prerender/SSR strategy |
-| Image SEO | 80/100 | Alt text present, WebP format, eager loading on heroes |
-| Mobile | 85/100 | Sticky booking bar, responsive layouts, mobile nav |
+## Architecture
 
-## Top 5 Critical Issues
-
-### 1. No sitemap.xml (Impact: HIGH)
-No XML sitemap exists. Search engines rely on sitemaps to discover all 40+ pages. Without it, deeper pages (combo tours, tour-types, blog posts) may never get indexed.
-
-**Fix:** Create `public/sitemap.xml` with all routes from App.tsx.
-
-### 2. Homepage Missing Organization + TouristAttraction Schema (Impact: HIGH)
-The homepage only has FAQPage schema. The `organizationSchema` and `chichenItzaAttractionSchema` from `src/lib/schema.ts` are defined but never used on any page.
-
-**Fix:** Add both schemas to the homepage's `jsonLd` array in `src/pages/Index.tsx` (line 21).
-
-### 3. SEOHead Missing Critical OG/Twitter Tags (Impact: HIGH)
-`src/components/common/SEOHead.tsx` is missing: `og:type`, `og:url`, `og:site_name`, `twitter:card`, `twitter:title`, `twitter:description`. These are essential for social sharing and can impact click-through rates from social platforms.
-
-**Fix:** Enhance SEOHead component to include all standard OG and Twitter Card meta tags.
-
-### 4. Guide Pages Missing Article Schema (Impact: MEDIUM-HIGH)
-Only 3 of 8 guide pages have Article schema (best-time-to-visit, what-to-bring, vs-other-ruins use `guideSchemas` from schema.ts). The other 5 guides (how-to-get-there, photography-tips, entrance-fees, history-and-facts, dress-code-and-rules) only have BreadcrumbList + FAQPage schemas but no Article schema, which means Google won't recognize them as articles in search results.
-
-**Fix:** Add Article schema entries in `src/lib/schema.ts` for the missing 5 guides, then import and include them in each page's `jsonLd` array.
-
-### 5. robots.txt Missing Sitemap Directive (Impact: MEDIUM)
-Current robots.txt has no `Sitemap:` directive and no `Disallow` rules. It should reference the sitemap and block non-content paths.
-
-**Fix:** Update `public/robots.txt` with Sitemap URL and Disallow rules for `/api/`, query strings, etc.
-
-## Top 5 Quick Wins (High Impact, Low Effort)
-
-1. **Add Organization + TouristAttraction schema to homepage** - 10 minutes. Import existing schemas from schema.ts into Index.tsx jsonLd array.
-
-2. **Add `og:type`, `og:url`, Twitter Card tags to SEOHead** - 15 minutes. Single file edit to SEOHead.tsx adding 6 meta tags.
-
-3. **Create sitemap.xml** - 20 minutes. Static file listing all 40+ URLs with priorities and change frequencies.
-
-4. **Update robots.txt** - 5 minutes. Add Sitemap directive and basic Disallow rules.
-
-5. **Add Article schema to 5 missing guide pages** - 20 minutes. Add entries to schema.ts guideSchemas object, then import in each guide page's jsonLd.
-
-## Detailed Findings
-
-### A. Technical SEO
-
-#### Meta Tags Analysis (Per Page)
-
-| Page | Title Length | Desc Length | Canonical | Schema Types | Issues |
-|------|-------------|-------------|-----------|-------------|--------|
-| Homepage (/) | 56 chars OK | 156 chars OK | Yes | FAQPage only | Missing Org + Attraction schema |
-| /tours | 50 chars OK | 152 chars OK | Yes | None | Missing BreadcrumbList schema |
-| /guide/best-time-to-visit | 54 chars OK | 155 chars OK | Yes | Breadcrumb, Article, FAQ | Good - complete |
-| /guide/what-to-bring | (from schema.ts) | OK | Yes | Breadcrumb, Article, FAQ | Good - uses guideSchemas |
-| /guide/history-and-facts | 50 chars OK | 156 chars OK | Yes | Breadcrumb, FAQ | Missing Article schema |
-| /guide/how-to-get-there | 56 chars OK | 155 chars OK | Yes | Breadcrumb, FAQ | Missing Article schema |
-| /guide/entrance-fees | 52 chars OK | 152 chars OK | Yes | Breadcrumb, FAQ | Missing Article schema |
-| /guide/photography-tips | 52 chars OK | 157 chars OK | Yes | Breadcrumb, FAQ | Missing Article schema |
-| /guide/dress-code-and-rules | 52 chars OK | 155 chars OK | Yes | Breadcrumb, FAQ | Missing Article schema |
-| /guide/vs-other-ruins | 57 chars OK | 155 chars OK | Yes | Breadcrumb, Article | Missing FAQPage schema |
-| /tours-from/cancun | Dynamic from data | OK | Yes | FAQ, Breadcrumb, Location | Good - complete |
-| /tours/:slug (detail) | Dynamic from data | OK | Implied | Product, FAQ, Breadcrumb, ImageGallery | Good - comprehensive |
-
-#### vs-other-ruins Specific Issue
-This page has comparisonFAQs defined but does NOT include a `createFAQSchema(comparisonFAQs)` in its jsonLd array (line 19-27 of vs-other-ruins.tsx). It only uses `guideSchemas["vs-other-ruins"]` (Article) and BreadcrumbList.
-
-#### SEOHead Component Gaps
-Current SEOHead (src/components/common/SEOHead.tsx) outputs:
-- title, meta description, canonical, og:title, og:description, og:image, JSON-LD
-
-Missing:
-- `og:type` (should be "website" for homepage, "article" for guides)
-- `og:url` (should match canonical)
-- `og:site_name` ("Chichen Itza Tours")
-- `twitter:card` ("summary_large_image")
-- `twitter:title`, `twitter:description`
-- `meta robots` tag for controlling indexing per-page
-
-### B. Schema Markup Review
-
-**Working correctly:**
-- BreadcrumbList on all guide pages and location pages
-- FAQPage on 7 of 8 guide pages + homepage + location pages
-- Product schema on tour detail pages (`/tours/:slug`)
-- TouristDestination schemas for location pages (defined in schema.ts, used in cancun.tsx etc.)
-- ImageObject/ImageGallery on tour detail pages
-
-**Defined but unused:**
-- `organizationSchema` in schema.ts - never imported/used on any page
-- `chichenItzaAttractionSchema` in schema.ts - never imported/used
-- `guideSchemas["history-and-facts"]` - not defined in schema.ts (only best-time-to-visit, what-to-bring, and vs-other-ruins exist)
-
-**Missing schemas:**
-- Organization/LocalBusiness on homepage (critical for Google Business Profile)
-- Article schema on 5 guide pages
-- FAQPage schema on vs-other-ruins page
-- guideSchemas entries for: history-and-facts, how-to-get-there, entrance-fees, photography-tips, dress-code-and-rules
-
-### C. Internal Linking Report
-
-**Strengths:**
-- Header mega-menu links to all 40+ pages across tours, tour-types, combos, departures, and guides
-- Footer replicates all links in organized columns
-- Guide pages cross-link to each other via sidebar "More Planning Guides"
-- Tour detail pages link to related tours
-- Location pages link to combo tours and guides
-
-**Gaps:**
-- /tours (All Tours page) has no internal links beyond tour cards - should link to guide pages, departure pages
-- Homepage has no visible text links to guide pages (only via nav)
-- Blog pages may be orphaned (depends on blog content linking back)
-- No "/guide" index page exists (breadcrumbs link to /guide but that route doesn't exist in App.tsx - this is a broken link)
-
-### D. Broken Link: /guide Route
-All guide page breadcrumbs include `{ label: "Guide", href: "/guide" }` but there is NO route for `/guide` in App.tsx. This means clicking "Guide" in breadcrumbs leads to a 404 page. This is a critical UX and SEO issue.
-
-### E. SPA/SSR Limitation
-This is a React SPA (client-side rendered). Search engines may have difficulty indexing all content since there's no server-side rendering. Google's JavaScript rendering works but can be delayed. This is the biggest structural SEO limitation.
-
-**Mitigation (within Lovable constraints):**
-- Ensure all critical content is in the initial HTML (react-helmet-async helps with meta tags)
-- Avoid lazy-loading above-the-fold content
-- Keep JavaScript bundle size small for faster rendering
-
-## Priority Action Items
-
-### Must Fix Now (Critical)
-
-| # | Issue | Impact | Effort |
-|---|-------|--------|--------|
-| 1 | Create sitemap.xml | High | 30 min |
-| 2 | Add Organization + Attraction schema to homepage | High | 10 min |
-| 3 | Enhance SEOHead with og:type, og:url, twitter tags | High | 15 min |
-| 4 | Fix broken /guide breadcrumb link (create guide index page OR remove href) | High | 20 min |
-| 5 | Update robots.txt with Sitemap directive | High | 5 min |
-
-### Should Fix Soon (Important)
-
-| # | Issue | Impact | Effort |
-|---|-------|--------|--------|
-| 6 | Add Article schema to 5 missing guide pages | Medium | 30 min |
-| 7 | Add FAQPage schema to vs-other-ruins page | Medium | 5 min |
-| 8 | Add BreadcrumbList schema to /tours index page | Medium | 10 min |
-| 9 | Add og:image to all pages (default hero image fallback) | Medium | 15 min |
-| 10 | Add internal links to /tours index page (to guides, departures) | Medium | 15 min |
-
-### Nice to Have (Optimization)
-
-| # | Issue | Impact | Effort |
-|---|-------|--------|--------|
-| 11 | Create SEO validation utility (seoValidator.ts) | Low | 1-2 hrs |
-| 12 | Add hreflang tags for potential Spanish content | Low | 30 min |
-| 13 | Add "last modified" structured data to all pages | Low | 30 min |
-| 14 | Add WebPage schema type to non-article pages | Low | 20 min |
-| 15 | Create a /guide index page with links to all 8 guides | Low-Med | 30 min |
-
-## Implementation Details
-
-### 1. Create public/sitemap.xml
-Static XML file covering all 40+ routes with priority weighting:
-- Homepage + /tours: priority 1.0
-- Tour detail pages + location pages: priority 0.9
-- Guide pages: priority 0.8
-- Tour-type + combo pages: priority 0.7
-- Practical + blog pages: priority 0.6
-
-### 2. Update public/robots.txt
-```
-User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /*?*
-
-Sitemap: https://chichenitzatours.com/sitemap.xml
+```text
+Current (English)          Spanish equivalent
+/                          /es/
+/tours                     /es/tours
+/tours/day-tours           /es/tours/excursiones-de-dia
+/tours/:slug               /es/tours/:slug
+/tours-from/cancun         /es/tours-desde/cancun
+/guide/best-time-to-visit  /es/guia/mejor-epoca-para-visitar
+/practical/faq             /es/practico/preguntas-frecuentes
+/blog                      /es/blog
+/blog/:slug                /es/blog/:slug
+...etc for all 45+ routes
 ```
 
-### 3. Enhance SEOHead.tsx
-Add to the Helmet output:
-- `og:type` (pass as prop, default "website")
-- `og:url` (use canonical value)
-- `og:site_name` ("Chichen Itza Tours")
-- `twitter:card` ("summary_large_image")
-- `twitter:title` / `twitter:description` (reuse og values)
-- Default og:image fallback when none provided
+---
 
-### 4. Homepage Schema Fix (Index.tsx)
-Change line 21 from `jsonLd: createFAQSchema(homepageFAQs)` to:
-```typescript
-jsonLd: [
-  organizationSchema,
-  chichenItzaAttractionSchema,
-  createFAQSchema(homepageFAQs),
-]
+## Implementation Steps
+
+### 1. Translation infrastructure
+
+**New files:**
+- `src/lib/i18n/context.tsx` — React context providing current locale (`en` | `es`) and a helper to build localized paths
+- `src/lib/i18n/translations/en.ts` — All English UI strings (nav labels, buttons, form labels, trust badges, footer text)
+- `src/lib/i18n/translations/es.ts` — Spanish equivalents
+- `src/lib/i18n/useLocale.ts` — Hook that reads locale from the URL prefix and provides `t()` translation function
+
+The locale is derived from the URL path (starts with `/es/` = Spanish, otherwise English). No cookies or localStorage needed — this keeps every language version fully crawlable.
+
+### 2. Translated content data files
+
+**New files:**
+- `src/lib/tourData.es.ts` — Spanish tour titles, descriptions, itineraries, inclusions
+- `src/lib/faqData.es.ts` — Spanish FAQ questions and answers
+- `src/lib/locationData.es.ts` — Spanish location descriptions
+- `src/lib/reviewsData.es.ts` — Spanish review translations
+- `src/lib/blogData.es.ts` — Spanish blog posts
+
+Each mirrors the English data file structure exactly, using the same IDs/slugs so components can swap data based on locale.
+
+### 3. SEO enhancements
+
+**Modified files:**
+- `src/types/seo.ts` — Add `locale` and `alternateUrls` fields to `PageMeta`
+- `src/components/common/SEOHead.tsx` — Inject `hreflang` alternate links on every page:
+  ```html
+  <link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours" />
+  <link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours" />
+  <link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours" />
+  ```
+  Also set `<html lang="es">` via Helmet for Spanish pages and `og:locale` to `es_MX`.
+- `src/lib/seo.ts` — Update `getPageMeta` to accept locale and auto-generate canonical + alternate URLs
+- `src/lib/schema.ts` — Add `inLanguage: "es"` to Spanish page schemas
+
+### 4. Routing
+
+**Modified: `src/App.tsx`**
+
+Add a locale-aware layout wrapper:
+
+```text
+<Route path="/es/*" element={<LocaleProvider locale="es"><Layout /></LocaleProvider>}>
+  <Route index element={<Index />} />
+  <Route path="tours" element={<ToursPage />} />
+  <Route path="tours/:slug" element={<TourDetailPage />} />
+  <Route path="tours-desde/cancun" element={<CancunToursPage />} />
+  <Route path="guia/mejor-epoca-para-visitar" element={<BestTimeToVisitPage />} />
+  ... all 45+ Spanish routes
+</Route>
 ```
 
-### 5. Add Missing Article Schemas (schema.ts)
-Add 5 new entries to the `guideSchemas` object for: history-and-facts, how-to-get-there, entrance-fees, photography-tips, dress-code-and-rules. Then import `guideSchemas` in each page and add to jsonLd array.
+English routes remain unchanged. The `LocaleProvider` wrapper sets the context so all child components read Spanish data.
 
-### 6. Fix vs-other-ruins Schema
-Add `createFAQSchema(comparisonFAQs)` to the jsonLd array in vs-other-ruins.tsx.
+### 5. Component updates
 
-### 7. Create /guide Index Page
-New thin page at `src/pages/guide/index.tsx` that lists all 8 guide articles with thumbnails, excerpts, and links. Add route `/guide` to App.tsx.
+**Modified files (read locale from context, swap content):**
+- `src/components/layout/Header.tsx` — Add language switcher (EN | ES flag toggle), translate nav labels
+- `src/components/layout/Footer.tsx` — Translate footer links and text
+- `src/components/layout/Breadcrumbs.tsx` — Translate breadcrumb labels based on locale
+- `src/components/layout/StickyBookingBar.tsx` — Translate CTA text
+- `src/components/features/booking/QuickBookingForm.tsx` — Translate form labels and button
+- `src/components/features/booking/TrustBadges.tsx` — Translate badge text
+- `src/components/features/home/Hero.tsx` — Translate headline, subheadline, CTA
+- `src/components/features/home/WhyChooseUs.tsx` — Translate benefit titles and descriptions
+- `src/components/features/home/PopularTours.tsx` — Read Spanish tour data
+- `src/components/features/tours/TourCard.tsx` — Translate "from", "per person", duration labels
+- `src/components/common/FAQ.tsx` — Read Spanish FAQ data
+- All 8 guide pages — Swap body content to Spanish translations
+- All 5 tour-from pages — Swap descriptions and headings
+- All 5 tour-type pages — Swap content
+- All 4 combo-tour pages — Swap content
+- All practical pages — Swap content
 
-### 8. Create seoValidator.ts Utility
-A development-time tool that validates:
-- Title length (50-60 chars)
-- Description length (150-160 chars)
-- H1 presence
-- Canonical URL presence
-- Schema markup presence
-- Internal link count
-- Image alt text coverage
+### 6. Language switcher component
 
-This would be a helper function used during development, not shipped to production.
+**New: `src/components/layout/LanguageSwitcher.tsx`**
+
+A simple toggle in the header that links to the equivalent page in the other language. Uses a route mapping to convert `/guide/best-time-to-visit` ↔ `/es/guia/mejor-epoca-para-visitar`.
+
+### 7. Sitemap and robots.txt
+
+**Modified: `public/sitemap.xml`**
+- Add all `/es/` URLs (doubling the sitemap from ~50 to ~100 entries)
+- Add `xhtml:link` alternate attributes per Google's multilingual sitemap spec
+
+**Modified: `public/robots.txt`**
+- No changes needed (both `/` and `/es/` are allowed)
+
+### 8. index.html
+
+- Add `<link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/" />` to the static HTML head
+
+---
+
+## File Count Summary
+
+| Category | New files | Modified files |
+|----------|-----------|----------------|
+| i18n infrastructure | 4 | 0 |
+| Translated data | 5 | 0 |
+| SEO/schema | 0 | 4 |
+| Routing | 0 | 1 |
+| Components | 1 | ~20 |
+| Static files | 0 | 2 |
+| **Total** | **10** | **~27** |
+
+---
+
+## Important Consideration
+
+This is a very large change — approximately 37 files touched and thousands of lines of Spanish content to write. I recommend implementing it in phases:
+
+1. **Phase 1**: Infrastructure (i18n context, locale provider, routing, SEO hreflang, language switcher, sitemap) + Homepage in Spanish
+2. **Phase 2**: All tour pages and tour-from pages in Spanish
+3. **Phase 3**: All guide pages in Spanish
+4. **Phase 4**: Blog, combo-tours, practical pages, and tour-type pages in Spanish
+
+Each phase can be deployed and indexed independently. Shall I begin with Phase 1?
 
