@@ -252,7 +252,7 @@ const TourDetailPage = () => {
 
           {/* H1 */}
           <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4 max-w-3xl leading-tight">
-            {tour.h1}
+            {loc.h1}
           </h1>
 
           {/* Meta chips */}
@@ -327,7 +327,7 @@ const TourDetailPage = () => {
 
             {/* Description */}
             <div>
-              <p className="text-lg text-muted-foreground leading-relaxed">{tour.description}</p>
+              <p className="text-lg text-muted-foreground leading-relaxed">{loc.description}</p>
             </div>
 
             {/* Highlights */}
@@ -336,7 +336,7 @@ const TourDetailPage = () => {
                 {l.tourHighlights}
               </h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {tour.highlights.map((h, i) => (
+                {loc.highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-2.5">
                     <div className="mt-0.5 flex-shrink-0 h-5 w-5 rounded-full bg-success/15 flex items-center justify-center">
                       <Check className="h-3 w-3 text-success" />
@@ -353,13 +353,13 @@ const TourDetailPage = () => {
                 {l.tourItinerary}
               </h2>
               <div className="space-y-0">
-                {tour.itinerary.map((step, i) => (
+                {loc.itinerary.map((step, i) => (
                   <TimelineItem
                     key={i}
                     time={step.time}
                     title={step.title}
                     description={step.description}
-                    isLast={i === tour.itinerary.length - 1}
+                    isLast={i === loc.itinerary.length - 1}
                   />
                 ))}
               </div>
@@ -377,7 +377,7 @@ const TourDetailPage = () => {
                     <h3 className="font-heading font-semibold">{l.included}</h3>
                   </div>
                   <ul className="space-y-2">
-                    {tour.inclusions.map((item, i) => (
+                    {loc.inclusions.map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
                         <Check className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
                         <span>{item}</span>
@@ -392,7 +392,7 @@ const TourDetailPage = () => {
                     <h3 className="font-heading font-semibold">{l.notIncluded}</h3>
                   </div>
                   <ul className="space-y-2">
-                    {tour.exclusions.map((item, i) => (
+                    {loc.exclusions.map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <X className="h-4 w-4 text-destructive/60 flex-shrink-0 mt-0.5" />
                         <span>{item}</span>
