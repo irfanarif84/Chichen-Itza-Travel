@@ -8,6 +8,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useLocale } from "@/lib/i18n/useLocale";
 import type { TourType, TourCategory } from "@/types/tour";
 
 interface TourFiltersProps {
@@ -30,39 +31,40 @@ const initialFilters: FilterState = {
   category: [],
 };
 
-const priceRanges = [
-  { value: "all", label: "All Prices" },
-  { value: "0-60", label: "Under $60" },
-  { value: "60-100", label: "$60 - $100" },
-  { value: "100-150", label: "$100 - $150" },
-  { value: "150+", label: "$150+" },
-];
-
-const durations = [
-  { value: "short", label: "Half Day (<8 hrs)" },
-  { value: "full", label: "Full Day (8-12 hrs)" },
-  { value: "long", label: "Extended (12+ hrs)" },
-];
-
-const tourTypes: { value: TourType; label: string }[] = [
-  { value: "group", label: "Group Tour" },
-  { value: "private", label: "Private Tour" },
-  { value: "luxury", label: "Luxury" },
-  { value: "budget", label: "Budget" },
-  { value: "family", label: "Family" },
-];
-
-const categories: { value: TourCategory; label: string }[] = [
-  { value: "day-tours", label: "Day Tours" },
-  { value: "sunrise-tours", label: "Sunrise Tours" },
-  { value: "cenote-tours", label: "Cenote Tours" },
-  { value: "private-tours", label: "Private Tours" },
-  { value: "night-tours", label: "Night Tours" },
-  { value: "combo", label: "Combo Tours" },
-];
-
 const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersProps) => {
+  const { t } = useLocale();
   const [filters, setFilters] = useState<FilterState>(initialFilters);
+
+  const priceRanges = [
+    { value: "all", label: t("filter.allPrices") },
+    { value: "0-60", label: t("filter.under60") },
+    { value: "60-100", label: t("filter.60to100") },
+    { value: "100-150", label: t("filter.100to150") },
+    { value: "150+", label: t("filter.150plus") },
+  ];
+
+  const durations = [
+    { value: "short", label: t("filter.halfDay") },
+    { value: "full", label: t("filter.fullDay") },
+    { value: "long", label: t("filter.extended") },
+  ];
+
+  const tourTypes: { value: TourType; label: string }[] = [
+    { value: "group", label: t("filter.groupTour") },
+    { value: "private", label: t("filter.privateTour") },
+    { value: "luxury", label: t("filter.luxury") },
+    { value: "budget", label: t("filter.budget") },
+    { value: "family", label: t("filter.family") },
+  ];
+
+  const categories: { value: TourCategory; label: string }[] = [
+    { value: "day-tours", label: t("tour.dayTours") },
+    { value: "sunrise-tours", label: t("tour.sunriseTours") },
+    { value: "cenote-tours", label: t("tour.cenoteTours") },
+    { value: "private-tours", label: t("tour.privateTours") },
+    { value: "night-tours", label: t("tour.nightTours") },
+    { value: "combo", label: t("nav.comboTours") },
+  ];
 
   const updateFilters = (newFilters: Partial<FilterState>) => {
     const updated = { ...filters, ...newFilters };
@@ -122,7 +124,7 @@ const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersP
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="gap-2">
               <Clock className="h-4 w-4" />
-              Duration
+              {t("filter.duration")}
               {filters.duration.length > 0 && (
                 <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 justify-center">
                   {filters.duration.length}
@@ -149,7 +151,7 @@ const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersP
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="gap-2">
               <Users className="h-4 w-4" />
-              Tour Type
+              {t("filter.tourType")}
               {filters.tourType.length > 0 && (
                 <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 justify-center">
                   {filters.tourType.length}
@@ -159,13 +161,13 @@ const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersP
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
-            {tourTypes.map((t) => (
+            {tourTypes.map((tt) => (
               <DropdownMenuCheckboxItem
-                key={t.value}
-                checked={filters.tourType.includes(t.value)}
-                onCheckedChange={() => toggleArrayFilter("tourType", t.value)}
+                key={tt.value}
+                checked={filters.tourType.includes(tt.value)}
+                onCheckedChange={() => toggleArrayFilter("tourType", tt.value)}
               >
-                {t.label}
+                {tt.label}
               </DropdownMenuCheckboxItem>
             ))}
           </DropdownMenuContent>
@@ -176,7 +178,7 @@ const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersP
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="gap-2">
               <Filter className="h-4 w-4" />
-              Category
+              {t("filter.category")}
               {filters.category.length > 0 && (
                 <Badge variant="secondary" className="ml-1 h-5 w-5 p-0 justify-center">
                   {filters.category.length}
@@ -207,15 +209,15 @@ const TourFilters = ({ onFilterChange, tourCount, className = "" }: TourFiltersP
             className="text-muted-foreground hover:text-foreground"
           >
             <X className="h-4 w-4 mr-1" />
-            Clear ({activeFilterCount})
+            {t("filter.clear")} ({activeFilterCount})
           </Button>
         )}
       </div>
 
       {/* Results count */}
       <p className="text-sm text-muted-foreground">
-        Showing <strong className="text-foreground">{tourCount}</strong> tours
-        {activeFilterCount > 0 && " matching your filters"}
+        {t("filter.showing")} <strong className="text-foreground">{tourCount}</strong> {t("filter.tours")}
+        {activeFilterCount > 0 && ` ${t("filter.matchingFilters")}`}
       </p>
     </div>
   );
