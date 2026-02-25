@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -6,24 +6,31 @@ import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import CTASection from "@/components/features/home/CTASection";
 import { blogPosts } from "@/lib/blogData";
+import { blogPostsEs } from "@/lib/blogData.es";
+import { useLocale } from "@/lib/i18n/useLocale";
+import LocaleLink from "@/components/LocaleLink";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { isEs, locale } = useLocale();
 
-  if (!post) return <Navigate to="/blog" replace />;
+  const posts = isEs ? blogPostsEs : blogPosts;
+  const post = posts.find((p) => p.slug === slug);
 
-  const currentIndex = blogPosts.indexOf(post);
-  const nextPost = blogPosts[currentIndex + 1];
-  const prevPost = blogPosts[currentIndex - 1];
+  if (!post) return <Navigate to={isEs ? "/es/blog" : "/blog"} replace />;
+
+  const currentIndex = posts.indexOf(post);
+  const nextPost = posts[currentIndex + 1];
+  const prevPost = posts[currentIndex - 1];
 
   const meta = getPageMeta({
     title: post.metaTitle,
     description: post.metaDescription,
-    canonical: `/blog/${post.slug}`,
+    canonical: isEs ? `/es/blog/${post.slug}` : `/blog/${post.slug}`,
+    locale,
     jsonLd: [
       createBreadcrumbSchema([
-        { name: "Home", url: "/" },
+        { name: isEs ? "Inicio" : "Home", url: "/" },
         { name: "Blog", url: "/blog" },
         { name: post.title },
       ]),
@@ -59,7 +66,7 @@ const BlogPostPage = () => {
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><Calendar className="h-4 w-4" />{post.date}</span>
               <span className="flex items-center gap-1"><Clock className="h-4 w-4" />{post.readTime}</span>
-              <span>By {post.author}</span>
+              <span>{isEs ? "Por" : "By"} {post.author}</span>
             </div>
           </div>
         </div>
@@ -93,14 +100,14 @@ const BlogPostPage = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto flex justify-between">
             {prevPost ? (
-              <Link to={`/blog/${prevPost.slug}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <LocaleLink to={`/blog/${prevPost.slug}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <ArrowLeft className="h-4 w-4" /> {prevPost.title.slice(0, 40)}…
-              </Link>
+              </LocaleLink>
             ) : <div />}
             {nextPost ? (
-              <Link to={`/blog/${nextPost.slug}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <LocaleLink to={`/blog/${nextPost.slug}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                 {nextPost.title.slice(0, 40)}… <ArrowRight className="h-4 w-4" />
-              </Link>
+              </LocaleLink>
             ) : <div />}
           </div>
         </div>
@@ -109,10 +116,18 @@ const BlogPostPage = () => {
       {/* CTA */}
       <section className="py-12 bg-muted/30">
         <div className="container text-center">
-          <h2 className="font-heading font-bold text-2xl mb-4">Ready to Experience Chichen Itza?</h2>
-          <p className="text-muted-foreground mb-6">Browse our tours and find the perfect adventure for your trip.</p>
+          <h2 className="font-heading font-bold text-2xl mb-4">
+            {isEs ? "¿Listo para Conocer Chichén Itzá?" : "Ready to Experience Chichen Itza?"}
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            {isEs
+              ? "Explora nuestros tours y encuentra la aventura perfecta para tu viaje."
+              : "Browse our tours and find the perfect adventure for your trip."}
+          </p>
           <Button variant="cta" size="lg" asChild>
-            <Link to="/tours">Browse All Tours →</Link>
+            <LocaleLink to="/tours">
+              {isEs ? "Ver Todos los Tours →" : "Browse All Tours →"}
+            </LocaleLink>
           </Button>
         </div>
       </section>
