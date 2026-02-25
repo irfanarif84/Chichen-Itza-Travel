@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Droplets, ChevronRight, Star, Camera, Waves, Leaf, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -9,24 +8,33 @@ import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
+import LocaleLink from "@/components/LocaleLink";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
 
-const meta = getPageMeta({
-  title: "Chichen Itza + Cenote Ik Kil Tour – Swim & Explore",
-  description: "Best combo: Chichen Itza ruins + swimming at famous Cenote Ik Kil. Guided tour, lunch, transport included. Free cancellation. From $99.",
-  canonical: "/combo-tours/cenote-ik-kil",
-  jsonLd: [
-    createBreadcrumbSchema([
-      { name: "Home", url: "/" },
-      { name: "Combo Tours" },
-      { name: "Cenote Ik Kil" },
-    ]),
-  ],
-});
-
 const CenoteIkKilComboPage = () => {
+  const { locale, isEs } = useLocale();
+
+  const meta = getPageMeta({
+    title: isEs
+      ? "Chichén Itzá + Cenote Ik Kil – Nada y Explora"
+      : "Chichen Itza + Cenote Ik Kil Tour – Swim & Explore",
+    description: isEs
+      ? "Mejor combo: ruinas de Chichén Itzá + nado en el famoso Cenote Ik Kil. Tour guiado, almuerzo y transporte incluido. Cancelación gratuita. Desde $99."
+      : "Best combo: Chichen Itza ruins + swimming at famous Cenote Ik Kil. Guided tour, lunch, transport included. Free cancellation. From $99.",
+    canonical: "/combo-tours/cenote-ik-kil",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tours Combo" : "Combo Tours" },
+        { name: "Cenote Ik Kil" },
+      ]),
+    ],
+  });
+
   const comboTours = useMemo(
     () => tours.filter((t) => t.category.includes("cenote-tours") || t.category.includes("combo")),
     []
@@ -36,6 +44,34 @@ const CenoteIkKilComboPage = () => {
   const galleryImages = comboGalleryImages["cenote-ik-kil"] || [];
   const galleryAlts = comboGalleryAltTexts["cenote-ik-kil"] || [];
 
+  const badges = isEs
+    ? [
+        { icon: Droplets, text: "Nado en cenote" },
+        { icon: Camera, text: "Fotos icónicas" },
+        { icon: Leaf, text: "Maravilla natural" },
+        { icon: MapPin, text: "A solo 5 km" },
+      ]
+    : [
+        { icon: Droplets, text: "Cenote swimming" },
+        { icon: Camera, text: "Iconic photos" },
+        { icon: Leaf, text: "Natural wonder" },
+        { icon: MapPin, text: "Just 3 miles apart" },
+      ];
+
+  const aboutItems = isEs
+    ? [
+        { icon: Waves, title: "26 m de Profundidad", desc: "Un espectacular cenote a cielo abierto con paredes de piedra caliza de 26 metros y agua turquesa cristalina." },
+        { icon: Leaf, title: "Belleza Natural", desc: "Enredaderas colgantes, pequeñas cascadas y vegetación tropical crean una gruta mágica para nadar." },
+        { icon: Droplets, title: "26°C Todo el Año", desc: "Temperatura constante y cómoda sin importar la temporada. Perfecto para nadar en cualquier época." },
+        { icon: Camera, title: "Famoso en Instagram", desc: "Uno de los lugares naturales más fotografiados de México. Impresionante desde cualquier ángulo." },
+      ]
+    : [
+        { icon: Waves, title: "85 ft Deep", desc: "A dramatic open-air cenote with 85-foot limestone walls and crystal-clear turquoise water." },
+        { icon: Leaf, title: "Natural Beauty", desc: "Hanging vines, small waterfalls, and tropical vegetation create a magical swimming grotto." },
+        { icon: Droplets, title: "79°F Year-Round", desc: "Constant comfortable temperature regardless of season. Perfect for swimming any time of year." },
+        { icon: Camera, title: "Instagram Famous", desc: "One of the most photographed natural swimming spots in Mexico. Stunning from every angle." },
+      ];
+
   return (
     <>
       <SEOHead meta={meta} />
@@ -43,7 +79,7 @@ const CenoteIkKilComboPage = () => {
       <section className="relative min-h-[400px] lg:min-h-[500px] flex items-end">
         <img
           src={heroImage}
-          alt="Cenote Ik Kil overhead view with hanging vines and turquoise water"
+          alt={isEs ? "Vista aérea del Cenote Ik Kil con enredaderas colgantes y agua turquesa" : "Cenote Ik Kil overhead view with hanging vines and turquoise water"}
           className="absolute inset-0 w-full h-full object-cover"
           fetchPriority="high"
           loading="eager"
@@ -52,27 +88,26 @@ const CenoteIkKilComboPage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-foreground/10" />
         <div className="container relative z-10 pb-10 pt-20">
-          <Breadcrumbs items={[{ label: "Combo Tours" }, { label: "Cenote Ik Kil" }]} />
+          <Breadcrumbs items={[{ label: isEs ? "Tours Combo" : "Combo Tours" }, { label: "Cenote Ik Kil" }]} />
           <div className="mt-4 max-w-3xl">
             <div className="flex items-center gap-0.5 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-accent text-accent" />
               ))}
-              <span className="ml-2 text-sm text-primary-foreground/80">4.8/5 from 2,500+ combo travelers</span>
+              <span className="ml-2 text-sm text-primary-foreground/80">
+                {isEs ? "4.8/5 de 2,500+ viajeros combo" : "4.8/5 from 2,500+ combo travelers"}
+              </span>
             </div>
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 text-primary-foreground">
-              Chichen Itza + Cenote Ik Kil Combo Tour
+              {isEs ? "Tour Combo Chichén Itzá + Cenote Ik Kil" : "Chichen Itza + Cenote Ik Kil Combo Tour"}
             </h1>
             <p className="text-lg text-primary-foreground/90 mb-6 max-w-xl">
-              Explore the ancient Mayan ruins then cool off with a refreshing swim in Mexico's most famous cenote — a stunning natural sinkhole with hanging vines and crystal-clear water.
+              {isEs
+                ? "Explora las antiguas ruinas mayas y luego refréscate con un baño en el cenote más famoso de México — un impresionante sumidero natural con enredaderas colgantes y agua cristalina."
+                : "Explore the ancient Mayan ruins then cool off with a refreshing swim in Mexico's most famous cenote — a stunning natural sinkhole with hanging vines and crystal-clear water."}
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
-              {[
-                { icon: Droplets, text: "Cenote swimming" },
-                { icon: Camera, text: "Iconic photos" },
-                { icon: Leaf, text: "Natural wonder" },
-                { icon: MapPin, text: "Just 3 miles apart" },
-              ].map((item, i) => (
+              {badges.map((item, i) => (
                 <span key={i} className="flex items-center gap-1.5 text-sm bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full border border-primary-foreground/20">
                   <item.icon className="h-4 w-4" />
                   {item.text}
@@ -80,7 +115,7 @@ const CenoteIkKilComboPage = () => {
               ))}
             </div>
             <Button variant="cta" size="lg" asChild>
-              <a href="#tours">View Combo Tours <ChevronRight className="h-5 w-5" /></a>
+              <a href="#tours">{isEs ? "Ver Tours Combo" : "View Combo Tours"} <ChevronRight className="h-5 w-5" /></a>
             </Button>
           </div>
         </div>
@@ -88,40 +123,47 @@ const CenoteIkKilComboPage = () => {
 
       <section className="py-8 lg:py-12">
         <div className="container">
-          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle="Chichen Itza + Cenote Ik Kil Combo Tour" />
+          <TourGallery images={galleryImages} altTexts={galleryAlts} tourTitle={isEs ? "Tour Combo Chichén Itzá + Cenote Ik Kil" : "Chichen Itza + Cenote Ik Kil Combo Tour"} />
         </div>
       </section>
 
       <section className="py-12 lg:py-16">
         <div className="container max-w-3xl">
-          <h2 className="font-heading font-bold text-2xl mb-4">Why This Combo Is Our #1 Seller</h2>
+          <h2 className="font-heading font-bold text-2xl mb-4">
+            {isEs ? "Por Qué Este Combo Es Nuestro #1 en Ventas" : "Why This Combo Is Our #1 Seller"}
+          </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Cenote Ik Kil is located just 3 miles from Chichen Itza, making it the perfect natural complement to your archaeological adventure. This stunning open-air cenote features dramatic 85-foot limestone walls draped with hanging vines and small waterfalls, creating one of the most photographed swimming spots in Mexico.
+            {isEs
+              ? "El Cenote Ik Kil está ubicado a solo 5 km de Chichén Itzá, lo que lo convierte en el complemento natural perfecto para tu aventura arqueológica. Este impresionante cenote a cielo abierto presenta dramáticas paredes de piedra caliza de 26 metros cubiertas con enredaderas colgantes y pequeñas cascadas, creando uno de los lugares para nadar más fotografiados de México."
+              : "Cenote Ik Kil is located just 3 miles from Chichen Itza, making it the perfect natural complement to your archaeological adventure. This stunning open-air cenote features dramatic 85-foot limestone walls draped with hanging vines and small waterfalls, creating one of the most photographed swimming spots in Mexico."}
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            After spending 2-3 hours exploring the ancient ruins in the Yucatan heat, there's nothing more refreshing than descending the carved stone staircase into the cool, crystal-clear waters of Cenote Ik Kil. The cenote maintains a constant temperature of 79°F (26°C) year-round, making it perfect for swimming any time of year.
+            {isEs
+              ? "Después de pasar 2-3 horas explorando las antiguas ruinas bajo el calor yucateco, no hay nada más refrescante que descender por la escalera de piedra tallada hacia las aguas frescas y cristalinas del Cenote Ik Kil. El cenote mantiene una temperatura constante de 26°C durante todo el año, perfecto para nadar en cualquier temporada."
+              : "After spending 2-3 hours exploring the ancient ruins in the Yucatan heat, there's nothing more refreshing than descending the carved stone staircase into the cool, crystal-clear waters of Cenote Ik Kil. The cenote maintains a constant temperature of 79°F (26°C) year-round, making it perfect for swimming any time of year."}
           </p>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Our combo tours include everything: guided tour of Chichen Itza, cenote entrance and swimming time, traditional Yucatecan lunch, and round-trip transportation. Compare with our <Link to="/tours/cenote-tours" className="text-primary hover:underline">other cenote tours</Link> or <Link to="/combo-tours/coba-ruins" className="text-primary hover:underline">Coba ruins combo</Link>.
+            {isEs
+              ? <>Nuestros tours combo incluyen todo: tour guiado de Chichén Itzá, entrada al cenote y tiempo de nado, almuerzo yucateco tradicional y transporte redondo. Compara con nuestros <LocaleLink to="/tours/cenote-tours" className="text-primary hover:underline">otros tours de cenotes</LocaleLink> o el <LocaleLink to="/combo-tours/coba-ruins" className="text-primary hover:underline">combo de ruinas de Cobá</LocaleLink>.</>
+              : <>Our combo tours include everything: guided tour of Chichen Itza, cenote entrance and swimming time, traditional Yucatecan lunch, and round-trip transportation. Compare with our <LocaleLink to="/tours/cenote-tours" className="text-primary hover:underline">other cenote tours</LocaleLink> or <LocaleLink to="/combo-tours/coba-ruins" className="text-primary hover:underline">Coba ruins combo</LocaleLink>.</>}
           </p>
           <TipBox
             type="info"
-            title="Cenote Swimming Tips"
-            content="Bring biodegradable sunscreen (regular sunscreen is prohibited), a waterproof camera, and water shoes for the stone steps. Life vests are provided free of charge. The cenote has changing rooms, lockers ($2), and a small café."
+            title={isEs ? "Consejos para Nadar en el Cenote" : "Cenote Swimming Tips"}
+            content={isEs
+              ? "Lleva bloqueador solar biodegradable (el bloqueador regular está prohibido), una cámara acuática y zapatos de agua para las escaleras de piedra. Los chalecos salvavidas se proporcionan gratis. El cenote cuenta con vestidores, lockers ($2) y una pequeña cafetería."
+              : "Bring biodegradable sunscreen (regular sunscreen is prohibited), a waterproof camera, and water shoes for the stone steps. Life vests are provided free of charge. The cenote has changing rooms, lockers ($2), and a small café."}
           />
         </div>
       </section>
 
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">About Cenote Ik Kil</h2>
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
+            {isEs ? "Sobre el Cenote Ik Kil" : "About Cenote Ik Kil"}
+          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: Waves, title: "85 ft Deep", desc: "A dramatic open-air cenote with 85-foot limestone walls and crystal-clear turquoise water." },
-              { icon: Leaf, title: "Natural Beauty", desc: "Hanging vines, small waterfalls, and tropical vegetation create a magical swimming grotto." },
-              { icon: Droplets, title: "79°F Year-Round", desc: "Constant comfortable temperature regardless of season. Perfect for swimming any time of year." },
-              { icon: Camera, title: "Instagram Famous", desc: "One of the most photographed natural swimming spots in Mexico. Stunning from every angle." },
-            ].map((item, i) => (
+            {aboutItems.map((item, i) => (
               <div key={i} className="bg-card rounded-lg p-6 border border-border text-center">
                 <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
                   <item.icon className="h-6 w-6 text-secondary" />
@@ -136,8 +178,12 @@ const CenoteIkKilComboPage = () => {
 
       <section id="tours" className="py-12 lg:py-16">
         <div className="container">
-          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2 text-center">Cenote Combo Tours</h2>
-          <p className="text-center text-muted-foreground mb-8">{comboTours.length} combo tours with cenote swimming</p>
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2 text-center">
+            {isEs ? "Tours Combo con Cenote" : "Cenote Combo Tours"}
+          </h2>
+          <p className="text-center text-muted-foreground mb-8">
+            {comboTours.length} {isEs ? "tours combo con nado en cenote" : "combo tours with cenote swimming"}
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {comboTours.map((tour) => (<TourCard key={tour.id} tour={tour} />))}
           </div>
@@ -149,16 +195,16 @@ const CenoteIkKilComboPage = () => {
 
       <section className="py-12 bg-muted/30 border-t border-border">
         <div className="container">
-          <h2 className="font-heading font-semibold text-lg mb-6">More Combo Tours</h2>
+          <h2 className="font-heading font-semibold text-lg mb-6">{isEs ? "Más Tours Combo" : "More Combo Tours"}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {[
-              { label: "Coba Ruins Combo", href: "/combo-tours/coba-ruins" },
-              { label: "Multi-Day Yucatan", href: "/combo-tours/multi-day-yucatan" },
-              { label: "Cenote Tours", href: "/tours/cenote-tours" },
-              { label: "Day Tours", href: "/tours/day-tours" },
-              { label: "All Tours", href: "/tours" },
+              { label: isEs ? "Combo Ruinas de Cobá" : "Coba Ruins Combo", href: "/combo-tours/coba-ruins" },
+              { label: isEs ? "Yucatán Varios Días" : "Multi-Day Yucatan", href: "/combo-tours/multi-day-yucatan" },
+              { label: isEs ? "Tours de Cenotes" : "Cenote Tours", href: "/tours/cenote-tours" },
+              { label: isEs ? "Tours de un Día" : "Day Tours", href: "/tours/day-tours" },
+              { label: isEs ? "Todos los Tours" : "All Tours", href: "/tours" },
             ].map((link) => (
-              <Link key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">{link.label} →</Link>
+              <LocaleLink key={link.href} to={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">{link.label} →</LocaleLink>
             ))}
           </div>
         </div>
