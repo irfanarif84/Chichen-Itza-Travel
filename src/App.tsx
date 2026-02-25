@@ -3,7 +3,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Index from "./pages/Index";
@@ -50,6 +51,15 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+/** Scroll to top on route change */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -57,10 +67,12 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-1">
               <Routes>
+                {/* ===== English Routes ===== */}
                 <Route path="/" element={<Index />} />
                 <Route path="/tours" element={<ToursPage />} />
                 <Route path="/tours/day-tours" element={<DayToursPage />} />
@@ -101,6 +113,49 @@ const App = () => (
                 <Route path="/tours/:slug" element={<TourDetailPage />} />
                 <Route path="/blog" element={<BlogIndexPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
+
+                {/* ===== Spanish Routes (/es/) ===== */}
+                <Route path="/es" element={<Index />} />
+                <Route path="/es/tours" element={<ToursPage />} />
+                <Route path="/es/tours/excursiones-de-dia" element={<DayToursPage />} />
+                <Route path="/es/tours/tours-privados" element={<PrivateToursPage />} />
+                <Route path="/es/tours/tours-de-cenotes" element={<CenoteToursPage />} />
+                <Route path="/es/tours/tours-al-amanecer" element={<SunriseToursPage />} />
+                <Route path="/es/tours/tours-ek-balam" element={<EkBalamToursPage />} />
+                <Route path="/es/tours/tours-valladolid" element={<ValladolidToursPage />} />
+                <Route path="/es/tours/tours-nocturnos" element={<NightToursPage />} />
+                <Route path="/es/tours-desde/cancun" element={<CancunToursPage />} />
+                <Route path="/es/tours-desde/playa-del-carmen" element={<PlayaDelCarmenToursPage />} />
+                <Route path="/es/tours-desde/tulum" element={<TulumToursPage />} />
+                <Route path="/es/tours-desde/riviera-maya" element={<RivieraMayaToursPage />} />
+                <Route path="/es/tours-desde/merida" element={<MeridaToursPage />} />
+                <Route path="/es/guia" element={<GuideIndexPage />} />
+                <Route path="/es/guia/mejor-epoca-para-visitar" element={<BestTimeToVisitPage />} />
+                <Route path="/es/guia/que-llevar" element={<WhatToBringPage />} />
+                <Route path="/es/guia/historia-y-datos" element={<HistoryAndFactsPage />} />
+                <Route path="/es/guia/como-llegar" element={<HowToGetTherePage />} />
+                <Route path="/es/guia/precios-de-entrada" element={<EntranceFeesPage />} />
+                <Route path="/es/guia/consejos-de-fotografia" element={<PhotographyTipsPage />} />
+                <Route path="/es/guia/codigo-de-vestimenta" element={<DressCodePage />} />
+                <Route path="/es/guia/comparacion-con-otras-ruinas" element={<VsOtherRuinsPage />} />
+                <Route path="/es/practico/preguntas-frecuentes" element={<FAQPage />} />
+                <Route path="/es/practico/contacto" element={<ContactPage />} />
+                <Route path="/es/practico/politica-de-cancelacion" element={<CancellationPolicyPage />} />
+                <Route path="/es/practico/testimonios" element={<TestimonialsPage />} />
+                <Route path="/es/practico/informacion-de-reserva" element={<BookingInfoPage />} />
+                <Route path="/es/tipos-de-tours/grupos-pequenos" element={<SmallGroupPage />} />
+                <Route path="/es/tipos-de-tours/lujo" element={<LuxuryToursPage />} />
+                <Route path="/es/tipos-de-tours/economico" element={<BudgetToursPage />} />
+                <Route path="/es/tipos-de-tours/familiar" element={<FamilyFriendlyPage />} />
+                <Route path="/es/tipos-de-tours/vip-sin-filas" element={<VIPSkipTheLinePage />} />
+                <Route path="/es/combo-tours/cenote-ik-kil" element={<CenoteIkKilComboPage />} />
+                <Route path="/es/combo-tours/ruinas-de-coba" element={<CobaRuinsComboPage />} />
+                <Route path="/es/combo-tours/isla-mujeres" element={<IslaMujeresComboPage />} />
+                <Route path="/es/combo-tours/yucatan-varios-dias" element={<MultiDayYucatanPage />} />
+                <Route path="/es/tours/:slug" element={<TourDetailPage />} />
+                <Route path="/es/blog" element={<BlogIndexPage />} />
+                <Route path="/es/blog/:slug" element={<BlogPostPage />} />
+
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

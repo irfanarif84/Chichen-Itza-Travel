@@ -3,6 +3,7 @@ import { Star, Clock, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { tourImages } from "@/lib/tourImages";
+import { useLocale } from "@/lib/i18n/useLocale";
 import type { Tour } from "@/types/tour";
 
 interface TourCardProps {
@@ -11,6 +12,7 @@ interface TourCardProps {
 
 const TourCard = ({ tour }: TourCardProps) => {
   const heroSrc = tourImages[tour.id];
+  const { t, localePath } = useLocale();
 
   return (
     <motion.div
@@ -42,7 +44,7 @@ const TourCard = ({ tour }: TourCardProps) => {
           <div className="flex items-center gap-1 text-primary-foreground">
             <Star className="h-4 w-4 fill-accent text-accent" />
             <span className="text-sm font-bold">{tour.rating}</span>
-            <span className="text-xs opacity-80">({tour.reviewCount.toLocaleString()} reviews)</span>
+            <span className="text-xs opacity-80">({tour.reviewCount.toLocaleString()} {t("tourCard.reviews")})</span>
           </div>
         </div>
         <div className="absolute bottom-3 right-3 z-20">
@@ -67,13 +69,13 @@ const TourCard = ({ tour }: TourCardProps) => {
             <Clock className="h-3.5 w-3.5" /> {tour.duration}
           </span>
           <span className="flex items-center gap-1">
-            <Users className="h-3.5 w-3.5" /> {tour.groupSize.type === "private" ? "Private" : `Max ${tour.groupSize.max}`}
+            <Users className="h-3.5 w-3.5" /> {tour.groupSize.type === "private" ? t("tourCard.private") : `${t("tourCard.max")} ${tour.groupSize.max}`}
           </span>
         </div>
 
         <Button variant="cta" size="sm" className="w-full" asChild>
-          <Link to={`/tours/${tour.slug}`}>
-            View Details <ArrowRight className="h-4 w-4 ml-1" />
+          <Link to={localePath(`/tours/${tour.slug}`)}>
+            {t("tourCard.viewDetails")} <ArrowRight className="h-4 w-4 ml-1" />
           </Link>
         </Button>
       </div>

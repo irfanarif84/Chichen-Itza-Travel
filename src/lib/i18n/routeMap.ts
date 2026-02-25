@@ -1,0 +1,47 @@
+/** Bidirectional mapping between English and Spanish routes */
+
+export const enToEsRoutes: Record<string, string> = {
+  "/": "/es/",
+  "/tours": "/es/tours",
+  "/tours/day-tours": "/es/tours/excursiones-de-dia",
+  "/tours/private-tours": "/es/tours/tours-privados",
+  "/tours/sunrise-tours": "/es/tours/tours-al-amanecer",
+  "/tours/cenote-tours": "/es/tours/tours-de-cenotes",
+  "/tours/ek-balam-tours": "/es/tours/tours-ek-balam",
+  "/tours/valladolid-tours": "/es/tours/tours-valladolid",
+  "/tours/night-tours": "/es/tours/tours-nocturnos",
+  "/tours-from/cancun": "/es/tours-desde/cancun",
+  "/tours-from/playa-del-carmen": "/es/tours-desde/playa-del-carmen",
+  "/tours-from/tulum": "/es/tours-desde/tulum",
+  "/tours-from/riviera-maya": "/es/tours-desde/riviera-maya",
+  "/tours-from/merida": "/es/tours-desde/merida",
+  "/guide": "/es/guia",
+  "/guide/best-time-to-visit": "/es/guia/mejor-epoca-para-visitar",
+  "/guide/what-to-bring": "/es/guia/que-llevar",
+  "/guide/history-and-facts": "/es/guia/historia-y-datos",
+  "/guide/how-to-get-there": "/es/guia/como-llegar",
+  "/guide/entrance-fees": "/es/guia/precios-de-entrada",
+  "/guide/photography-tips": "/es/guia/consejos-de-fotografia",
+  "/guide/dress-code-and-rules": "/es/guia/codigo-de-vestimenta",
+  "/guide/vs-other-ruins": "/es/guia/comparacion-con-otras-ruinas",
+  "/practical/faq": "/es/practico/preguntas-frecuentes",
+  "/practical/contact": "/es/practico/contacto",
+  "/practical/cancellation-policy": "/es/practico/politica-de-cancelacion",
+  "/practical/testimonials": "/es/practico/testimonios",
+  "/practical/booking-info": "/es/practico/informacion-de-reserva",
+  "/tour-types/small-group": "/es/tipos-de-tours/grupos-pequenos",
+  "/tour-types/luxury": "/es/tipos-de-tours/lujo",
+  "/tour-types/budget": "/es/tipos-de-tours/economico",
+  "/tour-types/family-friendly": "/es/tipos-de-tours/familiar",
+  "/tour-types/vip-skip-the-line": "/es/tipos-de-tours/vip-sin-filas",
+  "/combo-tours/cenote-ik-kil": "/es/combo-tours/cenote-ik-kil",
+  "/combo-tours/coba-ruins": "/es/combo-tours/ruinas-de-coba",
+  "/combo-tours/isla-mujeres": "/es/combo-tours/isla-mujeres",
+  "/combo-tours/multi-day-yucatan": "/es/combo-tours/yucatan-varios-dias",
+  "/blog": "/es/blog",
+};
+
+// Build reverse map
+export const esToEnRoutes: Record<string, string> = Object.fromEntries(
+  Object.entries(enToEsRoutes).map(([en, es]) => [es, en])
+);

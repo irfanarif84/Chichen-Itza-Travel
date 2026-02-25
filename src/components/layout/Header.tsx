@@ -2,56 +2,61 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const tourLinks = [
-  { label: "All Tours", href: "/tours" },
-  { label: "Day Tours", href: "/tours/day-tours" },
-  { label: "Private Tours", href: "/tours/private-tours" },
-  { label: "Sunrise Tours", href: "/tours/sunrise-tours" },
-  { label: "Cenote Tours", href: "/tours/cenote-tours" },
-  { label: "Ek Balam Tours", href: "/tours/ek-balam-tours" },
-  { label: "Valladolid Tours", href: "/tours/valladolid-tours" },
-  { label: "Night Tours", href: "/tours/night-tours" },
-];
-
-const tourTypeLinks = [
-  { label: "Small Group", href: "/tour-types/small-group" },
-  { label: "Luxury", href: "/tour-types/luxury" },
-  { label: "Budget", href: "/tour-types/budget" },
-  { label: "Family Friendly", href: "/tour-types/family-friendly" },
-  { label: "VIP Skip the Line", href: "/tour-types/vip-skip-the-line" },
-];
-
-const comboLinks = [
-  { label: "Cenote Ik Kil Combo", href: "/combo-tours/cenote-ik-kil" },
-  { label: "Coba Ruins Combo", href: "/combo-tours/coba-ruins" },
-  { label: "Isla Mujeres Combo", href: "/combo-tours/isla-mujeres" },
-  { label: "Multi-Day Yucatan", href: "/combo-tours/multi-day-yucatan" },
-];
-
-const departureLinks = [
-  { label: "From Cancún", href: "/tours-from/cancun" },
-  { label: "From Playa del Carmen", href: "/tours-from/playa-del-carmen" },
-  { label: "From Tulum", href: "/tours-from/tulum" },
-  { label: "From Riviera Maya", href: "/tours-from/riviera-maya" },
-  { label: "From Mérida", href: "/tours-from/merida" },
-];
-
-const guideLinks = [
-  { label: "Best Time to Visit", href: "/guide/best-time-to-visit" },
-  { label: "What to Bring", href: "/guide/what-to-bring" },
-  { label: "History & Facts", href: "/guide/history-and-facts" },
-  { label: "How to Get There", href: "/guide/how-to-get-there" },
-  { label: "Entrance Fees", href: "/guide/entrance-fees" },
-  { label: "Photography Tips", href: "/guide/photography-tips" },
-  { label: "Dress Code & Rules", href: "/guide/dress-code-and-rules" },
-  { label: "vs Other Ruins", href: "/guide/vs-other-ruins" },
-];
+import { useLocale } from "@/lib/i18n/useLocale";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [tourDropdown, setTourDropdown] = useState(false);
   const [guideDropdown, setGuideDropdown] = useState(false);
+  const { t, localePath } = useLocale();
+
+  const tourLinks = [
+    { label: t("tour.allTours"), href: localePath("/tours") },
+    { label: t("tour.dayTours"), href: localePath("/tours/day-tours") },
+    { label: t("tour.privateTours"), href: localePath("/tours/private-tours") },
+    { label: t("tour.sunriseTours"), href: localePath("/tours/sunrise-tours") },
+    { label: t("tour.cenoteTours"), href: localePath("/tours/cenote-tours") },
+    { label: t("tour.ekBalamTours"), href: localePath("/tours/ek-balam-tours") },
+    { label: t("tour.valladolidTours"), href: localePath("/tours/valladolid-tours") },
+    { label: t("tour.nightTours"), href: localePath("/tours/night-tours") },
+  ];
+
+  const tourTypeLinks = [
+    { label: t("tourType.smallGroup"), href: localePath("/tour-types/small-group") },
+    { label: t("tourType.luxury"), href: localePath("/tour-types/luxury") },
+    { label: t("tourType.budget"), href: localePath("/tour-types/budget") },
+    { label: t("tourType.familyFriendly"), href: localePath("/tour-types/family-friendly") },
+    { label: t("tourType.vipSkipTheLine"), href: localePath("/tour-types/vip-skip-the-line") },
+  ];
+
+  const comboLinks = [
+    { label: t("combo.cenoteIkKil"), href: localePath("/combo-tours/cenote-ik-kil") },
+    { label: t("combo.cobaRuins"), href: localePath("/combo-tours/coba-ruins") },
+    { label: t("combo.islaMujeres"), href: localePath("/combo-tours/isla-mujeres") },
+    { label: t("combo.multiDayYucatan"), href: localePath("/combo-tours/multi-day-yucatan") },
+  ];
+
+  const departureLinks = [
+    { label: t("from.cancun"), href: localePath("/tours-from/cancun") },
+    { label: t("from.playa"), href: localePath("/tours-from/playa-del-carmen") },
+    { label: t("from.tulum"), href: localePath("/tours-from/tulum") },
+    { label: t("from.rivieraMaya"), href: localePath("/tours-from/riviera-maya") },
+    { label: t("from.merida"), href: localePath("/tours-from/merida") },
+  ];
+
+  const guideLinks = [
+    { label: t("guide.bestTime"), href: localePath("/guide/best-time-to-visit") },
+    { label: t("guide.whatToBring"), href: localePath("/guide/what-to-bring") },
+    { label: t("guide.history"), href: localePath("/guide/history-and-facts") },
+    { label: t("guide.howToGetThere"), href: localePath("/guide/how-to-get-there") },
+    { label: t("guide.entranceFees"), href: localePath("/guide/entrance-fees") },
+    { label: t("guide.photography"), href: localePath("/guide/photography-tips") },
+    { label: t("guide.dressCode"), href: localePath("/guide/dress-code-and-rules") },
+    { label: t("guide.vsOtherRuins"), href: localePath("/guide/vs-other-ruins") },
+  ];
+
+  const homePath = localePath("/");
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -59,20 +64,23 @@ const Header = () => {
       <div className="bg-foreground text-primary-foreground">
         <div className="container flex items-center justify-between py-1.5 text-xs">
           <div className="flex items-center gap-4">
-            <span>✓ Free Cancellation</span>
-            <span className="hidden sm:inline">✓ Instant Confirmation</span>
-            <span className="hidden md:inline">✓ Best Price Guarantee</span>
+            <span>{t("topBar.freeCancellation")}</span>
+            <span className="hidden sm:inline">{t("topBar.instantConfirmation")}</span>
+            <span className="hidden md:inline">{t("topBar.bestPrice")}</span>
           </div>
-          <a href="tel:+529981234567" className="flex items-center gap-1 hover:text-accent transition-colors">
-            <Phone className="h-3 w-3" />
-            <span>+52 998 123 4567</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <a href="tel:+529981234567" className="flex items-center gap-1 hover:text-accent transition-colors">
+              <Phone className="h-3 w-3" />
+              <span>+52 998 123 4567</span>
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Main nav */}
       <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to={homePath} className="flex items-center gap-2">
           <span className="text-2xl">🏛️</span>
           <div className="leading-tight">
             <span className="font-heading font-bold text-lg text-foreground">Chichen Itza</span>
@@ -89,29 +97,29 @@ const Header = () => {
             onMouseLeave={() => setTourDropdown(false)}
           >
             <button className="flex items-center gap-1 hover:text-primary transition-colors py-4">
-              Tours <ChevronDown className="h-3.5 w-3.5" />
+              {t("nav.tours")} <ChevronDown className="h-3.5 w-3.5" />
             </button>
             {tourDropdown && (
               <div className="absolute top-full left-0 bg-popover border border-border rounded-lg shadow-card-hover py-3 min-w-[560px] grid grid-cols-3 gap-0 animate-fade-in-up">
                 <div className="px-4">
-                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tour Categories</p>
+                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.tourCategories")}</p>
                   {tourLinks.map((l) => (
                     <Link key={l.href} to={l.href} className="block py-1.5 hover:text-primary transition-colors text-sm">{l.label}</Link>
                   ))}
                 </div>
                 <div className="px-4 border-l border-border">
-                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tour Types</p>
+                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.tourTypes")}</p>
                   {tourTypeLinks.map((l) => (
                     <Link key={l.href} to={l.href} className="block py-1.5 hover:text-primary transition-colors text-sm">{l.label}</Link>
                   ))}
                 </div>
                 <div className="px-4 border-l border-border">
-                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Combo Tours</p>
+                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.comboTours")}</p>
                   {comboLinks.map((l) => (
                     <Link key={l.href} to={l.href} className="block py-1.5 hover:text-primary transition-colors text-sm">{l.label}</Link>
                   ))}
                   <div className="border-t border-border my-2" />
-                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Departures</p>
+                  <p className="px-0 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.departures")}</p>
                   {departureLinks.slice(0, 3).map((l) => (
                     <Link key={l.href} to={l.href} className="block py-1.5 hover:text-primary transition-colors text-sm">{l.label}</Link>
                   ))}
@@ -127,7 +135,7 @@ const Header = () => {
             onMouseLeave={() => setGuideDropdown(false)}
           >
             <button className="flex items-center gap-1 hover:text-primary transition-colors py-4">
-              Guide <ChevronDown className="h-3.5 w-3.5" />
+              {t("nav.guide")} <ChevronDown className="h-3.5 w-3.5" />
             </button>
             {guideDropdown && (
               <div className="absolute top-full left-0 bg-popover border border-border rounded-lg shadow-card-hover py-2 min-w-[220px] animate-fade-in-up">
@@ -138,13 +146,13 @@ const Header = () => {
             )}
           </div>
 
-          <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
-          <Link to="/practical/faq" className="hover:text-primary transition-colors">FAQ</Link>
+          <Link to={localePath("/blog")} className="hover:text-primary transition-colors">{t("nav.blog")}</Link>
+          <Link to={localePath("/practical/faq")} className="hover:text-primary transition-colors">{t("nav.faq")}</Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <Button variant="cta" size="sm" className="hidden sm:inline-flex" asChild>
-            <Link to="/tours">Book Now →</Link>
+            <Link to={localePath("/tours")}>{t("nav.bookNow")}</Link>
           </Button>
           <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -156,45 +164,45 @@ const Header = () => {
       {mobileOpen && (
         <nav className="lg:hidden border-t border-border bg-background pb-4 animate-fade-in-up max-h-[80vh] overflow-y-auto">
           <div className="container flex flex-col gap-1 pt-2">
-            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tours</p>
+            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.tours")}</p>
             {tourLinks.map((l) => (
               <Link key={l.href} to={l.href} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors font-medium" onClick={() => setMobileOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="border-t border-border my-1" />
-            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tour Types</p>
+            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.tourTypes")}</p>
             {tourTypeLinks.map((l) => (
               <Link key={l.href} to={l.href} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="border-t border-border my-1" />
-            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Combo Tours</p>
+            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.comboTours")}</p>
             {comboLinks.map((l) => (
               <Link key={l.href} to={l.href} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="border-t border-border my-1" />
-            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Departures</p>
+            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.departures")}</p>
             {departureLinks.map((l) => (
               <Link key={l.href} to={l.href} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="border-t border-border my-1" />
-            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Travel Guide</p>
+            <p className="px-3 pt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("nav.travelGuide")}</p>
             {guideLinks.map((l) => (
               <Link key={l.href} to={l.href} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>
                 {l.label}
               </Link>
             ))}
             <div className="border-t border-border my-1" />
-            <Link to="/blog" className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>Blog</Link>
-            <Link to="/practical/faq" className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>FAQ</Link>
+            <Link to={localePath("/blog")} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>{t("nav.blog")}</Link>
+            <Link to={localePath("/practical/faq")} className="py-2.5 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setMobileOpen(false)}>{t("nav.faq")}</Link>
             <Button variant="cta" className="mt-2" asChild>
-              <Link to="/tours" onClick={() => setMobileOpen(false)}>Book Now →</Link>
+              <Link to={localePath("/tours")} onClick={() => setMobileOpen(false)}>{t("nav.bookNow")}</Link>
             </Button>
           </div>
         </nav>
