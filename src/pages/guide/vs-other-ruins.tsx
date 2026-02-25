@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import LocaleLink from "@/components/LocaleLink";
+import { useLocale } from "@/lib/i18n/useLocale";
 import { ChevronRight, Mountain, Waves, TreePalm, Pyramid, Landmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -50,29 +52,38 @@ const comparisonFAQs: FAQItem[] = [
   },
 ];
 
-const meta = getPageMeta({
-  title: "Chichen Itza vs Tulum, Coba, Ek Balam, Uxmal - 2026 Guide",
-  description: "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
-  canonical: "/guide/vs-other-ruins",
-  ogType: "article",
-  jsonLd: [
-    createBreadcrumbSchema([
-      { name: "Home", url: "/" },
-      { name: "Guide", url: "/guide" },
-      { name: "vs Other Ruins" },
-    ]),
-    guideSchemas["vs-other-ruins"],
-    createFAQSchema(comparisonFAQs),
-  ],
-});
-
-const breadcrumbs = [
-  { label: "Guide", href: "/guide" },
-  { label: "vs Other Ruins" },
-];
-
+const getMeta = (locale: "en" | "es") => {
+  const isEs = locale === "es";
+  return getPageMeta({
+    title: isEs
+      ? "Chichén Itzá vs Tulum, Cobá, Ek Balam, Uxmal – Guía 2026"
+      : "Chichen Itza vs Tulum, Coba, Ek Balam, Uxmal - 2026 Guide",
+    description: isEs
+      ? "Compara Chichén Itzá con Tulum, Cobá, Ek Balam y Uxmal. Descubre cuáles ruinas mayas visitar según multitudes, tarifas y tiempo de viaje."
+      : "Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal. See which Mayan ruins to visit based on crowds, climbability, fees, and travel time.",
+    canonical: "/guide/vs-other-ruins",
+    ogType: "article",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Guía" : "Guide", url: "/guide" },
+        { name: isEs ? "vs Otras Ruinas" : "vs Other Ruins" },
+      ]),
+      guideSchemas["vs-other-ruins"],
+      createFAQSchema(comparisonFAQs),
+    ],
+  });
+};
 
 const VsOtherRuinsPage = () => {
+  const { locale, isEs } = useLocale();
+  const meta = getMeta(locale);
+  const breadcrumbs = [
+    { label: isEs ? "Guía" : "Guide", href: "/guide" },
+    { label: isEs ? "vs Otras Ruinas" : "vs Other Ruins" },
+  ];
+
   return (
     <>
       <SEOHead meta={meta} />
@@ -83,17 +94,21 @@ const VsOtherRuinsPage = () => {
           <Breadcrumbs items={breadcrumbs} />
           <div className="max-w-3xl mt-4">
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
-              Chichen Itza vs Other Mayan Ruins — Complete Comparison Guide
+              {isEs
+                ? "Chichén Itzá vs Otras Ruinas Mayas — Guía Comparativa Completa"
+                : "Chichen Itza vs Other Mayan Ruins — Complete Comparison Guide"}
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
-              Deciding which Mayan ruins to visit? Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal across crowd levels, climbability, entrance fees, and more.
+              {isEs
+                ? "¿Decidiendo qué ruinas mayas visitar? Compara Chichén Itzá con Tulum, Cobá, Ek Balam y Uxmal en multitudes, escalabilidad, tarifas de entrada y más."
+                : "Deciding which Mayan ruins to visit? Compare Chichen Itza to Tulum, Coba, Ek Balam, and Uxmal across crowd levels, climbability, entrance fees, and more."}
             </p>
             <div className="flex flex-wrap gap-3">
               <Button variant="cta" size="lg" asChild>
-                <Link to="/tours">Book Chichen Itza Tour <ChevronRight className="h-5 w-5" /></Link>
+                <LocaleLink to="/tours">{isEs ? "Reservar Tour a Chichén Itzá" : "Book Chichen Itza Tour"} <ChevronRight className="h-5 w-5" /></LocaleLink>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/guide/entrance-fees">Entrance Fees Guide →</Link>
+                <LocaleLink to="/guide/entrance-fees">{isEs ? "Guía de Precios de Entrada →" : "Entrance Fees Guide →"}</LocaleLink>
               </Button>
             </div>
           </div>
@@ -106,14 +121,18 @@ const VsOtherRuinsPage = () => {
           <div className="max-w-3xl mx-auto">
             <TipBox
               type="success"
-              title="Quick Answer: Chichen Itza Is the Must-See"
-              content="If you only visit one Mayan ruin, make it Chichen Itza — it's a UNESCO World Heritage Site and one of the New Seven Wonders of the World. But each site offers something unique, and combining two or three ruins makes for an unforgettable Yucatan experience."
+              title={isEs ? "Respuesta Rápida: Chichén Itzá Es Imprescindible" : "Quick Answer: Chichen Itza Is the Must-See"}
+              content={isEs
+                ? "Si solo visitas una ruina maya, que sea Chichén Itzá — es Patrimonio de la Humanidad de la UNESCO y una de las Nuevas Siete Maravillas del Mundo. Pero cada sitio ofrece algo único, y combinar dos o tres ruinas hace una experiencia inolvidable en Yucatán."
+                : "If you only visit one Mayan ruin, make it Chichen Itza — it's a UNESCO World Heritage Site and one of the New Seven Wonders of the World. But each site offers something unique, and combining two or three ruins makes for an unforgettable Yucatan experience."}
             />
 
             <div className="mt-8 prose prose-neutral">
-              <h2 className="font-heading font-bold text-2xl mb-4">Overview</h2>
+              <h2 className="font-heading font-bold text-2xl mb-4">{isEs ? "Panorama General" : "Overview"}</h2>
               <p className="text-muted-foreground">
-                The Yucatan Peninsula is home to dozens of ancient Mayan cities, but five sites stand out as the most popular and accessible for visitors: <strong>Chichen Itza</strong>, <strong>Tulum</strong>, <strong>Coba</strong>, <strong>Ek Balam</strong>, and <strong>Uxmal</strong>. Each offers a distinct experience — from Chichen Itza's monumental architecture and astronomical precision to Tulum's dramatic clifftop ocean views, Coba's jungle-wrapped climbable pyramid, Ek Balam's intimate uncrowded atmosphere, and Uxmal's ornate Puuc-style stone mosaics. This guide compares all five across the factors that matter most: size, crowds, <Link to="/guide/entrance-fees" className="text-primary hover:underline">entrance fees</Link>, climbability, <Link to="/guide/how-to-get-there" className="text-primary hover:underline">travel time</Link>, and what each site is best for.
+                {isEs
+                  ? <>La Península de Yucatán alberga docenas de antiguas ciudades mayas, pero cinco sitios destacan como los más populares y accesibles: <strong>Chichén Itzá</strong>, <strong>Tulum</strong>, <strong>Cobá</strong>, <strong>Ek Balam</strong> y <strong>Uxmal</strong>. Cada uno ofrece una experiencia distinta — desde la arquitectura monumental de Chichén Itzá hasta las dramáticas vistas al océano de Tulum, la pirámide escalable de Cobá, la atmósfera íntima de Ek Balam y los ornamentados mosaicos de piedra de Uxmal. Esta guía compara los cinco en los factores más importantes: tamaño, multitudes, <Link to="/guide/entrance-fees" className="text-primary hover:underline">tarifas de entrada</Link>, escalabilidad, <Link to="/guide/how-to-get-there" className="text-primary hover:underline">tiempo de viaje</Link>, y para qué es mejor cada sitio.</>
+                  : <>The Yucatan Peninsula is home to dozens of ancient Mayan cities, but five sites stand out as the most popular and accessible for visitors: <strong>Chichen Itza</strong>, <strong>Tulum</strong>, <strong>Coba</strong>, <strong>Ek Balam</strong>, and <strong>Uxmal</strong>. Each offers a distinct experience — from Chichen Itza's monumental architecture and astronomical precision to Tulum's dramatic clifftop ocean views, Coba's jungle-wrapped climbable pyramid, Ek Balam's intimate uncrowded atmosphere, and Uxmal's ornate Puuc-style stone mosaics. This guide compares all five across the factors that matter most: size, crowds, <Link to="/guide/entrance-fees" className="text-primary hover:underline">entrance fees</Link>, climbability, <Link to="/guide/how-to-get-there" className="text-primary hover:underline">travel time</Link>, and what each site is best for.</>}
               </p>
             </div>
           </div>
@@ -124,7 +143,7 @@ const VsOtherRuinsPage = () => {
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container">
           <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
-            Side-by-Side Comparison
+            {isEs ? "Comparación Lado a Lado" : "Side-by-Side Comparison"}
           </h2>
           <div className="max-w-5xl mx-auto">
             <ComparisonTable
@@ -274,7 +293,7 @@ const VsOtherRuinsPage = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">
-              Which Ruins Should You Visit?
+              {isEs ? "¿Qué Ruinas Deberías Visitar?" : "Which Ruins Should You Visit?"}
             </h2>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -308,8 +327,8 @@ const VsOtherRuinsPage = () => {
       {/* FAQ */}
       <FAQSection
         faqs={comparisonFAQs}
-        title="Mayan Ruins Comparison FAQs"
-        subtitle="Common questions about choosing which ruins to visit"
+        title={isEs ? "Preguntas Frecuentes sobre Ruinas Mayas" : "Mayan Ruins Comparison FAQs"}
+        subtitle={isEs ? "Preguntas comunes sobre qué ruinas visitar" : "Common questions about choosing which ruins to visit"}
       />
 
       {/* CTA */}

@@ -31,5 +31,7 @@ export const useLocale = () => {
     return { en: enPath, es: pathname };
   };
 
-  return { locale, t, localePath, alternatePath };
+  const isEs = locale === "es";
+
+  return { locale, isEs, t, localePath, alternatePath };
 };
