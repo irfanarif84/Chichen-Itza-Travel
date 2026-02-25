@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { tours } from "@/lib/tourData";
+import { tourTranslationsEs } from "@/lib/tourData.es";
 import { CalendarDays, Users, MapPin, ArrowRight } from "lucide-react";
 import { useLocale } from "@/lib/i18n/useLocale";
+import { LocaleLink } from "@/components/LocaleLink";
 
 const departureCities = [
   { value: "cancun", label: "Cancún" },
@@ -17,7 +18,7 @@ const QuickBookingForm = () => {
   const [tourId, setTourId] = useState("");
   const [city, setCity] = useState("");
   const [guests, setGuests] = useState(2);
-  const { t, localePath } = useLocale();
+  const { t, localePath, isEs } = useLocale();
 
   return (
     <div className="bg-card rounded-lg shadow-card-hover p-6">
@@ -37,7 +38,7 @@ const QuickBookingForm = () => {
               <option value="">{t("booking.chooseTour")}</option>
               {tours.map((tour) => (
                 <option key={tour.id} value={tour.id}>
-                  {tour.shortTitle} — ${tour.price.adult}
+                  {(isEs ? tourTranslationsEs[tour.id]?.shortTitle : null) ?? tour.shortTitle} — ${tour.price.adult}
                 </option>
               ))}
             </select>
@@ -95,9 +96,9 @@ const QuickBookingForm = () => {
         </div>
 
         <Button variant="cta" className="w-full mt-2" size="lg" asChild>
-          <Link to={localePath("/tours")}>
+          <LocaleLink to="/tours">
             {t("booking.checkBtn")} <ArrowRight className="h-4 w-4 ml-1" />
-          </Link>
+          </LocaleLink>
         </Button>
 
         <p className="text-xs text-center text-muted-foreground">{t("booking.noPayment")}</p>
