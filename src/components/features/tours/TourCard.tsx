@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import { Star, Clock, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { tourImages } from "@/lib/tourImages";
 import { useLocale } from "@/lib/i18n/useLocale";
+import { useLocalizedTour } from "@/hooks/useTourLocale";
+import { LocaleLink } from "@/components/LocaleLink";
 import type { Tour } from "@/types/tour";
 
 interface TourCardProps {
@@ -12,7 +13,8 @@ interface TourCardProps {
 
 const TourCard = ({ tour }: TourCardProps) => {
   const heroSrc = tourImages[tour.id];
-  const { t, localePath } = useLocale();
+  const { t } = useLocale();
+  const loc = useLocalizedTour(tour);
 
   return (
     <motion.div
@@ -26,7 +28,7 @@ const TourCard = ({ tour }: TourCardProps) => {
         {heroSrc ? (
           <img
             src={heroSrc}
-            alt={`${tour.title} - Chichen Itza tour photo`}
+            alt={`${loc.title} - Chichen Itza tour photo`}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             width={1024}
@@ -35,9 +37,9 @@ const TourCard = ({ tour }: TourCardProps) => {
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30" />
         )}
-        {tour.badge && (
+        {loc.badge && (
           <span className="absolute top-3 left-3 z-20 bg-accent text-accent-foreground text-xs font-bold px-2.5 py-1 rounded-md">
-            {tour.badge}
+            {loc.badge}
           </span>
         )}
         <div className="absolute bottom-3 left-3 z-20">
@@ -60,13 +62,13 @@ const TourCard = ({ tour }: TourCardProps) => {
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         <h3 className="font-heading font-semibold text-base mb-1.5 group-hover:text-primary transition-colors line-clamp-2">
-          {tour.title}
+          {loc.title}
         </h3>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{tour.shortDescription}</p>
+        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{loc.shortDescription}</p>
 
         <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4 mt-auto">
           <span className="flex items-center gap-1">
-            <Clock className="h-3.5 w-3.5" /> {tour.duration}
+            <Clock className="h-3.5 w-3.5" /> {loc.duration}
           </span>
           <span className="flex items-center gap-1">
             <Users className="h-3.5 w-3.5" /> {tour.groupSize.type === "private" ? t("tourCard.private") : `${t("tourCard.max")} ${tour.groupSize.max}`}
@@ -74,9 +76,9 @@ const TourCard = ({ tour }: TourCardProps) => {
         </div>
 
         <Button variant="cta" size="sm" className="w-full" asChild>
-          <Link to={localePath(`/tours/${tour.slug}`)}>
+          <LocaleLink to={`/tours/${tour.slug}`}>
             {t("tourCard.viewDetails")} <ArrowRight className="h-4 w-4 ml-1" />
-          </Link>
+          </LocaleLink>
         </Button>
       </div>
     </motion.div>
