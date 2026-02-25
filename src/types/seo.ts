@@ -5,6 +5,9 @@ export interface PageMeta {
   ogImage?: string;
   ogType?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  robots?: string;
+  locale?: "en" | "es";
+  alternateUrls?: { en: string; es: string };
 }
 
 export interface BreadcrumbItem {

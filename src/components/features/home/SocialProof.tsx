@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Star, MapPin, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface RecentBooking {
   name: string;
@@ -48,6 +49,7 @@ const featuredReviews = [
 const SocialProof = () => {
   const [currentBooking, setCurrentBooking] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const { t } = useLocale();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +59,6 @@ const SocialProof = () => {
         setIsVisible(true);
       }, 500);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -68,7 +69,7 @@ const SocialProof = () => {
       <div className="container">
         {/* Recent bookings ticker */}
         <div className="mb-12">
-          <div 
+          <div
             className={`inline-flex items-center gap-3 bg-success/10 border border-success/20 rounded-full px-4 py-2 transition-all duration-500 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
             }`}
@@ -78,7 +79,7 @@ const SocialProof = () => {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
             </span>
             <span className="text-sm font-medium text-foreground">
-              <strong>{booking.name}</strong> from {booking.location} booked <strong>{booking.tour}</strong>
+              <strong>{booking.name}</strong> {t("social.from")} {booking.location} {t("social.booked")} <strong>{booking.tour}</strong>
             </span>
             <span className="text-xs text-muted-foreground flex items-center gap-1">
               <Clock className="h-3 w-3" /> {booking.timeAgo}
@@ -88,12 +89,8 @@ const SocialProof = () => {
 
         {/* Section heading */}
         <div className="text-center mb-10">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Trusted by Thousands
-          </span>
-          <h2 className="font-heading font-bold text-3xl lg:text-4xl mt-2 mb-3">
-            What Our Travelers Say
-          </h2>
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">{t("social.label")}</span>
+          <h2 className="font-heading font-bold text-3xl lg:text-4xl mt-2 mb-3">{t("social.h2")}</h2>
           <div className="flex items-center justify-center gap-2 text-lg">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
@@ -101,7 +98,7 @@ const SocialProof = () => {
               ))}
             </div>
             <span className="font-semibold">4.9/5</span>
-            <span className="text-muted-foreground">from 10,247 verified reviews</span>
+            <span className="text-muted-foreground">{t("social.verifiedReviews")}</span>
           </div>
         </div>
 
@@ -132,10 +129,10 @@ const SocialProof = () => {
         {/* Trust stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 text-center">
           {[
-            { value: "10,247+", label: "Happy Travelers" },
-            { value: "98%", label: "Would Recommend" },
-            { value: "4.9/5", label: "Average Rating" },
-            { value: "8+", label: "Years of Experience" },
+            { value: "10,247+", label: t("social.happyTravelers") },
+            { value: "98%", label: t("social.wouldRecommend") },
+            { value: "4.9/5", label: t("social.averageRating") },
+            { value: "8+", label: t("social.yearsExperience") },
           ].map((stat, i) => (
             <div key={i}>
               <p className="font-heading font-bold text-3xl text-primary">{stat.value}</p>

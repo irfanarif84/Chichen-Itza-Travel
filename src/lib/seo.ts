@@ -1,14 +1,25 @@
 import type { PageMeta } from "@/types/seo";
+import type { Locale } from "@/lib/i18n/useLocale";
+import { enToEsRoutes } from "@/lib/i18n/routeMap";
 
 const BASE_URL = "https://chichenitzatours.com";
 
-export const getPageMeta = (meta: Partial<PageMeta>): PageMeta => ({
-  title: meta.title || "Chichen Itza Tours – Best Guided Tours 2026",
-  description: meta.description || "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Free cancellation & instant confirmation.",
-  canonical: meta.canonical ? `${BASE_URL}${meta.canonical}` : BASE_URL,
-  ogImage: meta.ogImage,
-  jsonLd: meta.jsonLd,
-});
+export const getPageMeta = (meta: Partial<PageMeta> & { locale?: Locale }): PageMeta => {
+  const locale = meta.locale || "en";
+  const enPath = locale === "en" ? (meta.canonical || "/") : (meta.canonical || "/").replace(/^\/es/, "") || "/";
+  const esPath = enToEsRoutes[enPath] || `/es${enPath}`;
+
+  return {
+    title: meta.title || "Chichen Itza Tours – Best Guided Tours 2026",
+    description: meta.description || "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Free cancellation & instant confirmation.",
+    canonical: meta.canonical ? `${BASE_URL}${meta.canonical}` : BASE_URL,
+    ogImage: meta.ogImage,
+    jsonLd: meta.jsonLd,
+    robots: meta.robots,
+    locale,
+    alternateUrls: { en: enPath, es: esPath },
+  };
+};
 
 export const createTourSchema = (tour: { title: string; description: string; price: number; rating: number; reviewCount: number; duration: string; images?: string[] }) => ({
   "@context": "https://schema.org",

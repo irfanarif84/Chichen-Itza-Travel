@@ -1,17 +1,20 @@
 import { ShieldCheck, Clock, BadgeCheck, CreditCard } from "lucide-react";
-
-const badges = [
-  { icon: ShieldCheck, label: "Free Cancellation", sub: "Up to 24 hours before" },
-  { icon: Clock, label: "Instant Confirmation", sub: "Booking confirmed immediately" },
-  { icon: BadgeCheck, label: "Best Price Guarantee", sub: "Find it cheaper? We'll match" },
-  { icon: CreditCard, label: "Secure Checkout", sub: "256-bit SSL encryption" },
-];
+import { useLocale } from "@/lib/i18n/useLocale";
 
 interface TrustBadgesProps {
   variant?: "default" | "compact";
 }
 
 const TrustBadges = ({ variant = "default" }: TrustBadgesProps) => {
+  const { t } = useLocale();
+
+  const badges = [
+    { icon: ShieldCheck, label: t("trust.freeCancellation"), sub: t("trust.freeCancellationSub") },
+    { icon: Clock, label: t("trust.instantConfirmation"), sub: t("trust.instantConfirmationSub") },
+    { icon: BadgeCheck, label: t("trust.bestPrice"), sub: t("trust.bestPriceSub") },
+    { icon: CreditCard, label: t("trust.secureCheckout"), sub: t("trust.secureCheckoutSub") },
+  ];
+
   if (variant === "compact") {
     return (
       <div className="flex flex-wrap gap-3">
