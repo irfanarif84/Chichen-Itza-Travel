@@ -11,37 +11,38 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import CTASection from "@/components/features/home/CTASection";
 import LocaleLink from "@/components/LocaleLink";
 import { useLocale } from "@/lib/i18n/useLocale";
-import {
-  generalChichenItzaFAQs,
-  practicalFAQs,
-  dayToursFAQs,
-  privateToursFAQs,
-  cenoteToursFAQs,
-  sunriseToursFAQs,
-} from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import type { FAQItem } from "@/lib/faqData";
-
-const allFAQs: FAQItem[] = [
-  ...generalChichenItzaFAQs,
-  ...practicalFAQs,
-  ...dayToursFAQs,
-  ...privateToursFAQs,
-  ...cenoteToursFAQs,
-  ...sunriseToursFAQs,
-];
 
 const FAQPage = () => {
   const { locale, isEs } = useLocale();
+  const { getFAQs } = useLocalizedFAQs();
   const [search, setSearch] = useState("");
 
+  const generalFAQs = getFAQs("general");
+  const practicalFAQsList = getFAQs("practical");
+  const dayToursFAQsList = getFAQs("dayTours");
+  const privateToursFAQsList = getFAQs("privateTours");
+  const cenoteToursFAQsList = getFAQs("cenoteTours");
+  const sunriseToursFAQsList = getFAQs("sunriseTours");
+
+  const allFAQs: FAQItem[] = [
+    ...generalFAQs,
+    ...practicalFAQsList,
+    ...dayToursFAQsList,
+    ...privateToursFAQsList,
+    ...cenoteToursFAQsList,
+    ...sunriseToursFAQsList,
+  ];
+
   const categories = useMemo(() => [
-    { id: "general", label: isEs ? "General" : "General", icon: HelpCircle, faqs: generalChichenItzaFAQs },
-    { id: "booking", label: isEs ? "Reservas y Pagos" : "Booking & Payments", icon: CreditCard, faqs: practicalFAQs },
-    { id: "day-tours", label: isEs ? "Tours de un Día" : "Day Tours", icon: Compass, faqs: dayToursFAQs },
-    { id: "private", label: isEs ? "Tours Privados" : "Private Tours", icon: Users, faqs: privateToursFAQs },
-    { id: "cenotes", label: isEs ? "Tours de Cenotes" : "Cenote Tours", icon: MapPin, faqs: cenoteToursFAQs },
-    { id: "sunrise", label: isEs ? "Tours al Amanecer" : "Sunrise Tours", icon: Sun, faqs: sunriseToursFAQs },
-  ], [isEs]);
+    { id: "general", label: isEs ? "General" : "General", icon: HelpCircle, faqs: generalFAQs },
+    { id: "booking", label: isEs ? "Reservas y Pagos" : "Booking & Payments", icon: CreditCard, faqs: practicalFAQsList },
+    { id: "day-tours", label: isEs ? "Tours de un Día" : "Day Tours", icon: Compass, faqs: dayToursFAQsList },
+    { id: "private", label: isEs ? "Tours Privados" : "Private Tours", icon: Users, faqs: privateToursFAQsList },
+    { id: "cenotes", label: isEs ? "Tours de Cenotes" : "Cenote Tours", icon: MapPin, faqs: cenoteToursFAQsList },
+    { id: "sunrise", label: isEs ? "Tours al Amanecer" : "Sunrise Tours", icon: Sun, faqs: sunriseToursFAQsList },
+  ], [isEs, generalFAQs, practicalFAQsList, dayToursFAQsList, privateToursFAQsList, cenoteToursFAQsList, sunriseToursFAQsList]);
 
   const meta = getPageMeta({
     title: isEs

@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { playaDelCarmenFAQs, playaDelCarmenPageContent } from "@/lib/locationData";
+import { playaDelCarmenFAQs, playaDelCarmenFAQsEs, playaDelCarmenPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -61,6 +61,7 @@ const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
 const PlayaDelCarmenToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const faqs = isEs ? playaDelCarmenFAQsEs : playaDelCarmenFAQs;
   const allPlayaTours = getToursByDeparture("playa-del-carmen");
   const [filters, setFilters] = useState<FilterState>({
     priceRange: "all",
@@ -282,7 +283,7 @@ const PlayaDelCarmenToursPage = () => {
     canonical: c.canonical,
     locale,
     jsonLd: [
-      createFAQSchema(playaDelCarmenFAQs),
+      createFAQSchema(faqs),
       createBreadcrumbSchema([
         { name: c.breadcrumbHome, url: isEs ? "/es/" : "/" },
         { name: c.breadcrumb },
@@ -409,7 +410,7 @@ const PlayaDelCarmenToursPage = () => {
             </section>
 
             <section className="mb-12">
-              <FAQSection faqs={playaDelCarmenFAQs} title={c.faqTitle} subtitle={c.faqSubtitle} />
+              <FAQSection faqs={faqs} title={c.faqTitle} subtitle={c.faqSubtitle} />
             </section>
           </div>
 

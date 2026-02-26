@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { meridaFAQs, meridaPageContent } from "@/lib/locationData";
+import { meridaFAQs, meridaFAQsEs, meridaPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -61,6 +61,7 @@ const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
 const MeridaToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const faqs = isEs ? meridaFAQsEs : meridaFAQs;
   const allMeridaTours = getToursByDeparture("merida");
   const [filters, setFilters] = useState<FilterState>({
     priceRange: "all",
@@ -292,7 +293,7 @@ const MeridaToursPage = () => {
     canonical: c.canonical,
     locale,
     jsonLd: [
-      createFAQSchema(meridaFAQs),
+      createFAQSchema(faqs),
       createBreadcrumbSchema([
         { name: c.breadcrumbHome, url: isEs ? "/es/" : "/" },
         { name: c.breadcrumb },
@@ -412,7 +413,7 @@ const MeridaToursPage = () => {
               <div className="grid sm:grid-cols-2 gap-5">{c.comboTours.map((combo) => (<ComboTourCard key={combo.title} {...combo} />))}</div>
             </section>
 
-            <section className="mb-12"><FAQSection faqs={meridaFAQs} title={c.faqTitle} subtitle={c.faqSubtitle} /></section>
+            <section className="mb-12"><FAQSection faqs={faqs} title={c.faqTitle} subtitle={c.faqSubtitle} /></section>
           </div>
 
           <aside className="hidden lg:block">

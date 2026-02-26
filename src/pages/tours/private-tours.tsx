@@ -13,7 +13,7 @@ import ComparisonTable from "@/components/guide/ComparisonTable";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
-import { privateToursFAQs } from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -47,6 +47,8 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const PrivateToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const { getFAQs } = useLocalizedFAQs();
+  const privateToursFAQs = getFAQs("privateTours");
 
   const c = isEs ? {
     metaTitle: "Tours Privados a Chichén Itzá – VIP y Sin Filas 2026",

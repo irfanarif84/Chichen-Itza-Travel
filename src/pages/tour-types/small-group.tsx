@@ -13,7 +13,7 @@ import ComparisonTable from "@/components/guide/ComparisonTable";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
-import { smallGroupFAQs } from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import { useLocale } from "@/lib/i18n/useLocale";
 import type { Tour } from "@/types/tour";
 
@@ -30,6 +30,8 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const SmallGroupPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const { getFAQs } = useLocalizedFAQs();
+  const smallGroupFAQs = getFAQs("smallGroup");
 
   const c = isEs ? {
     metaTitle: "Tours en Grupo Pequeño a Chichén Itzá – Experiencias Íntimas 2026",

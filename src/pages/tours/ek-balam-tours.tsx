@@ -18,13 +18,21 @@ import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
 import type { Tour } from "@/types/tour";
 
-const ekBalamFAQs: FAQItem[] = [
+const ekBalamFAQsEn: FAQItem[] = [
   { question: "Can you still climb the pyramid at Ek Balam?", answer: "Yes! Unlike Chichen Itza where climbing is prohibited, you can still climb Ek Balam's Acropolis pyramid for breathtaking 360° panoramic views.", category: "experience" },
   { question: "How far is Ek Balam from Chichen Itza?", answer: "Ek Balam is approximately 30 miles (50 km) north of Chichen Itza, about a 45-minute drive.", category: "distance" },
   { question: "What makes Ek Balam different from Chichen Itza?", answer: "Ek Balam offers a more intimate experience with fewer crowds, the ability to climb the main pyramid, remarkably preserved stucco sculptures, and a beautiful jungle cenote.", category: "comparison" },
   { question: "Is the climb at Ek Balam difficult?", answer: "The climb is moderately challenging — the Acropolis is about 100 feet tall with steep stone steps. Most reasonably fit adults and older children can manage it.", category: "preparation" },
   { question: "Is there a cenote at Ek Balam?", answer: "Yes! Cenote Xcanche is located about a 15-minute walk from the ruins with swimming, rappelling, and zipline activities.", category: "activities" },
   { question: "How long does it take to explore Ek Balam?", answer: "Plan 1.5-2 hours for a thorough visit, including climbing the Acropolis. Add another hour if visiting Cenote Xcanche.", category: "duration" },
+];
+const ekBalamFAQsEs: FAQItem[] = [
+  { question: "¿Todavía se puede subir a la pirámide de Ek Balam?", answer: "¡Sí! A diferencia de Chichén Itzá donde está prohibido subir, aún puedes subir la pirámide Acrópolis de Ek Balam para disfrutar de vistas panorámicas de 360° impresionantes.", category: "experience" },
+  { question: "¿Qué tan lejos está Ek Balam de Chichén Itzá?", answer: "Ek Balam está a aproximadamente 50 km al norte de Chichén Itzá, a unos 45 minutos en auto.", category: "distance" },
+  { question: "¿Qué hace diferente a Ek Balam de Chichén Itzá?", answer: "Ek Balam ofrece una experiencia más íntima con menos multitudes, la posibilidad de subir la pirámide principal, esculturas de estuco notablemente preservadas y un hermoso cenote en la selva.", category: "comparison" },
+  { question: "¿Es difícil la subida en Ek Balam?", answer: "La subida es moderadamente desafiante — la Acrópolis tiene unos 30 metros de altura con escalones de piedra empinados. La mayoría de adultos y niños mayores en buena forma pueden hacerlo.", category: "preparation" },
+  { question: "¿Hay un cenote en Ek Balam?", answer: "¡Sí! El Cenote Xcanche está a unos 15 minutos caminando de las ruinas con actividades de natación, rappel y tirolesa.", category: "activities" },
+  { question: "¿Cuánto tiempo se necesita para explorar Ek Balam?", answer: "Planea 1.5-2 horas para una visita completa, incluyendo subir la Acrópolis. Agrega otra hora si visitas el Cenote Xcanche.", category: "duration" },
 ];
 
 const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
@@ -40,6 +48,7 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const EkBalamToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const ekBalamFAQs = isEs ? ekBalamFAQsEs : ekBalamFAQsEn;
 
   const c = isEs ? {
     metaTitle: "Chichén Itzá + Ek Balam Tours – Sube una Pirámide Maya 2026",

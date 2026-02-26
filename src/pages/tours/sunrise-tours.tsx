@@ -13,7 +13,7 @@ import TimelineItem from "@/components/features/tours/TimelineItem";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
-import { sunriseToursFAQs } from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -47,6 +47,8 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const SunriseToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const { getFAQs } = useLocalizedFAQs();
+  const sunriseToursFAQs = getFAQs("sunriseTours");
 
   const c = isEs ? {
     metaTitle: "Tour al Amanecer en Chichén Itzá – Acceso Temprano",

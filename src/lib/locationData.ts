@@ -6,6 +6,13 @@ import {
   rivieraMayaFAQs as rivieraMayaFAQsFromFaqData,
   meridaFAQs as meridaFAQsFromFaqData,
 } from "./faqData";
+import {
+  cancunFAQsEs,
+  playaDelCarmenFAQsEs,
+  tulumFAQsEs,
+  rivieraMayaFAQsEs,
+  meridaFAQsEs,
+} from "./faqData.es";
 
 // Re-export FAQs for convenience
 export const cancunFAQs = cancunFAQsFromFaqData;
@@ -13,6 +20,9 @@ export const playaDelCarmenFAQs = playaFAQsFromFaqData;
 export const tulumFAQs = tulumFAQsFromFaqData;
 export const rivieraMayaFAQs = rivieraMayaFAQsFromFaqData;
 export const meridaFAQs = meridaFAQsFromFaqData;
+
+// Spanish FAQ exports
+export { cancunFAQsEs, playaDelCarmenFAQsEs, tulumFAQsEs, rivieraMayaFAQsEs, meridaFAQsEs };
 
 // Location metadata for SEO and page content
 export const locations: LocationInfo[] = [

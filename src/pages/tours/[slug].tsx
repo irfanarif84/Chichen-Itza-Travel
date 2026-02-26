@@ -19,14 +19,7 @@ import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { useLocalizedTour } from "@/hooks/useTourLocale";
-import {
-  generalChichenItzaFAQs,
-  dayToursFAQs,
-  privateToursFAQs,
-  cenoteToursFAQs,
-  sunriseToursFAQs,
-  smallGroupFAQs,
-} from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import type { FAQItem } from "@/lib/faqData";
 
 // Map category IDs to review category strings
@@ -76,6 +69,7 @@ const TourDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const tour = getTourBySlug(slug ?? "");
   const { isEs, locale } = useLocale();
+  const { getFAQs } = useLocalizedFAQs();
 
   // 404 guard
   if (!tour) {
@@ -98,17 +92,19 @@ const TourDetailPage = () => {
   const reviewCategory = categoryToReviewMap[primaryCategory] ?? "day-tour";
   const reviews = getReviewsByTourCategory(reviewCategory).slice(0, 3);
 
-  // FAQ
-  const categoryFAQMap: Record<string, FAQItem[]> = {
-    "day-tours": dayToursFAQs,
-    "private-tours": privateToursFAQs,
-    "cenote-tours": cenoteToursFAQs,
-    "sunrise-tours": sunriseToursFAQs,
-    "small-group": smallGroupFAQs,
+  // FAQ - use localized versions
+  const categoryFAQKeyMap: Record<string, "dayTours" | "privateTours" | "cenoteTours" | "sunriseTours" | "smallGroup"> = {
+    "day-tours": "dayTours",
+    "private-tours": "privateTours",
+    "cenote-tours": "cenoteTours",
+    "sunrise-tours": "sunriseTours",
+    "small-group": "smallGroup",
   };
-  const categoryFaqs = categoryFAQMap[primaryCategory] ?? [];
+  const faqKey = categoryFAQKeyMap[primaryCategory];
+  const categoryFaqs = faqKey ? getFAQs(faqKey) : [];
+  const generalFaqs = getFAQs("general");
   const seen = new Set<string>();
-  const combinedFaqs = [...categoryFaqs, ...generalChichenItzaFAQs]
+  const combinedFaqs = [...categoryFaqs, ...generalFaqs]
     .filter((f) => { if (seen.has(f.question)) return false; seen.add(f.question); return true; })
     .slice(0, 6);
 

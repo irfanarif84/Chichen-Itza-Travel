@@ -18,13 +18,21 @@ import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
 import type { Tour } from "@/types/tour";
 
-const valladolidFAQs: FAQItem[] = [
+const valladolidFAQsEn: FAQItem[] = [
   { question: "What is Valladolid and why is it included in Chichen Itza tours?", answer: "Valladolid is a charming colonial town designated as a 'Pueblo Mágico' (Magical Town) by the Mexican government. Located just 45 minutes from Chichen Itza, it offers colorful colonial architecture, authentic Yucatecan cuisine, and a peaceful contrast to the archaeological site.", category: "general" },
   { question: "What can I see in Valladolid?", answer: "Top attractions include the Convento de San Bernardino de Siena (16th-century convent), the colorful Calzada de los Frailes street, Cenote Zaci (in the town center), the main plaza, artisan markets, and the stunning Church of San Servacio.", category: "attractions" },
   { question: "How long do tours spend in Valladolid?", answer: "Most combo tours allocate 1.5-2 hours in Valladolid, which includes a guided walking tour of the main sights, lunch, and free time for shopping or exploration.", category: "duration" },
   { question: "Is Valladolid safe for tourists?", answer: "Yes, Valladolid is considered very safe for tourists. It's a peaceful, well-maintained colonial town with a strong tourism infrastructure.", category: "safety" },
   { question: "Can I swim in a cenote in Valladolid?", answer: "Yes! Cenote Zaci is located right in the town center, and Cenote Saamal is on the outskirts. Some combo tours include swimming at one of these cenotes.", category: "activities" },
   { question: "What food should I try in Valladolid?", answer: "Must-try dishes include cochinita pibil (slow-roasted pork), papadzules (egg-filled tortillas), sopa de lima (lime soup), and longaniza de Valladolid (local sausage).", category: "food" },
+];
+const valladolidFAQsEs: FAQItem[] = [
+  { question: "¿Qué es Valladolid y por qué está incluido en los tours a Chichén Itzá?", answer: "Valladolid es una encantadora ciudad colonial designada como 'Pueblo Mágico' por el gobierno mexicano. Ubicada a solo 45 minutos de Chichén Itzá, ofrece arquitectura colonial colorida, cocina yucateca auténtica y un contraste pacífico con el sitio arqueológico.", category: "general" },
+  { question: "¿Qué puedo ver en Valladolid?", answer: "Las principales atracciones incluyen el Convento de San Bernardino de Siena (siglo XVI), la colorida Calzada de los Frailes, el Cenote Zaci (en el centro), la plaza principal, mercados artesanales y la impresionante Iglesia de San Servacio.", category: "attractions" },
+  { question: "¿Cuánto tiempo pasan los tours en Valladolid?", answer: "La mayoría de los tours combo asignan 1.5-2 horas en Valladolid, que incluye un recorrido guiado por los principales atractivos, almuerzo y tiempo libre para compras o exploración.", category: "duration" },
+  { question: "¿Es seguro Valladolid para los turistas?", answer: "Sí, Valladolid es considerada muy segura para los turistas. Es una ciudad colonial tranquila y bien mantenida con una fuerte infraestructura turística.", category: "safety" },
+  { question: "¿Se puede nadar en un cenote en Valladolid?", answer: "¡Sí! El Cenote Zaci está ubicado justo en el centro de la ciudad, y el Cenote Saamal está en las afueras. Algunos tours combo incluyen nado en uno de estos cenotes.", category: "activities" },
+  { question: "¿Qué comida debo probar en Valladolid?", answer: "Platillos imperdibles incluyen cochinita pibil (cerdo asado lentamente), papadzules (tortillas rellenas de huevo), sopa de lima y longaniza de Valladolid (embutido local).", category: "food" },
 ];
 
 const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
@@ -40,6 +48,7 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const ValladolidToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const valladolidFAQs = isEs ? valladolidFAQsEs : valladolidFAQsEn;
 
   const c = isEs ? {
     metaTitle: "Chichén Itzá + Valladolid Tours – Pueblo Mágico Colonial 2026",
