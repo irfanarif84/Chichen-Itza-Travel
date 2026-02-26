@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <!-- Homepage -->
   <url>
     <loc>https://chichenitzatours.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -10,6 +23,17 @@
   <!-- All Tours -->
   <url>
     <loc>https://chichenitzatours.com/tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -17,36 +41,119 @@
   <!-- Tour Category Pages -->
   <url>
     <loc>https://chichenitzatours.com/tours/day-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/day-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/excursiones-de-dia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/day-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/excursiones-de-dia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/day-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/excursiones-de-dia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/day-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/private-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-privados"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-privados</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-privados"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/cenote-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-de-cenotes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-de-cenotes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-de-cenotes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/sunrise-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/sunrise-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-al-amanecer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/sunrise-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-al-amanecer</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/sunrise-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-al-amanecer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/sunrise-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/ek-balam-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/ek-balam-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-ek-balam"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/ek-balam-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-ek-balam</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/ek-balam-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-ek-balam"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/ek-balam-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/valladolid-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/valladolid-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-valladolid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/valladolid-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-valladolid</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/valladolid-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-valladolid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/valladolid-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/tours/night-tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/night-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-nocturnos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/night-tours"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/tours-nocturnos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/night-tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/tours-nocturnos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/night-tours"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -54,36 +161,119 @@
   <!-- Tour Detail Pages -->
   <url>
     <loc>https://chichenitzatours.com/tours/classic-day-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/classic-day-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/classic-day-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/classic-day-tour"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/classic-day-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/classic-day-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/classic-day-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/classic-day-tour"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/sunrise-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/sunrise-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/sunrise-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/sunrise-tour"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/sunrise-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/sunrise-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/sunrise-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/sunrise-tour"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/private-vip-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-vip-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/private-vip-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-vip-tour"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/private-vip-tour</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-vip-tour"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/private-vip-tour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-vip-tour"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/cenote-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/cenote-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-combo"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/cenote-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/cenote-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-combo"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/ek-balam-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/ek-balam-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/ek-balam-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/ek-balam-combo"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/ek-balam-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/ek-balam-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/ek-balam-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/ek-balam-combo"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours/family-adventure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/family-adventure"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/family-adventure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/family-adventure"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/tours/family-adventure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/family-adventure"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/family-adventure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/family-adventure"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/tours/night-show</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/night-show"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/night-show"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/night-show"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/night-show</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/night-show"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/night-show"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/night-show"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -91,26 +281,85 @@
   <!-- Departure Location Pages -->
   <url>
     <loc>https://chichenitzatours.com/tours-from/cancun</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/cancun"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/cancun"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/cancun"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours-desde/cancun</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/cancun"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/cancun"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/cancun"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours-from/playa-del-carmen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/playa-del-carmen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/playa-del-carmen"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/playa-del-carmen"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours-desde/playa-del-carmen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/playa-del-carmen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/playa-del-carmen"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/playa-del-carmen"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours-from/tulum</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/tulum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/tulum"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/tulum"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours-desde/tulum</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/tulum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/tulum"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/tulum"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tours-from/riviera-maya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/riviera-maya"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/riviera-maya"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/riviera-maya"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/tours-desde/riviera-maya</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/riviera-maya"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/riviera-maya"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/riviera-maya"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/tours-from/merida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/merida"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/merida"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/merida"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours-desde/merida</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours-from/merida"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours-desde/merida"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours-from/merida"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -118,46 +367,153 @@
   <!-- Guide Pages -->
   <url>
     <loc>https://chichenitzatours.com/guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/best-time-to-visit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/best-time-to-visit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/mejor-epoca-para-visitar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/best-time-to-visit"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/mejor-epoca-para-visitar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/best-time-to-visit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/mejor-epoca-para-visitar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/best-time-to-visit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/what-to-bring</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/what-to-bring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/que-llevar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/what-to-bring"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/que-llevar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/what-to-bring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/que-llevar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/what-to-bring"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/history-and-facts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/history-and-facts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/historia-y-datos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/history-and-facts"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/historia-y-datos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/history-and-facts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/historia-y-datos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/history-and-facts"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/how-to-get-there</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/how-to-get-there"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/como-llegar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/how-to-get-there"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/como-llegar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/how-to-get-there"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/como-llegar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/how-to-get-there"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/entrance-fees</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/entrance-fees"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/precios-de-entrada"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/entrance-fees"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/precios-de-entrada</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/entrance-fees"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/precios-de-entrada"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/entrance-fees"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/photography-tips</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/photography-tips"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/consejos-de-fotografia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/photography-tips"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/consejos-de-fotografia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/photography-tips"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/consejos-de-fotografia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/photography-tips"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/guide/dress-code-and-rules</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/dress-code-and-rules"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/codigo-de-vestimenta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/dress-code-and-rules"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/guia/codigo-de-vestimenta</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/dress-code-and-rules"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/codigo-de-vestimenta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/dress-code-and-rules"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/guide/vs-other-ruins</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/vs-other-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/comparacion-con-otras-ruinas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/vs-other-ruins"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/guia/comparacion-con-otras-ruinas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/guide/vs-other-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/guia/comparacion-con-otras-ruinas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/guide/vs-other-ruins"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -165,26 +521,85 @@
   <!-- Tour Type Pages -->
   <url>
     <loc>https://chichenitzatours.com/tour-types/small-group</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/small-group"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/grupos-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/small-group"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tipos-de-tours/grupos-pequenos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/small-group"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/grupos-pequenos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/small-group"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tour-types/luxury</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/luxury"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/lujo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/luxury"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tipos-de-tours/lujo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/luxury"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/lujo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/luxury"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tour-types/budget</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/budget"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/economico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/budget"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tipos-de-tours/economico</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/budget"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/economico"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/budget"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/tour-types/family-friendly</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/family-friendly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/familiar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/family-friendly"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/tipos-de-tours/familiar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/family-friendly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/familiar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/family-friendly"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/tour-types/vip-skip-the-line</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/vip-skip-the-line"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/vip-sin-filas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/vip-skip-the-line"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tipos-de-tours/vip-sin-filas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tour-types/vip-skip-the-line"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tipos-de-tours/vip-sin-filas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tour-types/vip-skip-the-line"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -192,21 +607,68 @@
   <!-- Combo Tour Pages -->
   <url>
     <loc>https://chichenitzatours.com/combo-tours/cenote-ik-kil</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/cenote-ik-kil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/cenote-ik-kil"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/cenote-ik-kil"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/combo-tours/cenote-ik-kil</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/cenote-ik-kil"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/cenote-ik-kil"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/cenote-ik-kil"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/combo-tours/coba-ruins</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/coba-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/ruinas-de-coba"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/coba-ruins"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/combo-tours/ruinas-de-coba</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/coba-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/ruinas-de-coba"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/coba-ruins"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/combo-tours/isla-mujeres</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/isla-mujeres"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/isla-mujeres"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/isla-mujeres"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/combo-tours/isla-mujeres</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/isla-mujeres"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/isla-mujeres"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/isla-mujeres"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/combo-tours/multi-day-yucatan</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/multi-day-yucatan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/yucatan-varios-dias"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/multi-day-yucatan"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/combo-tours/yucatan-varios-dias</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/combo-tours/multi-day-yucatan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/combo-tours/yucatan-varios-dias"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/combo-tours/multi-day-yucatan"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -214,26 +676,85 @@
   <!-- Practical Pages -->
   <url>
     <loc>https://chichenitzatours.com/practical/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/preguntas-frecuentes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/faq"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/practico/preguntas-frecuentes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/preguntas-frecuentes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/faq"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/practical/booking-info</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/booking-info"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/informacion-de-reserva"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/booking-info"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/practico/informacion-de-reserva</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/booking-info"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/informacion-de-reserva"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/booking-info"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/practical/cancellation-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/cancellation-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/politica-de-cancelacion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/cancellation-policy"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/practico/politica-de-cancelacion</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/cancellation-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/politica-de-cancelacion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/cancellation-policy"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://chichenitzatours.com/practical/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/contact"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://chichenitzatours.com/es/practico/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/contact"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://chichenitzatours.com/practical/testimonials</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/testimonios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/testimonials"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/practico/testimonios</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/practical/testimonials"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/practico/testimonios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/practical/testimonials"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -241,7 +762,105 @@
   <!-- Blog -->
   <url>
     <loc>https://chichenitzatours.com/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog"/>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://chichenitzatours.com/blog/spring-equinox-chichen-itza-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/spring-equinox-chichen-itza-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/spring-equinox-chichen-itza-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/spring-equinox-chichen-itza-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog/spring-equinox-chichen-itza-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/spring-equinox-chichen-itza-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/spring-equinox-chichen-itza-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/spring-equinox-chichen-itza-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/blog/cenotes-near-chichen-itza</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/cenotes-near-chichen-itza"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/cenotes-near-chichen-itza"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/cenotes-near-chichen-itza"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog/cenotes-near-chichen-itza</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/cenotes-near-chichen-itza"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/cenotes-near-chichen-itza"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/cenotes-near-chichen-itza"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/blog/chichen-itza-vs-tulum-ruins</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/chichen-itza-vs-tulum-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/chichen-itza-vs-tulum-ruins"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/chichen-itza-vs-tulum-ruins"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog/chichen-itza-vs-tulum-ruins</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/chichen-itza-vs-tulum-ruins"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/chichen-itza-vs-tulum-ruins"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/chichen-itza-vs-tulum-ruins"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/blog/photographing-chichen-itza-like-a-pro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/photographing-chichen-itza-like-a-pro"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/photographing-chichen-itza-like-a-pro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/photographing-chichen-itza-like-a-pro"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog/photographing-chichen-itza-like-a-pro</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/photographing-chichen-itza-like-a-pro"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/photographing-chichen-itza-like-a-pro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/photographing-chichen-itza-like-a-pro"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/blog/mayan-history-beginners-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/mayan-history-beginners-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/mayan-history-beginners-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/mayan-history-beginners-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/blog/mayan-history-beginners-guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/blog/mayan-history-beginners-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/blog/mayan-history-beginners-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/blog/mayan-history-beginners-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
