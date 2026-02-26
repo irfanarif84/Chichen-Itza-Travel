@@ -12,7 +12,7 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
-import { dayToursFAQs } from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -45,6 +45,8 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 
 const DayToursPage = () => {
   const { locale, t } = useLocale();
+  const { getFAQs } = useLocalizedFAQs();
+  const dayToursFAQs = getFAQs("dayTours");
   const dayTours = useMemo(() => tours.filter((t) => t.category.includes("day-tours")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(dayTours, filters), [dayTours, filters]);

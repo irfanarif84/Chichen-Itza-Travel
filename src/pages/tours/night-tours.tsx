@@ -18,7 +18,7 @@ import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
 import type { Tour } from "@/types/tour";
 
-const nightToursFAQs: FAQItem[] = [
+const nightToursFAQsEn: FAQItem[] = [
   { question: "What is the Noches de Kukulkan light show?", answer: "A spectacular light and sound show featuring cutting-edge projection mapping on the El Castillo pyramid. Colorful projections tell the story of Mayan civilization. The show runs approximately 25-30 minutes.", category: "experience" },
   { question: "What nights does the light show run?", answer: "Wednesday through Sunday during high season (November–April) and Thursday through Saturday during low season. The show starts after sunset, usually around 8:00 PM.", category: "schedule" },
   { question: "Is the night tour different from a daytime visit?", answer: "Yes, completely! The night tour focuses on the light show rather than exploring the ruins up close. You can walk around illuminated sections before the show.", category: "comparison" },
@@ -26,6 +26,15 @@ const nightToursFAQs: FAQItem[] = [
   { question: "Is dinner included?", answer: "Yes, most night tours include dinner at a restaurant near the archaeological zone before the show.", category: "inclusions" },
   { question: "How long is the entire night tour?", answer: "Approximately 6-7 hours total, including transportation, dinner, pre-show exploration, the light show, and return journey.", category: "duration" },
   { question: "Is the night tour suitable for children?", answer: "Yes, children generally love the light show. The colorful projections are engaging for all ages. Children under 3 are usually free.", category: "family" },
+];
+const nightToursFAQsEs: FAQItem[] = [
+  { question: "¿Qué es el espectáculo de luces Noches de Kukulkán?", answer: "Un espectacular show de luz y sonido con proyección de última generación sobre la pirámide de El Castillo. Las proyecciones coloridas cuentan la historia de la civilización maya. El show dura aproximadamente 25-30 minutos.", category: "experience" },
+  { question: "¿Qué noches se presenta el show de luces?", answer: "De miércoles a domingo en temporada alta (noviembre-abril) y de jueves a sábado en temporada baja. El show comienza después del atardecer, usualmente alrededor de las 8:00 PM.", category: "schedule" },
+  { question: "¿El tour nocturno es diferente a una visita de día?", answer: "¡Sí, completamente! El tour nocturno se enfoca en el show de luces en lugar de explorar las ruinas de cerca. Puedes caminar por las secciones iluminadas antes del show.", category: "comparison" },
+  { question: "¿Puedo tomar fotos durante el show de luces?", answer: "Sí, se anima a tomar fotos. Los smartphones y cámaras son bienvenidos. Sin embargo, los trípodes, el flash y los drones están prohibidos.", category: "photography" },
+  { question: "¿Incluye cena?", answer: "Sí, la mayoría de los tours nocturnos incluyen cena en un restaurante cercano a la zona arqueológica antes del show.", category: "inclusions" },
+  { question: "¿Cuánto dura el tour nocturno completo?", answer: "Aproximadamente 6-7 horas en total, incluyendo transporte, cena, exploración previa al show, el espectáculo de luces y el viaje de regreso.", category: "duration" },
+  { question: "¿Es el tour nocturno adecuado para niños?", answer: "Sí, a los niños generalmente les encanta el show de luces. Las proyecciones coloridas son atractivas para todas las edades. Los niños menores de 3 años usualmente son gratis.", category: "family" },
 ];
 
 const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
@@ -41,6 +50,7 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const NightToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const nightToursFAQs = isEs ? nightToursFAQsEs : nightToursFAQsEn;
 
   const c = isEs ? {
     metaTitle: "Tours Nocturnos Chichén Itzá – Espectáculo de Luz y Sonido 2026",

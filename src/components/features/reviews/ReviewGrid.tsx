@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import { Star, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReviewCard from "./ReviewCard";
 import type { Review } from "@/lib/reviewsData";
 import { getAverageRating } from "@/lib/reviewsData";
+import { useLocale } from "@/lib/i18n/useLocale";
+import { LocaleLink } from "@/components/LocaleLink";
 
 interface ReviewGridProps {
   reviews: Review[];
@@ -16,17 +17,19 @@ interface ReviewGridProps {
 const ReviewGrid = ({
   reviews,
   limit,
-  title = "What Travelers Say",
+  title,
   showAggregate = true,
   showAllLink = false,
 }: ReviewGridProps) => {
+  const { isEs } = useLocale();
   const displayed = limit ? reviews.slice(0, limit) : reviews;
   const avg = getAverageRating(reviews);
+  const displayTitle = title || (isEs ? "Lo Que Dicen los Viajeros" : "What Travelers Say");
 
   return (
     <div>
       <div className="text-center mb-8">
-        <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">{title}</h2>
+        <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">{displayTitle}</h2>
         {showAggregate && reviews.length > 0 && (
           <div className="flex items-center justify-center gap-2">
             <div className="flex gap-0.5">
@@ -36,7 +39,7 @@ const ReviewGrid = ({
             </div>
             <span className="font-heading font-bold">{avg}/5</span>
             <span className="text-sm text-muted-foreground">
-              from {reviews.length} review{reviews.length !== 1 ? "s" : ""}
+              {isEs ? "de" : "from"} {reviews.length} {isEs ? (reviews.length !== 1 ? "reseñas" : "reseña") : (reviews.length !== 1 ? "reviews" : "review")}
             </span>
           </div>
         )}
@@ -51,9 +54,9 @@ const ReviewGrid = ({
       {showAllLink && (
         <div className="text-center mt-8">
           <Button variant="outline" asChild>
-            <Link to="/practical/testimonials">
-              See All Reviews <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
+            <LocaleLink to="/practical/testimonials">
+              {isEs ? "Ver Todas las Reseñas" : "See All Reviews"} <ArrowRight className="h-4 w-4 ml-1" />
+            </LocaleLink>
           </Button>
         </div>
       )}

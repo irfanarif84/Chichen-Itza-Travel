@@ -12,7 +12,7 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
 import CTASection from "@/components/features/home/CTASection";
 import { tours } from "@/lib/tourData";
-import { cenoteToursFAQs } from "@/lib/faqData";
+import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import { getReviewsByTourCategory } from "@/lib/reviewsData";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -46,6 +46,8 @@ const filterTours = (allTours: Tour[], filters: FilterState): Tour[] => {
 const CenoteToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const { getFAQs } = useLocalizedFAQs();
+  const cenoteToursFAQs = getFAQs("cenoteTours");
 
   const c = isEs ? {
     metaTitle: "Chichén Itzá + Tours de Cenotes – Nada y Explora 2026",

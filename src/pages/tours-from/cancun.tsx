@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { cancunFAQs, cancunPageContent } from "@/lib/locationData";
+import { cancunFAQs, cancunFAQsEs, cancunPageContent } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -61,6 +61,7 @@ const filterTours = (tours: Tour[], filters: FilterState): Tour[] => {
 const CancunToursPage = () => {
   const { locale } = useLocale();
   const isEs = locale === "es";
+  const faqs = isEs ? cancunFAQsEs : cancunFAQs;
   const allCancunTours = getToursByDeparture("cancun");
   const [filters, setFilters] = useState<FilterState>({
     priceRange: "all",
@@ -290,7 +291,7 @@ const CancunToursPage = () => {
     canonical: c.canonical,
     locale,
     jsonLd: [
-      createFAQSchema(cancunFAQs),
+      createFAQSchema(faqs),
       createBreadcrumbSchema([
         { name: c.breadcrumbHome, url: isEs ? "/es/" : "/" },
         { name: c.breadcrumb },
@@ -487,7 +488,7 @@ const CancunToursPage = () => {
 
             {/* FAQ */}
             <section className="mb-12">
-              <FAQSection faqs={cancunFAQs} title={c.faqTitle} subtitle={c.faqSubtitle} />
+              <FAQSection faqs={faqs} title={c.faqTitle} subtitle={c.faqSubtitle} />
             </section>
           </div>
 
