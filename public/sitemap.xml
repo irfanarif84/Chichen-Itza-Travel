@@ -278,6 +278,108 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://chichenitzatours.com/tours/private-sunrise</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-sunrise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/private-sunrise"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-sunrise"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/private-sunrise</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/private-sunrise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/private-sunrise"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/private-sunrise"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/tours/valladolid-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/valladolid-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/valladolid-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/valladolid-combo"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/valladolid-combo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/valladolid-combo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/valladolid-combo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/valladolid-combo"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/tours/cenote-saamal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-saamal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/cenote-saamal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-saamal"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/cenote-saamal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/cenote-saamal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/cenote-saamal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/cenote-saamal"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/tours/merida-cultural</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/merida-cultural"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/merida-cultural"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/merida-cultural"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/merida-cultural</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/merida-cultural"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/merida-cultural"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/merida-cultural"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/tours/budget-express</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/budget-express"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/budget-express"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/budget-express"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/budget-express</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/budget-express"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/budget-express"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/budget-express"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://chichenitzatours.com/tours/budget-playa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/budget-playa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/budget-playa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/budget-playa"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chichenitzatours.com/es/tours/budget-playa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/tours/budget-playa"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tours/budget-playa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/tours/budget-playa"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Departure Location Pages -->
   <url>
     <loc>https://chichenitzatours.com/tours-from/cancun</loc>
