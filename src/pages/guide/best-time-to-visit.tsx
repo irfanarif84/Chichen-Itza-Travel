@@ -56,6 +56,16 @@ const timingFAQs = [
   },
 ];
 
+const timingFAQsEs = [
+  { question: "¿Cuál es el mes más caluroso en Chichén Itzá?", answer: "El mes más caluroso es mayo, con una temperatura máxima promedio de 36°C (97°F). Las temperaturas se mantienen altas de marzo a agosto, así que prepárate adecuadamente.", category: "timing" },
+  { question: "¿Cuál es el mes más lluvioso en Chichén Itzá?", answer: "El mes más lluvioso es septiembre, con un promedio de 170mm (6.7 pulgadas) de lluvia. De junio a octubre se ve más lluvia, pero los aguaceros suelen ser breves.", category: "timing" },
+  { question: "¿Cuál es el mejor mes para evitar multitudes?", answer: "La temporada baja (mayo, junio, septiembre, octubre) tiene menos visitantes. Llega temprano (apertura a las 8 AM) o tarde (3 PM) para menos multitudes en cualquier época del año.", category: "timing" },
+  { question: "¿Cuál es el mes más barato para visitar Chichén Itzá?", answer: "La temporada media (abril, mayo, septiembre, octubre) ofrece el mejor equilibrio entre buen clima y precios más bajos en vuelos y hoteles.", category: "timing" },
+  { question: "¿Qué hora del día es mejor para visitar Chichén Itzá?", answer: "Temprano en la mañana (8-10 AM) o al final de la tarde (3-5 PM) son ideales. La luz es mejor para fotos y las temperaturas son más frescas que al mediodía.", category: "timing" },
+  { question: "¿Cuál es el mejor mes para ver el equinoccio?", answer: "Marzo y septiembre son los mejores para ver la sombra de la serpiente en la pirámide de El Castillo durante los equinoccios de primavera y otoño. Reserva con mucha anticipación.", category: "timing" },
+  { question: "¿Cómo es el clima en Chichén Itzá en diciembre?", answer: "Diciembre es uno de los mejores meses para visitar, con clima cálido y seco y temperaturas cómodas que promedian 27°C (81°F).", category: "timing" },
+];
+
 const monthlyWeatherData = [
   { month: "Jan", temp: 82, rain: 2, crowds: "High", price: "$$$" },
   { month: "Feb", temp: 84, rain: 2, crowds: "High", price: "$$$" },
@@ -280,7 +290,7 @@ const BestTimeToVisitPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection faqs={timingFAQs} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} subtitle={isEs ? "Sobre el Tiempo y la Planificación" : "About Timing & Planning"} />
+              <FAQSection faqs={isEs ? timingFAQsEs : timingFAQs} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} subtitle={isEs ? "Sobre el Tiempo y la Planificación" : "About Timing & Planning"} />
             </div>
 
             {/* Sidebar */}

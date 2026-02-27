@@ -60,6 +60,15 @@ const faqData = [
   },
 ];
 
+const faqDataEs = [
+  { question: "¿Qué tan lejos está Chichén Itzá de Cancún?", answer: "Chichén Itzá está a aproximadamente 193 km (120 millas) de Cancún, tomando 2.5-3 horas en auto por la autopista 180D (de cuota). La mayoría de los tours salen de Cancún entre las 6:30-7:30 AM para llegar cuando el sitio abre a las 8:00 AM." },
+  { question: "¿Es mejor manejar o tomar un tour a Chichén Itzá?", answer: "Los tours son recomendados para la mayoría de los visitantes. Mientras que manejar cuesta $60-80 por renta de auto más $30 de gasolina y $15 de peajes, los tours ($89-109) incluyen transporte, guías expertos, tarifas de entrada, comida y frecuentemente visitas a cenotes." },
+  { question: "¿Se puede tomar un autobús a Chichén Itzá?", answer: "Sí, los autobuses ADO salen de Cancún, Playa del Carmen, Mérida y Valladolid hacia Chichén Itzá. Desde Cancún, los autobuses salen a las 8:45 AM diariamente, cuestan $12-15 USD ida y tardan 3-4 horas." },
+  { question: "¿Cuánto tiempo toma llegar a Chichén Itzá desde Playa del Carmen?", answer: "El viaje desde Playa del Carmen a Chichén Itzá toma 1.5-2 horas (153 km). Es el punto de salida principal más cercano, lo que significa que los tours pueden salir más tarde (7:00-7:30 AM) y aún llegar temprano." },
+  { question: "¿Es seguro el camino a Chichén Itzá?", answer: "Sí, la autopista 180D (de cuota) está bien mantenida, es moderna y segura. Es muy transitada por turistas y locales. Maneja durante el día y usa la autopista de cuota (no la libre). Se considera una de las rutas más seguras en Yucatán." },
+  { question: "¿Necesito un auto para visitar Chichén Itzá?", answer: "No. Los tours guiados son la opción más popular e incluyen transporte ida y vuelta desde tu hotel. Los tours ofrecen mejor valor que rentar un auto cuando consideras la experiencia del guía, las tarifas de entrada y la comida." },
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -460,9 +469,9 @@ const HowToGetTherePage = () => {
               {/* FAQ */}
               <section id="faq">
                 <FAQSection
-                  title="Frequently Asked Questions About Getting to Chichen Itza"
-                  subtitle="Common questions from travelers planning their journey"
-                  faqs={faqData}
+                  title={isEs ? "Preguntas Frecuentes sobre Cómo Llegar a Chichén Itzá" : "Frequently Asked Questions About Getting to Chichen Itza"}
+                  subtitle={isEs ? "Preguntas comunes de viajeros que planifican su viaje" : "Common questions from travelers planning their journey"}
+                  faqs={isEs ? faqDataEs : faqData}
                 />
               </section>
 

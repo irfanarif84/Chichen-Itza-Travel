@@ -69,6 +69,17 @@ const faqData: FAQItem[] = [
   },
 ];
 
+const faqDataEs: FAQItem[] = [
+  { question: "¿Cuál es el mejor momento del día para fotografiar Chichén Itzá?", answer: "Temprano en la mañana (amanecer) o al final de la tarde (hora dorada) ofrecen la mejor luz y menos multitudes. El sol del mediodía puede crear sombras duras.", category: "photography" },
+  { question: "¿Se permiten trípodes en Chichén Itzá?", answer: "Los trípodes pequeños generalmente están permitidos, pero los grandes profesionales pueden requerir un permiso. Consulta con los oficiales del sitio para conocer las regulaciones actuales.", category: "photography" },
+  { question: "¿Qué configuraciones de cámara se recomiendan para Chichén Itzá?", answer: "Usa una apertura amplia (f/2.8 - f/5.6) para poca profundidad de campo, ISO 100-400 para bajo ruido, y ajusta la velocidad de obturación según las condiciones de luz. Dispara en formato RAW para máxima flexibilidad de edición.", category: "photography" },
+  { question: "¿Puedo usar un dron en Chichén Itzá?", answer: "Los drones están estrictamente prohibidos en Chichén Itzá sin autorización previa del gobierno mexicano y las autoridades del sitio.", category: "photography" },
+  { question: "¿Cuáles son los lugares imprescindibles para fotos en Chichén Itzá?", answer: "La pirámide de El Castillo, el Gran Juego de Pelota, el Templo de los Guerreros y el Cenote Sagrado son lugares icónicos. También captura detalles como tallas y texturas.", category: "photography" },
+  { question: "¿Qué debo hacer si llueve durante mi visita?", answer: "Aprovecha la luz difusa para capturar colores vibrantes y detalles. Protege tu equipo con una cubierta impermeable y busca refugio en áreas cubiertas.", category: "photography" },
+  { question: "¿Hay restricciones de fotografía dentro de las estructuras?", answer: "Está prohibido subir a la mayoría de las estructuras, y la fotografía con flash puede estar restringida en ciertas áreas para preservar las ruinas.", category: "photography" },
+  { question: "¿Cuál es el mejor lente para fotografiar El Castillo?", answer: "Un lente gran angular (16-35mm) es ideal para capturar la escala completa de El Castillo. Un teleobjetivo (70-200mm) puede aislar detalles y crear compresión.", category: "photography" },
+];
+
 const compositionTechniques = [
   {
     label: "Rule of Thirds",
@@ -310,7 +321,7 @@ const PhotographyTipsPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection faqs={faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
+              <FAQSection faqs={isEs ? faqDataEs : faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
             </div>
 
             {/* Sidebar */}

@@ -49,6 +49,15 @@ const faqData = [
   },
 ];
 
+const faqDataEs = [
+  { question: "¿Cuánto cuesta la entrada a Chichén Itzá en 2026?", answer: "La tarifa total de entrada es aproximadamente 533 pesos mexicanos (unos $27-30 USD) por persona. Esto incluye la tarifa federal del INAH (185 pesos) y la tarifa estatal de Yucatán (348 pesos). Los menores de 13 años entran gratis. Los tours guiados generalmente incluyen las tarifas de entrada en el precio del paquete." },
+  { question: "¿Los tours guiados incluyen la tarifa de entrada?", answer: "Sí, prácticamente todos los tours guiados incluyen la tarifa de entrada a Chichén Itzá en el precio total. Los tours de $89-189 incluyen transporte, guía, entrada, comida y frecuentemente visitas a cenotes — excelente valor comparado con pagar por separado." },
+  { question: "¿Puedo pagar con tarjeta de crédito en Chichén Itzá?", answer: "Sí, las taquillas aceptan tarjetas de crédito principales (Visa, Mastercard) así como efectivo en pesos mexicanos o dólares. Sin embargo, se recomienda efectivo en pesos ya que es más rápido, evita problemas de procesamiento y asegura el mejor tipo de cambio." },
+  { question: "¿Hay descuentos para personas mayores o estudiantes?", answer: "Los ciudadanos y residentes mexicanos con identificación válida reciben descuentos significativos. Los adultos mayores y estudiantes extranjeros NO reciben descuentos — la tarifa estándar aplica para todos los visitantes internacionales independientemente de la edad (excepto menores de 13 que entran gratis)." },
+  { question: "¿Hay una tarifa extra por cámaras?", answer: "No hay tarifa extra por smartphones o cámaras compactas. Sin embargo, las cámaras profesionales con lentes desmontables (DSLR, sin espejo) requieren un permiso especial que cuesta $45 USD y se paga por separado en la entrada." },
+  { question: "¿Qué pasa si quiero visitar dos veces en un día?", answer: "Tu boleto de entrada es válido para una sola entrada. Si sales del sitio, no puedes reingresar sin comprar un nuevo boleto. Planea pasar toda tu visita (2-4 horas) en una sola sesión. No hay pases de varios días." },
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -360,7 +369,7 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection title="Entrance Fees FAQ" faqs={faqData} />
+              <FAQSection title={isEs ? "Preguntas Frecuentes sobre Precios de Entrada" : "Entrance Fees FAQ"} faqs={isEs ? faqDataEs : faqData} />
             </div>
 
             {/* Sidebar */}
