@@ -48,6 +48,15 @@ const faqData = [
   },
 ];
 
+const faqDataEs = [
+  { question: "¿Hay un código de vestimenta en Chichén Itzá?", answer: "No hay un código de vestimenta estricto, pero los visitantes deben vestir de manera modesta y apropiada para un sitio arqueológico UNESCO. No se permite ropa de baño, ropa reveladora ni gráficos ofensivos. Usa ropa cómoda y apropiada para el clima." },
+  { question: "¿Se pueden usar pantalones cortos en Chichén Itzá?", answer: "Sí, los pantalones cortos son perfectamente aceptables y recomendados para la comodidad con el calor. Los que llegan a la rodilla o más largos son ideales." },
+  { question: "¿Se puede subir a las pirámides de Chichén Itzá?", answer: "No, subir a El Castillo y otras estructuras está permanentemente prohibido desde 2006. Esto protege las piedras antiguas de la erosión y asegura la seguridad después de la muerte de un turista en 2006. Violar esta regla puede resultar en expulsión inmediata y posibles multas." },
+  { question: "¿Se permiten mochilas en Chichén Itzá?", answer: "Sí, las mochilas pequeñas a medianas están permitidas y recomendadas para llevar agua, protector solar y elementos esenciales. Las mochilas grandes de senderismo (50L+) pueden estar restringidas." },
+  { question: "¿Se pueden tocar las ruinas de Chichén Itzá?", answer: "No, tocar las ruinas está estrictamente prohibido. Los aceites de las manos humanas dañan la piedra caliza antigua y deterioran los detalles tallados. Los guardias monitorean el sitio activamente." },
+  { question: "¿Qué artículos están prohibidos en Chichén Itzá?", answer: "Los artículos prohibidos incluyen: trípodes, monópodes, palos selfie, drones, mochilas grandes, armas, botellas de vidrio, globos, pintura en aerosol, mascotas (excepto animales de servicio) y equipo profesional de video sin permisos." },
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -464,7 +473,7 @@ const DressCodePage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection title="Dress Code & Rules FAQ" faqs={faqData} />
+              <FAQSection title={isEs ? "Preguntas Frecuentes sobre Código de Vestimenta y Reglas" : "Dress Code & Rules FAQ"} faqs={isEs ? faqDataEs : faqData} />
             </div>
 
             {/* Sidebar */}

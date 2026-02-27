@@ -58,6 +58,48 @@ const faqData = [
   },
 ];
 
+const faqDataEs = [
+  { question: "¿Cuándo se construyó Chichén Itzá?", answer: "Chichén Itzá fue fundada alrededor del 600 d.C., pero alcanzó su apogeo entre el 850 y 1200 d.C. cuando se convirtió en la capital de la civilización maya en Yucatán.", category: "history" },
+  { question: "¿Qué significa Chichén Itzá?", answer: "En maya, 'Chi' significa boca, 'Chen' significa pozo, e 'Itza' es el nombre del pueblo maya que se asentó allí. Así que Chichén Itzá se traduce como 'En la boca del pozo de los Itzaes'.", category: "history" },
+  { question: "¿Quién construyó Chichén Itzá?", answer: "Chichén Itzá fue construida por la civilización maya, con una influencia significativa de los toltecas que migraron desde el centro de México alrededor del siglo X d.C.", category: "history" },
+  { question: "¿Por qué Chichén Itzá es una Maravilla del Mundo?", answer: "Chichén Itzá fue nombrada una de las Nuevas Siete Maravillas del Mundo en 2007 debido a su avanzada arquitectura, significado histórico y la icónica pirámide de El Castillo.", category: "history" },
+  { question: "¿Qué es El Castillo?", answer: "El Castillo, también conocido como el Templo de Kukulcán, es la pirámide central de Chichén Itzá. Mide 30 metros de alto y tiene 365 escalones (total de todos los lados), representando los días del año. Durante los equinoccios de primavera y otoño, una sombra en forma de serpiente aparece en la escalera de la pirámide.", category: "history" },
+  { question: "¿Chichén Itzá es un sitio UNESCO?", answer: "Sí, Chichén Itzá fue designada Patrimonio de la Humanidad por la UNESCO en 1988, reconociendo su importancia cultural e histórica como uno de los mejores ejemplos de la civilización maya-tolteca en Yucatán.", category: "history" },
+  { question: "¿Qué pasó con Chichén Itzá?", answer: "Chichén Itzá declinó como potencia principal alrededor del siglo XIII, y la capital se trasladó a Mayapán. Las razones de la decadencia no están del todo claras pero pueden incluir inestabilidad política, guerras y factores ambientales.", category: "history" },
+  { question: "¿Se puede subir a El Castillo?", answer: "No, subir a El Castillo está prohibido desde 2006 para proteger la estructura antigua de daños mayores. Sin embargo, aún puedes explorar la base y admirar la pirámide de cerca.", category: "history" },
+];
+
+const timelineEs = [
+  { year: "600 d.C.", event: "Comienza el asentamiento; los primeros grupos mayas fundan Chichén Itzá." },
+  { year: "800-900 d.C.", event: "Chichén Itzá se convierte en un centro regional importante." },
+  { year: "987 d.C.", event: "Llega el rey tolteca Topiltzin Ce Acatl Quetzalcóatl." },
+  { year: "1000-1200 d.C.", event: "Chichén Itzá prospera como capital de la civilización maya." },
+  { year: "1221 d.C.", event: "Se forma la Liga de Mayapán; el poder de Chichén Itzá declina." },
+  { year: "1400 d.C.", event: "Chichén Itzá es abandonada." },
+  { year: "1531 d.C.", event: "Llegan los conquistadores españoles." },
+  { year: "1841 d.C.", event: "Comienza la exploración arqueológica." },
+  { year: "1988 d.C.", event: "Chichén Itzá es designada Patrimonio de la Humanidad por la UNESCO." },
+  { year: "2007 d.C.", event: "Chichén Itzá es nombrada una de las Nuevas Siete Maravillas del Mundo." },
+];
+
+const structuresEs = [
+  { name: "El Castillo (Templo de Kukulcán)", description: "La icónica pirámide escalonada, dedicada al dios serpiente emplumada Kukulcán." },
+  { name: "Gran Juego de Pelota", description: "El juego de pelota más grande de Mesoamérica, donde se celebraban juegos rituales." },
+  { name: "Templo de los Guerreros", description: "Una gran pirámide escalonada con columnas talladas que representan guerreros." },
+  { name: "Grupo de las Mil Columnas", description: "Un complejo de columnas y plataformas cerca del Templo de los Guerreros." },
+  { name: "Cenote Sagrado", description: "Un sumidero natural usado para ofrendas sacrificiales." },
+  { name: "El Observatorio (El Caracol)", description: "Una estructura única utilizada para observaciones astronómicas." },
+];
+
+const amazingFactsEs = [
+  "El Castillo tiene 365 escalones, representando los días del año.",
+  "Durante los equinoccios, una sombra de serpiente aparece en El Castillo.",
+  "El Gran Juego de Pelota es más grande que un campo de fútbol.",
+  "El Cenote Sagrado se usaba para ofrendas sacrificiales, incluyendo sacrificios humanos.",
+  "Chichén Itzá fue un centro importante de astronomía y matemáticas.",
+  "El sitio muestra una mezcla de estilos arquitectónicos mayas y toltecas.",
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -215,7 +257,7 @@ const HistoryAndFactsPage = () => {
                   {isEs ? "Cronología Histórica" : "Historical Timeline"}
                 </h2>
                 <ul className="list-none space-y-3">
-                  {timeline.map((item, i) => (
+                  {(isEs ? timelineEs : timeline).map((item, i) => (
                     <li key={i} className="grid grid-cols-[100px_1fr] gap-4">
                       <div className="font-semibold">{item.year}</div>
                       <div className="text-muted-foreground">{item.event}</div>
@@ -252,7 +294,7 @@ const HistoryAndFactsPage = () => {
                   {isEs ? "Estructuras Clave" : "Key Structures"}
                 </h2>
                 <ul className="list-none space-y-3">
-                  {structures.map((structure, i) => (
+                  {(isEs ? structuresEs : structures).map((structure, i) => (
                     <li key={i} className="space-y-1">
                       <h3 className="font-semibold">{structure.name}</h3>
                       <p className="text-muted-foreground">{structure.description}</p>
@@ -267,7 +309,7 @@ const HistoryAndFactsPage = () => {
                   {isEs ? "Datos Asombrosos" : "Amazing Facts"}
                 </h2>
                 <ul className="list-disc list-inside space-y-3">
-                  {amazingFacts.map((fact, i) => (
+                  {(isEs ? amazingFactsEs : amazingFacts).map((fact, i) => (
                     <li key={i} className="text-muted-foreground">
                       {fact}
                     </li>
@@ -277,7 +319,7 @@ const HistoryAndFactsPage = () => {
 
               {/* FAQ */}
               <FAQSection
-                faqs={faqData}
+                faqs={isEs ? faqDataEs : faqData}
                 title={isEs ? "Preguntas Frecuentes sobre la Historia de Chichén Itzá" : "Chichen Itza History FAQs"}
                 subtitle={isEs ? "Respuestas a preguntas comunes sobre la historia y los datos de Chichén Itzá" : "Answers to common questions about Chichen Itza history and facts"}
               />

@@ -52,6 +52,16 @@ const comparisonFAQs: FAQItem[] = [
   },
 ];
 
+const comparisonFAQsEs: FAQItem[] = [
+  { question: "¿Cuál es la mejor ruina maya para visitar?", answer: "Chichén Itzá es imprescindible para los visitantes primerizos — es Patrimonio de la Humanidad de la UNESCO y una de las Nuevas Siete Maravillas. Si tienes tiempo para un segundo sitio, Tulum ofrece impresionantes vistas al mar y Cobá te permite subir a la pirámide más alta de Yucatán.", category: "comparison" },
+  { question: "¿Se puede subir a las pirámides en México?", answer: "Puedes subir pirámides en Cobá (Nohoch Mul, 42 metros) y Ek Balam (la Acrópolis). Ya no se permite subir en Chichén Itzá (desde 2006) ni en Tulum. La Gran Pirámide de Uxmal también está cerrada a los escaladores.", category: "comparison" },
+  { question: "¿Se puede visitar Chichén Itzá y Tulum en un día?", answer: "Es técnicamente posible pero no recomendable — están a 150 km de distancia y pasarías la mayor parte del día manejando. Es mejor dedicar un día completo a cada uno, o combinar Chichén Itzá con Ek Balam o Valladolid cercanos.", category: "comparison" },
+  { question: "¿Cuáles ruinas son las menos concurridas?", answer: "Ek Balam es por mucho el sitio principal menos concurrido, seguido de Cobá. Chichén Itzá y Tulum son los más visitados. Para menos multitudes en sitios populares, llega temprano en la mañana o visita entre semana.", category: "comparison" },
+  { question: "¿Cuánto cuestan las entradas a las ruinas mayas?", answer: "En 2026: Chichén Itzá ~614 MXN ($35 USD), Tulum ~100 MXN ($6 USD), Cobá ~100 MXN ($6 USD), Ek Balam ~413 MXN ($24 USD), Uxmal ~494 MXN ($28 USD). Los precios incluyen tarifas federales y estatales.", category: "comparison" },
+  { question: "¿Cuál es la diferencia entre Chichén Itzá y Tulum?", answer: "Chichén Itzá es un sitio masivo en el interior famoso por la pirámide de El Castillo, precisión astronómica e ingeniería maya. Tulum es un sitio costero más pequeño ubicado en acantilados sobre el Mar Caribe, conocido por su impresionante entorno de playa.", category: "comparison" },
+  { question: "¿Vale la pena visitar Uxmal?", answer: "Absolutamente. Uxmal presenta la arquitectura de estilo Puuc más ornamentada de cualquier sitio maya, con intrincados mosaicos de piedra en la Pirámide del Adivino. Es menos concurrido que Chichén Itzá y se combina mejor con un viaje a Mérida.", category: "comparison" },
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -326,7 +336,7 @@ const VsOtherRuinsPage = () => {
 
       {/* FAQ */}
       <FAQSection
-        faqs={comparisonFAQs}
+        faqs={isEs ? comparisonFAQsEs : comparisonFAQs}
         title={isEs ? "Preguntas Frecuentes sobre Ruinas Mayas" : "Mayan Ruins Comparison FAQs"}
         subtitle={isEs ? "Preguntas comunes sobre qué ruinas visitar" : "Common questions about choosing which ruins to visit"}
       />

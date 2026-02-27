@@ -74,6 +74,17 @@ const faqData: FAQItem[] = [
   },
 ];
 
+const faqDataEs: FAQItem[] = [
+  { question: "¿Cuál es el código de vestimenta para Chichén Itzá?", answer: "No hay un código de vestimenta estricto, pero se recomienda ropa ligera y transpirable. Usa zapatos cómodos para caminar, sombrero y gafas de sol. El traje de baño es opcional si planeas nadar en un cenote cercano.", category: "packing" },
+  { question: "¿Se permiten drones en Chichén Itzá?", answer: "No, los drones están estrictamente prohibidos en Chichén Itzá. Pueden ser confiscados. Deja tu dron en casa o en tu hotel.", category: "packing" },
+  { question: "¿Puedo llevar una mochila a Chichén Itzá?", answer: "Las mochilas pequeñas están permitidas, pero pueden ser revisadas. Las mochilas grandes y maletas no están permitidas. Hay un servicio de almacenamiento cerca de la entrada para artículos más grandes.", category: "packing" },
+  { question: "¿Se permite el protector solar en Chichén Itzá?", answer: "Sí, pero los protectores solares estándar están cada vez más restringidos para proteger las ruinas. Opta por protector solar biodegradable y seguro para arrecifes.", category: "packing" },
+  { question: "¿Puedo llevar una cámara profesional y trípode?", answer: "Las cámaras profesionales están permitidas, pero los trípodes y otros equipos grandes pueden requerir un permiso. Contacta al INAH para más detalles.", category: "packing" },
+  { question: "¿Hay mosquitos en Chichén Itzá?", answer: "Los mosquitos son comunes, especialmente durante la temporada de lluvias (junio-octubre). Lleva repelente de mosquitos para evitar picaduras.", category: "packing" },
+  { question: "¿Puedo llevar comida y bebidas a Chichén Itzá?", answer: "No se permite comida ni bebidas del exterior. Puedes comprar refrescos dentro del parque, pero los precios son más altos. Llevar una botella de agua vacía para rellenar es buena idea.", category: "packing" },
+  { question: "¿Debo llevar efectivo o tarjetas de crédito?", answer: "Se recomienda efectivo (pesos mexicanos) para las tarifas de entrada, recuerdos y vendedores pequeños. Las tarjetas de crédito se aceptan en las taquillas principales y tiendas más grandes.", category: "packing" },
+];
+
 const getMeta = (locale: "en" | "es") => {
   const isEs = locale === "es";
   return getPageMeta({
@@ -402,7 +413,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection faqs={faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
+              <FAQSection faqs={isEs ? faqDataEs : faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
             </div>
 
             {/* Sidebar */}
