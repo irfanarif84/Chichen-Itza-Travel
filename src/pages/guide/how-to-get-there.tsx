@@ -93,21 +93,21 @@ const getMeta = (locale: "en" | "es") => {
   });
 };
 
-const distances = [
-  { city: "Cancún", icon: "🏖️", distance: "120 miles (193 km)", time: "2.5-3 hours" },
-  { city: "Playa del Carmen", icon: "🌴", distance: "95 miles (153 km)", time: "1.5-2 hours" },
-  { city: "Tulum", icon: "🏛️", distance: "95 miles (153 km)", time: "2-2.5 hours" },
-  { city: "Mérida", icon: "🏙️", distance: "75 miles (121 km)", time: "1.5 hours" },
-  { city: "Valladolid", icon: "🌺", distance: "26 miles (42 km)", time: "30-40 minutes" },
-  { city: "Cozumel", icon: "⛴️", distance: "130 miles (209 km)", time: "4+ hours (ferry + drive)" },
-];
-
 const HowToGetTherePage = () => {
   const { locale, isEs } = useLocale();
   const meta = getMeta(locale);
   const breadcrumbs = [
     { label: isEs ? "Guía" : "Guide", href: "/guide" },
     { label: isEs ? "Cómo Llegar" : "How to Get There" },
+  ];
+
+  const distances = [
+    { city: "Cancún", icon: "🏖️", distance: "120 miles (193 km)", time: isEs ? "2.5-3 horas" : "2.5-3 hours" },
+    { city: "Playa del Carmen", icon: "🌴", distance: "95 miles (153 km)", time: isEs ? "1.5-2 horas" : "1.5-2 hours" },
+    { city: "Tulum", icon: "🏛️", distance: "95 miles (153 km)", time: isEs ? "2-2.5 horas" : "2-2.5 hours" },
+    { city: "Mérida", icon: "🏙️", distance: "75 miles (121 km)", time: isEs ? "1.5 horas" : "1.5 hours" },
+    { city: "Valladolid", icon: "🌺", distance: "26 miles (42 km)", time: isEs ? "30-40 minutos" : "30-40 minutes" },
+    { city: "Cozumel", icon: "⛴️", distance: "130 miles (209 km)", time: isEs ? "4+ horas (ferry + auto)" : "4+ hours (ferry + drive)" },
   ];
 
   return (
@@ -118,7 +118,7 @@ const HowToGetTherePage = () => {
       <section className="relative bg-gradient-to-br from-secondary/10 via-background to-primary/10 py-12 lg:py-16 overflow-hidden">
         <img
           src={guideImages["how-to-get-there"]}
-          alt="Scenic road through Yucatan jungle leading to Chichen Itza"
+          alt={isEs ? "Camino escénico por la selva yucateca hacia Chichén Itzá" : "Scenic road through Yucatan jungle leading to Chichen Itza"}
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
         />
@@ -158,20 +158,28 @@ const HowToGetTherePage = () => {
               {/* Quick Answer */}
               <div className="bg-success/5 border-2 border-success rounded-xl p-6">
                 <h2 className="font-heading font-bold text-lg mb-3 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-success" /> Quick Answer: Best Way to Get There
+                  <CheckCircle className="h-5 w-5 text-success" /> {isEs ? "Respuesta Rápida: La Mejor Forma de Llegar" : "Quick Answer: Best Way to Get There"}
                 </h2>
                 <p className="text-muted-foreground mb-3">
-                  <strong>For 95% of visitors: Book a guided tour.</strong> Tours from Cancun, Playa del Carmen, or Tulum provide transportation, expert guides, entrance fees, and lunch for $89-$129 — better value than driving yourself when you factor in car rental, gas, tolls, and missing the expert commentary.
+                  {isEs ? (
+                    <><strong>Para el 95% de los visitantes: Reserva un tour guiado.</strong> Los tours desde Cancún, Playa del Carmen o Tulum proporcionan transporte, guías expertos, tarifas de entrada y comida por $89-$129 — mejor valor que manejar tú mismo cuando consideras la renta de auto, gasolina, peajes y la falta de comentarios expertos.</>
+                  ) : (
+                    <><strong>For 95% of visitors: Book a guided tour.</strong> Tours from Cancun, Playa del Carmen, or Tulum provide transportation, expert guides, entrance fees, and lunch for $89-$129 — better value than driving yourself when you factor in car rental, gas, tolls, and missing the expert commentary.</>
+                  )}
                 </p>
                 <p className="text-muted-foreground">
-                  <strong>Drive yourself only if:</strong> You want complete schedule flexibility, plan to visit multiple sites over several days, or are staying in Valladolid or Merida (very close to Chichen Itza).
+                  {isEs ? (
+                    <><strong>Maneja tú mismo solo si:</strong> Quieres flexibilidad total de horarios, planeas visitar múltiples sitios durante varios días, o te hospedas en Valladolid o Mérida (muy cerca de Chichén Itzá).</>
+                  ) : (
+                    <><strong>Drive yourself only if:</strong> You want complete schedule flexibility, plan to visit multiple sites over several days, or are staying in Valladolid or Merida (very close to Chichen Itza).</>
+                  )}
                 </p>
               </div>
 
               {/* Distance Quick Reference */}
               <section id="distances">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
-                  Distance from Major Cities
+                  {isEs ? "Distancia desde las Principales Ciudades" : "Distance from Major Cities"}
                 </h2>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {distances.map((loc) => (
@@ -196,11 +204,19 @@ const HowToGetTherePage = () => {
               {/* Transport Comparison Table */}
               <section id="comparison">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
-                  Transportation Options Compared
+                  {isEs ? "Comparación de Opciones de Transporte" : "Transportation Options Compared"}
                 </h2>
                 <ComparisonTable
-                  headers={["Guided Tour", "Rental Car", "ADO Bus"]}
-                  rows={[
+                  headers={isEs ? ["Tour Guiado", "Auto de Alquiler", "Autobús ADO"] : ["Guided Tour", "Rental Car", "ADO Bus"]}
+                  rows={isEs ? [
+                    { label: "Costo (por persona)", values: ["$89-$189", "$60-100 total", "$25-30 ida y vuelta"] },
+                    { label: "Conveniencia", values: ["⭐⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐"] },
+                    { label: "Flexibilidad", values: ["Horario fijo", "Libertad total", "Horario del autobús"] },
+                    { label: "Guía incluido", values: [true, false, false] },
+                    { label: "Tarifa de entrada", values: ["Incluida", "Extra ~$27", "Extra ~$27"] },
+                    { label: "Comida", values: ["Generalmente incluida", "Costo extra", "Costo extra"] },
+                    { label: "Mejor para", values: ["La mayoría", "Viajeros independientes", "Viajeros con presupuesto"] },
+                  ] : [
                     { label: "Cost (per person)", values: ["$89-$189", "$60-100 total", "$25-30 round-trip"] },
                     { label: "Convenience", values: ["⭐⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐"] },
                     { label: "Flexibility", values: ["Fixed schedule", "Full freedom", "Bus schedule"] },
@@ -215,20 +231,31 @@ const HowToGetTherePage = () => {
               {/* Option 1: Guided Tours */}
               <section id="guided-tours">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4 flex items-center gap-2">
-                  <Users className="h-7 w-7 text-success" /> Option 1: Guided Tours (Recommended)
+                  <Users className="h-7 w-7 text-success" /> {isEs ? "Opción 1: Tours Guiados (Recomendado)" : "Option 1: Guided Tours (Recommended)"}
                 </h2>
 
                 <TipBox
                   type="success"
-                  title="Best Choice for Most Visitors"
-                  content="Guided tours offer the best value and experience. You'll get expert historical commentary that brings the ruins to life, hassle-free logistics, and often additional experiences like cenote swimming or colonial town visits."
+                  title={isEs ? "Mejor Opción para la Mayoría" : "Best Choice for Most Visitors"}
+                  content={isEs
+                    ? "Los tours guiados ofrecen el mejor valor y experiencia. Obtendrás comentarios históricos expertos que dan vida a las ruinas, logística sin complicaciones, y frecuentemente experiencias adicionales como nadar en cenotes o visitar pueblos coloniales."
+                    : "Guided tours offer the best value and experience. You'll get expert historical commentary that brings the ruins to life, hassle-free logistics, and often additional experiences like cenote swimming or colonial town visits."
+                  }
                 />
 
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
                   <div className="bg-card rounded-xl p-5 border border-border">
-                    <p className="text-xs font-semibold uppercase tracking-wider mb-3">✓ What's Included:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider mb-3">{isEs ? "✓ Qué Incluye:" : "✓ What's Included:"}</p>
                     <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      {[
+                      {(isEs ? [
+                        "Transporte ida y vuelta con aire acondicionado",
+                        "Recogida y regreso al hotel",
+                        "Guía bilingüe certificado",
+                        "Tarifas de entrada al sitio arqueológico",
+                        "Comida buffet (la mayoría de los tours)",
+                        "Seguro de viaje",
+                        "Agua embotellada",
+                      ] : [
                         "Round-trip air-conditioned transportation",
                         "Hotel pickup and drop-off",
                         "Certified bilingual guide",
@@ -236,7 +263,7 @@ const HowToGetTherePage = () => {
                         "Buffet lunch (most tours)",
                         "Travel insurance",
                         "Bottled water",
-                      ].map((item) => (
+                      ]).map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
                           {item}
@@ -245,14 +272,19 @@ const HowToGetTherePage = () => {
                     </ul>
                   </div>
                   <div className="bg-card rounded-xl p-5 border border-border">
-                    <p className="text-xs font-semibold uppercase tracking-wider mb-3">💰 Pricing by Tour Type:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider mb-3">{isEs ? "💰 Precios por Tipo de Tour:" : "💰 Pricing by Tour Type:"}</p>
                     <div className="space-y-3 text-sm">
-                      {[
+                      {(isEs ? [
+                        { type: "Tour en Grupo Estándar", price: "$89-$99", note: "12-15 personas, experiencia clásica" },
+                        { type: "Tour en Grupo Pequeño", price: "$109-$119", note: "Máx 12 personas, más personal" },
+                        { type: "Tour al Amanecer", price: "$129-$139", note: "Acceso temprano, luz dorada" },
+                        { type: "Tour Privado", price: "$189-$299/persona", note: "Solo tu grupo, horario flexible" },
+                      ] : [
                         { type: "Standard Group Tour", price: "$89-$99", note: "12-15 people, classic experience" },
                         { type: "Small Group Tour", price: "$109-$119", note: "Max 12 people, more personal" },
                         { type: "Sunrise Tour", price: "$129-$139", note: "Early access, golden hour light" },
                         { type: "Private Tour", price: "$189-$299/person", note: "Your group only, flexible schedule" },
-                      ].map((t) => (
+                      ]).map((t) => (
                         <div key={t.type}>
                           <p className="font-semibold">
                             {t.type}: <span className="text-primary">{t.price}</span>
@@ -266,12 +298,17 @@ const HowToGetTherePage = () => {
 
                 {/* Departure city links */}
                 <div className="space-y-2 mt-6">
-                  {[
+                  {(isEs ? [
+                    { to: "/tours-from/cancun", label: "Tours desde Cancún", detail: "Salida más popular • 2.5 horas en auto • Sale 6:30-7:30 AM", price: "Desde $89" },
+                    { to: "/tours-from/playa-del-carmen", label: "Tours desde Playa del Carmen", detail: "Punto de salida más cercano • 1.5 horas • Sale 7:00-7:30 AM", price: "Desde $89" },
+                    { to: "/tours-from/tulum", label: "Tours desde Tulum", detail: "Viajeros culturales • 2 horas • Visita dos sitios mayas", price: "Desde $94" },
+                    { to: "/tours-from/merida", label: "Tours desde Mérida", detail: "Ciudad más cercana • 1.5 horas • Inmersión cultural", price: "Desde $79" },
+                  ] : [
                     { to: "/tours-from/cancun", label: "Tours from Cancún", detail: "Most popular departure • 2.5 hour drive • Departs 6:30-7:30 AM", price: "From $89" },
                     { to: "/tours-from/playa-del-carmen", label: "Tours from Playa del Carmen", detail: "Closest departure point • 1.5 hour drive • Departs 7:00-7:30 AM", price: "From $89" },
                     { to: "/tours-from/tulum", label: "Tours from Tulum", detail: "Cultural travelers • 2 hour drive • Visit two Mayan sites", price: "From $94" },
                     { to: "/tours-from/merida", label: "Tours from Mérida", detail: "Closest city • 1.5 hour drive • Cultural immersion", price: "From $79" },
-                  ].map((link) => (
+                  ]).map((link) => (
                     <Link
                       key={link.to}
                       to={link.to}
@@ -292,32 +329,54 @@ const HowToGetTherePage = () => {
               {/* Option 2: Rental Car */}
               <section id="rental-car">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4 flex items-center gap-2">
-                  <Car className="h-7 w-7 text-primary" /> Option 2: Drive Yourself (Rental Car)
+                  <Car className="h-7 w-7 text-primary" /> {isEs ? "Opción 2: Manejar Tú Mismo (Auto de Alquiler)" : "Option 2: Drive Yourself (Rental Car)"}
                 </h2>
 
                 <p className="text-muted-foreground mb-6">
-                  Driving to Chichen Itza is straightforward via Highway 180D (toll road). This option suits independent travelers who want schedule flexibility or plan to visit multiple sites.
+                  {isEs
+                    ? "Manejar a Chichén Itzá es sencillo por la autopista 180D (de cuota). Esta opción es ideal para viajeros independientes que quieren flexibilidad de horario o planean visitar múltiples sitios."
+                    : "Driving to Chichen Itza is straightforward via Highway 180D (toll road). This option suits independent travelers who want schedule flexibility or plan to visit multiple sites."}
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-card rounded-xl p-5 border-2 border-success">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-success mb-3">✓ Advantages:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-success mb-3">{isEs ? "✓ Ventajas:" : "✓ Advantages:"}</p>
                     <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Complete schedule control (arrive/leave when you want)</li>
-                      <li>• Stop at attractions along the way (cenotes, towns)</li>
-                      <li>• Visit multiple sites in one day (Ek Balam, Valladolid)</li>
-                      <li>• No waiting for tour group members</li>
-                      <li>• Explore at your own pace</li>
+                      {(isEs ? [
+                        "Control total del horario (llega/sal cuando quieras)",
+                        "Para en atracciones en el camino (cenotes, pueblos)",
+                        "Visita múltiples sitios en un día (Ek Balam, Valladolid)",
+                        "Sin esperar a otros miembros del grupo",
+                        "Explora a tu propio ritmo",
+                      ] : [
+                        "Complete schedule control (arrive/leave when you want)",
+                        "Stop at attractions along the way (cenotes, towns)",
+                        "Visit multiple sites in one day (Ek Balam, Valladolid)",
+                        "No waiting for tour group members",
+                        "Explore at your own pace",
+                      ]).map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-card rounded-xl p-5 border-2 border-destructive">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-destructive mb-3">✗ Disadvantages:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-destructive mb-3">{isEs ? "✗ Desventajas:" : "✗ Disadvantages:"}</p>
                     <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Miss expert guide commentary (history/context)</li>
-                      <li>• Navigation required (though route is simple)</li>
-                      <li>• Parking fees and hassle</li>
-                      <li>• Driver can't relax or nap on journey</li>
-                      <li>• Total cost often similar to guided tour</li>
+                      {(isEs ? [
+                        "Te pierdes los comentarios del guía experto (historia/contexto)",
+                        "Navegación requerida (aunque la ruta es simple)",
+                        "Tarifas y molestias de estacionamiento",
+                        "El conductor no puede relajarse o dormir en el viaje",
+                        "Costo total frecuentemente similar al tour guiado",
+                      ] : [
+                        "Miss expert guide commentary (history/context)",
+                        "Navigation required (though route is simple)",
+                        "Parking fees and hassle",
+                        "Driver can't relax or nap on journey",
+                        "Total cost often similar to guided tour",
+                      ]).map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -325,47 +384,68 @@ const HowToGetTherePage = () => {
                 {/* Cost Breakdown */}
                 <div className="bg-card rounded-xl p-5 border border-border mb-6">
                   <p className="font-heading font-semibold mb-3 flex items-center gap-2">
-                    <DollarSign className="h-5 w-5 text-primary" /> Total Cost Breakdown (from Cancún):
+                    <DollarSign className="h-5 w-5 text-primary" /> {isEs ? "Desglose de Costos (desde Cancún):" : "Total Cost Breakdown (from Cancún):"}
                   </p>
                   <div className="space-y-2 text-sm">
-                    {[
+                    {(isEs ? [
+                      { item: "Renta de auto (1 día, compacto básico)", cost: "$60-80" },
+                      { item: "Gasolina (ida y vuelta ~400 km)", cost: "$25-30" },
+                      { item: "Peajes de autopista (180D ida y vuelta)", cost: "$15" },
+                      { item: "Estacionamiento en Chichén Itzá", cost: "$5" },
+                      { item: "Tarifa de entrada (por persona)", cost: "$27" },
+                      { item: "Comida (por persona)", cost: "$10-15" },
+                    ] : [
                       { item: "Rental car (1 day, basic compact)", cost: "$60-80" },
                       { item: "Gas (round trip ~250 miles)", cost: "$25-30" },
                       { item: "Highway tolls (180D both ways)", cost: "$15" },
                       { item: "Parking at Chichen Itza", cost: "$5" },
                       { item: "Entrance fee (per person)", cost: "$27" },
                       { item: "Lunch (per person)", cost: "$10-15" },
-                    ].map((row) => (
+                    ]).map((row) => (
                       <div key={row.item} className="flex justify-between">
                         <span className="text-muted-foreground">{row.item}</span>
                         <span className="font-medium">{row.cost}</span>
                       </div>
                     ))}
                     <div className="flex justify-between border-t border-border pt-2 font-bold">
-                      <span>TOTAL (for 2 people):</span>
+                      <span>{isEs ? "TOTAL (para 2 personas):" : "TOTAL (for 2 people):"}</span>
                       <span className="text-primary">$184-224</span>
                     </div>
                   </div>
                   <p className="text-xs text-muted-foreground mt-3">
-                    Compare to guided tour: $178-198 for 2 people (includes guide, no driving stress)
+                    {isEs
+                      ? "Compara con el tour guiado: $178-198 para 2 personas (incluye guía, sin estrés de manejar)"
+                      : "Compare to guided tour: $178-198 for 2 people (includes guide, no driving stress)"}
                   </p>
                 </div>
 
                 {/* Driving Tips */}
                 <div className="bg-accent/5 border border-accent rounded-xl p-5">
                   <p className="font-heading font-semibold mb-3 flex items-center gap-2">
-                    <AlertTriangle className="h-5 w-5 text-accent" /> Driving Tips & Warnings:
+                    <AlertTriangle className="h-5 w-5 text-accent" /> {isEs ? "Consejos y Advertencias para Manejar:" : "Driving Tips & Warnings:"}
                   </p>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
-                    <li>
-                      • <strong>Use Highway 180D (toll road)</strong>, NOT the free road 180. The toll road is safer, faster, and better maintained.
-                    </li>
-                    <li>• Drive during daylight hours only (6 AM - 6 PM)</li>
-                    <li>• GPS can be unreliable — download offline maps beforehand</li>
-                    <li>• Bring Mexican pesos cash for tolls (credit cards not always accepted)</li>
-                    <li>• Gas stations: Fill up in Cancun or Playa; stations are sparse along route</li>
-                    <li>• Speed limit: 110 km/h (68 mph) on toll road, enforced by cameras</li>
-                    <li>• Mexican car insurance required (rental companies provide)</li>
+                    {(isEs ? [
+                      { bold: "Usa la autopista 180D (de cuota)", rest: ", NO la carretera libre 180. La autopista de cuota es más segura, rápida y mejor mantenida." },
+                      { bold: "", rest: "Maneja solo durante el día (6 AM - 6 PM)" },
+                      { bold: "", rest: "El GPS puede ser poco confiable — descarga mapas offline antes" },
+                      { bold: "", rest: "Lleva efectivo en pesos mexicanos para peajes (no siempre aceptan tarjetas)" },
+                      { bold: "", rest: "Gasolineras: Llena en Cancún o Playa; las estaciones son escasas en la ruta" },
+                      { bold: "", rest: "Límite de velocidad: 110 km/h en la autopista de cuota, con cámaras de velocidad" },
+                      { bold: "", rest: "Se requiere seguro de auto mexicano (las compañías de renta lo proporcionan)" },
+                    ] : [
+                      { bold: "Use Highway 180D (toll road)", rest: ", NOT the free road 180. The toll road is safer, faster, and better maintained." },
+                      { bold: "", rest: "Drive during daylight hours only (6 AM - 6 PM)" },
+                      { bold: "", rest: "GPS can be unreliable — download offline maps beforehand" },
+                      { bold: "", rest: "Bring Mexican pesos cash for tolls (credit cards not always accepted)" },
+                      { bold: "", rest: "Gas stations: Fill up in Cancun or Playa; stations are sparse along route" },
+                      { bold: "", rest: "Speed limit: 110 km/h (68 mph) on toll road, enforced by cameras" },
+                      { bold: "", rest: "Mexican car insurance required (rental companies provide)" },
+                    ]).map((tip, i) => (
+                      <li key={i}>
+                        • {tip.bold ? <strong>{tip.bold}</strong> : null}{tip.rest}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </section>
@@ -373,30 +453,27 @@ const HowToGetTherePage = () => {
               {/* Option 3: ADO Bus */}
               <section id="ado-bus">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4 flex items-center gap-2">
-                  <Bus className="h-7 w-7 text-accent" /> Option 3: ADO Bus (Budget Option)
+                  <Bus className="h-7 w-7 text-accent" /> {isEs ? "Opción 3: Autobús ADO (Opción Económica)" : "Option 3: ADO Bus (Budget Option)"}
                 </h2>
 
                 <p className="text-muted-foreground mb-6">
-                  ADO operates first-class buses from major cities to Chichen Itza. The budget-friendly option, but with trade-offs in convenience and time.
+                  {isEs
+                    ? "ADO opera autobuses de primera clase desde las principales ciudades a Chichén Itzá. La opción económica, pero con compromisos en conveniencia y tiempo."
+                    : "ADO operates first-class buses from major cities to Chichen Itza. The budget-friendly option, but with trade-offs in convenience and time."}
                 </p>
 
                 <div className="bg-card rounded-xl p-5 border border-border mb-6">
-                  <p className="font-heading font-semibold mb-4">ADO Bus Schedule & Pricing</p>
+                  <p className="font-heading font-semibold mb-4">{isEs ? "Horarios y Precios de Autobuses ADO" : "ADO Bus Schedule & Pricing"}</p>
                   <div className="grid md:grid-cols-3 gap-4">
-                    {[
-                      {
-                        from: "From Cancún:",
-                        lines: ["Departure: 8:45 AM (daily)", "Duration: 3-4 hours", "Cost: $12-15 USD one-way", "Return: 4:30 PM (last bus!)"],
-                      },
-                      {
-                        from: "From Playa del Carmen:",
-                        lines: ["Departure: 9:15 AM (daily)", "Duration: 3 hours", "Cost: $10-12 USD one-way", "Return: 4:30 PM"],
-                      },
-                      {
-                        from: "From Valladolid:",
-                        lines: ["Departures: 7 AM, 9 AM, 11 AM", "Duration: 45 minutes", "Cost: $3-5 USD one-way"],
-                      },
-                    ].map((schedule) => (
+                    {(isEs ? [
+                      { from: "Desde Cancún:", lines: ["Salida: 8:45 AM (diario)", "Duración: 3-4 horas", "Costo: $12-15 USD ida", "Regreso: 4:30 PM (¡último autobús!)"] },
+                      { from: "Desde Playa del Carmen:", lines: ["Salida: 9:15 AM (diario)", "Duración: 3 horas", "Costo: $10-12 USD ida", "Regreso: 4:30 PM"] },
+                      { from: "Desde Valladolid:", lines: ["Salidas: 7 AM, 9 AM, 11 AM", "Duración: 45 minutos", "Costo: $3-5 USD ida"] },
+                    ] : [
+                      { from: "From Cancún:", lines: ["Departure: 8:45 AM (daily)", "Duration: 3-4 hours", "Cost: $12-15 USD one-way", "Return: 4:30 PM (last bus!)"] },
+                      { from: "From Playa del Carmen:", lines: ["Departure: 9:15 AM (daily)", "Duration: 3 hours", "Cost: $10-12 USD one-way", "Return: 4:30 PM"] },
+                      { from: "From Valladolid:", lines: ["Departures: 7 AM, 9 AM, 11 AM", "Duration: 45 minutes", "Cost: $3-5 USD one-way"] },
+                    ]).map((schedule) => (
                       <div key={schedule.from}>
                         <p className="font-semibold text-sm mb-2">{schedule.from}</p>
                         <ul className="space-y-1 text-sm text-muted-foreground">
@@ -411,57 +488,81 @@ const HowToGetTherePage = () => {
 
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-card rounded-xl p-5 border border-border">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-success mb-3">✓ Pros:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-success mb-3">{isEs ? "✓ Ventajas:" : "✓ Pros:"}</p>
                     <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• Cheapest option ($25-30 round-trip)</li>
-                      <li>• Comfortable first-class buses (A/C, bathrooms)</li>
-                      <li>• No driving stress</li>
-                      <li>• Reliable schedule</li>
+                      {(isEs ? [
+                        "Opción más barata ($25-30 ida y vuelta)",
+                        "Autobuses cómodos de primera clase (A/C, baños)",
+                        "Sin estrés de manejar",
+                        "Horario confiable",
+                      ] : [
+                        "Cheapest option ($25-30 round-trip)",
+                        "Comfortable first-class buses (A/C, bathrooms)",
+                        "No driving stress",
+                        "Reliable schedule",
+                      ]).map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-card rounded-xl p-5 border border-border">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-destructive mb-3">✗ Cons:</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-destructive mb-3">{isEs ? "✗ Desventajas:" : "✗ Cons:"}</p>
                     <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      <li>• No guide (miss historical context)</li>
-                      <li>• Limited departure/return times</li>
-                      <li>• Must arrange own lunch</li>
-                      <li>• Arrive late (site already crowded)</li>
-                      <li>• Bus station often far from hotels</li>
+                      {(isEs ? [
+                        "Sin guía (te pierdes el contexto histórico)",
+                        "Horarios limitados de salida/regreso",
+                        "Debes organizar tu propia comida",
+                        "Llegas tarde (el sitio ya está lleno)",
+                        "La terminal de autobuses suele estar lejos de los hoteles",
+                      ] : [
+                        "No guide (miss historical context)",
+                        "Limited departure/return times",
+                        "Must arrange own lunch",
+                        "Arrive late (site already crowded)",
+                        "Bus station often far from hotels",
+                      ]).map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
 
                 <TipBox
                   type="info"
-                  title="Budget Tip"
-                  content="If taking the bus, stay overnight in Valladolid (30 min from Chichen Itza) instead. Hotels from $30/night, multiple daily buses, and you can arrive at the site at opening when it's least crowded."
+                  title={isEs ? "Consejo Económico" : "Budget Tip"}
+                  content={isEs
+                    ? "Si tomas el autobús, quédate una noche en Valladolid (30 min de Chichén Itzá) en lugar de ir y volver. Hoteles desde $30/noche, múltiples autobuses diarios, y puedes llegar al sitio a la apertura cuando hay menos gente."
+                    : "If taking the bus, stay overnight in Valladolid (30 min from Chichen Itza) instead. Hotels from $30/night, multiple daily buses, and you can arrive at the site at opening when it's least crowded."
+                  }
                 />
               </section>
 
               {/* Option 4: Private Transfer */}
               <section id="private-transfer">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4">
-                  Option 4: Private Transfer / Driver
+                  {isEs ? "Opción 4: Transfer Privado / Chofer" : "Option 4: Private Transfer / Driver"}
                 </h2>
 
                 <p className="text-muted-foreground mb-4">
-                  Hire a private driver for luxury and flexibility without the hassle of driving yourself. Best for groups splitting the cost or those wanting VIP service.
+                  {isEs
+                    ? "Contrata un chofer privado para lujo y flexibilidad sin la molestia de manejar tú mismo. Ideal para grupos que dividen el costo o quienes desean servicio VIP."
+                    : "Hire a private driver for luxury and flexibility without the hassle of driving yourself. Best for groups splitting the cost or those wanting VIP service."}
                 </p>
 
                 <div className="bg-card rounded-xl p-5 border border-border">
-                  <p className="font-heading font-semibold mb-3">Pricing & Details:</p>
+                  <p className="font-heading font-semibold mb-3">{isEs ? "Precios y Detalles:" : "Pricing & Details:"}</p>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
-                    <li>• <strong>Cost:</strong> $300-500 for vehicle (up to 6-8 passengers)</li>
-                    <li>• <strong>Per person cost (group of 4):</strong> $75-125 each</li>
-                    <li>• <strong>Includes:</strong> Private vehicle, driver, flexible schedule</li>
-                    <li>• <strong>Not included:</strong> Guide services, entrance fees, lunch</li>
-                    <li>• <strong>Best for:</strong> Families, groups, luxury travelers</li>
+                    <li>• <strong>{isEs ? "Costo:" : "Cost:"}</strong> $300-500 {isEs ? "por vehículo (hasta 6-8 pasajeros)" : "for vehicle (up to 6-8 passengers)"}</li>
+                    <li>• <strong>{isEs ? "Costo por persona (grupo de 4):" : "Per person cost (group of 4):"}</strong> $75-125 {isEs ? "cada uno" : "each"}</li>
+                    <li>• <strong>{isEs ? "Incluye:" : "Includes:"}</strong> {isEs ? "Vehículo privado, chofer, horario flexible" : "Private vehicle, driver, flexible schedule"}</li>
+                    <li>• <strong>{isEs ? "No incluye:" : "Not included:"}</strong> {isEs ? "Servicios de guía, tarifas de entrada, comida" : "Guide services, entrance fees, lunch"}</li>
+                    <li>• <strong>{isEs ? "Mejor para:" : "Best for:"}</strong> {isEs ? "Familias, grupos, viajeros de lujo" : "Families, groups, luxury travelers"}</li>
                   </ul>
                   <Link
                     to="/tours/private-tours"
                     className="inline-block mt-3 text-sm text-primary hover:underline font-medium"
                   >
-                    View Private Tour Options →
+                    {isEs ? "Ver Opciones de Tours Privados →" : "View Private Tour Options →"}
                   </Link>
                 </div>
               </section>
@@ -478,19 +579,21 @@ const HowToGetTherePage = () => {
               {/* Final CTA */}
               <div className="text-center bg-primary/5 rounded-xl p-8 border border-primary/20">
                 <h2 className="font-heading font-bold text-2xl mb-3">
-                  Ready to Visit Chichen Itza?
+                  {isEs ? "¿Listo para Visitar Chichén Itzá?" : "Ready to Visit Chichen Itza?"}
                 </h2>
                 <p className="text-muted-foreground mb-5">
-                  Skip the driving stress — book a guided tour with hotel pickup included.
+                  {isEs
+                    ? "Olvídate del estrés de manejar — reserva un tour guiado con recogida en el hotel incluida."
+                    : "Skip the driving stress — book a guided tour with hotel pickup included."}
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Button variant="cta" size="lg" asChild>
-                    <Link to="/tours">
-                      Browse All Tours <ChevronRight className="h-5 w-5" />
-                    </Link>
+                    <LocaleLink to="/tours">
+                      {isEs ? "Ver Todos los Tours" : "Browse All Tours"} <ChevronRight className="h-5 w-5" />
+                    </LocaleLink>
                   </Button>
                   <Button variant="outline" size="lg" asChild>
-                    <Link to="/practical/contact">Ask a Question</Link>
+                    <LocaleLink to="/practical/contact">{isEs ? "Hacer una Pregunta" : "Ask a Question"}</LocaleLink>
                   </Button>
                 </div>
               </div>
@@ -503,27 +606,27 @@ const HowToGetTherePage = () => {
               <PopularToursWidget />
 
               <div className="bg-card rounded-lg border border-border p-5">
-                <h3 className="font-heading font-bold text-base mb-3">More Planning Guides</h3>
+                <h3 className="font-heading font-bold text-base mb-3">{isEs ? "Más Guías de Planificación" : "More Planning Guides"}</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <Link to="/guide/best-time-to-visit" className="text-primary hover:underline">
-                      → Best Time to Visit
-                    </Link>
+                    <LocaleLink to="/guide/best-time-to-visit" className="text-primary hover:underline">
+                      → {isEs ? "Mejor Época para Visitar" : "Best Time to Visit"}
+                    </LocaleLink>
                   </li>
                   <li>
-                    <Link to="/guide/what-to-bring" className="text-primary hover:underline">
-                      → What to Bring
-                    </Link>
+                    <LocaleLink to="/guide/what-to-bring" className="text-primary hover:underline">
+                      → {isEs ? "Qué Llevar" : "What to Bring"}
+                    </LocaleLink>
                   </li>
                   <li>
-                    <Link to="/guide/entrance-fees" className="text-primary hover:underline">
-                      → Entrance Fees
-                    </Link>
+                    <LocaleLink to="/guide/entrance-fees" className="text-primary hover:underline">
+                      → {isEs ? "Precios de Entrada" : "Entrance Fees"}
+                    </LocaleLink>
                   </li>
                   <li>
-                    <Link to="/guide/photography-tips" className="text-primary hover:underline">
-                      → Photography Tips
-                    </Link>
+                    <LocaleLink to="/guide/photography-tips" className="text-primary hover:underline">
+                      → {isEs ? "Consejos de Fotografía" : "Photography Tips"}
+                    </LocaleLink>
                   </li>
                 </ul>
               </div>
@@ -537,9 +640,20 @@ const HowToGetTherePage = () => {
       {/* Internal Links */}
       <section className="py-12 bg-muted/30 border-t border-border">
         <div className="container">
-          <h2 className="font-heading font-semibold text-lg mb-6">Plan Your Trip</h2>
+          <h2 className="font-heading font-semibold text-lg mb-6">{isEs ? "Planifica Tu Viaje" : "Plan Your Trip"}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {[
+            {(isEs ? [
+              { label: "Desde Cancún", href: "/tours-from/cancun" },
+              { label: "Desde Playa del Carmen", href: "/tours-from/playa-del-carmen" },
+              { label: "Desde Tulum", href: "/tours-from/tulum" },
+              { label: "Desde Mérida", href: "/tours-from/merida" },
+              { label: "Mejor Época para Visitar", href: "/guide/best-time-to-visit" },
+              { label: "Qué Llevar", href: "/guide/what-to-bring" },
+              { label: "Precios de Entrada", href: "/guide/entrance-fees" },
+              { label: "Tours Económicos", href: "/tour-types/budget" },
+              { label: "Tours Privados", href: "/tours/private-tours" },
+              { label: "Todos los Tours", href: "/tours" },
+            ] : [
               { label: "From Cancún", href: "/tours-from/cancun" },
               { label: "From Playa del Carmen", href: "/tours-from/playa-del-carmen" },
               { label: "From Tulum", href: "/tours-from/tulum" },
@@ -550,14 +664,14 @@ const HowToGetTherePage = () => {
               { label: "Budget Tours", href: "/tour-types/budget" },
               { label: "Private Tours", href: "/tours/private-tours" },
               { label: "All Tours", href: "/tours" },
-            ].map((link) => (
-              <Link
+            ]).map((link) => (
+              <LocaleLink
                 key={link.href}
                 to={link.href}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label} →
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>
