@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { tulumFAQs, tulumFAQsEs, tulumPageContent } from "@/lib/locationData";
+import { tulumFAQs, tulumFAQsEs, tulumPageContent, tulumPageContentEs } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -330,7 +330,7 @@ const TulumToursPage = () => {
             <div className="bg-card rounded-xl shadow-card-hover p-6 border border-border">
               <h2 className="font-heading font-semibold text-xl mb-4">{c.whyBookTitle}</h2>
               <div className="space-y-4">
-                {tulumPageContent.whyBook.map((item, i) => (
+                {(isEs ? tulumPageContentEs.whyBook : tulumPageContent.whyBook).map((item, i) => (
                   <div key={i} className="flex gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center"><Shield className="h-4 w-4 text-secondary" /></div>
                     <div><h3 className="font-semibold text-sm">{item.title}</h3><p className="text-sm text-muted-foreground">{item.description}</p></div>
@@ -367,7 +367,7 @@ const TulumToursPage = () => {
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">{c.expectTitle}</h2>
               <p className="text-muted-foreground mb-8">{c.expectSubtitle}</p>
               <div className="space-y-0">
-                {tulumPageContent.timeline.map((step, i) => (<TimelineItem key={i} time={step.time} title={step.title} description={step.description} isLast={i === tulumPageContent.timeline.length - 1} />))}
+                {(isEs ? tulumPageContentEs.timeline : tulumPageContent.timeline).map((step, i) => (<TimelineItem key={i} time={step.time} title={step.title} description={step.description} isLast={i === tulumPageContent.timeline.length - 1} />))}
               </div>
               <div className="mt-8 grid sm:grid-cols-2 gap-4">
                 <InfoBox title={c.includedTitle} icon="✓" variant="success" items={c.includedItems} />
@@ -377,7 +377,7 @@ const TulumToursPage = () => {
 
             <section className="mb-12">
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">{c.compTitle}</h2>
-              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]} highlightColumn={1} rows={tulumPageContent.comparisonTable.rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
+              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]} highlightColumn={1} rows={(isEs ? tulumPageContentEs.comparisonTable : tulumPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
               <div className="mt-6"><TipBox type="tip" title={c.tipTitle} content={c.tipContent} /></div>
             </section>
 

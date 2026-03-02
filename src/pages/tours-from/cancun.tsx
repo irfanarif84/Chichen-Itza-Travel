@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { cancunFAQs, cancunFAQsEs, cancunPageContent } from "@/lib/locationData";
+import { cancunFAQs, cancunFAQsEs, cancunPageContent, cancunPageContentEs } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -358,7 +358,7 @@ const CancunToursPage = () => {
             <div className="bg-card rounded-xl shadow-card-hover p-6 border border-border">
               <h2 className="font-heading font-semibold text-xl mb-4">{c.whyBookTitle}</h2>
               <div className="space-y-4">
-                {cancunPageContent.whyBook.map((item, i) => (
+                {(isEs ? cancunPageContentEs.whyBook : cancunPageContent.whyBook).map((item, i) => (
                   <div key={i} className="flex gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                       <Shield className="h-4 w-4 text-primary" />
@@ -416,7 +416,7 @@ const CancunToursPage = () => {
               <p className="text-muted-foreground mb-8">{c.expectSubtitle}</p>
 
               <div className="space-y-0">
-                {cancunPageContent.timeline.map((step, i) => (
+                {(isEs ? cancunPageContentEs.timeline : cancunPageContent.timeline).map((step, i) => (
                   <TimelineItem key={i} time={step.time} title={step.title} description={step.description} isLast={i === cancunPageContent.timeline.length - 1} />
                 ))}
               </div>
@@ -433,7 +433,7 @@ const CancunToursPage = () => {
               <ComparisonTable
                 headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]}
                 highlightColumn={1}
-                rows={cancunPageContent.comparisonTable.rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))}
+                rows={(isEs ? cancunPageContentEs.comparisonTable : cancunPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))}
               />
               <div className="mt-6">
                 <TipBox type="tip" title={c.tipTitle} content={c.tipContent} />
