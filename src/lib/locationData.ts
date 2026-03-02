@@ -389,3 +389,156 @@ export const locationPageContent: Record<string, typeof cancunPageContent> = {
   "riviera-maya": rivieraMayaPageContent,
   merida: meridaPageContent,
 };
+
+// ===== Spanish Page Content =====
+
+export const cancunPageContentEs = {
+  whyBook: [
+    { title: "Recogida en Hotel Incluida", description: "Recogida gratuita en todas las principales propiedades de la Zona Hotelera de Cancún. Tu aventura comienza desde el lobby de tu hotel." },
+    { title: "Guías Locales Expertos", description: "Guías arqueólogos certificados comparten conocimientos fascinantes sobre la historia, astronomía y cultura maya." },
+    { title: "Sin Preocupaciones", description: "No necesitas preocuparte por boletos de entrada, estacionamiento o navegación. Todo está incluido." },
+    { title: "Nado en Cenote Incluido", description: "La mayoría de tours incluyen nado en el Cenote Ik Kil u otros impresionantes sumideros naturales." },
+  ],
+  comparisonTable: {
+    rows: [
+      ["Costo (2 adultos)", "$180-380 total", "$150-200 (gasolina, peajes, entrada, parking)"],
+      ["Tiempo", "Relájate en el viaje", "Conducir 5+ horas"],
+      ["Conocimiento Histórico", "Guía arqueólogo experto", "Audioguía o libro"],
+      ["Acceso a Cenote", "Generalmente incluido", "Planificar por separado"],
+      ["Comodidad", "Servicio puerta a puerta", "Manejar todo tú mismo"],
+      ["Flexibilidad", "Itinerario fijo", "Libertad completa"],
+      ["Mejor Para", "Visitantes primerizos", "Visitantes recurrentes"],
+    ]
+  },
+  timeline: [
+    { time: "6:00 AM", title: "Recogida en Hotel", description: "Van cómoda con AC te recoge en tu hotel de la Zona Hotelera de Cancún" },
+    { time: "7:00 AM", title: "Viaje Escénico", description: "Relájate en el viaje de 2.5 horas por el campo yucateco" },
+    { time: "8:30 AM", title: "Llegada a Chichén Itzá", description: "Llega antes que las multitudes con llegada temprana" },
+    { time: "8:45 AM", title: "Inicio del Tour Guiado", description: "Guía arqueólogo experto revela los secretos de El Castillo" },
+    { time: "11:00 AM", title: "Exploración Libre", description: "Explora por tu cuenta, fotografía las ruinas, visita el mercado artesanal" },
+    { time: "12:00 PM", title: "Nado en Cenote", description: "Refréscate en las aguas cristalinas del Cenote Ik Kil" },
+    { time: "1:30 PM", title: "Almuerzo Buffet", description: "Cocina yucateca tradicional en restaurante local" },
+    { time: "3:00 PM", title: "Viaje de Regreso", description: "Viaje relajante de regreso a Cancún con tiempo para descansar" },
+    { time: "5:30 PM", title: "Llegada al Hotel", description: "Regreso a tu hotel de Cancún a tiempo para cenar" },
+  ],
+};
+
+export const playaDelCarmenPageContentEs = {
+  whyBook: [
+    { title: "Tiempo de Viaje Más Corto", description: "Solo 1.5 horas a Chichén Itzá — la ruta más corta desde cualquier destino turístico importante." },
+    { title: "Recogida en 5ta Avenida", description: "Recogida cómoda desde hoteles en Quinta Avenida y zona resort de Playacar." },
+    { title: "Más Tiempo Explorando", description: "Menos viaje significa más tiempo en las ruinas y cenotes. Llega temprano, evita multitudes." },
+    { title: "Guías Bilingües Expertos", description: "Guías certificados fluidos en inglés y español dan vida a la historia maya." },
+  ],
+  comparisonTable: {
+    rows: [
+      ["Costo (2 adultos)", "$180-380 total", "$140-180 (renta, gasolina, peajes, entrada)"],
+      ["Tiempo de Viaje", "Relájate y disfruta", "3+ horas manejando"],
+      ["Contexto Histórico", "Guía arqueólogo experto", "Tour autoguiado o audioguía"],
+      ["Visita a Cenote", "Generalmente incluida", "Planificar y pagar aparte"],
+      ["Comodidad", "Servicio puerta a puerta", "Navegar caminos desconocidos"],
+      ["Flexibilidad", "Itinerario estructurado", "A tu propio ritmo"],
+      ["Mejor Para", "La mayoría de viajeros", "Conductores experimentados en México"],
+    ]
+  },
+  timeline: [
+    { time: "6:30 AM", title: "Recogida en Hotel", description: "Recogida cómoda desde tu hotel en Playa del Carmen" },
+    { time: "8:00 AM", title: "Llegada a Chichén Itzá", description: "Llega antes que las multitudes" },
+    { time: "8:15 AM", title: "Inicio del Tour Guiado", description: "Guía experto comparte historia y secretos mayas" },
+    { time: "10:30 AM", title: "Tiempo Libre", description: "Explora por tu cuenta, toma fotos, visita mercado artesanal" },
+    { time: "11:30 AM", title: "Nado en Cenote", description: "Refréscate en aguas cristalinas del cenote" },
+    { time: "12:30 PM", title: "Almuerzo Buffet", description: "Cocina yucateca tradicional" },
+    { time: "2:00 PM", title: "Viaje de Regreso", description: "Viaje relajante de regreso a Playa del Carmen" },
+    { time: "4:00 PM", title: "Llegada al Hotel", description: "Regreso a tu hotel" },
+  ],
+};
+
+export const tulumPageContentEs = {
+  whyBook: [
+    { title: "Dos Sitios UNESCO", description: "Compara las ruinas costeras de Tulum con la grandeza interior de Chichén Itzá en el mismo viaje." },
+    { title: "Opciones Eco-Conscientes", description: "Tours con prácticas sustentables, productos biodegradables y visitas a cenotes ecológicos." },
+    { title: "Horarios Flexibles", description: "Salida temprana te permite regresar a tiempo para el famoso atardecer de Tulum." },
+    { title: "Guías Mayas Locales", description: "Muchos guías son de comunidades mayas locales, ofreciendo perspectivas culturales auténticas." },
+  ],
+  comparisonTable: {
+    rows: [
+      ["Costo (2 adultos)", "$180-380 total", "$150-200 (renta, gasolina, peajes, entrada)"],
+      ["Tiempo", "Relájate en el viaje", "4-5 horas manejando"],
+      ["Conocimiento Histórico", "Guía maya experto", "Libro o audioguía"],
+      ["Acceso a Cenote", "Incluido en mayoría de tours", "Investigar y planificar aparte"],
+      ["Comodidad", "Recogida y regreso al hotel", "Buscar parking, navegar caminos"],
+      ["Flexibilidad", "Horario fijo", "Libertad completa"],
+      ["Mejor Para", "Visitantes primerizos", "Entusiastas de road trips"],
+    ]
+  },
+  timeline: [
+    { time: "6:00 AM", title: "Recogida en Tulum", description: "Recogida desde Tulum Town, Zona Hotelera o Aldea Zama" },
+    { time: "8:30 AM", title: "Llegada a Chichén Itzá", description: "Llegada temprana antes de los autobuses principales" },
+    { time: "8:45 AM", title: "Tour Guiado", description: "Tour de 2 horas con guía maya experto" },
+    { time: "10:45 AM", title: "Exploración Libre", description: "Fotos, compras y descubrimiento personal" },
+    { time: "11:30 AM", title: "Visita al Cenote", description: "Nado en un cenote sagrado natural" },
+    { time: "12:30 PM", title: "Almuerzo Tradicional", description: "Buffet yucateco con opciones vegetarianas" },
+    { time: "2:00 PM", title: "Parada Opcional", description: "Pueblo colonial de Valladolid o segundo cenote" },
+    { time: "4:30 PM", title: "Regreso a Tulum", description: "De vuelta a tiempo para el atardecer" },
+  ],
+};
+
+export const rivieraMayaPageContentEs = {
+  whyBook: [
+    { title: "Recogida en Resort Incluida", description: "Recogida desde todos los principales resorts del corredor Riviera Maya, desde Puerto Morelos hasta Tulum." },
+    { title: "Complemento Todo Incluido", description: "Complemento perfecto para tu estancia en resort — agrega cultura y aventura a tus vacaciones de playa." },
+    { title: "Rutas Optimizadas", description: "Horarios de recogida inteligentes minimizan tiempos de espera y maximizan tiempo en Chichén Itzá." },
+    { title: "Regreso al Atardecer", description: "De vuelta en tu resort a tiempo para disfrutar actividades nocturnas y cena." },
+  ],
+  comparisonTable: {
+    rows: [
+      ["Costo (2 adultos)", "$180-380 total", "$160-220 (renta, gasolina, peajes, entrada)"],
+      ["Comodidad", "Servicio puerta a puerta", "Navegar desde tu resort"],
+      ["Conocimiento Experto", "Guía arqueólogo certificado", "Solo libro guía"],
+      ["Nado en Cenote", "Generalmente incluido", "Planificar y pagar extra"],
+      ["Almuerzo", "Incluido en mayoría de tours", "Buscar restaurante, pagar aparte"],
+      ["Seguro", "Seguro de viaje incluido", "Verificar cobertura de renta"],
+      ["Mejor Para", "Huéspedes de resort", "Viajeros independientes"],
+    ]
+  },
+  timeline: [
+    { time: "6:15-7:15 AM", title: "Recogida en Resort", description: "Hora de recogida varía según ubicación del hotel" },
+    { time: "8:30-9:00 AM", title: "Llegada a Chichén Itzá", description: "Llegada temprana antes de multitudes" },
+    { time: "9:00 AM", title: "Tour Guiado", description: "Exploración de 2 horas guiada por experto" },
+    { time: "11:00 AM", title: "Tiempo Libre", description: "Exploración independiente y compras" },
+    { time: "12:00 PM", title: "Almuerzo", description: "Buffet yucateco tradicional" },
+    { time: "1:00 PM", title: "Nado en Cenote", description: "Refrescante baño en cenote natural" },
+    { time: "2:30 PM", title: "Viaje de Regreso", description: "Regreso cómodo a Riviera Maya" },
+    { time: "4:30-5:30 PM", title: "Llegada al Resort", description: "Regreso según ubicación" },
+  ],
+};
+
+export const meridaPageContentEs = {
+  whyBook: [
+    { title: "Viaje Más Corto (1.5 hrs)", description: "La ciudad más cercana a Chichén Itzá significa más exploración, menos viaje." },
+    { title: "Guías Yucatecos Locales", description: "Guías con conexiones culturales profundas y conocimiento regional auténtico." },
+    { title: "Complementos Únicos", description: "Combina con Izamal, Uxmal o cenotes de hacienda no disponibles desde ciudades costeras." },
+    { title: "Experiencia de Ciudad Colonial", description: "Explora las plazas y cultura de Mérida antes o después de tu aventura en Chichén Itzá." },
+  ],
+  comparisonTable: {
+    rows: [
+      ["Costo (2 adultos)", "$150-320 total", "$60-100 (autobús/renta, entrada, almuerzo)"],
+      ["Tiempo de Viaje", "1.5 horas (relájate)", "1.5 horas (maneja tú)"],
+      ["Contexto Histórico", "Guía yucateco experto", "Exploración autoguiada"],
+      ["Acceso a Cenote", "Incluido en muchos tours", "Planificar y pagar aparte"],
+      ["Flexibilidad", "Itinerario estructurado", "Libertad completa"],
+      ["Perspectivas Locales", "Conocimiento cultural profundo", "Solo información turística"],
+      ["Mejor Para", "Buscadores de inmersión cultural", "Viajeros con presupuesto"],
+    ]
+  },
+  timeline: [
+    { time: "7:30 AM", title: "Recogida en Mérida", description: "Recogida desde tu hotel o punto de encuentro central" },
+    { time: "9:00 AM", title: "Llegada a Chichén Itzá", description: "Antes que las multitudes de ciudades costeras" },
+    { time: "9:15 AM", title: "Tour Guiado", description: "Exploración de 2 horas con guía local" },
+    { time: "11:15 AM", title: "Tiempo Libre", description: "Exploración independiente y mercado artesanal" },
+    { time: "12:00 PM", title: "Visita al Cenote", description: "Nado en cenote de hacienda" },
+    { time: "1:00 PM", title: "Almuerzo Tradicional", description: "Cocina yucateca auténtica en restaurante local" },
+    { time: "2:30 PM", title: "Opcional: Izamal", description: "Visita la Ciudad Amarilla (tours selectos)" },
+    { time: "4:00 PM", title: "Regreso a Mérida", description: "Llegada por la tarde para exploración nocturna" },
+  ],
+};

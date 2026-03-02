@@ -19,7 +19,7 @@ import CTABox from "@/components/features/tours/CTABox";
 import ComboTourCard from "@/components/features/tours/ComboTourCard";
 import InfoBox from "@/components/guide/InfoBox";
 import { getToursByDeparture, getLocationBySlug } from "@/lib/tourData";
-import { meridaFAQs, meridaFAQsEs, meridaPageContent } from "@/lib/locationData";
+import { meridaFAQs, meridaFAQsEs, meridaPageContent, meridaPageContentEs } from "@/lib/locationData";
 import { locationSchemas } from "@/lib/schema";
 import { locationImages } from "@/lib/tourImages";
 import { useState, useMemo } from "react";
@@ -334,7 +334,7 @@ const MeridaToursPage = () => {
             <div className="bg-card rounded-xl shadow-card-hover p-6 border border-border">
               <h2 className="font-heading font-semibold text-xl mb-4">{c.whyBookTitle}</h2>
               <div className="space-y-4">
-                {meridaPageContent.whyBook.map((item, i) => (
+                {(isEs ? meridaPageContentEs.whyBook : meridaPageContent.whyBook).map((item, i) => (
                   <div key={i} className="flex gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center"><Shield className="h-4 w-4 text-accent" /></div>
                     <div><h3 className="font-semibold text-sm">{item.title}</h3><p className="text-sm text-muted-foreground">{item.description}</p></div>
@@ -371,7 +371,7 @@ const MeridaToursPage = () => {
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2">{c.expectTitle}</h2>
               <p className="text-muted-foreground mb-8">{c.expectSubtitle}</p>
               <div className="space-y-0">
-                {meridaPageContent.timeline.map((step, i) => (<TimelineItem key={i} time={step.time} title={step.title} description={step.description} isLast={i === meridaPageContent.timeline.length - 1} />))}
+                {(isEs ? meridaPageContentEs.timeline : meridaPageContent.timeline).map((step, i) => (<TimelineItem key={i} time={step.time} title={step.title} description={step.description} isLast={i === meridaPageContent.timeline.length - 1} />))}
               </div>
               <div className="mt-8 grid sm:grid-cols-2 gap-4">
                 <InfoBox title={c.includedTitle} icon="✓" variant="success" items={c.includedItems} />
@@ -381,7 +381,7 @@ const MeridaToursPage = () => {
 
             <section className="mb-12">
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">{c.compTitle}</h2>
-              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir/Autobús"] : ["Guided Tour", "Self-Drive/Bus"]} highlightColumn={1} rows={meridaPageContent.comparisonTable.rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
+              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir/Autobús"] : ["Guided Tour", "Self-Drive/Bus"]} highlightColumn={1} rows={(isEs ? meridaPageContentEs.comparisonTable : meridaPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
               <div className="mt-6"><TipBox type="tip" title={c.tipTitle} content={c.tipContent} /></div>
             </section>
 
