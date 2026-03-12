@@ -9,6 +9,7 @@ interface ComparisonTableProps {
   }>;
   highlightColumn?: number;
   className?: string;
+  recommendedLabel?: string;
 }
 
 const ComparisonTable = ({
