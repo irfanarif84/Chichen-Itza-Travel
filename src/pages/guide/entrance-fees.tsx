@@ -306,6 +306,7 @@ const EntranceFeesPage = () => {
 
                 <ComparisonTable
                   title={isEs ? "Comparación de Costos (2 Personas desde Cancún)" : "Cost Comparison (2 People from Cancun)"}
+                  recommendedLabel={isEs ? "Recomendado" : "Recommended"}
                   headers={isEs ? ["Independiente", "Tour Guiado"] : ["DIY (Independent)", "Guided Tour"]}
                   rows={isEs ? [
                     { label: "Tarifas de Entrada", values: ["$54-60 (2×$27-30)", "✓ Incluidas"] },

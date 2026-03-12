@@ -381,7 +381,7 @@ const MeridaToursPage = () => {
 
             <section className="mb-12">
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">{c.compTitle}</h2>
-              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir/Autobús"] : ["Guided Tour", "Self-Drive/Bus"]} highlightColumn={1} rows={(isEs ? meridaPageContentEs.comparisonTable : meridaPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
+              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir/Autobús"] : ["Guided Tour", "Self-Drive/Bus"]} highlightColumn={1} recommendedLabel={isEs ? "Recomendado" : "Recommended"} rows={(isEs ? meridaPageContentEs.comparisonTable : meridaPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
               <div className="mt-6"><TipBox type="tip" title={c.tipTitle} content={c.tipContent} /></div>
             </section>
 

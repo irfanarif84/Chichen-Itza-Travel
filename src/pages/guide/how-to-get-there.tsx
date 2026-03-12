@@ -207,6 +207,7 @@ const HowToGetTherePage = () => {
                   {isEs ? "Comparación de Opciones de Transporte" : "Transportation Options Compared"}
                 </h2>
                 <ComparisonTable
+                  recommendedLabel={isEs ? "Recomendado" : "Recommended"}
                   headers={isEs ? ["Tour Guiado", "Auto de Alquiler", "Autobús ADO"] : ["Guided Tour", "Rental Car", "ADO Bus"]}
                   rows={isEs ? [
                     { label: "Costo (por persona)", values: ["$89-$189", "$60-100 total", "$25-30 ida y vuelta"] },

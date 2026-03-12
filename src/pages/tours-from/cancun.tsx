@@ -433,6 +433,7 @@ const CancunToursPage = () => {
               <ComparisonTable
                 headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]}
                 highlightColumn={1}
+                recommendedLabel={isEs ? "Recomendado" : "Recommended"}
                 rows={(isEs ? cancunPageContentEs.comparisonTable : cancunPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))}
               />
               <div className="mt-6">

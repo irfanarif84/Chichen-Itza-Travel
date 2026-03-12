@@ -377,7 +377,7 @@ const PlayaDelCarmenToursPage = () => {
 
             <section className="mb-12">
               <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">{c.compTitle}</h2>
-              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]} highlightColumn={1} rows={(isEs ? playaDelCarmenPageContentEs.comparisonTable : playaDelCarmenPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
+              <ComparisonTable headers={isEs ? ["Tour Guiado", "Conducir"] : ["Guided Tour", "Self-Drive"]} highlightColumn={1} recommendedLabel={isEs ? "Recomendado" : "Recommended"} rows={(isEs ? playaDelCarmenPageContentEs.comparisonTable : playaDelCarmenPageContent.comparisonTable).rows.map((row) => ({ label: row[0], values: [row[1], row[2]] }))} />
               <div className="mt-6"><TipBox type="tip" title={c.tipTitle} content={c.tipContent} /></div>
             </section>
 

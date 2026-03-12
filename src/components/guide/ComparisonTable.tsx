@@ -9,6 +9,7 @@ interface ComparisonTableProps {
   }>;
   highlightColumn?: number;
   className?: string;
+  recommendedLabel?: string;
 }
 
 const ComparisonTable = ({
@@ -17,6 +18,7 @@ const ComparisonTable = ({
   rows,
   highlightColumn = 1,
   className = "",
+  recommendedLabel = "Recommended",
 }: ComparisonTableProps) => {
   const renderCell = (value: string | boolean | null, isHighlight: boolean) => {
     if (value === true) {
@@ -66,7 +68,7 @@ const ComparisonTable = ({
                 {header}
                 {i === highlightColumn - 1 && (
                   <span className="block text-xs font-normal text-primary/80 mt-0.5">
-                    Recommended
+                    {recommendedLabel}
                   </span>
                 )}
               </th>
