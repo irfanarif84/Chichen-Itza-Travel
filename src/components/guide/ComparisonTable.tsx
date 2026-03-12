@@ -18,6 +18,7 @@ const ComparisonTable = ({
   rows,
   highlightColumn = 1,
   className = "",
+  recommendedLabel = "Recommended",
 }: ComparisonTableProps) => {
   const renderCell = (value: string | boolean | null, isHighlight: boolean) => {
     if (value === true) {
