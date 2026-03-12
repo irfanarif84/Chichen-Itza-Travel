@@ -68,7 +68,7 @@ const ComparisonTable = ({
                 {header}
                 {i === highlightColumn - 1 && (
                   <span className="block text-xs font-normal text-primary/80 mt-0.5">
-                    Recommended
+                    {recommendedLabel}
                   </span>
                 )}
               </th>
