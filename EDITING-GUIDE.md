@@ -15,7 +15,7 @@
 6. [Blog Posts](#section-6-blog-posts-blogDatats)
 7. [Reviews / Testimonials](#section-7-reviews--testimonials-reviewsDatats)
 8. [Location Page Content](#section-8-location-page-content-locationDatats)
-9. [SEO & Schema](#section-9-seo--schema-schemats--seots)
+9. [Complete SEO System](#section-9-complete-seo-system)
 10. [Colors & Fonts](#section-10-colors--fonts-indexcss--tailwindconfigts)
 11. [Sitemap & Robots](#section-11-sitemap--robots-public)
 12. [Header Navigation](#section-12-header-navigation-headertsx)
@@ -1065,74 +1065,441 @@ Find the `timeline` array inside the relevant page content:
 
 ---
 
-## SECTION 9: SEO & SCHEMA (schema.ts + seo.ts)
+## SECTION 9: COMPLETE SEO SYSTEM
+
+This section covers every SEO-related file and setting across the codebase. The SEO system has **10 sub-areas** — each one controls a different part of how Google and social media see your website.
 
 ---
 
-### Changing the Domain (BASE_URL)
+## 9A. Domain / BASE_URL — Update All 4 Files When Going Live
 
-**File 1:** `src/lib/schema.ts` (line 4)
-**File 2:** `src/lib/seo.ts` (line 5)
+The placeholder domain `https://chichenitzatours.com` appears in **4 separate files**. When you go live with a real domain, all 4 must be updated — missing any one of them will cause broken canonical links or incorrect schema data.
 
-Both files have:
+---
+
+**FILE 1: `src/lib/seo.ts` (line 5)**
+
 ```ts
+// src/lib/seo.ts
 const BASE_URL = "https://chichenitzatours.com";
 ```
-
 Change to:
 ```ts
 const BASE_URL = "https://yournewdomain.com";
 ```
 
-> ⚠️ WARNING: After changing the domain here, also update `public/sitemap.xml` and `public/robots.txt`.
+---
+
+**FILE 2: `src/lib/schema.ts` (line 4)**
+
+```ts
+// src/lib/schema.ts
+const BASE_URL = "https://chichenitzatours.com";
+```
+Change to:
+```ts
+const BASE_URL = "https://yournewdomain.com";
+```
 
 ---
 
-### Updating organizationSchema
+**FILE 3: `src/components/common/SEOHead.tsx` (lines 8–10)**
 
-`src/lib/schema.ts` contains the main business information that Google reads for search results:
+This file has **three separate values** to update:
+
+```ts
+// src/components/common/SEOHead.tsx
+const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg";
+const SITE_NAME = "Chichen Itza Tours";
+const BASE_URL = "https://chichenitzatours.com";
+```
+
+Change to:
+```ts
+const DEFAULT_OG_IMAGE = "https://yournewdomain.com/images/chichen-itza-hero.jpg";
+const SITE_NAME = "Your Brand Name Here";
+const BASE_URL = "https://yournewdomain.com";
+```
+
+> ✅ TIP: `SITE_NAME` is what appears as the website name in social media sharing cards (Facebook, WhatsApp, Twitter). Update it to your real brand name.
+
+---
+
+**FILE 4: `public/sitemap.xml`**
+
+The domain appears **100+ times** in this file. Use Find & Replace in VS Code:
+- Find: `https://chichenitzatours.com`
+- Replace all with: `https://yournewdomain.com`
+
+Also update `public/robots.txt` — the last line:
+```
+Sitemap: https://chichenitzatours.com/sitemap.xml
+```
+Change to:
+```
+Sitemap: https://yournewdomain.com/sitemap.xml
+```
+
+---
+
+## 9B. Homepage Meta Title & Description
+
+**File:** `src/lib/i18n/translations/en.ts`
+
+These two keys control the `<title>` tag and meta description shown in Google search results for the homepage:
+
+```ts
+// src/lib/i18n/translations/en.ts
+"homeSeo.title": "Chichen Itza Tours – Best Guided Tours & Day Trips 2026",
+"homeSeo.description": "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Private tours, sunrise visits, cenote combos. Free cancellation & instant confirmation.",
+```
+
+**Before (updating year):**
+```ts
+"homeSeo.title": "Chichen Itza Tours – Best Guided Tours & Day Trips 2026",
+```
+
+**After:**
+```ts
+"homeSeo.title": "Chichen Itza Tours – Best Guided Tours & Day Trips 2027",
+```
+
+Then update the Spanish version in `src/lib/i18n/translations/es.ts`:
+
+```ts
+// src/lib/i18n/translations/es.ts
+"homeSeo.title": "Tours a Chichén Itzá – Los Mejores Tours Guiados 2026",
+"homeSeo.description": "Reserva los mejores tours a Chichén Itzá desde Cancún, Playa del Carmen y Tulum. Tours privados, visitas al amanecer, combos con cenotes. Cancelación gratuita y confirmación inmediata.",
+```
+
+> ✅ TIP: Keep `metaTitle` under 60 characters and `metaDescription` under 155 characters for best Google display.
+
+---
+
+## 9C. OG Image (Social Media Sharing Preview)
+
+**File:** `src/components/common/SEOHead.tsx` (line 8)
+
+```ts
+// src/components/common/SEOHead.tsx
+const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg";
+```
+
+This is the image that appears when someone shares your website link on Facebook, WhatsApp, Instagram Stories, or Twitter/X. It should be:
+- At least **1200×630 pixels**
+- A compelling hero photo of Chichen Itza
+- Hosted on your live domain (not a relative path)
+
+**After going live:**
+```ts
+const DEFAULT_OG_IMAGE = "https://yournewdomain.com/images/chichen-itza-hero.jpg";
+```
+
+> ⚠️ WARNING: Until you deploy the site to a real domain, the OG image won't work for social sharing previews. Test it after launch using Facebook's Sharing Debugger tool.
+
+---
+
+## 9D. Organization Schema (Google Knowledge Panel Data)
+
+**File:** `src/lib/schema.ts`
+**Search for:** `export const organizationSchema`
+
+This is the structured data Google reads to build your business listing in search results (star ratings, phone, address, social links). Keep it accurate at all times.
 
 ```ts
 // src/lib/schema.ts — organizationSchema
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Maya Explorer Tours",                          // ← your business name
+  name: "Maya Explorer Tours",                    // ← your real company name
   description: "Premier Chichen Itza tour operator...",  // ← business description
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
   image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
-  telephone: "+52-984-123-4567",                        // ← phone number (dashes OK here)
-  email: "info@chichenitzatours.com",                   // ← email address
+  telephone: "+52-984-123-4567",                  // ← your real phone (dashes allowed here)
+  email: "info@chichenitzatours.com",             // ← your real email
   address: {
     "@type": "PostalAddress",
-    streetAddress: "5th Avenue #123",
-    addressLocality: "Playa del Carmen",
-    addressRegion: "Quintana Roo",
-    postalCode: "77710",
-    addressCountry: "MX",
+    streetAddress: "5th Avenue #123",             // ← your real street address
+    addressLocality: "Playa del Carmen",          // ← your city
+    addressRegion: "Quintana Roo",                // ← your state/region
+    postalCode: "77710",                          // ← your postal code
+    addressCountry: "MX",                         // ← 2-letter country code
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",                                 // ← your average star rating
-    reviewCount: "3247",                                // ← total number of reviews
+    ratingValue: "4.9",                           // ← your current average star rating
+    reviewCount: "3247",                          // ← total number of reviews (update regularly)
     bestRating: "5",
     worstRating: "1",
   },
-  priceRange: "$89 - $299",                             // ← your price range
+  priceRange: "$89 - $299",                       // ← update when your prices change
   sameAs: [
-    "https://www.facebook.com/chichenitzatours",
-    "https://www.instagram.com/chichenitzatours",
-    "https://twitter.com/chichenitza_tours",
+    "https://www.facebook.com/chichenitzatours",  // ← your real Facebook page URL
+    "https://www.instagram.com/chichenitzatours", // ← your real Instagram URL
+    "https://twitter.com/chichenitza_tours",      // ← your real Twitter/X URL
   ],
 };
 ```
 
+> ✅ TIP: Update `reviewCount` and `ratingValue` every few months as your real reviews accumulate. These numbers appear directly in Google search results.
+
 ---
 
-### Default Meta Title and Description Fallbacks (seo.ts)
+## 9E. Tour Product Schema — priceValidUntil (Annual Update Required)
 
-When a page doesn't specify its own title or description, these fallbacks are used:
+**File:** `src/lib/schema.ts`
+**Search for:** `generateTourProductSchema`
+
+Inside this function, find:
+
+```ts
+// src/lib/schema.ts — generateTourProductSchema function
+priceValidUntil: "2026-12-31",
+```
+
+> ⚠️ WARNING: This date must be updated **every year**. If it expires, Google may stop showing price-rich results (the green price snippet) for your tour pages. Update it to the last day of the current year.
+
+**Before (year end approaching):**
+```ts
+priceValidUntil: "2026-12-31",
+```
+
+**After (updated for next year):**
+```ts
+priceValidUntil: "2027-12-31",
+```
+
+---
+
+## 9F. Guide Pages Article Schema — dateModified (Update When Editing Content)
+
+**File:** `src/lib/schema.ts`
+**Search for:** `export const guideSchemas`
+
+Each of the 8 guide pages has two date fields:
+
+```ts
+// src/lib/schema.ts — guideSchemas
+"best-time-to-visit": createGuideArticleSchema({
+  headline: "Best Time to Visit Chichen Itza - Complete 2026 Guide",
+  description: "...",
+  slug: "best-time-to-visit",
+  datePublished: "2025-01-15",   // ← NEVER change this (original publish date)
+  dateModified: "2026-02-01",    // ← UPDATE this whenever you edit the page content
+}),
+```
+
+**Rule:**
+- `datePublished` — set once when the guide was first created. **Never change it.**
+- `dateModified` — update to today's date **every time you edit that guide page's content**.
+
+> ⚠️ WARNING: If you edit a guide page's content but forget to update `dateModified`, Google thinks the content hasn't changed and may not re-crawl and re-index it promptly.
+
+**All 8 guides and their current dateModified values:**
+
+| Guide Slug | datePublished | dateModified (update when editing) |
+|------------|---------------|-------------------------------------|
+| `best-time-to-visit` | 2025-01-15 | 2026-02-01 |
+| `what-to-bring` | 2025-01-20 | 2026-02-01 |
+| `history-and-facts` | 2025-01-25 | 2026-02-15 |
+| `how-to-get-there` | 2025-01-28 | 2026-02-15 |
+| `entrance-fees` | 2025-02-01 | 2026-02-15 |
+| `photography-tips` | 2025-02-05 | 2026-02-15 |
+| `dress-code-and-rules` | 2025-02-08 | 2026-02-15 |
+| `vs-other-ruins` | 2025-02-01 | 2026-02-15 |
+
+**Example — updating dateModified after editing the entrance fees guide:**
+
+```ts
+// src/lib/schema.ts — guideSchemas
+"entrance-fees": createGuideArticleSchema({
+  headline: "Chichen Itza Entrance Fees 2026 – Complete Pricing Guide",
+  description: "...",
+  slug: "entrance-fees",
+  datePublished: "2025-02-01",
+  dateModified: "2026-03-20",    // ← updated to today's date
+}),
+```
+
+---
+
+## 9G. Location Schemas — aggregateRating Per City
+
+**File:** `src/lib/schema.ts`
+**Search for:** `export const locationSchemas`
+
+Each departure city has its own schema block with a rating. Update these as your real per-city reviews grow:
+
+```ts
+// src/lib/schema.ts — locationSchemas
+cancun: {
+  ...
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",    // ← average rating for tours from Cancún
+    reviewCount: "2891",   // ← total reviews from Cancún customers
+  },
+},
+"playa-del-carmen": {
+  ...
+  aggregateRating: { ratingValue: "4.9", reviewCount: "1847" },
+},
+tulum: {
+  ...
+  aggregateRating: { ratingValue: "4.8", reviewCount: "1234" },
+},
+// riviera-maya and merida have no aggregateRating — can be added if needed
+```
+
+**Before (updating Cancún review count after growth):**
+```ts
+aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "2891" },
+```
+
+**After:**
+```ts
+aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "3150" },
+```
+
+---
+
+## 9H. Hreflang & Bilingual URLs (Critical for International SEO)
+
+**File:** `src/lib/i18n/routeMap.ts`
+**Search for:** `export const enToEsRoutes`
+
+This file maps every English URL to its Spanish equivalent. The `SEOHead` component reads this map to add `<link rel="alternate" hreflang="...">` tags to every page — these tell Google which language version of a page to show to which users.
+
+**Current route map (all existing pages):**
+
+```ts
+// src/lib/i18n/routeMap.ts
+export const enToEsRoutes: Record<string, string> = {
+  "/": "/es/",
+  "/tours": "/es/tours",
+  "/tours/day-tours": "/es/tours/excursiones-de-dia",
+  "/tours/private-tours": "/es/tours/tours-privados",
+  "/tours/sunrise-tours": "/es/tours/tours-al-amanecer",
+  "/tours/cenote-tours": "/es/tours/tours-de-cenotes",
+  "/tours/ek-balam-tours": "/es/tours/tours-ek-balam",
+  "/tours/valladolid-tours": "/es/tours/tours-valladolid",
+  "/tours/night-tours": "/es/tours/tours-nocturnos",
+  "/tours-from/cancun": "/es/tours-desde/cancun",
+  "/tours-from/playa-del-carmen": "/es/tours-desde/playa-del-carmen",
+  "/tours-from/tulum": "/es/tours-desde/tulum",
+  "/tours-from/riviera-maya": "/es/tours-desde/riviera-maya",
+  "/tours-from/merida": "/es/tours-desde/merida",
+  "/guide": "/es/guia",
+  "/guide/best-time-to-visit": "/es/guia/mejor-epoca-para-visitar",
+  "/guide/what-to-bring": "/es/guia/que-llevar",
+  "/guide/history-and-facts": "/es/guia/historia-y-datos",
+  "/guide/how-to-get-there": "/es/guia/como-llegar",
+  "/guide/entrance-fees": "/es/guia/precios-de-entrada",
+  "/guide/photography-tips": "/es/guia/consejos-de-fotografia",
+  "/guide/dress-code-and-rules": "/es/guia/codigo-de-vestimenta",
+  "/guide/vs-other-ruins": "/es/guia/comparacion-con-otras-ruinas",
+  "/practical/faq": "/es/practico/preguntas-frecuentes",
+  "/practical/contact": "/es/practico/contacto",
+  "/practical/cancellation-policy": "/es/practico/politica-de-cancelacion",
+  "/practical/testimonials": "/es/practico/testimonios",
+  "/practical/booking-info": "/es/practico/informacion-de-reserva",
+  "/tour-types/small-group": "/es/tipos-de-tours/grupos-pequenos",
+  "/tour-types/luxury": "/es/tipos-de-tours/lujo",
+  "/tour-types/budget": "/es/tipos-de-tours/economico",
+  "/tour-types/family-friendly": "/es/tipos-de-tours/familiar",
+  "/tour-types/vip-skip-the-line": "/es/tipos-de-tours/vip-sin-filas",
+  "/combo-tours/cenote-ik-kil": "/es/combo-tours/cenote-ik-kil",
+  "/combo-tours/coba-ruins": "/es/combo-tours/ruinas-de-coba",
+  "/combo-tours/isla-mujeres": "/es/combo-tours/isla-mujeres",
+  "/combo-tours/multi-day-yucatan": "/es/combo-tours/yucatan-varios-dias",
+  "/blog": "/es/blog",
+  "/blog/spring-equinox-chichen-itza-guide": "/es/blog/spring-equinox-chichen-itza-guide",
+  "/blog/cenotes-near-chichen-itza": "/es/blog/cenotes-near-chichen-itza",
+  "/blog/chichen-itza-vs-tulum-ruins": "/es/blog/chichen-itza-vs-tulum-ruins",
+  "/blog/photographing-chichen-itza-like-a-pro": "/es/blog/photographing-chichen-itza-like-a-pro",
+  "/blog/mayan-history-beginners-guide": "/es/blog/mayan-history-beginners-guide",
+};
+```
+
+> ⚠️ WARNING: If you add a **new page** to the website, you MUST add it to this file or that page will be missing its hreflang tags, which damages international SEO.
+
+**3-step process when adding a new page:**
+
+**Step 1:** Create the page file in `src/pages/`.
+
+**Step 2:** Add the route mapping to `routeMap.ts`:
+```ts
+// src/lib/i18n/routeMap.ts — add inside enToEsRoutes
+"/your-new-page": "/es/tu-nueva-pagina",
+```
+
+**Step 3:** Add both URL versions to `public/sitemap.xml`:
+```xml
+<url>
+  <loc>https://chichenitzatours.com/your-new-page</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/your-new-page"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tu-nueva-pagina"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/your-new-page"/>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+```
+
+---
+
+## 9I. Tour-Level SEO (Per Tour Page)
+
+**File:** `src/lib/tourData.ts`
+
+Every tour has its own SEO fields inside its object:
+
+```ts
+// src/lib/tourData.ts — inside any tour object
+metaTitle: "Chichen Itza Day Tour from Cancun - From $89 | Maya Explorer",
+// Controls: <title> tag on that tour's individual page
+// Rule: Keep under 60 characters. Include main keyword + price + brand name.
+
+metaDescription: "Full-day Chichen Itza tour from Cancun with expert guide, lunch, cenote swim. Small groups, free cancellation. Book today!",
+// Controls: meta description shown under the blue link in Google results
+// Rule: Keep under 155 characters. Include a call to action.
+
+keywords: ["chichen itza day tour", "cancun to chichen itza"],
+// These are informational only — Google no longer uses the keywords meta tag directly.
+// They can still help you remember what the page is targeting.
+
+h1: "Chichen Itza Day Tour from Cancun – Full Day Experience",
+// Controls: the large heading visible at the top of the tour page.
+// Should include the primary keyword naturally.
+
+slug: "chichen-itza-day-tour-from-cancun",
+// Controls: the page URL → /tours/chichen-itza-day-tour-from-cancun
+// Rule: lowercase letters and hyphens only. No spaces.
+```
+
+> ⚠️ WARNING: If you change a tour's `slug`, the old URL stops working. You must also:
+> 1. Update `public/sitemap.xml` — find the old slug URL and replace it with the new one
+> 2. Check if any other pages link to the old URL and update those links
+
+**Example — updating a tour's metaTitle to reflect a new price:**
+
+Before:
+```ts
+metaTitle: "Chichen Itza Day Tour from Cancun - From $89 | Maya Explorer",
+```
+After:
+```ts
+metaTitle: "Chichen Itza Day Tour from Cancun - From $95 | Maya Explorer",
+```
+
+---
+
+## 9J. Default Meta Fallbacks (seo.ts)
+
+**File:** `src/lib/seo.ts`
+**Search for:** `getPageMeta`
+
+When a page doesn't provide its own `title` or `description`, these fallback values are used:
 
 ```ts
 // src/lib/seo.ts — getPageMeta function
@@ -1140,11 +1507,55 @@ title: meta.title || "Chichen Itza Tours – Best Guided Tours 2026",
 description: meta.description || "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Free cancellation & instant confirmation.",
 ```
 
-**To update the fallback title for 2027:**
+**To update the fallback year:**
 ```ts
 title: meta.title || "Chichen Itza Tours – Best Guided Tours 2027",
 description: meta.description || "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Free cancellation & instant confirmation.",
 ```
+
+> ✅ TIP: These fallbacks are a safety net. Most pages set their own `metaTitle` and `metaDescription` — the fallback only shows on pages that don't.
+
+---
+
+## 9K. Robots.txt Rules
+
+**File:** `public/robots.txt`
+
+Current contents:
+```
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*
+
+Sitemap: https://chichenitzatours.com/sitemap.xml
+```
+
+**What each rule does:**
+
+| Rule | Meaning |
+|------|---------|
+| `Allow: /` | All pages can be indexed by Google |
+| `Disallow: /api/` | API routes are hidden from search engines |
+| `Disallow: /*?*` | URLs with query parameters (e.g., `?page=2`) are blocked — prevents duplicate content indexing |
+| `Sitemap: ...` | Tells Google where to find your full sitemap |
+
+**When to edit robots.txt:**
+- When changing your domain: update the `Sitemap:` line
+- When you add admin pages, thank-you pages, or internal tools: add `Disallow: /admin/` or similar
+- Do NOT add `Disallow` rules for regular tour or guide pages — those should all be indexable
 
 ---
 
