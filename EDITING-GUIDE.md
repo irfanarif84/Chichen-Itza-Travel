@@ -5,22 +5,61 @@
 
 ---
 
+## QUICK REFERENCE CARD — 10 Most Common Edits
+
+> Use this card for day-to-day updates. For full details, jump to the numbered section.
+
+| # | What to change | File(s) to open | What to search for | Section |
+|---|---|---|---|---|
+| 1 | **Phone number** | `src/components/layout/Header.tsx` | `+52 998 123 4567` | §1 |
+| | | `src/components/layout/Footer.tsx` | `+52 998 123 4567` | §1 |
+| | | `src/lib/schema.ts` | `"+52-984-123-4567"` | §1 |
+| | | `src/pages/practical/contact.tsx` | `+52 998 123 4567` | §1 |
+| | | `src/pages/practical/cancellation-policy.tsx` | `+52 998 123 4567` | §1 |
+| | | `src/components/features/tours/CTABox.tsx` | `"+52-984-123-4567"` | §1 |
+| | | `src/pages/tours/[slug].tsx` | `+52 984 123 4567` | §1 |
+| 2 | **Email address** | `src/components/layout/Footer.tsx` | `info@chichenitzatours.com` | §1 |
+| | | `src/lib/schema.ts` | `email:` | §1 |
+| | | `src/pages/practical/contact.tsx` | `info@chichenitzatours.com` | §1 |
+| | | `src/pages/practical/cancellation-policy.tsx` | `info@chichenitzatours.com` | §1 |
+| 3 | **Tour price** | `src/lib/tourData.ts` | tour `id` → `price: { adult:` | §2 |
+| 4 | **Tour text (English)** | `src/lib/tourData.ts` | tour `id` → `title`, `description`, `highlights` | §2 |
+| 5 | **Tour text (Spanish)** | `src/lib/tourData.es.ts` | same tour `id` → same fields | §2 |
+| 6 | **Homepage hero text** | `src/lib/i18n/translations/en.ts` | `"hero.h1"`, `"hero.subtitle"` | §4 |
+| | | `src/lib/i18n/translations/es.ts` | same keys | §4 |
+| 7 | **Homepage SEO title/description** | `src/lib/i18n/translations/en.ts` | `"homeSeo.title"`, `"homeSeo.description"` | §9B |
+| | | `src/lib/i18n/translations/es.ts` | same keys | §9B |
+| 8 | **FAQ question or answer** | `src/lib/faqData.ts` | the relevant named array (e.g., `homepageFAQs`) | §5 |
+| | | `src/lib/faqData.es.ts` | same array with `Es` suffix (e.g., `homepageFAQsEs`) | §5 |
+| 9 | **Location page intro text** | `src/lib/locationData.ts` | `cancunPageContent.intro` (or other city) | §8 |
+| | | `src/lib/locationData.ts` | `cancunPageContentEs` (Spanish version) | §8 |
+| 10 | **Guide page body text** | `src/pages/guide/[page-name].tsx` | `isEs ? "Spanish text" : "English text"` | §16 |
+
+> ⚠️ **Phone number alert:** Two different numbers exist in the codebase — `+52 998 123 4567` (public-facing) and `+52 984 123 4567` (used in schema.ts, CTABox.tsx, [slug].tsx). See Section 1 for the full inconsistency breakdown.
+
+---
+
 ## Table of Contents
 
-1. [Contact Information](#section-1-contact-information-most-important)
-2. [Tour Packages](#section-2-tour-packages-tourDatats)
-3. [Images](#section-3-images)
-4. [Website Text & UI Labels](#section-4-website-text--ui-labels-ents--ests)
-5. [FAQ Content](#section-5-faq-content-faqDatats)
-6. [Blog Posts](#section-6-blog-posts-blogDatats)
-7. [Reviews / Testimonials](#section-7-reviews--testimonials-reviewsDatats)
-8. [Location Page Content](#section-8-location-page-content-locationDatats)
-9. [Complete SEO System](#section-9-complete-seo-system)
-10. [Colors & Fonts](#section-10-colors--fonts-indexcss--tailwindconfigts)
-11. [Sitemap & Robots](#section-11-sitemap--robots-public)
-12. [Header Navigation](#section-12-header-navigation-headertsx)
-13. [Footer Links](#section-13-footer-links-footertsx)
-14. [Common Mistakes to Avoid](#section-14-common-mistakes-to-avoid)
+**Quick start:** [Quick Reference Card](#quick-reference-card--10-most-common-edits) (top of this file)
+
+1. [Contact Information](#section-1-contact-information-most-important) — phone (7 files!), email (4 files), address
+2. [Tour Packages](#section-2-tour-packages-tourDatats) — prices, titles, descriptions, highlights
+3. [Images](#section-3-images) — adding/replacing tour and guide images
+4. [Website Text & UI Labels](#section-4-website-text--ui-labels-ents--ests) — nav labels, footer text, buttons
+5. [FAQ Content](#section-5-faq-content-faqDatats) — all FAQ arrays
+6. [Blog Posts](#section-6-blog-posts-blogDatats) — editing and adding blog posts
+7. [Reviews / Testimonials](#section-7-reviews--testimonials-reviewsDatats) — the 25 review entries
+8. [Location Page Content](#section-8-location-page-content-locationDatats) — city page text
+9. [Complete SEO System](#section-9-complete-seo-system) — BASE_URL (5 files!), meta, schemas
+10. [Colors & Fonts](#section-10-colors--fonts-indexcss--tailwindconfigts) — brand colors and typography
+11. [Sitemap & Robots](#section-11-sitemap--robots-public) — crawl rules
+12. [Header Navigation](#section-12-header-navigation-headertsx) — nav menus
+13. [Footer Links](#section-13-footer-links-footertsx) — footer columns
+14. [Common Mistakes to Avoid](#section-14-common-mistakes-to-avoid) — critical warnings
+15. [SEO Strategies Reference](#section-15-seo-strategies--kahan-kya-use-ho-raha-hai-aur-impact-kya-hai) — 21 strategies documented
+16. [Page-wise Content Editing](#section-16-page-wise-content-editing-guide) — how to edit each page type
+17. [Keyword Map](#section-17-keyword-map--kis-page-per-kaunsa-keyword-target-hai) — all ~50 URLs mapped
 
 ---
 
@@ -32,15 +71,24 @@ Contact details are scattered across **multiple files**. When you update one, yo
 
 ### Phone Number
 
-Currently: `+52 998 123 4567`
+⚠️ **INCONSISTENCY FOUND IN CODEBASE:** Two different phone numbers currently exist across files. Before updating, decide which is correct and fix ALL locations below.
 
-| File | What to search for | Notes |
-|------|--------------------|-------|
-| `src/components/layout/Header.tsx` | `+52 998 123 4567` | Line 75 — visible in top bar |
-| `src/components/layout/Footer.tsx` | `+52 998 123 4567` | Line 24 — visible in footer |
-| `src/lib/schema.ts` | `"+52-984-123-4567"` | Line 16 — used for Google search results |
+- **`+52 998 123 4567`** — used in public-facing UI (Header, Footer, Contact page, Cancellation policy)
+- **`+52 984 123 4567`** — used in Google schema data and tour sidebar widget
 
-**Before (Header.tsx line 75):**
+**All 7 files that contain a phone number — update every one:**
+
+| File | Line | Current value | Where it appears |
+|------|------|---------------|-----------------|
+| `src/components/layout/Header.tsx` | ~75 | `+52 998 123 4567` | Top navigation bar |
+| `src/components/layout/Footer.tsx` | ~24 | `+52 998 123 4567` | Page footer |
+| `src/lib/schema.ts` | 16 | `"+52-984-123-4567"` | Google Knowledge Panel / rich results |
+| `src/pages/practical/contact.tsx` | ~265 | `+52 998 123 4567` | Contact page sidebar |
+| `src/pages/practical/cancellation-policy.tsx` | ~45, 50 | `+52 998 123 4567` | Cancellation instructions text |
+| `src/components/features/tours/CTABox.tsx` | 12 | `"+52-984-123-4567"` | "Need Help Choosing?" widget on tour pages |
+| `src/pages/tours/[slug].tsx` | ~570 | `+52 984 123 4567` | Call button in tour detail page sidebar |
+
+**Before (Header.tsx):**
 ```tsx
 // src/components/layout/Header.tsx
 <a href="tel:+529981234567" className="...">
@@ -58,7 +106,27 @@ Currently: `+52 998 123 4567`
 </a>
 ```
 
-> ✅ TIP: The `href="tel:..."` value must have NO spaces or dashes — just digits.
+**Before (CTABox.tsx line 12):**
+```tsx
+const CTABox = ({ title, subtitle, phone = "+52-984-123-4567" }: CTABoxProps) => {
+```
+
+**After:**
+```tsx
+const CTABox = ({ title, subtitle, phone = "+52-984-567-8901" }: CTABoxProps) => {
+```
+
+**Before (schema.ts line 16):**
+```ts
+telephone: "+52-984-123-4567",
+```
+
+**After:**
+```ts
+telephone: "+52-984-567-8901",
+```
+
+> ✅ TIP: The `href="tel:..."` value must have NO spaces or dashes — just digits with country code. The display text and `schema.ts` value can include dashes for readability.
 
 ---
 
@@ -66,12 +134,16 @@ Currently: `+52 998 123 4567`
 
 Currently: `info@chichenitzatours.com`
 
-| File | What to search for | Notes |
-|------|--------------------|-------|
-| `src/components/layout/Footer.tsx` | `info@chichenitzatours.com` | Line 27 — visible in footer |
-| `src/lib/schema.ts` | `"info@chichenitzatours.com"` | Line 17 — used for Google search results |
+**All 4 files that contain the email address — update every one:**
 
-**Before (Footer.tsx line 27):**
+| File | Line | Where it appears |
+|------|------|-----------------|
+| `src/components/layout/Footer.tsx` | ~27 | Page footer |
+| `src/lib/schema.ts` | 17 | Google rich results (`email` field) |
+| `src/pages/practical/contact.tsx` | ~269 | Contact page sidebar |
+| `src/pages/practical/cancellation-policy.tsx` | ~44, 49 | "How to cancel" instructions |
+
+**Before (Footer.tsx):**
 ```tsx
 // src/components/layout/Footer.tsx
 <a href="mailto:info@chichenitzatours.com" className="...">
@@ -85,6 +157,16 @@ Currently: `info@chichenitzatours.com`
 <a href="mailto:hello@mayaexplorertours.com" className="...">
   <Mail className="h-4 w-4" /> hello@mayaexplorertours.com
 </a>
+```
+
+**Before (cancellation-policy.tsx ~line 44):**
+```ts
+"Or email us at info@chichenitzatours.com with your booking reference number",
+```
+
+**After:**
+```ts
+"Or email us at hello@mayaexplorertours.com with your booking reference number",
 ```
 
 ---
@@ -103,12 +185,15 @@ https://wa.me/529981234567
 
 ### Physical Address
 
-Currently: `5th Avenue #123, Playa del Carmen`
+Currently: `5th Avenue #123, Playa del Carmen` (schema) / `Cancún, Quintana Roo, México` (footer display)
+
+Note: The contact.tsx sidebar also displays `Cancún, Quintana Roo, MX` inline.
 
 | File | What to search for | Notes |
 |------|--------------------|-------|
-| `src/lib/schema.ts` | `streetAddress` | Lines 20-25 — full postal address for Google |
+| `src/lib/schema.ts` | `streetAddress` | Lines 20-25 — full postal address for Google rich results |
 | `src/components/layout/Footer.tsx` | `Cancún, Quintana Roo, México` | Line 30 — display address in footer |
+| `src/pages/practical/contact.tsx` | `Cancún, Quintana Roo, MX` | ~Line 273 — sidebar on contact page |
 
 **Before (schema.ts lines 19-25):**
 ```ts
@@ -1139,6 +1224,31 @@ Change to:
 ```
 Sitemap: https://yournewdomain.com/sitemap.xml
 ```
+
+---
+
+**FILE 5 (hidden): `src/pages/tours/[slug].tsx` (line ~200)**
+
+⚠️ This file constructs the canonical URL as a hardcoded string instead of using the `BASE_URL` constant. It will NOT automatically update when you change `seo.ts` or `schema.ts`.
+
+```ts
+// src/pages/tours/[slug].tsx — line ~200
+canonical: `https://chichenitzatours.com/tours/${tour.slug}`,
+```
+
+Change to (replacing only the domain part):
+```ts
+canonical: `https://yournewdomain.com/tours/${tour.slug}`,
+```
+
+Also on lines ~127–129 of the same file, the breadcrumb schema has hardcoded URLs:
+```ts
+{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: "https://chichenitzatours.com" },
+{ "@type": "ListItem", position: 2, name: "Tours", item: "https://chichenitzatours.com/tours" },
+{ "@type": "ListItem", position: 3, name: catMeta.label, item: `https://chichenitzatours.com${catMeta.href}` },
+```
+
+Change all three to use `https://yournewdomain.com`.
 
 ---
 
@@ -2383,6 +2493,103 @@ Blog posts "discovery stage" ke users ko capture karte hain — jo abhi plan kar
 - Blog posts mein tour pages ke links na hon → conversion opportunity miss
 - Outdated blog content → stale signals to Google
 - Blog posts jo site ke main keywords ko target karen → cannibalization risk
+
+---
+
+### Strategy 18: HTML `lang` Attribute (Language Signal)
+
+**Kahan implement hai:**
+- `src/components/common/SEOHead.tsx` — line 38: `<html lang={htmlLang} />`
+- `htmlLang` value: `"es"` for Spanish pages, `"en"` for English pages
+- `ogLocale` also set accordingly: `"es_MX"` or `"en_US"` (line 16)
+
+**Google ranking pe impact:**
+`<html lang="en">` Google aur screen readers ko explicitly batata hai ke page ki language kya hai. Yeh hreflang ke saath mil kar Google ko language targeting confident banata hai. `og:locale` social sharing ke liye language/region signal provide karta hai — Facebook aur WhatsApp is information ko content distribution mein use karte hain.
+
+**Agar theek na kiya jaye to nuksan:**
+- Missing `lang` attribute → accessibility issues (screen readers language nahi samajhte)
+- Wrong `lang` attribute → Google wrong language index karta hai → wrong users ko page serve hoti hai
+- Inconsistent `og:locale` → Facebook wrong region ke users ko content show karta hai
+
+---
+
+### Strategy 19: `og:type` Differentiation (Article vs Website)
+
+**Kahan implement hai:**
+- `src/components/common/SEOHead.tsx` — line 13: `const ogType = meta.ogType || "website"`
+- Guide pages (`src/pages/guide/*.tsx`) — `getMeta()` function: `ogType: "article"` explicitly set
+- All other pages default to `"website"` (homepage, tour pages, location pages)
+
+**Google ranking pe impact:**
+`og:type = "article"` Facebook aur Google ko batata hai ke yeh page ek publishable article hai — Google Discover mein include hone ke liye eligible hota hai. Guide pages jo `"article"` type use karte hain woh better rich preview generate karte hain jab share kiya jaye. `"website"` type commercial/homepage pages ke liye appropriate hai.
+
+**Agar theek na kiya jaye to nuksan:**
+- Guide pages par `"website"` type → Google Discover eligibility loose hoti hai
+- Commercial pages par `"article"` type → confusing signals → possible misclassification
+
+---
+
+### Strategy 20: ImageGallery / ImageObject Schema (Image SEO)
+
+**Kahan implement hai:**
+- `src/pages/tours/[slug].tsx` — lines 139–150: `imageObjectSchema` generated from `tourGalleryImages[tour.id]`
+- Schema type: `ImageGallery` containing multiple `ImageObject` entries
+- Each `ImageObject` has: `contentUrl`, `name`, `description` (from `tourGalleryAltTexts`)
+- Source of alt texts: `src/lib/tourImages.ts` → `tourGalleryAltTexts` export
+
+```ts
+// src/pages/tours/[slug].tsx (lines ~139-150)
+const imageObjectSchema = galleryImgs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  name: `${loc.title} Photo Gallery`,
+  about: { "@type": "TouristAttraction", name: "Chichen Itza" },
+  image: galleryImgs.map((url, i) => ({
+    "@type": "ImageObject",
+    contentUrl: url,
+    name: galleryAlts[i] ?? `${loc.title} photo ${i + 1}`,
+    description: galleryAlts[i] ?? `${loc.title} - Chichen Itza tour photo ${i + 1}`,
+  })),
+} : null;
+```
+
+**Google ranking pe impact:**
+`ImageObject` schema Google Image Search mein images ko rich results ke liye eligible banata hai. Alt text from `tourGalleryAltTexts` both accessibility aur image SEO serve karta hai. Tour images Google Images mein appear ho sakte hain — yeh additional organic traffic channel hai.
+
+**Agar theek na kiya jaye to nuksan:**
+- Missing alt texts in `tourGalleryAltTexts` → schema generates fallback generic text → weaker image SEO
+- Empty gallery images array → `imageObjectSchema` null returns → no image schema for that tour
+- Wrong/generic alt text → Google images poorly classified → less image search traffic
+
+✅ **TIP:** Jab bhi koi naya tour add karo, `src/lib/tourImages.ts` mein us tour ka `tourGalleryAltTexts[tour-id]` array bhi add karo with descriptive English alt texts for all gallery images.
+
+---
+
+### Strategy 21: `fetchPriority="high"` on Hero Images (Core Web Vitals — LCP)
+
+**Kahan implement hai:**
+- `src/pages/tours/[slug].tsx` — line ~220: `fetchPriority="high"` on the hero `<img>` tag
+- Also uses `loading="eager"` (not lazy) on the above-fold hero image
+
+```tsx
+// src/pages/tours/[slug].tsx
+<img
+  src={heroImg}
+  alt={`${loc.title} - Chichen Itza tour hero image`}
+  className="absolute inset-0 w-full h-full object-cover opacity-60"
+  width={1920}
+  height={1080}
+  loading="eager"
+  fetchPriority="high"
+/>
+```
+
+**Google ranking pe impact:**
+`fetchPriority="high"` browser ko instruct karta hai ke yeh image pehle load karo — hero image typically LCP (Largest Contentful Paint) element hoti hai. LCP Google Core Web Vitals ka part hai aur direct ranking factor hai. `loading="eager"` ensure karta hai ke hero image lazy load nahi hoti (jo LCP ko delay karta).
+
+**Agar theek na kiya jaye to nuksan:**
+- `fetchPriority` remove → browser lower priority assign karta hai → LCP score gir jaata hai
+- `loading="lazy"` hero par → image deferred load hoti hai → LCP fail → ranking drop
 
 ---
 
