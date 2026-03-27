@@ -60,6 +60,7 @@
 15. [SEO Strategies Reference](#section-15-seo-strategies--kahan-kya-use-ho-raha-hai-aur-impact-kya-hai) — 21 strategies documented
 16. [Page-wise Content Editing](#section-16-page-wise-content-editing-guide) — how to edit each page type
 17. [Keyword Map](#section-17-keyword-map--kis-page-per-kaunsa-keyword-target-hai) — all ~50 URLs mapped
+18. [Critical Editing Rules](#section-18-critical-editing-rules) — 15 mandatory rules to prevent breakage
 
 ---
 
