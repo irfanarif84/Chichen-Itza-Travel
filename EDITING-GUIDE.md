@@ -3281,4 +3281,176 @@ Yeh table highest-risk keyword pairs show karta hai aur unhe differentiate kaise
 
 ---
 
+---
+
+## SECTION 18: CRITICAL EDITING RULES
+
+> ⚠️ **READ THIS BEFORE MAKING ANY CHANGES.** These rules prevent broken pages, lost SEO rankings, and build failures.
+
+---
+
+### Rule 1: Never Change Slugs or File Names
+
+URL slugs are indexed by Google. Changing a slug = changing the URL = losing all accumulated SEO rankings and backlinks.
+
+**NEVER change:**
+- File names in `/src/pages/` (e.g., `day-tours.tsx`, `cancun.tsx`)
+- Tour `slug` values in `tourData.ts` (e.g., `"chichen-itza-day-tour-from-cancun"`)
+- Blog `slug` values in `blogData.ts`
+- Route mappings in `src/lib/i18n/routeMap.ts`
+
+If you absolutely must rename a URL, set up a 301 redirect from the old URL to the new one.
+
+---
+
+### Rule 2: Always Update Both Language Files
+
+Every content change must be made in **both** English and Spanish files:
+
+| English File | Spanish File |
+|---|---|
+| `src/lib/tourData.ts` | `src/lib/tourData.es.ts` |
+| `src/lib/faqData.ts` | `src/lib/faqData.es.ts` |
+| `src/lib/blogData.ts` | `src/lib/blogData.es.ts` |
+| `src/lib/i18n/translations/en.ts` | `src/lib/i18n/translations/es.ts` |
+
+For page files that use `isEs ? "Spanish" : "English"` patterns, update both strings in the same file.
+
+> ⚠️ If you only update one language, the other language will show stale/incorrect content.
+
+---
+
+### Rule 3: Never Break the TypeScript Types
+
+Tour objects must match the `Tour` type in `src/types/tour.ts`. If you add a new field, add it to the type first. If you remove a required field, the build will fail.
+
+**Common mistakes:**
+- Removing a required field like `title`, `slug`, or `price`
+- Adding a field that doesn't exist in the type definition
+- Using wrong data types (string where number is expected)
+
+---
+
+### Rule 4: Keep Commas and Quotes Intact
+
+Every array item and object property must end with a comma. Every string must be wrapped in quotes. Missing commas or quotes will crash the entire site.
+
+**Correct:**
+```ts
+highlights: [
+  "Visit El Castillo pyramid",
+  "Swim in Cenote Ik Kil",
+  "Enjoy buffet lunch",
+],
+```
+
+**Wrong (missing comma after second item):**
+```ts
+highlights: [
+  "Visit El Castillo pyramid",
+  "Swim in Cenote Ik Kil"
+  "Enjoy buffet lunch",
+],
+```
+
+---
+
+### Rule 5: Never Hardcode Colors in Components
+
+All colors must use semantic design tokens from `index.css` and `tailwind.config.ts`. Never use raw color values like `text-white`, `bg-[#D2691E]`, or `text-black` directly in components.
+
+**Correct:** `text-primary`, `bg-background`, `text-muted-foreground`, `border-border`
+**Wrong:** `text-white`, `bg-orange-600`, `text-[#333]`
+
+---
+
+### Rule 6: Update Contact Info in ALL Locations
+
+Contact details (phone, email, address) are scattered across 4–7 files. When updating any contact info, you **must** update every file listed in [Section 1](#section-1-contact-information-most-important). Missing one file = inconsistent info shown to users and Google.
+
+---
+
+### Rule 7: Keep SEO Meta Under Character Limits
+
+| Field | Max Length | What Happens If Too Long |
+|---|---|---|
+| `metaTitle` / page title | 60 characters | Google truncates it with "..." |
+| `metaDescription` | 155 characters | Google truncates or ignores it |
+| H1 heading | No strict limit | Keep concise for readability |
+
+Always count characters after editing. Use a tool like [charactercountonline.com](https://charactercountonline.com).
+
+---
+
+### Rule 8: Never Delete Tour IDs
+
+The `id` field in tour objects is used internally for routing, filtering, and cross-referencing between English and Spanish data. Changing or deleting an `id` will break tour detail pages and category listings.
+
+---
+
+### Rule 9: Test After Every Change
+
+After any edit:
+1. Check the English version of the affected page loads without errors
+2. Check the Spanish version (`/es/...`) of the same page loads without errors
+3. Check the browser console for red error messages
+4. Verify the build completes without errors
+
+---
+
+### Rule 10: Keep the Sitemap Updated
+
+When adding a new page:
+1. Add the English URL to `public/sitemap.xml`
+2. Add the Spanish URL with `xhtml:link` hreflang alternates
+3. Add route mappings to `src/lib/i18n/routeMap.ts`
+
+When removing a page:
+1. Remove both English and Spanish entries from `sitemap.xml`
+2. Set up a 301 redirect if the page had traffic
+
+---
+
+### Rule 11: Never Edit Read-Only Files
+
+These files are managed by the build system and must **never** be manually edited:
+- `.gitignore`
+- `bun.lock` / `bun.lockb`
+- `package-lock.json`
+- `node_modules/` (entire folder)
+
+---
+
+### Rule 12: Images Must Have Alt Text
+
+Every `<img>` tag or image object must include descriptive `alt` text for accessibility and SEO. Never use empty alt text (`alt=""`) unless the image is purely decorative.
+
+**Good:** `alt="Aerial view of El Castillo pyramid at Chichen Itza"`
+**Bad:** `alt="image1"` or `alt=""`
+
+---
+
+### Rule 13: Maintain Internal Linking
+
+Every page should have at least 5–10 internal links to other pages on the site. When adding a new page, link to it from at least 2–3 related existing pages. When removing a page, remove or update all links pointing to it.
+
+---
+
+### Rule 14: Preserve the `isEs` Pattern
+
+All bilingual page content follows this pattern:
+```tsx
+{isEs ? "Texto en español" : "English text"}
+```
+
+Never remove the `isEs` conditional. Never replace it with hardcoded text in a single language.
+
+---
+
+### Rule 15: Back Up Before Major Changes
+
+Before making large-scale edits (e.g., restructuring tours, changing the design system, updating multiple pages), commit your current working state. This way you can revert if something breaks.
+
+---
+
 *End of Editing Guide*
