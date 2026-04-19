@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { getPageMeta } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 const CancellationPolicyPage = () => {
@@ -59,10 +60,15 @@ const CancellationPolicyPage = () => {
         <h1 className="font-heading font-bold text-3xl lg:text-4xl mb-3 mt-6">
           {isEs ? "Política de Cancelación y Reembolso" : "Cancellation & Refund Policy"}
         </h1>
-        <p className="text-muted-foreground mb-10 max-w-2xl">
+        <p className="text-muted-foreground mb-4 max-w-2xl">
           {isEs
             ? "Queremos que reserves con confianza. Por eso ofrecemos cancelación flexible y sin complicaciones en todos nuestros tours a Chichén Itzá."
             : "We want you to book with confidence. That's why we offer flexible, hassle-free cancellation on all our Chichen Itza tours."}
+        </p>
+        <p className="text-muted-foreground mb-10 max-w-2xl text-sm">
+          {isEs
+            ? "Esta política se aplica a todas las reservas realizadas directamente en chichenitzatours.com. Cumple — y en muchos casos excede — los estándares de la industria establecidos por GetYourGuide, Viator y Expedia. Los reembolsos se procesan automáticamente al método de pago original; no necesitas llamar para reclamar tu dinero."
+            : "This policy applies to every booking made directly on chichenitzatours.com. It meets — and in most cases exceeds — the industry standards set by GetYourGuide, Viator, and Expedia. Refunds are processed automatically to your original payment method; you don't need to call to claim your money."}
         </p>
 
         {/* Policy cards */}
@@ -129,6 +135,50 @@ const CancellationPolicyPage = () => {
               ))}
             </ol>
           </section>
+
+          <section>
+            <h2 className="font-heading font-bold text-2xl mb-4">
+              {isEs ? "Reembolsos: Plazos y Detalles" : "Refunds: Timelines & Details"}
+            </h2>
+            <div className="space-y-3 text-muted-foreground text-sm">
+              <p>
+                {isEs
+                  ? "Los reembolsos elegibles se inician en un día hábil. Las tarjetas Visa y Mastercard normalmente reflejan el crédito en 5 a 7 días hábiles; American Express en 3 a 5; PayPal y Apple Pay en 1 a 2. Los reembolsos siempre regresan al método de pago original — no podemos transferirlos a una tarjeta diferente por motivos de prevención de fraude."
+                  : "Eligible refunds are initiated within one business day. Visa and Mastercard typically reflect the credit in 5–7 business days; American Express in 3–5; PayPal and Apple Pay in 1–2. Refunds always return to the original payment method — we can't transfer them to a different card for fraud-prevention reasons."}
+              </p>
+              <p>
+                {isEs
+                  ? "Si reservaste un add-on (guía privado, paquete fotográfico, transporte de lujo) y luego cancelas el tour principal, el add-on se reembolsa proporcionalmente. Las propinas opcionales que se hayan agregado son 100 % reembolsables hasta el momento de la salida."
+                  : "If you booked an add-on (private guide, photography package, luxury transport) and then cancel the main tour, the add-on is refunded pro-rata. Optional tip add-ons are 100 % refundable up to the moment of departure."}
+              </p>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="font-heading font-bold text-2xl mb-4">
+              {isEs ? "Cambios de Fecha y Reprogramación" : "Date Changes & Rescheduling"}
+            </h2>
+            <div className="space-y-3 text-muted-foreground text-sm">
+              <p>
+                {isEs
+                  ? "Si tus planes cambian pero aún quieres visitar Chichén Itzá, prefiere reprogramar antes de cancelar — es gratis hasta 48 horas antes de la salida y conserva tu lugar en la nueva fecha sin volver a procesar el pago. Solo escríbenos por correo electrónico o WhatsApp con tu número de referencia y la nueva fecha preferida."
+                  : "If plans change but you still want to visit Chichen Itza, prefer rescheduling over cancelling — it's free up to 48 hours before departure and preserves your spot on the new date with no need to re-process payment. Just email or WhatsApp us with your reference number and preferred new date."}
+              </p>
+              <p>
+                {isEs ? "Antes de cancelar, revisa nuestras guías sobre la " : "Before cancelling, check our guides on the "}
+                <LocaleLink to="/guide/best-time-to-visit" className="text-primary hover:underline font-medium">
+                  {isEs ? "mejor época para visitar" : "best time to visit"}
+                </LocaleLink>
+                {isEs ? " y " : " and "}
+                <LocaleLink to="/guide/how-to-get-there" className="text-primary hover:underline font-medium">
+                  {isEs ? "cómo llegar" : "how to get there"}
+                </LocaleLink>
+                {isEs
+                  ? " — a menudo descubrirás una fecha o ruta mejor en lugar de cancelar por completo."
+                  : " — you'll often discover a better date or route instead of cancelling outright."}
+              </p>
+            </div>
+          </section>
         </div>
 
         {/* CTA */}
@@ -143,6 +193,8 @@ const CancellationPolicyPage = () => {
             <LocaleLink to="/tours">{isEs ? "Ver Todos los Tours" : "Browse All Tours"} <ArrowRight className="h-4 w-4 ml-1" /></LocaleLink>
           </Button>
         </div>
+
+        <RelatedResources />
       </div>
     </>
   );

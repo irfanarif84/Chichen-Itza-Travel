@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 import { useLocale } from "@/lib/i18n/useLocale";
 import {
   Select,
@@ -177,8 +178,13 @@ const ContactPage = () => {
             <h1 className="font-heading font-bold text-3xl lg:text-4xl mb-3">
               {c.h1}
             </h1>
-            <p className="text-muted-foreground mb-8 max-w-xl">
+            <p className="text-muted-foreground mb-4 max-w-xl">
               {c.subtitle}
+            </p>
+            <p className="text-muted-foreground text-sm mb-8 max-w-xl">
+              {isEs
+                ? "Hablamos español, inglés y francés. La mayoría de las cotizaciones se devuelven con tres opciones — económica, con mejor relación calidad-precio y premium — para que puedas comparar en una sola respuesta. Si planificas un viaje grupal de 6+ personas, una boda destino o un itinerario corporativo, menciónalo en tu mensaje y un coordinador dedicado te contactará en lugar de un agente general."
+                : "We speak English, Spanish, and French. Most quotes come back with three options — value, best-balance, and premium — so you can compare in a single reply. If you're planning a 6+ group trip, a destination wedding, or a corporate itinerary, mention it in your message and a dedicated coordinator will reach out instead of a general agent."}
             </p>
 
             {submitted ? (
@@ -291,6 +297,8 @@ const ContactPage = () => {
             <TrustBadges variant="compact" />
           </aside>
         </div>
+
+        <RelatedResources />
       </div>
     </>
   );
