@@ -134,6 +134,64 @@ const FAQPage = () => {
         </section>
       )}
 
+      {/* Long-form intro: how to use this FAQ */}
+      {!search && (
+        <section className="py-8 border-b border-border bg-muted/20">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-foreground mb-2">
+                  {isEs ? "¿Eres nuevo planificando este viaje?" : "New to planning this trip?"}
+                </h2>
+                <p className="mb-3">
+                  {isEs
+                    ? "Chichén Itzá está a unas 2,5 horas de Cancún, 2 horas de Playa del Carmen y solo 1,5 horas de Mérida. La mayoría de los viajeros lo visita como tour de un día — pero la pregunta más importante es cuándo entrar al sitio. Antes de las 11 a.m. recibe sombra y multitudes manejables; después se vuelve caluroso y abarrotado."
+                    : "Chichen Itza is roughly 2.5 hours from Cancún, 2 hours from Playa del Carmen, and just 1.5 hours from Mérida. Most travelers visit on a day tour — but the single most important question is when you enter the site. Before 11 a.m. you get shade and manageable crowds; after that it gets hot and packed."}
+                </p>
+                <p>
+                  {isEs ? "Comienza con nuestra " : "Start with our "}
+                  <LocaleLink to="/guide/best-time-to-visit" className="text-primary hover:underline font-medium">
+                    {isEs ? "guía de la mejor época" : "best-time-to-visit guide"}
+                  </LocaleLink>
+                  {isEs ? " y la " : " and the "}
+                  <LocaleLink to="/guide/how-to-get-there" className="text-primary hover:underline font-medium">
+                    {isEs ? "guía de cómo llegar" : "how-to-get-there guide"}
+                  </LocaleLink>
+                  {"."}
+                </p>
+              </div>
+              <div>
+                <h2 className="font-heading font-bold text-lg text-foreground mb-2">
+                  {isEs ? "¿Listo para elegir un tour?" : "Ready to choose a tour?"}
+                </h2>
+                <p className="mb-3">
+                  {isEs
+                    ? "Si viajas en grupo, los tours de un día compartidos son la mejor relación calidad-precio. Si quieres flexibilidad, considera un tour privado. Para evitar multitudes por completo, los tours al amanecer entran al sitio justo cuando abre."
+                    : "If you're travelling in a group, shared day tours offer the best value. If you want flexibility, consider a private tour. To avoid crowds entirely, sunrise tours enter the site right at opening."}
+                </p>
+                <p>
+                  {isEs ? "Compara " : "Compare "}
+                  <LocaleLink to="/tours/day-tours" className="text-primary hover:underline font-medium">
+                    {isEs ? "tours de un día" : "day tours"}
+                  </LocaleLink>
+                  {", "}
+                  <LocaleLink to="/tours/private-tours" className="text-primary hover:underline font-medium">
+                    {isEs ? "tours privados" : "private tours"}
+                  </LocaleLink>
+                  {isEs ? " y " : " and "}
+                  <LocaleLink to="/tours/sunrise-tours" className="text-primary hover:underline font-medium">
+                    {isEs ? "tours al amanecer" : "sunrise tours"}
+                  </LocaleLink>
+                  {isEs
+                    ? ". Para combinaciones, mira nuestros tours combo a Cobá, Ek Balam o Isla Mujeres."
+                    : ". For combinations, see our combo tours to Cobá, Ek Balam, or Isla Mujeres."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ Sections */}
       <div className="container py-12 lg:py-16">
         {filteredCategories.length > 0 ? (
