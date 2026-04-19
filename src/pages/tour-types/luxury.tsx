@@ -4,6 +4,7 @@ import { Gem, ChevronRight, Star, Wine, Car, Crown, Sparkles } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
