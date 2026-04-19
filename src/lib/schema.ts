@@ -3,6 +3,14 @@ import type { FAQItem } from "./faqData";
 
 const BASE_URL = "https://chichenitzatours.com";
 
+// Returns YYYY-12-31 of the current year so offer schemas never expire mid-year.
+// Rolls forward automatically: in late Dec, returns next year's end-of-year.
+const getPriceValidUntil = (): string => {
+  const now = new Date();
+  const year = now.getMonth() === 11 && now.getDate() >= 15 ? now.getFullYear() + 1 : now.getFullYear();
+  return `${year}-12-31`;
+};
+
 // WebSite schema with SearchAction (sitelinks search box eligibility)
 export const websiteSchema = {
   "@context": "https://schema.org",
@@ -107,7 +115,7 @@ export function generateTourProductSchema(tour: Tour) {
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       url: `${BASE_URL}/tours/${tour.slug}`,
-      priceValidUntil: "2026-12-31",
+      priceValidUntil: getPriceValidUntil(),
       seller: {
         "@type": "Organization",
         name: "Maya Explorer Tours",
@@ -281,7 +289,7 @@ export function generateComboTouristTripSchema(config: {
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
       url: `${BASE_URL}/combo-tours/${config.slug}`,
-      priceValidUntil: "2026-12-31",
+      priceValidUntil: getPriceValidUntil(),
     },
     ...(config.rating && config.reviewCount
       ? {
