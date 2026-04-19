@@ -4,6 +4,7 @@ import { DollarSign, ChevronRight, Star, Bus, Clock, CheckCircle } from "lucide-
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -88,11 +89,30 @@ const BudgetToursPage = () => {
     { question: "Is it worth paying more for a standard or premium tour?", answer: "If your budget is tight, the budget tour covers the essentials. But the standard tour adds a cenote and lunch — a big experience upgrade for just $40 more." },
   ];
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/budget", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
-
   const budgetTours = useMemo(() => tours.filter((t) => t.category.includes("budget") || t.tourType === "budget" || t.price.adult <= 70), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(budgetTours, filters), [budgetTours, filters]);
+
+  const meta = getPageMeta({
+    title: c.metaTitle,
+    description: c.metaDesc,
+    canonical: "/tour-types/budget",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" },
+        { name: c.breadcrumb },
+      ]),
+      createFAQSchema(faqs),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tour-types/budget",
+        tours: budgetTours,
+      }),
+    ],
+  });
 
   return (
     <>

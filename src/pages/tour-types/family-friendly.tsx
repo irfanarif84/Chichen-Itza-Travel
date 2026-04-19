@@ -4,6 +4,7 @@ import { Baby, ChevronRight, Star, Shield, Heart, Smile, BookOpen } from "lucide
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -82,11 +83,30 @@ const FamilyFriendlyPage = () => {
     { question: "Are there bathroom stops during the family tour?", answer: "Yes. We make bathroom stops every 1.5-2 hours and our guides carry extra water and snacks for the kids." },
   ];
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/family-friendly", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
-
   const suitableTours = useMemo(() => tours.filter((t) => t.category.includes("family-friendly") || t.tourType === "family" || t.tourType === "private" || (t.groupSize.type === "small-group" && t.category.includes("cenote-tours"))), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(suitableTours, filters), [suitableTours, filters]);
+
+  const meta = getPageMeta({
+    title: c.metaTitle,
+    description: c.metaDesc,
+    canonical: "/tour-types/family-friendly",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" },
+        { name: c.breadcrumb },
+      ]),
+      createFAQSchema(faqs),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tour-types/family-friendly",
+        tours: suitableTours,
+      }),
+    ],
+  });
 
   return (
     <>
