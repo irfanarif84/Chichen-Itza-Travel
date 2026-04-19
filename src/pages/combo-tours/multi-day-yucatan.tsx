@@ -2,6 +2,7 @@ import { Calendar, ChevronRight, Star, MapPin, Compass, Sunrise, Hotel } from "l
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
@@ -33,6 +34,20 @@ const MultiDayYucatanPage = () => {
         { name: isEs ? "Tours Combo" : "Combo Tours" },
         { name: isEs ? "Yucatán Varios Días" : "Multi-Day Yucatan" },
       ]),
+      generateComboTouristTripSchema({
+        name: isEs ? "Tour Yucatán Varios Días" : "Multi-Day Yucatan Tour",
+        description: isEs
+          ? "Paquete de 2-4 días por la Península de Yucatán: Chichén Itzá, Uxmal, Mérida y cenotes con hoteles incluidos."
+          : "2-4 day package through the Yucatan Peninsula: Chichen Itza, Uxmal, Mérida and cenotes with hotels included.",
+        slug: "multi-day-yucatan",
+        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        priceFrom: 299,
+        rating: "4.9",
+        reviewCount: "850",
+        itinerary: isEs
+          ? ["Día 1: Mérida y haciendas", "Día 2: Uxmal y Ruta Puuc", "Día 3: Chichén Itzá y cenotes", "Día 4: Valladolid y regreso"]
+          : ["Day 1: Mérida & haciendas", "Day 2: Uxmal & Puuc Route", "Day 3: Chichen Itza & cenotes", "Day 4: Valladolid & return"],
+      }),
     ],
   });
 

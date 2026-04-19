@@ -2,6 +2,7 @@ import { Mountain, ChevronRight, Star, ArrowUpRight, Compass, TreePine } from "l
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
@@ -33,6 +34,20 @@ const CobaRuinsComboPage = () => {
         { name: isEs ? "Tours Combo" : "Combo Tours" },
         { name: isEs ? "Ruinas de Cobá" : "Coba Ruins" },
       ]),
+      generateComboTouristTripSchema({
+        name: isEs ? "Tour Combo Chichén Itzá + Ruinas de Cobá" : "Chichen Itza + Coba Ruins Combo Tour",
+        description: isEs
+          ? "Visita dos sitios mayas en un día: Chichén Itzá y la pirámide Nohoch Mul de Cobá."
+          : "Visit two Mayan sites in one day: Chichen Itza and the Nohoch Mul pyramid at Coba.",
+        slug: "coba-ruins",
+        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        priceFrom: 109,
+        rating: "4.8",
+        reviewCount: "1800",
+        itinerary: isEs
+          ? ["Recogida en hotel", "Tour de Chichén Itzá", "Almuerzo", "Ruinas de Cobá y Nohoch Mul", "Regreso"]
+          : ["Hotel pickup", "Chichen Itza tour", "Lunch", "Coba ruins & Nohoch Mul", "Return"],
+      }),
     ],
   });
 

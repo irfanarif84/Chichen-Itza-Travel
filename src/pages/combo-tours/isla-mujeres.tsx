@@ -2,6 +2,7 @@ import { Ship, ChevronRight, Star, Waves, Sun, Fish } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
@@ -32,6 +33,20 @@ const IslaMujeresComboPage = () => {
         { name: isEs ? "Tours Combo" : "Combo Tours" },
         { name: "Isla Mujeres" },
       ]),
+      generateComboTouristTripSchema({
+        name: isEs ? "Tour Combo Chichén Itzá + Isla Mujeres" : "Chichen Itza + Isla Mujeres Combo Tour",
+        description: isEs
+          ? "Combina las ruinas mayas de Chichén Itzá con la paradisíaca Isla Mujeres y snorkel en el Caribe."
+          : "Combine the Mayan ruins of Chichen Itza with paradise island Isla Mujeres and Caribbean snorkeling.",
+        slug: "isla-mujeres",
+        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        priceFrom: 149,
+        rating: "4.8",
+        reviewCount: "1200",
+        itinerary: isEs
+          ? ["Día 1: Tour de Chichén Itzá", "Día 2: Ferry a Isla Mujeres", "Snorkel y playa", "Regreso"]
+          : ["Day 1: Chichen Itza tour", "Day 2: Ferry to Isla Mujeres", "Snorkeling & beach", "Return"],
+      }),
     ],
   });
 

@@ -2,6 +2,7 @@ import { Droplets, ChevronRight, Star, Camera, Waves, Leaf, MapPin } from "lucid
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
@@ -32,6 +33,20 @@ const CenoteIkKilComboPage = () => {
         { name: isEs ? "Tours Combo" : "Combo Tours" },
         { name: "Cenote Ik Kil" },
       ]),
+      generateComboTouristTripSchema({
+        name: isEs ? "Tour Combo Chichén Itzá + Cenote Ik Kil" : "Chichen Itza + Cenote Ik Kil Combo Tour",
+        description: isEs
+          ? "Combo guiado: ruinas de Chichén Itzá más nado en el Cenote Ik Kil con almuerzo y transporte."
+          : "Guided combo: Chichen Itza ruins plus swimming at Cenote Ik Kil with lunch and transport included.",
+        slug: "cenote-ik-kil",
+        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        priceFrom: 99,
+        rating: "4.8",
+        reviewCount: "2500",
+        itinerary: isEs
+          ? ["Recogida en hotel", "Tour guiado de Chichén Itzá", "Almuerzo yucateco", "Nado en Cenote Ik Kil", "Regreso al hotel"]
+          : ["Hotel pickup", "Guided Chichen Itza tour", "Yucatecan lunch", "Cenote Ik Kil swimming", "Hotel return"],
+      }),
     ],
   });
 
