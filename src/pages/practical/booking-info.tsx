@@ -5,6 +5,7 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import { getPageMeta } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 const BookingInfoPage = () => {
@@ -58,10 +59,15 @@ const BookingInfoPage = () => {
         <h1 className="font-heading font-bold text-3xl lg:text-4xl mb-3 mt-6">
           {isEs ? "Cómo Reservar Tu Tour a Chichén Itzá" : "How to Book Your Chichen Itza Tour"}
         </h1>
+        <p className="text-muted-foreground mb-6 max-w-2xl">
+          {isEs
+            ? "Reservar es fácil, rápido y sin riesgos. Sigue tres simples pasos y estarás confirmado en menos de dos minutos."
+            : "Booking is easy, fast, and risk-free. Follow three simple steps and you're confirmed in under two minutes."}
+        </p>
         <p className="text-muted-foreground mb-10 max-w-2xl">
           {isEs
-            ? "Reservar es fácil, rápido y sin riesgos. Sigue tres simples pasos y estarás confirmado."
-            : "Booking is easy, fast, and risk-free. Follow three simple steps and you're confirmed."}
+            ? "Hemos atendido a más de 10,000 viajeros desde 2015 y hemos refinado el proceso de reserva para eliminar la fricción común con los operadores turísticos: precios opacos, confirmaciones lentas, comunicación poco clara sobre la recogida en el hotel y políticas de cancelación rígidas. Cada paso a continuación está diseñado para que sepas exactamente lo que estás reservando, cuánto pagas y qué sucede a continuación."
+            : "We've served over 10,000 travelers since 2015 and refined the booking process to remove the friction common with tour operators: opaque pricing, slow confirmations, unclear hotel-pickup communication, and rigid cancellation policies. Every step below is designed so you know exactly what you're booking, how much you're paying, and what happens next."}
         </p>
 
         {/* Steps */}
