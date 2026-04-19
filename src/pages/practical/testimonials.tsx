@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ReviewGrid from "@/components/features/reviews/ReviewGrid";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { reviews, getAverageRating, generateReviewSchema } from "@/lib/reviewsData";
 
