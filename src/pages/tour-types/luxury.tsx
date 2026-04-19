@@ -78,11 +78,30 @@ const LuxuryToursPage = () => {
     { question: "Can I customize my luxury tour?", answer: "Yes. Luxury tours are fully customizable: add private cenotes, professional photography, helicopter transfers, or extensions to Uxmal or Valladolid." },
   ];
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/luxury", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
-
   const luxuryTours = useMemo(() => tours.filter((t) => t.category.includes("luxury") || t.tourType === "luxury" || t.tourType === "private"), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(luxuryTours, filters), [luxuryTours, filters]);
+
+  const meta = getPageMeta({
+    title: c.metaTitle,
+    description: c.metaDesc,
+    canonical: "/tour-types/luxury",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" },
+        { name: c.breadcrumb },
+      ]),
+      createFAQSchema(faqs),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tour-types/luxury",
+        tours: luxuryTours,
+      }),
+    ],
+  });
 
   return (
     <>
