@@ -3,6 +3,24 @@ import type { FAQItem } from "./faqData";
 
 const BASE_URL = "https://chichenitzatours.com";
 
+// WebSite schema with SearchAction (sitelinks search box eligibility)
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Chichen Itza Tours",
+  alternateName: "Maya Explorer Tours",
+  url: BASE_URL,
+  inLanguage: ["en", "es"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 // Generate Organization schema (use on homepage)
 export const organizationSchema = {
   "@context": "https://schema.org",
@@ -102,6 +120,63 @@ export function generateTourProductSchema(tour: Tour) {
       bestRating: "5",
       worstRating: "1",
     },
+  };
+}
+
+// Generate TouristTrip schema for combo/multi-site tour packages
+export function generateComboTouristTripSchema(config: {
+  name: string;
+  description: string;
+  slug: string;
+  image: string;
+  priceFrom: number;
+  rating?: string;
+  reviewCount?: string;
+  itinerary?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: config.name,
+    description: config.description,
+    url: `${BASE_URL}/combo-tours/${config.slug}`,
+    image: config.image,
+    touristType: ["Sightseeing", "Adventure", "Cultural"],
+    provider: {
+      "@type": "TravelAgency",
+      name: "Maya Explorer Tours",
+      url: BASE_URL,
+    },
+    offers: {
+      "@type": "Offer",
+      price: config.priceFrom.toString(),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${BASE_URL}/combo-tours/${config.slug}`,
+      priceValidUntil: "2026-12-31",
+    },
+    ...(config.rating && config.reviewCount
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: config.rating,
+            reviewCount: config.reviewCount,
+            bestRating: "5",
+          },
+        }
+      : {}),
+    ...(config.itinerary
+      ? {
+          itinerary: {
+            "@type": "ItemList",
+            itemListElement: config.itinerary.map((item, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: item,
+            })),
+          },
+        }
+      : {}),
   };
 }
 

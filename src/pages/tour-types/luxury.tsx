@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { Gem, ChevronRight, Star, Wine, Car, Crown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -65,7 +65,19 @@ const LuxuryToursPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/luxury", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }])] });
+  const faqs = isEs ? [
+    { question: "¿Qué incluyen los tours de lujo a Chichén Itzá?", answer: "Transporte privado en SUV de lujo, guía arqueólogo privado, entrada VIP sin filas, cena gourmet en hacienda, bebidas premium y acceso a cenotes exclusivos." },
+    { question: "¿Cuánto cuesta un tour de lujo a Chichén Itzá?", answer: "Los tours de lujo comienzan desde $189 USD por persona y pueden llegar a $400+ para experiencias completamente privadas con extras como fotografía profesional." },
+    { question: "¿Cuál es la diferencia entre tour de lujo y tour privado?", answer: "Los tours de lujo siempre son privados pero añaden servicios premium: SUV de lujo en lugar de van, cena gourmet en hacienda, bebidas premium y guía arqueólogo certificado." },
+    { question: "¿Puedo personalizar mi tour de lujo?", answer: "Sí. Los tours de lujo son completamente personalizables: añade cenotes privados, fotografía profesional, helicóptero, extensiones a Uxmal o Valladolid." },
+  ] : [
+    { question: "What's included in luxury Chichen Itza tours?", answer: "Private luxury SUV transport, private archaeologist guide, VIP skip-the-line entrance, gourmet hacienda dining, premium drinks, and access to exclusive cenotes." },
+    { question: "How much does a luxury Chichen Itza tour cost?", answer: "Luxury tours start from $189 USD per person and can reach $400+ for fully private experiences with extras like professional photography." },
+    { question: "What's the difference between luxury and private tours?", answer: "Luxury tours are always private but add premium services: luxury SUV instead of van, gourmet hacienda dining, premium drinks, and a certified archaeologist guide." },
+    { question: "Can I customize my luxury tour?", answer: "Yes. Luxury tours are fully customizable: add private cenotes, professional photography, helicopter transfers, or extensions to Uxmal or Valladolid." },
+  ];
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/luxury", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
 
   const luxuryTours = useMemo(() => tours.filter((t) => t.category.includes("luxury") || t.tourType === "luxury" || t.tourType === "private"), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });

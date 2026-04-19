@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { Crown, ChevronRight, Star, Zap, Shield, Clock, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -77,7 +77,19 @@ const VIPSkipTheLinePage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/vip-skip-the-line", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }])] });
+  const faqs = isEs ? [
+    { question: "¿Cómo funciona el acceso VIP sin filas en Chichén Itzá?", answer: "Entras por la puerta VIP prioritaria saltando la fila de admisión general que puede tomar 30-60 minutos en temporada alta. Tu guía se encarga de todo el proceso." },
+    { question: "¿Cuánto tiempo se ahorra con un tour VIP?", answer: "Entre 30-60 minutos en temporada alta (diciembre-abril) y alrededor de 15-20 minutos en temporada baja. Más tiempo explorando, menos tiempo esperando." },
+    { question: "¿Vale la pena pagar por un tour VIP sin filas?", answer: "Sí, especialmente si visitas durante temporada alta, vacaciones escolares o el Equinoccio de Primavera. En temporada baja las filas son más cortas y el VIP ahorra menos tiempo." },
+    { question: "¿Los tours VIP incluyen guía privado?", answer: "La mayoría de los tours VIP sin filas son privados o en grupo pequeño con arqueólogo personal. Verifica los detalles del tour específico antes de reservar." },
+  ] : [
+    { question: "How does VIP skip-the-line access work at Chichen Itza?", answer: "You enter through the VIP priority gate, bypassing the general admission line which can take 30-60 minutes in peak season. Your guide handles the entire process." },
+    { question: "How much time do you save with a VIP tour?", answer: "30-60 minutes in peak season (December-April) and around 15-20 minutes in low season. More time exploring, less time waiting in line." },
+    { question: "Is a VIP skip-the-line tour worth it?", answer: "Yes, especially during peak season, school holidays, or the Spring Equinox. In low season the lines are shorter and VIP saves less time." },
+    { question: "Do VIP tours include a private guide?", answer: "Most VIP skip-the-line tours are private or small-group with a personal archaeologist guide. Check the specific tour details before booking." },
+  ];
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/vip-skip-the-line", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
 
   const vipTours = useMemo(() => tours.filter((t) => t.category.includes("vip-skip-the-line") || t.tourType === "private" || t.tourType === "luxury"), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });

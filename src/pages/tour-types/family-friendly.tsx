@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { Baby, ChevronRight, Star, Shield, Heart, Smile, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -70,7 +70,19 @@ const FamilyFriendlyPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/family-friendly", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }])] });
+  const faqs = isEs ? [
+    { question: "¿A partir de qué edad pueden los niños hacer el tour a Chichén Itzá?", answer: "Recibimos a niños desde 0 años. Menores de 3 viajan gratis. Los tours están diseñados para mantener a los niños de 4-14 años entretenidos con actividades interactivas." },
+    { question: "¿Es seguro nadar en el cenote con niños?", answer: "Sí. Proporcionamos chalecos salvavidas gratuitos para todos los niños y los cenotes tienen áreas poco profundas. Nuestros guías están entrenados en seguridad acuática." },
+    { question: "¿Cuánto cuesta un tour familiar a Chichén Itzá?", answer: "Los tours familiares comienzan desde $89 USD para adultos. Los niños 4-12 reciben descuento de ~30%, y menores de 3 son gratis." },
+    { question: "¿Hay paradas de baño durante el tour familiar?", answer: "Sí. Hacemos paradas de baño cada 1.5-2 horas y nuestros guías llevan agua y snacks extra para los niños." },
+  ] : [
+    { question: "What age can kids do the Chichen Itza tour?", answer: "We welcome children of all ages. Under 3 travel free. Tours are designed to keep children 4-14 engaged with interactive activities and games." },
+    { question: "Is cenote swimming safe with kids?", answer: "Yes. We provide complimentary life vests for all children and cenotes have shallow areas. Our guides are trained in water safety." },
+    { question: "How much does a family Chichen Itza tour cost?", answer: "Family tours start at $89 USD for adults. Children 4-12 get ~30% discount, and under 3 are free." },
+    { question: "Are there bathroom stops during the family tour?", answer: "Yes. We make bathroom stops every 1.5-2 hours and our guides carry extra water and snacks for the kids." },
+  ];
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/family-friendly", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
 
   const suitableTours = useMemo(() => tours.filter((t) => t.category.includes("family-friendly") || t.tourType === "family" || t.tourType === "private" || (t.groupSize.type === "small-group" && t.category.includes("cenote-tours"))), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });

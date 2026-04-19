@@ -1,6 +1,6 @@
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createFAQSchema } from "@/lib/seo";
-import { organizationSchema, chichenItzaAttractionSchema } from "@/lib/schema";
+import { organizationSchema, chichenItzaAttractionSchema, websiteSchema } from "@/lib/schema";
 import { homepageFAQs } from "@/lib/faqData";
 import { homepageFAQsEs } from "@/lib/faqData.es";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -26,6 +26,7 @@ const Index = () => {
     canonical: locale === "es" ? "/es/" : "/",
     locale,
     jsonLd: [
+      websiteSchema,
       organizationSchema,
       chichenItzaAttractionSchema,
       createFAQSchema(faqs),

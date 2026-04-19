@@ -1,7 +1,7 @@
 import { LocaleLink as Link } from "@/components/LocaleLink";
 import SEOHead from "@/components/common/SEOHead";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
-import { getPageMeta } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
 import { tours } from "@/lib/tourData";
 import TourCard from "@/components/features/tours/TourCard";
 import TrustBadges from "@/components/features/booking/TrustBadges";
@@ -40,6 +40,12 @@ const ToursPage = () => {
     description: c.seoDesc,
     canonical: "/tours",
     locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: locale === "es" ? "Inicio" : "Home", url: "/" },
+        { name: "Tours" },
+      ]),
+    ],
   });
 
   const links = [

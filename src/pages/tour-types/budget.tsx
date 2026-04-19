@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { DollarSign, ChevronRight, Star, Bus, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -76,7 +76,19 @@ const BudgetToursPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/budget", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }])] });
+  const faqs = isEs ? [
+    { question: "¿Cuál es el tour más económico a Chichén Itzá?", answer: "Nuestro tour económico desde Cancún o Playa del Carmen comienza desde $49 USD por persona, incluye transporte, guía profesional y entradas." },
+    { question: "¿Qué incluye un tour económico a Chichén Itzá?", answer: "Transporte en autobús turístico ida y vuelta, guía profesional certificado, entrada al sitio arqueológico. El almuerzo y bebidas no están incluidos." },
+    { question: "¿Cuál es la diferencia entre un tour económico y uno estándar?", answer: "Los tours económicos usan autobuses más grandes (20-30 personas), no incluyen almuerzo ni cenote. Los tours estándar usan minivans (12-15) e incluyen almuerzo buffet y nado en cenote." },
+    { question: "¿Vale la pena pagar más por un tour estándar o premium?", answer: "Si tienes presupuesto limitado, el tour económico cubre lo esencial. Pero el tour estándar añade el cenote y el almuerzo, lo cual mejora mucho la experiencia por solo $40 más." },
+  ] : [
+    { question: "What's the cheapest Chichen Itza tour?", answer: "Our budget tour from Cancun or Playa del Carmen starts at $49 USD per person, including transport, professional guide, and entrance fees." },
+    { question: "What's included in a budget Chichen Itza tour?", answer: "Round-trip tour bus transport, certified professional guide, archaeological site entrance fee. Lunch and drinks are not included." },
+    { question: "What's the difference between budget and standard tours?", answer: "Budget tours use larger buses (20-30 people) and don't include lunch or a cenote. Standard tours use minivans (12-15) and include buffet lunch plus cenote swimming." },
+    { question: "Is it worth paying more for a standard or premium tour?", answer: "If your budget is tight, the budget tour covers the essentials. But the standard tour adds a cenote and lunch — a big experience upgrade for just $40 more." },
+  ];
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/budget", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
 
   const budgetTours = useMemo(() => tours.filter((t) => t.category.includes("budget") || t.tourType === "budget" || t.price.adult <= 70), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
