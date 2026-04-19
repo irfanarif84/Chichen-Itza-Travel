@@ -191,6 +191,8 @@ const BookingInfoPage = () => {
             </Button>
           </div>
         </div>
+
+        <RelatedResources />
       </div>
     </>
   );
