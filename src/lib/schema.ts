@@ -123,6 +123,134 @@ export function generateTourProductSchema(tour: Tour) {
   };
 }
 
+// Generate ItemList schema for tour category/listing pages
+// (e.g. /tours, /tour-types/luxury, /tour-types/small-group, /tours-from/cancun)
+export function generateTourItemListSchema(config: {
+  name: string;
+  description?: string;
+  url: string;
+  tours: Array<{
+    title: string;
+    slug: string;
+    shortDescription?: string;
+    price?: { adult: number };
+    currency?: string;
+    rating?: number;
+    reviewCount?: number;
+    images?: Array<{ url: string }>;
+  }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: config.name,
+    ...(config.description ? { description: config.description } : {}),
+    url: `${BASE_URL}${config.url}`,
+    numberOfItems: config.tours.length,
+    itemListElement: config.tours.map((tour, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: tour.title,
+        url: `${BASE_URL}/tours/${tour.slug}`,
+        ...(tour.shortDescription ? { description: tour.shortDescription } : {}),
+        ...(tour.images?.[0]?.url ? { image: tour.images[0].url } : {}),
+        ...(tour.price
+          ? {
+              offers: {
+                "@type": "Offer",
+                price: tour.price.adult.toString(),
+                priceCurrency: tour.currency || "USD",
+                availability: "https://schema.org/InStock",
+                url: `${BASE_URL}/tours/${tour.slug}`,
+              },
+            }
+          : {}),
+        ...(tour.rating && tour.reviewCount
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: tour.rating.toString(),
+                reviewCount: tour.reviewCount.toString(),
+                bestRating: "5",
+              },
+            }
+          : {}),
+      },
+    })),
+  };
+}
+
+// Generate ContactPage schema (use on /practical/contact)
+export function generateContactPageSchema(config: {
+  url: string;
+  name: string;
+  description: string;
+  inLanguage?: "en" | "es";
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: `${BASE_URL}${config.url}`,
+    name: config.name,
+    description: config.description,
+    inLanguage: config.inLanguage || "en",
+    isPartOf: { "@type": "WebSite", url: BASE_URL, name: "Chichen Itza Tours" },
+    mainEntity: {
+      "@type": "Organization",
+      name: "Maya Explorer Tours",
+      url: BASE_URL,
+      telephone: "+52-984-123-4567",
+      email: "info@chichenitzatours.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "5th Avenue #123",
+        addressLocality: "Playa del Carmen",
+        addressRegion: "Quintana Roo",
+        postalCode: "77710",
+        addressCountry: "MX",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: "+52-984-123-4567",
+        email: "info@chichenitzatours.com",
+        areaServed: ["MX", "US", "CA", "GB"],
+        availableLanguage: ["English", "Spanish", "French"],
+      },
+    },
+  };
+}
+
+// Generate generic WebPage schema for informational/policy pages
+// (use on /practical/booking-info, /practical/cancellation-policy)
+export function generateWebPageSchema(config: {
+  url: string;
+  name: string;
+  description: string;
+  inLanguage?: "en" | "es";
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    url: `${BASE_URL}${config.url}`,
+    name: config.name,
+    description: config.description,
+    inLanguage: config.inLanguage || "en",
+    isPartOf: { "@type": "WebSite", url: BASE_URL, name: "Chichen Itza Tours" },
+    publisher: {
+      "@type": "Organization",
+      name: "Maya Explorer Tours",
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
+    },
+    ...(config.datePublished ? { datePublished: config.datePublished } : {}),
+    ...(config.dateModified ? { dateModified: config.dateModified } : {}),
+  };
+}
+
 // Generate TouristTrip schema for combo/multi-site tour packages
 export function generateComboTouristTripSchema(config: {
   name: string;
