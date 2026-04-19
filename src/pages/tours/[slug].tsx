@@ -15,7 +15,7 @@ import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { LocaleLink } from "@/components/LocaleLink";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
 import { tourImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
-import { getReviewsByTourCategory } from "@/lib/reviewsData";
+import { getReviewsByTourCategory, generateReviewSchema } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { useLocalizedTour } from "@/hooks/useTourLocale";
@@ -88,9 +88,11 @@ const TourDetailPage = () => {
     .filter((t) => t.id !== tour.id)
     .slice(0, 3);
 
-  // Reviews
+  // Reviews — top 5 for schema, top 3 for display
   const reviewCategory = categoryToReviewMap[primaryCategory] ?? "day-tour";
-  const reviews = getReviewsByTourCategory(reviewCategory).slice(0, 3);
+  const allCategoryReviews = getReviewsByTourCategory(reviewCategory);
+  const reviews = allCategoryReviews.slice(0, 3);
+  const schemaReviews = allCategoryReviews.slice(0, 5);
 
   // FAQ - use localized versions
   const categoryFAQKeyMap: Record<string, "dayTours" | "privateTours" | "cenoteTours" | "sunriseTours" | "smallGroup"> = {
@@ -118,8 +120,11 @@ const TourDetailPage = () => {
     })),
   };
 
-  // JSON-LD
-  const productSchema = generateTourProductSchema(tour);
+  // JSON-LD — extend Product schema with individual Review items for star-snippet eligibility
+  const baseProductSchema = generateTourProductSchema(tour);
+  const productSchema = schemaReviews.length > 0
+    ? { ...baseProductSchema, review: generateReviewSchema(schemaReviews) }
+    : baseProductSchema;
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
