@@ -77,16 +77,54 @@ const TestimonialsPage = () => {
       <div className="container py-6">
         <Breadcrumbs items={[{ label: isEs ? "Testimonios" : "Testimonials" }]} />
 
-        <div className="text-center mb-10 mt-6">
+        <div className="text-center mb-10 mt-6 max-w-3xl mx-auto">
           <h1 className="font-heading font-bold text-3xl lg:text-4xl mb-3">
             {isEs ? "Lo Que Dicen Nuestros Viajeros" : "What Our Travelers Say"}
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+          <p className="text-muted-foreground mb-6">
             {isEs
-              ? "Más de 10,000 viajeros han confiado en nosotros para su experiencia en Chichén Itzá. Esto es lo que dicen."
-              : "Over 10,000 travelers have trusted us with their Chichen Itza experience. Here's what they have to say."}
+              ? "Más de 10,000 viajeros han confiado en nosotros para su experiencia en Chichén Itzá. Estos testimonios verificados — recopilados después del tour por correo electrónico independiente — reflejan exactamente lo que puedes esperar: guías expertos certificados por el INAH, vehículos cómodos con aire acondicionado, comidas auténticas yucatecas y transiciones fluidas entre cenotes, ruinas y pueblos coloniales."
+              : "Over 10,000 travelers have trusted us with their Chichen Itza experience. These verified testimonials — collected post-tour through an independent email survey — reflect exactly what you can expect: INAH-certified expert guides, comfortable air-conditioned vehicles, authentic Yucatecan meals, and smooth transitions between cenotes, ruins, and colonial towns."}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {isEs
+              ? "Filtra por categoría de tour o ciudad de salida para ver opiniones específicas a tu itinerario."
+              : "Filter by tour category or departure city to see opinions specific to your itinerary."}
           </p>
         </div>
+
+        {/* Why travelers rate us 4.8/5 */}
+        <section className="bg-muted/40 rounded-lg p-6 sm:p-8 mb-10 max-w-4xl mx-auto">
+          <h2 className="font-heading font-bold text-xl mb-4 text-center">
+            {isEs ? "¿Por Qué los Viajeros Nos Califican 4.8/5?" : "Why Travelers Rate Us 4.8 / 5"}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+            <div>
+              <p className="font-semibold mb-1">{isEs ? "Guías expertos" : "Expert guides"}</p>
+              <p className="text-muted-foreground">
+                {isEs
+                  ? "Cada guía tiene certificación oficial del INAH y un mínimo de 5 años interpretando la cultura e historia maya."
+                  : "Every guide is officially INAH-certified with a minimum of 5 years interpreting Mayan culture and history."}
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold mb-1">{isEs ? "Grupos pequeños" : "Small groups"}</p>
+              <p className="text-muted-foreground">
+                {isEs
+                  ? "Limitamos los grupos a 12 personas (8 en tours premium) para que escuches al guía y disfrutes los cenotes sin aglomeraciones."
+                  : "We cap groups at 12 (8 on premium tours) so you can hear your guide and enjoy the cenotes without crowds."}
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold mb-1">{isEs ? "Cero sorpresas" : "Zero surprises"}</p>
+              <p className="text-muted-foreground">
+                {isEs
+                  ? "Entrada al sitio, almuerzo bufet, agua embotellada, recogida en hotel y propinas: todo incluido en el precio publicado."
+                  : "Site entrance, buffet lunch, bottled water, hotel pickup, and tips — all included in the published price."}
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-8 max-w-md mx-auto">
