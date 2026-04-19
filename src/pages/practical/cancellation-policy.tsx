@@ -1,7 +1,8 @@
 import { ShieldCheck, Clock, AlertCircle, CheckCircle, ArrowRight } from "lucide-react";
 import SEOHead from "@/components/common/SEOHead";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
-import { getPageMeta } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateWebPageSchema } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
 import LocaleLink from "@/components/LocaleLink";
 import RelatedResources from "@/components/common/RelatedResources";
@@ -19,6 +20,24 @@ const CancellationPolicyPage = () => {
       : "Flexible cancellation policy for all Chichen Itza tours. Free cancellation up to 24 hours before your tour. Full refund guaranteed. Book with confidence.",
     canonical: "/practical/cancellation-policy",
     locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Política de Cancelación" : "Cancellation Policy" },
+      ]),
+      generateWebPageSchema({
+        url: "/practical/cancellation-policy",
+        name: isEs
+          ? "Política de Cancelación y Reembolso"
+          : "Cancellation & Refund Policy",
+        description: isEs
+          ? "Política flexible y sin riesgos para tours a Chichén Itzá. Cancelación gratuita hasta 24 horas antes."
+          : "Flexible, risk-free policy for Chichen Itza tours. Free cancellation up to 24 hours before departure.",
+        inLanguage: isEs ? "es" : "en",
+        datePublished: "2025-02-01",
+        dateModified: "2026-04-19",
+      }),
+    ],
   });
 
   const policies = [

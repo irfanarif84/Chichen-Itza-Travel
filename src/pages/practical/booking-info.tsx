@@ -2,7 +2,8 @@ import { ShieldCheck, CreditCard, Clock, Users, CalendarCheck, ArrowRight, Check
 import SEOHead from "@/components/common/SEOHead";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TrustBadges from "@/components/features/booking/TrustBadges";
-import { getPageMeta } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateWebPageSchema } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
 import LocaleLink from "@/components/LocaleLink";
 import RelatedResources from "@/components/common/RelatedResources";
@@ -20,6 +21,24 @@ const BookingInfoPage = () => {
       : "Everything you need to know about booking Chichen Itza tours. Easy 3-step booking, free cancellation, secure payment, and instant confirmation.",
     canonical: "/practical/booking-info",
     locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Información de Reserva" : "Booking Information" },
+      ]),
+      generateWebPageSchema({
+        url: "/practical/booking-info",
+        name: isEs
+          ? "Cómo Reservar Tu Tour a Chichén Itzá"
+          : "How to Book Your Chichen Itza Tour",
+        description: isEs
+          ? "Guía paso a paso para reservar tours a Chichén Itzá con cancelación gratuita y pago seguro."
+          : "Step-by-step guide to booking Chichen Itza tours with free cancellation and secure payment.",
+        inLanguage: isEs ? "es" : "en",
+        datePublished: "2025-02-01",
+        dateModified: "2026-04-19",
+      }),
+    ],
   });
 
   const steps = [

@@ -6,7 +6,8 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 import SEOHead from "@/components/common/SEOHead";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TrustBadges from "@/components/features/booking/TrustBadges";
-import { getPageMeta } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateContactPageSchema } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -62,6 +63,22 @@ const ContactPage = () => {
       : "Contact our Chichen Itza tour experts for a free quote. Get personalized recommendations, group discounts, and fast responses within 2 hours.",
     canonical: "/practical/contact",
     locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Contáctanos" : "Contact Us" },
+      ]),
+      generateContactPageSchema({
+        url: "/practical/contact",
+        name: isEs
+          ? "Contáctanos – Tours Chichén Itzá"
+          : "Contact Us – Chichen Itza Tours",
+        description: isEs
+          ? "Contacta a nuestros expertos en tours a Chichén Itzá para una cotización gratuita."
+          : "Contact our Chichen Itza tour experts for a free quote.",
+        inLanguage: isEs ? "es" : "en",
+      }),
+    ],
   });
 
   const c = isEs ? {
