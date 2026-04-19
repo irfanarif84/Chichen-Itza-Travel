@@ -111,6 +111,69 @@ const BookingInfoPage = () => {
           </div>
         </section>
 
+        {/* Choosing the right tour */}
+        <section className="mb-12">
+          <h2 className="font-heading font-bold text-2xl mb-4">
+            {isEs ? "Cómo Elegir el Tour Correcto" : "How to Choose the Right Tour"}
+          </h2>
+          <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+            <p>
+              {isEs
+                ? "La decisión más importante no es el precio — es el formato. Un tour grupal de día completo desde Cancún (precio típico $89–$119 USD) maximiza el valor incluyendo cenote y almuerzo, pero te coloca en un autobús de 12–40 personas y agrega 2–3 horas en el camino. Un tour privado ($299–$599 USD para 1–4 personas) intercambia el ahorro por flexibilidad total: tu propio guía, tu propio horario y la posibilidad de saltar paradas o agregar Valladolid."
+                : "The most important decision isn't price — it's format. A full-day group tour from Cancún (typical $89–$119 USD) maximizes value by including a cenote and lunch, but puts you on a 12–40-person bus and adds 2–3 hours on the road. A private tour ($299–$599 USD for 1–4 people) trades savings for total flexibility: your own guide, your own pace, and the option to skip stops or add Valladolid."}
+            </p>
+            <p>
+              {isEs
+                ? "Si tu prioridad es evitar las multitudes, reserva un "
+                : "If avoiding crowds is your priority, book a "}
+              <LocaleLink to="/tours/sunrise-tours" className="text-primary hover:underline font-medium">
+                {isEs ? "tour al amanecer" : "sunrise tour"}
+              </LocaleLink>
+              {isEs
+                ? " que entra al sitio justo cuando abre a las 8 a.m. Si viajas con niños, los "
+                : " that enters the site right at the 8 a.m. opening. If you're travelling with children, "}
+              <LocaleLink to="/tour-types/family-friendly" className="text-primary hover:underline font-medium">
+                {isEs ? "tours familiares" : "family-friendly tours"}
+              </LocaleLink>
+              {isEs
+                ? " ofrecen un ritmo más lento y guías que adaptan la narración a varias edades."
+                : " offer a slower pace and guides who tailor the storytelling for mixed ages."}
+            </p>
+            <p>
+              {isEs
+                ? "Para viajeros que ya están en la Riviera Maya, nuestras páginas de salida desde "
+                : "For travelers already in the Riviera Maya, our departure pages for "}
+              <LocaleLink to="/tours-from/cancun" className="text-primary hover:underline font-medium">Cancún</LocaleLink>
+              {", "}
+              <LocaleLink to="/tours-from/playa-del-carmen" className="text-primary hover:underline font-medium">Playa del Carmen</LocaleLink>
+              {", "}
+              <LocaleLink to="/tours-from/tulum" className="text-primary hover:underline font-medium">Tulum</LocaleLink>
+              {isEs ? " y " : " and "}
+              <LocaleLink to="/tours-from/merida" className="text-primary hover:underline font-medium">Mérida</LocaleLink>
+              {isEs
+                ? " enumeran tiempos de viaje exactos, ventanas de recogida de hotel y operadores recomendados específicos para cada ciudad."
+                : " list exact drive times, hotel-pickup windows, and recommended operators specific to each city."}
+            </p>
+          </div>
+        </section>
+
+        {/* Group bookings */}
+        <section className="mb-12 bg-primary/5 border border-primary/20 rounded-lg p-6">
+          <h2 className="font-heading font-bold text-xl mb-3">
+            {isEs ? "Reservas Grupales (6+ Personas)" : "Group Bookings (6+ People)"}
+          </h2>
+          <p className="text-sm text-muted-foreground mb-3">
+            {isEs
+              ? "Los grupos de 6 o más reciben automáticamente entre 10 % y 20 % de descuento, asignación de un coordinador dedicado y la opción de comidas privadas. Para viajes corporativos, bodas y reuniones familiares, contáctanos directamente para una cotización personalizada — incluyendo opciones de transporte de lujo y guías bilingües adicionales si fuera necesario."
+              : "Groups of 6 or more automatically receive 10–20 % off, a dedicated trip coordinator, and the option of private meals. For corporate trips, weddings, and family reunions, contact us directly for a custom quote — including luxury transportation options and additional bilingual guides if needed."}
+          </p>
+          <Button variant="outline" size="sm" asChild>
+            <LocaleLink to="/practical/contact">
+              {isEs ? "Obtener Cotización Grupal" : "Get a Group Quote"} <ArrowRight className="h-4 w-4 ml-1" />
+            </LocaleLink>
+          </Button>
+        </section>
+
         <div className="mb-6"><TrustBadges /></div>
 
         {/* CTA */}
