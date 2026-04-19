@@ -163,13 +163,23 @@ const TestimonialsPage = () => {
           <h2 className="font-heading font-bold text-2xl mb-2">
             {isEs ? "Únete a 10,000+ Viajeros Felices" : "Join 10,000+ Happy Travelers"}
           </h2>
-          <p className="text-muted-foreground mb-4">
-            {isEs ? "Reserva tu tour a Chichén Itzá hoy con cancelación gratuita." : "Book your Chichen Itza tour today with free cancellation."}
+          <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
+            {isEs
+              ? "Reserva tu tour a Chichén Itzá hoy con cancelación gratuita hasta 24 horas antes. Si no estás 100% satisfecho con tu experiencia, hablaremos contigo personalmente — esa es nuestra Garantía de Satisfacción."
+              : "Book your Chichen Itza tour today with free cancellation up to 24 hours before. If you're not 100% satisfied with your experience, we'll speak with you personally — that's our Satisfaction Guarantee."}
           </p>
           <Button variant="cta" size="lg" asChild>
             <LocaleLink to="/tours">{isEs ? "Explorar Tours" : "Explore Tours"} <ArrowRight className="h-4 w-4 ml-1" /></LocaleLink>
           </Button>
         </div>
+
+        <RelatedResources />
+      </div>
+    </>
+  );
+};
+
+export default TestimonialsPage;
       </div>
     </>
   );
