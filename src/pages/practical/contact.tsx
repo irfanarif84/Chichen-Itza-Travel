@@ -297,6 +297,8 @@ const ContactPage = () => {
             <TrustBadges variant="compact" />
           </aside>
         </div>
+
+        <RelatedResources />
       </div>
     </>
   );
