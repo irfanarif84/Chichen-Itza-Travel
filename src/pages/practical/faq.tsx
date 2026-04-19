@@ -89,10 +89,15 @@ const FAQPage = () => {
                 ? "Preguntas Frecuentes Sobre Tours a Chichén Itzá"
                 : "Frequently Asked Questions About Chichen Itza Tours"}
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-xl">
+            <p className="text-lg text-muted-foreground mb-4 max-w-xl">
               {isEs
                 ? "Todo lo que necesitas saber antes de reservar tu aventura a Chichén Itzá — desde precios y logística hasta qué vestir y llevar."
                 : "Everything you need to know before booking your Chichen Itza adventure — from pricing and logistics to what to wear and bring."}
+            </p>
+            <p className="text-sm text-muted-foreground mb-6 max-w-xl">
+              {isEs
+                ? "Esta página recopila las 60+ preguntas que recibimos con más frecuencia, organizadas por tema. Si visitas por primera vez, comienza con \"General\" para los conceptos básicos, luego salta a la categoría de tour que te interesa. Las respuestas se actualizan trimestralmente con los precios, horarios y reglas del sitio del INAH más recientes."
+                : "This page collects the 60+ questions we hear most often, organised by topic. First-time visitor? Start with \"General\" for the basics, then jump to the tour category you're considering. Answers are refreshed every quarter with the latest pricing, schedules, and INAH site rules."}
             </p>
 
             {/* Search */}
