@@ -29,6 +29,7 @@ import TrustBadges from "@/components/features/booking/TrustBadges";
 import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
 import { guideSchemas } from "@/lib/schema";
 import { guideImages } from "@/lib/tourImages";
+import RelatedResources from "@/components/common/RelatedResources";
 import type { FAQItem } from "@/lib/faqData";
 
 const faqData: FAQItem[] = [
@@ -425,6 +426,13 @@ const WhatToBringPage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Related Tours & Guides */}
+      <section className="py-8">
+        <div className="container">
+          <RelatedResources />
         </div>
       </section>
 

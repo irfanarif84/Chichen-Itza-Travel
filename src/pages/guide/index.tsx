@@ -8,6 +8,7 @@ import CTASection from "@/components/features/home/CTASection";
 import { guideImages } from "@/lib/tourImages";
 import { useLocale } from "@/lib/i18n/useLocale";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 
 const guidesEn = [
   {
@@ -231,6 +232,13 @@ const GuideIndexPage = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Related Tours - hub only shows tours since guides are listed above */}
+      <section className="py-8">
+        <div className="container">
+          <RelatedResources showGuides={false} />
         </div>
       </section>
 
