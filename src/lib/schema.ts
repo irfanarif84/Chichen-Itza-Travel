@@ -123,6 +123,63 @@ export function generateTourProductSchema(tour: Tour) {
   };
 }
 
+// Generate TouristTrip schema for combo/multi-site tour packages
+export function generateComboTouristTripSchema(config: {
+  name: string;
+  description: string;
+  slug: string;
+  image: string;
+  priceFrom: number;
+  rating?: string;
+  reviewCount?: string;
+  itinerary?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: config.name,
+    description: config.description,
+    url: `${BASE_URL}/combo-tours/${config.slug}`,
+    image: config.image,
+    touristType: ["Sightseeing", "Adventure", "Cultural"],
+    provider: {
+      "@type": "TravelAgency",
+      name: "Maya Explorer Tours",
+      url: BASE_URL,
+    },
+    offers: {
+      "@type": "Offer",
+      price: config.priceFrom.toString(),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${BASE_URL}/combo-tours/${config.slug}`,
+      priceValidUntil: "2026-12-31",
+    },
+    ...(config.rating && config.reviewCount
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: config.rating,
+            reviewCount: config.reviewCount,
+            bestRating: "5",
+          },
+        }
+      : {}),
+    ...(config.itinerary
+      ? {
+          itinerary: {
+            "@type": "ItemList",
+            itemListElement: config.itinerary.map((item, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: item,
+            })),
+          },
+        }
+      : {}),
+  };
+}
+
 // Location-specific schemas
 export const locationSchemas = {
   cancun: {
