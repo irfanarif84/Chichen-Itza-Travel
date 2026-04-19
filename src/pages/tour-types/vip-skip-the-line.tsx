@@ -4,6 +4,7 @@ import { Crown, ChevronRight, Star, Zap, Shield, Clock, Ticket } from "lucide-re
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -89,11 +90,30 @@ const VIPSkipTheLinePage = () => {
     { question: "Do VIP tours include a private guide?", answer: "Most VIP skip-the-line tours are private or small-group with a personal archaeologist guide. Check the specific tour details before booking." },
   ];
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/vip-skip-the-line", locale, jsonLd: [createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }]), createFAQSchema(faqs)] });
-
   const vipTours = useMemo(() => tours.filter((t) => t.category.includes("vip-skip-the-line") || t.tourType === "private" || t.tourType === "luxury"), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(vipTours, filters), [vipTours, filters]);
+
+  const meta = getPageMeta({
+    title: c.metaTitle,
+    description: c.metaDesc,
+    canonical: "/tour-types/vip-skip-the-line",
+    locale,
+    jsonLd: [
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" },
+        { name: c.breadcrumb },
+      ]),
+      createFAQSchema(faqs),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tour-types/vip-skip-the-line",
+        tours: vipTours,
+      }),
+    ],
+  });
 
   return (
     <>

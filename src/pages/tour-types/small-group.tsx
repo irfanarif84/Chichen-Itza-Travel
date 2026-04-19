@@ -4,6 +4,7 @@ import { Users, ChevronRight, Star, MessageCircle, Camera, Shield } from "lucide
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
 import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -101,11 +102,30 @@ const SmallGroupPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tour-types/small-group", locale, jsonLd: [createFAQSchema(smallGroupFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" }, { name: c.breadcrumb }])] });
-
   const smallGroupTours = useMemo(() => tours.filter((t) => t.category.includes("small-group") || (t.groupSize.type === "small-group" && t.groupSize.max <= 15)), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(smallGroupTours, filters), [smallGroupTours, filters]);
+
+  const meta = getPageMeta({
+    title: c.metaTitle,
+    description: c.metaDesc,
+    canonical: "/tour-types/small-group",
+    locale,
+    jsonLd: [
+      createFAQSchema(smallGroupFAQs),
+      createBreadcrumbSchema([
+        { name: isEs ? "Inicio" : "Home", url: "/" },
+        { name: isEs ? "Tipos de Tour" : "Tour Types", url: "/tours" },
+        { name: c.breadcrumb },
+      ]),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tour-types/small-group",
+        tours: smallGroupTours,
+      }),
+    ],
+  });
 
   return (
     <>

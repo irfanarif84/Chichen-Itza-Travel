@@ -2,6 +2,7 @@ import { LocaleLink as Link } from "@/components/LocaleLink";
 import SEOHead from "@/components/common/SEOHead";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { generateTourItemListSchema } from "@/lib/schema";
 import { tours } from "@/lib/tourData";
 import TourCard from "@/components/features/tours/TourCard";
 import TrustBadges from "@/components/features/booking/TrustBadges";
@@ -45,6 +46,12 @@ const ToursPage = () => {
         { name: locale === "es" ? "Inicio" : "Home", url: "/" },
         { name: "Tours" },
       ]),
+      generateTourItemListSchema({
+        name: c.h1,
+        description: c.subtitle,
+        url: "/tours",
+        tours,
+      }),
     ],
   });
 
