@@ -193,6 +193,8 @@ const CancellationPolicyPage = () => {
             <LocaleLink to="/tours">{isEs ? "Ver Todos los Tours" : "Browse All Tours"} <ArrowRight className="h-4 w-4 ml-1" /></LocaleLink>
           </Button>
         </div>
+
+        <RelatedResources />
       </div>
     </>
   );
