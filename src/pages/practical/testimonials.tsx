@@ -180,9 +180,3 @@ const TestimonialsPage = () => {
 };
 
 export default TestimonialsPage;
-      </div>
-    </>
-  );
-};
-
-export default TestimonialsPage;
