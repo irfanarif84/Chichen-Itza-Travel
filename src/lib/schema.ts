@@ -3,6 +3,24 @@ import type { FAQItem } from "./faqData";
 
 const BASE_URL = "https://chichenitzatours.com";
 
+// WebSite schema with SearchAction (sitelinks search box eligibility)
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Chichen Itza Tours",
+  alternateName: "Maya Explorer Tours",
+  url: BASE_URL,
+  inLanguage: ["en", "es"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 // Generate Organization schema (use on homepage)
 export const organizationSchema = {
   "@context": "https://schema.org",
