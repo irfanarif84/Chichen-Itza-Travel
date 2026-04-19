@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { getPageMeta } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import LocaleLink from "@/components/LocaleLink";
+import RelatedResources from "@/components/common/RelatedResources";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 const CancellationPolicyPage = () => {
@@ -59,10 +60,15 @@ const CancellationPolicyPage = () => {
         <h1 className="font-heading font-bold text-3xl lg:text-4xl mb-3 mt-6">
           {isEs ? "Política de Cancelación y Reembolso" : "Cancellation & Refund Policy"}
         </h1>
-        <p className="text-muted-foreground mb-10 max-w-2xl">
+        <p className="text-muted-foreground mb-4 max-w-2xl">
           {isEs
             ? "Queremos que reserves con confianza. Por eso ofrecemos cancelación flexible y sin complicaciones en todos nuestros tours a Chichén Itzá."
             : "We want you to book with confidence. That's why we offer flexible, hassle-free cancellation on all our Chichen Itza tours."}
+        </p>
+        <p className="text-muted-foreground mb-10 max-w-2xl text-sm">
+          {isEs
+            ? "Esta política se aplica a todas las reservas realizadas directamente en chichenitzatours.com. Cumple — y en muchos casos excede — los estándares de la industria establecidos por GetYourGuide, Viator y Expedia. Los reembolsos se procesan automáticamente al método de pago original; no necesitas llamar para reclamar tu dinero."
+            : "This policy applies to every booking made directly on chichenitzatours.com. It meets — and in most cases exceeds — the industry standards set by GetYourGuide, Viator, and Expedia. Refunds are processed automatically to your original payment method; you don't need to call to claim your money."}
         </p>
 
         {/* Policy cards */}
