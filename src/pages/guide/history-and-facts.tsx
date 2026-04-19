@@ -14,6 +14,7 @@ import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
 import { guideImages } from "@/lib/tourImages";
+import RelatedResources from "@/components/common/RelatedResources";
 
 const faqData = [
   {
@@ -332,6 +333,13 @@ const HistoryAndFactsPage = () => {
               <PopularToursWidget />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Related Tours & Guides */}
+      <section className="py-8">
+        <div className="container">
+          <RelatedResources />
         </div>
       </section>
 
