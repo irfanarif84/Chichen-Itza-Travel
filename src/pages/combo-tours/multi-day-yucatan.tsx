@@ -1,7 +1,7 @@
 import { Calendar, ChevronRight, Star, MapPin, Compass, Sunrise, Hotel } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
@@ -9,12 +9,36 @@ import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TimelineItem from "@/components/features/tours/TimelineItem";
 import TipBox from "@/components/guide/TipBox";
+import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import LocaleLink from "@/components/LocaleLink";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+
+const multiDayFAQs = [
+  {
+    question: "How many days is the multi-day Yucatan tour?",
+    answer: "We offer 2, 3, and 4-day packages. The most popular is the 3-day itinerary covering Chichen Itza, Uxmal, Merida colonial city, and a cenote swim — with hotels included each night."
+  },
+  {
+    question: "Are hotels included in the multi-day tour price?",
+    answer: "Yes. Comfortable 3-star hotels in Merida or Valladolid are included in the package price. Upgrades to boutique colonial hotels or haciendas are available on request."
+  },
+  {
+    question: "What sites are covered in the multi-day Yucatan package?",
+    answer: "The standard 3-day itinerary covers Chichen Itza, Uxmal ruins (the Magician's Pyramid), the colonial city of Merida, inland cenotes, and the hacienda route. Optional additions include Ek Balam and Campeche."
+  },
+  {
+    question: "Can I customize the multi-day Yucatan itinerary?",
+    answer: "Yes. All multi-day tours are fully private and customizable. We can adjust which sites to visit, the pace, hotel category, and add experiences like cooking classes or cenote snorkeling."
+  },
+  {
+    question: "Where does the multi-day Yucatan tour depart from?",
+    answer: "Multi-day tours typically depart from Cancun or Playa del Carmen on Day 1 and can end in Merida or return to Cancun — depending on your preferred itinerary and flight schedule."
+  },
+];
 
 const MultiDayYucatanPage = () => {
   const { locale, isEs } = useLocale();
@@ -48,6 +72,7 @@ const MultiDayYucatanPage = () => {
           ? ["Día 1: Mérida y haciendas", "Día 2: Uxmal y Ruta Puuc", "Día 3: Chichén Itzá y cenotes", "Día 4: Valladolid y regreso"]
           : ["Day 1: Mérida & haciendas", "Day 2: Uxmal & Puuc Route", "Day 3: Chichen Itza & cenotes", "Day 4: Valladolid & return"],
       }),
+      createFAQSchema(multiDayFAQs),
     ],
   });
 
@@ -233,6 +258,7 @@ const MultiDayYucatanPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+      <FAQSection faqs={multiDayFAQs} />
       <CTASection />
 
       <section className="py-12 bg-muted/30 border-t border-border">

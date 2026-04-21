@@ -1,19 +1,43 @@
 import { Ship, ChevronRight, Star, Waves, Sun, Fish } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
+import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import LocaleLink from "@/components/LocaleLink";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+
+const islaMujeresFAQs = [
+  {
+    question: "How do we get to Isla Mujeres from Cancun?",
+    answer: "The ferry from Puerto Juarez in Cancun takes about 20 minutes. Our tour includes round-trip ferry tickets and hotel transfers from your Cancun or Riviera Maya hotel to the ferry terminal."
+  },
+  {
+    question: "Is a golf cart rental included?",
+    answer: "Yes. Golf cart rental is included so you can freely explore the whole island at your own pace — from Playa Norte beach to the southern cliffs and the Ixchel temple ruins."
+  },
+  {
+    question: "Is snorkeling included in the Isla Mujeres combo?",
+    answer: "Yes. MUSA underwater museum snorkeling is part of the tour. The Caribbean waters around Isla Mujeres are exceptionally clear with vibrant marine life and over 500 submerged sculptures."
+  },
+  {
+    question: "How long is the Isla Mujeres day trip?",
+    answer: "The full day trip is approximately 8-10 hours including ferry travel, island exploration by golf cart, snorkeling, and free beach time at Playa Norte."
+  },
+  {
+    question: "What is the best beach on Isla Mujeres?",
+    answer: "Playa Norte is consistently rated one of the best beaches in the entire Caribbean — shallow turquoise water, soft white sand, and calm waves perfect for swimming and relaxing."
+  },
+];
 
 const IslaMujeresComboPage = () => {
   const { locale, isEs } = useLocale();
@@ -47,6 +71,7 @@ const IslaMujeresComboPage = () => {
           ? ["Día 1: Tour de Chichén Itzá", "Día 2: Ferry a Isla Mujeres", "Snorkel y playa", "Regreso"]
           : ["Day 1: Chichen Itza tour", "Day 2: Ferry to Isla Mujeres", "Snorkeling & beach", "Return"],
       }),
+      createFAQSchema(islaMujeresFAQs),
     ],
   });
 
@@ -213,6 +238,7 @@ const IslaMujeresComboPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+      <FAQSection faqs={islaMujeresFAQs} />
       <CTASection />
 
       <section className="py-12 bg-muted/30 border-t border-border">

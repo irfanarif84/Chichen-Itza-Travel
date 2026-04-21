@@ -1,19 +1,43 @@
 import { Droplets, ChevronRight, Star, Camera, Waves, Leaf, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import TipBox from "@/components/guide/TipBox";
+import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import LocaleLink from "@/components/LocaleLink";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+
+const cenoteIkKilFAQs = [
+  {
+    question: "How long is the Chichen Itza + Cenote Ik Kil combo tour?",
+    answer: "The full tour takes approximately 10-12 hours including round-trip transportation, a guided visit to Chichen Itza, swimming at Cenote Ik Kil, and a regional lunch stop."
+  },
+  {
+    question: "Can I swim at Cenote Ik Kil?",
+    answer: "Yes. Cenote Ik Kil is one of the most famous swimming cenotes in Yucatan — crystal clear water about 26 meters deep with hanging vines and catfish. Life jackets are available on site."
+  },
+  {
+    question: "Is lunch included in this combo tour?",
+    answer: "Yes, a regional Yucatecan lunch is included at a local restaurant near Chichen Itza, featuring traditional dishes like cochinita pibil, sopa de lima, and fresh tortillas."
+  },
+  {
+    question: "What should I bring to Cenote Ik Kil?",
+    answer: "Bring swimwear, a towel, biodegradable sunscreen (required at all cenotes), water shoes, and a change of clothes. Lockers are available on site for a small fee."
+  },
+  {
+    question: "Is hotel pickup included from Cancun and Playa del Carmen?",
+    answer: "Yes. We offer hotel pickup from Cancun Hotel Zone, downtown Cancun, Playa del Carmen 5th Avenue, Tulum beach road, and Riviera Maya resorts. Exact pickup time is confirmed 24 hours before your tour."
+  },
+];
 
 const CenoteIkKilComboPage = () => {
   const { locale, isEs } = useLocale();
@@ -47,6 +71,7 @@ const CenoteIkKilComboPage = () => {
           ? ["Recogida en hotel", "Tour guiado de Chichén Itzá", "Almuerzo yucateco", "Nado en Cenote Ik Kil", "Regreso al hotel"]
           : ["Hotel pickup", "Guided Chichen Itza tour", "Yucatecan lunch", "Cenote Ik Kil swimming", "Hotel return"],
       }),
+      createFAQSchema(cenoteIkKilFAQs),
     ],
   });
 
@@ -206,6 +231,7 @@ const CenoteIkKilComboPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+      <FAQSection faqs={cenoteIkKilFAQs} />
       <CTASection />
 
       <section className="py-12 bg-muted/30 border-t border-border">

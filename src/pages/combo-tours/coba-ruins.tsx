@@ -1,7 +1,7 @@
 import { Mountain, ChevronRight, Star, ArrowUpRight, Compass, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo";
 import { generateComboTouristTripSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
@@ -9,12 +9,36 @@ import TourGallery from "@/components/features/tours/TourGallery";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import ComparisonTable from "@/components/guide/ComparisonTable";
 import TipBox from "@/components/guide/TipBox";
+import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import LocaleLink from "@/components/LocaleLink";
 import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+
+const cobaRuinsFAQs = [
+  {
+    question: "Can I still climb the Coba pyramid?",
+    answer: "Yes. Nohoch Mul pyramid at Coba is currently one of the very few Mayan pyramids where climbing is still permitted. At 42 meters tall, it offers breathtaking views over the jungle canopy."
+  },
+  {
+    question: "How far is Coba from Chichen Itza?",
+    answer: "Coba is approximately 100 km from Chichen Itza — about 1.5 hours by road. Our combo tour visits both sites in a single day with efficient routing so you maximize time at each."
+  },
+  {
+    question: "How long does the Coba ruins visit take?",
+    answer: "Allow 2-3 hours at Coba to explore the main Nohoch Mul pyramid, jungle paths, and smaller temple structures. The site is far quieter than Chichen Itza — ideal for photography."
+  },
+  {
+    question: "Is hotel pickup included from Cancun and Tulum?",
+    answer: "Yes. We offer hotel pickup from Cancun Hotel Zone, Playa del Carmen, Tulum beach road, and Riviera Maya resorts for this combo tour."
+  },
+  {
+    question: "What is the best time of day to visit Coba?",
+    answer: "Early morning is best — cooler temperatures and fewer visitors. Our combo tour is scheduled so you visit Chichen Itza first at peak time, then arrive at Coba in the afternoon when it is quietest."
+  },
+];
 
 const CobaRuinsComboPage = () => {
   const { locale, isEs } = useLocale();
@@ -48,6 +72,7 @@ const CobaRuinsComboPage = () => {
           ? ["Recogida en hotel", "Tour de Chichén Itzá", "Almuerzo", "Ruinas de Cobá y Nohoch Mul", "Regreso"]
           : ["Hotel pickup", "Chichen Itza tour", "Lunch", "Coba ruins & Nohoch Mul", "Return"],
       }),
+      createFAQSchema(cobaRuinsFAQs),
     ],
   });
 
@@ -204,6 +229,7 @@ const CobaRuinsComboPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+      <FAQSection faqs={cobaRuinsFAQs} />
       <CTASection />
 
       <section className="py-12 bg-muted/30 border-t border-border">
