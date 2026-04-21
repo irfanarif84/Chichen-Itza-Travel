@@ -15,6 +15,8 @@ import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
 
 const cenoteIkKilFAQs = [
   {
@@ -74,6 +76,8 @@ const CenoteIkKilComboPage = () => {
       createFAQSchema(cenoteIkKilFAQs),
     ],
   });
+
+  const reviews = getReviewsByTourCategory("day-tour").slice(0, 3);
 
   const comboTours = useMemo(
     () => tours.filter((t) => t.category.includes("cenote-tours") || t.category.includes("combo")),
@@ -157,6 +161,15 @@ const CenoteIkKilComboPage = () => {
             <Button variant="cta" size="lg" asChild>
               <a href="#tours">{isEs ? "Ver Tours Combo" : "View Combo Tours"} <ChevronRight className="h-5 w-5" /></a>
             </Button>
+            <div className="flex items-center gap-2 mt-3">
+              <div className="flex text-yellow-400">
+                {"★★★★★".split("").map((s, i) => (
+                  <span key={i} className="text-lg">{s}</span>
+                ))}
+              </div>
+              <span className="text-sm font-medium text-foreground">4.8/5</span>
+              <span className="text-sm text-muted-foreground">from 2,500+ travelers</span>
+            </div>
           </div>
         </div>
       </section>
@@ -231,6 +244,13 @@ const CenoteIkKilComboPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={reviews} />
+        </div>
+      </section>
+
       <FAQSection faqs={cenoteIkKilFAQs} />
       <CTASection />
 
