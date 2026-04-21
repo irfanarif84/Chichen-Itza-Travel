@@ -5,9 +5,9 @@ interface SEOHeadProps {
   meta: PageMeta;
 }
 
-const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg";
+const DEFAULT_OG_IMAGE = "https://chichenitzatravel.com/images/chichen-itza-hero.jpg";
 const SITE_NAME = "Chichen Itza Tours";
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 
 const SEOHead = ({ meta }: SEOHeadProps) => {
   const ogType = meta.ogType || "website";
