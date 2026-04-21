@@ -2,7 +2,7 @@ import type { PageMeta } from "@/types/seo";
 import type { Locale } from "@/lib/i18n/useLocale";
 import { enToEsRoutes } from "@/lib/i18n/routeMap";
 
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 
 export const getPageMeta = (meta: Partial<PageMeta> & { locale?: Locale }): PageMeta => {
   const locale = meta.locale || "en";
