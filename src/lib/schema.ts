@@ -1,7 +1,7 @@
 import type { Tour } from "@/types/tour";
 import type { FAQItem } from "./faqData";
 
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 
 // Returns YYYY-12-31 of the current year so offer schemas never expire mid-year.
 // Rolls forward automatically: in late Dec, returns next year's end-of-year.
@@ -40,7 +40,7 @@ export const organizationSchema = {
   logo: `${BASE_URL}/logo.png`,
   image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
   telephone: "+52-984-123-4567",
-  email: "info@chichenitzatours.com",
+  email: "info@chichenitzatravel.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "5th Avenue #123",
@@ -210,7 +210,7 @@ export function generateContactPageSchema(config: {
       name: "Maya Explorer Tours",
       url: BASE_URL,
       telephone: "+52-984-123-4567",
-      email: "info@chichenitzatours.com",
+      email: "info@chichenitzatravel.com",
       address: {
         "@type": "PostalAddress",
         streetAddress: "5th Avenue #123",
@@ -223,7 +223,7 @@ export function generateContactPageSchema(config: {
         "@type": "ContactPoint",
         contactType: "customer service",
         telephone: "+52-984-123-4567",
-        email: "info@chichenitzatours.com",
+        email: "info@chichenitzatravel.com",
         areaServed: ["MX", "US", "CA", "GB"],
         availableLanguage: ["English", "Spanish", "French"],
       },
