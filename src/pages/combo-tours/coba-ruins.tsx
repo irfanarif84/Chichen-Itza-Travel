@@ -64,7 +64,7 @@ const CobaRuinsComboPage = () => {
           ? "Visita dos sitios mayas en un día: Chichén Itzá y la pirámide Nohoch Mul de Cobá."
           : "Visit two Mayan sites in one day: Chichen Itza and the Nohoch Mul pyramid at Coba.",
         slug: "coba-ruins",
-        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        image: "https://chichenitzatravel.com/images/chichen-itza-hero.jpg",
         priceFrom: 109,
         rating: "4.8",
         reviewCount: "1800",
