@@ -23,8 +23,8 @@ const Footer = () => {
               <a href="tel:+529981234567" className="flex items-center gap-2 hover:text-accent transition-colors">
                 <Phone className="h-4 w-4" /> +52 998 123 4567
               </a>
-              <a href="mailto:info@chichenitzatours.com" className="flex items-center gap-2 hover:text-accent transition-colors">
-                <Mail className="h-4 w-4" /> info@chichenitzatours.com
+              <a href="mailto:info@chichenitzatravel.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Mail className="h-4 w-4" /> info@chichenitzatravel.com
               </a>
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" /> Cancún, Quintana Roo, México
