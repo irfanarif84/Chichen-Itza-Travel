@@ -26,6 +26,7 @@ import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
 import { guideImages } from "@/lib/tourImages";
+import TableOfContents from "@/components/common/TableOfContents";
 
 const faqData = [
   {
@@ -101,6 +102,16 @@ const HowToGetTherePage = () => {
     { label: isEs ? "Cómo Llegar" : "How to Get There" },
   ];
 
+  const tocItems = [
+    { id: "distances",        title: isEs ? "Distancia desde Ciudades Principales" : "Distance from Major Cities" },
+    { id: "comparison",       title: isEs ? "Opciones de Transporte Comparadas"    : "Transportation Options Compared" },
+    { id: "guided-tours",     title: isEs ? "Opción 1: Tours Guiados"              : "Option 1: Guided Tours" },
+    { id: "rental-car",       title: isEs ? "Opción 2: Auto de Alquiler"           : "Option 2: Drive Yourself" },
+    { id: "ado-bus",          title: isEs ? "Opción 3: Autobús ADO"                : "Option 3: ADO Bus" },
+    { id: "private-transfer", title: isEs ? "Opción 4: Transfer Privado"           : "Option 4: Private Transfer" },
+    { id: "faq",              title: isEs ? "Preguntas Frecuentes"                 : "FAQ" },
+  ];
+
   const distances = [
     { city: "Cancún", icon: "🏖️", distance: "120 miles (193 km)", time: isEs ? "2.5-3 horas" : "2.5-3 hours" },
     { city: "Playa del Carmen", icon: "🌴", distance: "95 miles (153 km)", time: isEs ? "1.5-2 horas" : "1.5-2 hours" },
@@ -155,6 +166,8 @@ const HowToGetTherePage = () => {
           <div className="grid lg:grid-cols-[1fr_340px] gap-10">
             {/* Main Content */}
             <div className="space-y-12">
+              <TableOfContents items={tocItems} isEs={isEs} />
+
               {/* Quick Answer */}
               <div className="bg-success/5 border-2 border-success rounded-xl p-6">
                 <h2 className="font-heading font-bold text-lg mb-3 flex items-center gap-2">
