@@ -61,12 +61,12 @@ const CancellationPolicyPage = () => {
   const howToCancel = isEs
     ? [
         "Ingresa a tu email de confirmación de reserva y haz clic en \"Administrar Reserva\"",
-        "O envíanos un email a info@chichenitzatours.com con tu número de referencia",
+        "O envíanos un email a info@chichenitzatravel.com con tu número de referencia",
         "Para cambios urgentes, llámanos al +52 998 123 4567 (disponible 7 AM – 9 PM CST)",
       ]
     : [
         "Log into your booking confirmation email and click \"Manage Booking\"",
-        "Or email us at info@chichenitzatours.com with your booking reference number",
+        "Or email us at info@chichenitzatravel.com with your booking reference number",
         "For urgent changes, call us at +52 998 123 4567 (available 7 AM – 9 PM CST)",
       ];
 
@@ -86,8 +86,8 @@ const CancellationPolicyPage = () => {
         </p>
         <p className="text-muted-foreground mb-10 max-w-2xl text-sm">
           {isEs
-            ? "Esta política se aplica a todas las reservas realizadas directamente en chichenitzatours.com. Cumple — y en muchos casos excede — los estándares de la industria establecidos por GetYourGuide, Viator y Expedia. Los reembolsos se procesan automáticamente al método de pago original; no necesitas llamar para reclamar tu dinero."
-            : "This policy applies to every booking made directly on chichenitzatours.com. It meets — and in most cases exceeds — the industry standards set by GetYourGuide, Viator, and Expedia. Refunds are processed automatically to your original payment method; you don't need to call to claim your money."}
+            ? "Esta política se aplica a todas las reservas realizadas directamente en chichenitzatravel.com. Cumple — y en muchos casos excede — los estándares de la industria establecidos por GetYourGuide, Viator y Expedia. Los reembolsos se procesan automáticamente al método de pago original; no necesitas llamar para reclamar tu dinero."
+            : "This policy applies to every booking made directly on chichenitzatravel.com. It meets — and in most cases exceeds — the industry standards set by GetYourGuide, Viator, and Expedia. Refunds are processed automatically to your original payment method; you don't need to call to claim your money."}
         </p>
 
         {/* Policy cards */}
