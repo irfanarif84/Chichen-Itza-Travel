@@ -122,6 +122,42 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Static crawler nav — visually hidden, aria-hidden so screen readers skip */}
+      <nav aria-hidden="true" className="sr-only">
+        <a href="/">Home</a>
+        <a href="/tours">Tours</a>
+        <a href="/tours/day-tours">Day Tours</a>
+        <a href="/tours/private-tours">Private Tours</a>
+        <a href="/tours/sunrise-tours">Sunrise Tours</a>
+        <a href="/tours/cenote-tours">Cenote Tours</a>
+        <a href="/tours/night-tours">Night Tours</a>
+        <a href="/tour-types/luxury">Luxury Tours</a>
+        <a href="/tour-types/small-group">Small Group Tours</a>
+        <a href="/tour-types/family-friendly">Family Tours</a>
+        <a href="/tours-from/cancun">Tours from Cancun</a>
+        <a href="/tours-from/playa-del-carmen">Tours from Playa del Carmen</a>
+        <a href="/tours-from/tulum">Tours from Tulum</a>
+        <a href="/tours-from/merida">Tours from Merida</a>
+        <a href="/tours-from/riviera-maya">Tours from Riviera Maya</a>
+        <a href="/combo-tours/cenote-ik-kil">Cenote Ik Kil Tour</a>
+        <a href="/combo-tours/coba-ruins">Coba Ruins Tour</a>
+        <a href="/combo-tours/isla-mujeres">Isla Mujeres Tour</a>
+        <a href="/combo-tours/multi-day-yucatan">Multi-Day Yucatan</a>
+        <a href="/guide/best-time-to-visit">Best Time to Visit</a>
+        <a href="/guide/entrance-fees">Entrance Fees</a>
+        <a href="/guide/what-to-bring">What to Bring</a>
+        <a href="/guide/how-to-get-there">How to Get There</a>
+        <a href="/guide/history-and-facts">History and Facts</a>
+        <a href="/guide/photography-tips">Photography Tips</a>
+        <a href="/guide/dress-code-and-rules">Dress Code</a>
+        <a href="/guide/vs-other-ruins">vs Other Ruins</a>
+        <a href="/blog">Blog</a>
+        <a href="/practical/faq">FAQ</a>
+        <a href="/practical/contact">Contact</a>
+        <a href="/practical/booking-info">Booking Info</a>
+        <a href="/practical/cancellation-policy">Cancellation Policy</a>
+      </nav>
+
       {/* Bottom bar */}
       <div className="border-t border-primary-foreground/10">
         <div className="container py-4 flex flex-col items-center gap-2 text-xs opacity-60">

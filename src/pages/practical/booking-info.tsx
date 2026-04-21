@@ -38,6 +38,33 @@ const BookingInfoPage = () => {
         datePublished: "2025-02-01",
         dateModified: "2026-04-19",
       }),
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Book a Chichen Itza Tour",
+        "description": "Step-by-step guide to booking a Chichen Itza tour from Cancun, Playa del Carmen, Tulum, or Merida.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Choose Your Tour & Date",
+            "text": "Browse our tours, select your preferred date, and pick your departure city from Cancun, Playa del Carmen, Tulum, Riviera Maya, or Merida."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter Traveler Details",
+            "text": "Tell us how many adults and children are in your group, plus any add-ons like a private guide or photography package."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Secure Payment & Confirm",
+            "text": "Pay securely online via Visa, Mastercard, PayPal, or Apple Pay. Receive instant confirmation with your booking reference and tour details within 60 seconds."
+          }
+        ],
+        "totalTime": "PT2M"
+      },
     ],
   });
 

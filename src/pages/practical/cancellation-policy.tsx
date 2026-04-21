@@ -37,6 +37,36 @@ const CancellationPolicyPage = () => {
         datePublished: "2025-02-01",
         dateModified: "2026-04-19",
       }),
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the cancellation policy for Chichen Itza tours?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Free cancellation up to 24 hours before standard day tours and combo tours with a full refund. Private and VIP tours require 48 hours notice. Multi-day tours require 7 days notice. Refunds are processed automatically to your original payment method within 5–7 business days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I cancel or modify my Chichen Itza tour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Log into your booking confirmation email and click 'Manage Booking', or email us at info@chichenitzatravel.com with your booking reference number. For urgent changes, call +52 998 123 4567 (available 7 AM – 9 PM CST)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to pay a deposit to book a Chichen Itza tour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No deposit is required to enquire or hold a date. Full payment is processed securely online at the time of booking, and a full refund is available if you cancel within the free cancellation window."
+            }
+          }
+        ]
+      },
     ],
   });
 

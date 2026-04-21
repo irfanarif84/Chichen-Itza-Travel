@@ -21,30 +21,6 @@ export const getPageMeta = (meta: Partial<PageMeta> & { locale?: Locale }): Page
   };
 };
 
-export const createTourSchema = (tour: { title: string; description: string; price: number; rating: number; reviewCount: number; duration: string; images?: string[] }) => ({
-  "@context": "https://schema.org",
-  "@type": "TouristTrip",
-  name: tour.title,
-  description: tour.description,
-  offers: {
-    "@type": "Offer",
-    price: tour.price,
-    priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: tour.rating,
-    reviewCount: tour.reviewCount,
-    bestRating: 5,
-  },
-  touristType: "Sightseeing",
-  itinerary: {
-    "@type": "ItemList",
-    name: tour.title,
-  },
-});
-
 export const createFAQSchema = (faqs: { question: string; answer: string }[]) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
