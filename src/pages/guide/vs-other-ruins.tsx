@@ -13,6 +13,7 @@ import InfoBox from "@/components/guide/InfoBox";
 import ComparisonTable from "@/components/guide/ComparisonTable";
 import { guideSchemas } from "@/lib/schema";
 import type { FAQItem } from "@/lib/faqData";
+import TableOfContents from "@/components/common/TableOfContents";
 
 const comparisonFAQs: FAQItem[] = [
   {
@@ -94,6 +95,17 @@ const VsOtherRuinsPage = () => {
     { label: isEs ? "vs Otras Ruinas" : "vs Other Ruins" },
   ];
 
+  const tocItems = [
+    { id: "overview",     title: isEs ? "Panorama General"              : "Overview" },
+    { id: "comparison",   title: isEs ? "Comparación Lado a Lado"       : "Side-by-Side Comparison" },
+    { id: "chichen-itza", title: isEs ? "Chichén Itzá"                  : "Chichen Itza" },
+    { id: "tulum",        title: isEs ? "Tulum"                         : "Tulum" },
+    { id: "coba",         title: isEs ? "Cobá"                          : "Coba" },
+    { id: "ek-balam",     title: isEs ? "Ek Balam"                      : "Ek Balam" },
+    { id: "uxmal",        title: isEs ? "Uxmal"                         : "Uxmal" },
+    { id: "which-ruins",  title: isEs ? "¿Qué Ruinas Deberías Visitar?" : "Which Ruins Should You Visit?" },
+  ];
+
   return (
     <>
       <SEOHead meta={meta} />
@@ -129,9 +141,11 @@ const VsOtherRuinsPage = () => {
       </section>
 
       {/* Quick Summary */}
-      <section className="py-12 lg:py-16">
+      <section id="overview" className="py-12 lg:py-16">
         <div className="container">
           <div className="max-w-3xl mx-auto">
+            <TableOfContents items={tocItems} isEs={isEs} />
+
             <TipBox
               type="success"
               title={isEs ? "Respuesta Rápida: Chichén Itzá Es Imprescindible" : "Quick Answer: Chichen Itza Is the Must-See"}
@@ -153,7 +167,7 @@ const VsOtherRuinsPage = () => {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-12 lg:py-16 bg-muted/30">
+      <section id="comparison" className="py-12 lg:py-16 bg-muted/30">
         <div className="container">
           <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">
             {isEs ? "Comparación Lado a Lado" : "Side-by-Side Comparison"}
@@ -184,7 +198,7 @@ const VsOtherRuinsPage = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-12">
             {/* Chichen Itza */}
-            <div>
+            <div id="chichen-itza">
               <div className="flex items-center gap-3 mb-4">
                 <Pyramid className="h-7 w-7 text-primary" />
                 <h2 className="font-heading font-bold text-2xl">Chichen Itza</h2>
@@ -207,7 +221,7 @@ const VsOtherRuinsPage = () => {
             </div>
 
             {/* Tulum */}
-            <div>
+            <div id="tulum">
               <div className="flex items-center gap-3 mb-4">
                 <Waves className="h-7 w-7 text-secondary" />
                 <h2 className="font-heading font-bold text-2xl">Tulum</h2>
@@ -230,7 +244,7 @@ const VsOtherRuinsPage = () => {
             </div>
 
             {/* Coba */}
-            <div>
+            <div id="coba">
               <div className="flex items-center gap-3 mb-4">
                 <TreePalm className="h-7 w-7 text-success" />
                 <h2 className="font-heading font-bold text-2xl">Coba</h2>
@@ -253,7 +267,7 @@ const VsOtherRuinsPage = () => {
             </div>
 
             {/* Ek Balam */}
-            <div>
+            <div id="ek-balam">
               <div className="flex items-center gap-3 mb-4">
                 <Mountain className="h-7 w-7 text-accent" />
                 <h2 className="font-heading font-bold text-2xl">Ek Balam</h2>
@@ -276,7 +290,7 @@ const VsOtherRuinsPage = () => {
             </div>
 
             {/* Uxmal */}
-            <div>
+            <div id="uxmal">
               <div className="flex items-center gap-3 mb-4">
                 <Landmark className="h-7 w-7 text-primary" />
                 <h2 className="font-heading font-bold text-2xl">Uxmal</h2>
@@ -302,7 +316,7 @@ const VsOtherRuinsPage = () => {
       </section>
 
       {/* Recommendations */}
-      <section className="py-12 lg:py-16 bg-muted/30">
+      <section id="which-ruins" className="py-12 lg:py-16 bg-muted/30">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">
