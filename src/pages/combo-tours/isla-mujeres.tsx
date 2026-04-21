@@ -63,7 +63,7 @@ const IslaMujeresComboPage = () => {
           ? "Combina las ruinas mayas de Chichén Itzá con la paradisíaca Isla Mujeres y snorkel en el Caribe."
           : "Combine the Mayan ruins of Chichen Itza with paradise island Isla Mujeres and Caribbean snorkeling.",
         slug: "isla-mujeres",
-        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        image: "https://chichenitzatravel.com/images/chichen-itza-hero.jpg",
         priceFrom: 149,
         rating: "4.8",
         reviewCount: "1200",
