@@ -63,7 +63,7 @@ const CenoteIkKilComboPage = () => {
           ? "Combo guiado: ruinas de Chichén Itzá más nado en el Cenote Ik Kil con almuerzo y transporte."
           : "Guided combo: Chichen Itza ruins plus swimming at Cenote Ik Kil with lunch and transport included.",
         slug: "cenote-ik-kil",
-        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        image: "https://chichenitzatravel.com/images/chichen-itza-hero.jpg",
         priceFrom: 99,
         rating: "4.8",
         reviewCount: "2500",
