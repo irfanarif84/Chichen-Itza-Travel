@@ -287,9 +287,9 @@ const ContactPage = () => {
                   <Phone className="h-5 w-5 text-primary shrink-0" />
                   <div><p className="font-semibold">{c.callUs}</p><p className="text-muted-foreground">+52 998 123 4567</p></div>
                 </a>
-                <a href="mailto:info@chichenitzatours.com" className="flex items-center gap-3 hover:text-primary transition-colors">
+                <a href="mailto:info@chichenitzatravel.com" className="flex items-center gap-3 hover:text-primary transition-colors">
                   <Mail className="h-5 w-5 text-primary shrink-0" />
-                  <div><p className="font-semibold">{c.email}</p><p className="text-muted-foreground">info@chichenitzatours.com</p></div>
+                  <div><p className="font-semibold">{c.email}</p><p className="text-muted-foreground">info@chichenitzatravel.com</p></div>
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-primary shrink-0" />
