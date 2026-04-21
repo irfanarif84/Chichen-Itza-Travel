@@ -31,6 +31,7 @@ import { guideSchemas } from "@/lib/schema";
 import { guideImages } from "@/lib/tourImages";
 import RelatedResources from "@/components/common/RelatedResources";
 import type { FAQItem } from "@/lib/faqData";
+import TableOfContents from "@/components/common/TableOfContents";
 
 const faqData: FAQItem[] = [
   {
@@ -180,6 +181,17 @@ const WhatToBringPage = () => {
     { label: isEs ? "Qué Llevar" : "What to Bring" },
   ];
 
+  const tocItems = [
+    { id: "essentials",             title: isEs ? "Lista de Equipaje Esencial"  : "Essential Packing Checklist" },
+    { id: "prohibited",             title: isEs ? "Artículos Prohibidos"        : "Prohibited Items" },
+    { id: "seasonal",               title: isEs ? "Variaciones Estacionales"    : "Seasonal Variations" },
+    { id: "clothing",               title: isEs ? "Recomendaciones de Ropa"     : "Clothing Recommendations" },
+    { id: "photography",            title: isEs ? "Equipo Fotográfico"          : "Photography Gear" },
+    { id: "special-considerations", title: isEs ? "Consideraciones Especiales"  : "Special Considerations" },
+    { id: "day-of-tips",            title: isEs ? "Consejos para el Día"        : "Day-Of Tips" },
+    { id: "faq",                    title: isEs ? "Preguntas Frecuentes"        : "FAQ" },
+  ];
+
   return (
     <>
       <SEOHead meta={meta} />
@@ -230,8 +242,10 @@ const WhatToBringPage = () => {
           <div className="grid lg:grid-cols-[1fr_340px] gap-10">
             {/* Main Content */}
             <div className="space-y-14">
+              <TableOfContents items={tocItems} isEs={isEs} />
+
               {/* Packing Checklist */}
-              <div className="space-y-6">
+              <div id="essentials" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Lista de Equipaje Esencial" : "Essential Packing Checklist"}
                 </h2>
@@ -258,7 +272,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Prohibited Items */}
-              <div className="space-y-6">
+              <div id="prohibited" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Artículos Prohibidos" : "Prohibited Items"}
                 </h2>
@@ -278,7 +292,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Seasonal Variations */}
-              <div className="space-y-6">
+              <div id="seasonal" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Variaciones Estacionales" : "Seasonal Variations"}
                 </h2>
@@ -312,7 +326,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Clothing Recommendations */}
-              <div className="space-y-6">
+              <div id="clothing" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Recomendaciones de Ropa" : "Clothing Recommendations"}
                 </h2>
@@ -331,7 +345,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Photography Gear */}
-              <div className="space-y-6">
+              <div id="photography" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Equipo Fotográfico" : "Photography Gear"}
                 </h2>
@@ -360,7 +374,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Special Considerations */}
-              <div className="space-y-6">
+              <div id="special-considerations" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Consideraciones Especiales" : "Special Considerations"}
                 </h2>
@@ -395,7 +409,7 @@ const WhatToBringPage = () => {
               </div>
 
               {/* Day-Of Tips */}
-              <div className="space-y-6">
+              <div id="day-of-tips" className="space-y-6">
                 <h2 className="font-heading font-bold text-2xl">
                   {isEs ? "Consejos para el Día de la Visita" : "Day-Of Tips"}
                 </h2>
@@ -414,7 +428,9 @@ const WhatToBringPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection faqs={isEs ? faqDataEs : faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
+              <div id="faq">
+                <FAQSection faqs={isEs ? faqDataEs : faqData} title={isEs ? "Preguntas Frecuentes" : "Frequently Asked Questions"} />
+              </div>
             </div>
 
             {/* Sidebar */}
