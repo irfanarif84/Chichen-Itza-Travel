@@ -15,4 +15,4 @@ Allow: /
 Disallow: /api/
 Disallow: /*?*
 
-Sitemap: https://chichenitzatours.com/sitemap.xml
+Sitemap: https://chichenitzatravel.com/sitemap.xml
