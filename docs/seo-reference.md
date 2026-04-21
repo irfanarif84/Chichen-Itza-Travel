@@ -81,7 +81,7 @@
 - **Secondary Keywords**: best chichen itza tours, guided tours chichen itza, book chichen itza
 - **Meta Title**: `Chichen Itza Tours – Best Guided Tours 2026` (via `t("homeSeo.title")`)
 - **Meta Description**: Via `t("homeSeo.description")` — localized
-- **Canonical URL**: `https://chichenitzatours.com/`
+- **Canonical URL**: `https://chichenitzatravel.com/`
 - **Schema Markup**: Organization (TravelAgency), TouristAttraction, FAQPage
 - **Internal Links OUT**: PopularTours → `/tours/:slug`, DepartureSection → `/tours-from/*`, WhyChooseUs, CTASection → `/tours`, `/practical/contact`
 - **Internal Links IN**: Every page (via Header/Footer navigation)
@@ -101,7 +101,7 @@
 - **Secondary Keywords**: compare chichen itza tours, chichen itza excursions
 - **Meta Title**: `All Chichen Itza Tours – Compare & Book | 2026` (52 chars) ✅
 - **Meta Description**: `Browse all Chichen Itza tours. Compare prices, durations, and reviews. Day tours, private VIP, sunrise, cenote combos & more. Free cancellation.` (148 chars) ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours`
 - **Schema Markup**: None ⚠️
 - **Internal Links OUT**: 15+ links to tour categories, departure cities, guide pages, FAQ, testimonials
 - **Internal Links IN**: Header nav, all tour child pages, homepage
@@ -121,7 +121,7 @@
 - **Secondary Keywords**: full day chichen itza tour, guided day trip chichen itza
 - **Meta Title**: `Tours de Día a Chichén Itzá – Excursiones Guiadas 2026` (ES) / EN equivalent
 - **Meta Description**: 156 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/day-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/day-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **Internal Links OUT**: Tour cards, guide pages, departure cities
 - **CTA Type**: Hard CTA (Book Now on tour cards)
@@ -140,7 +140,7 @@
 - **Secondary Keywords**: vip chichen itza, private guide chichen itza
 - **Meta Title**: `Tours Privados a Chichén Itzá – VIP y Sin Filas 2026` (ES) — 53 chars ✅
 - **Meta Description**: 158 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/private-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/private-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **Internal Links OUT**: Tour cards, comparison table, guide pages
 - **CTA Type**: Hard CTA
@@ -158,7 +158,7 @@
 - **Secondary Keywords**: cenote swim tour, ik kil cenote tour
 - **Meta Title**: `Chichén Itzá + Tours de Cenotes – Nada y Explora 2026` (ES) ✅
 - **Meta Description**: 155 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/cenote-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/cenote-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **CTA Type**: Hard CTA
 - **Word Count Estimate**: ~1,800
@@ -175,7 +175,7 @@
 - **Secondary Keywords**: early access chichen itza, golden hour chichen itza
 - **Meta Title**: `Tour al Amanecer en Chichén Itzá – Acceso Temprano` (ES) — 52 chars ✅
 - **Meta Description**: 155 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/sunrise-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/sunrise-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **CTA Type**: Hard CTA
 - **Word Count Estimate**: ~2,000
@@ -192,7 +192,7 @@
 - **Secondary Keywords**: climb mayan pyramid, ek balam combo tour
 - **Meta Title**: `Chichén Itzá + Ek Balam Tours – Sube una Pirámide Maya 2026` (ES) — 60 chars ✅
 - **Meta Description**: 155 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/ek-balam-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/ek-balam-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **CTA Type**: Hard CTA
 - **Word Count Estimate**: ~1,500
@@ -209,7 +209,7 @@
 - **Secondary Keywords**: pueblo magico valladolid, colonial town tour
 - **Meta Title**: `Chichén Itzá + Valladolid Tours – Pueblo Mágico Colonial 2026` (ES) ✅
 - **Meta Description**: 155 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/valladolid-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/valladolid-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **CTA Type**: Hard CTA
 - **Word Count Estimate**: ~1,500
@@ -226,7 +226,7 @@
 - **Secondary Keywords**: noches de kukulkan, light show chichen itza
 - **Meta Title**: `Tours Nocturnos Chichén Itzá – Espectáculo de Luz y Sonido 2026` (ES) ✅
 - **Meta Description**: 155 chars ✅
-- **Canonical URL**: `https://chichenitzatours.com/tours/night-tours`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/night-tours`
 - **Schema Markup**: FAQPage, BreadcrumbList
 - **CTA Type**: Hard CTA
 - **Word Count Estimate**: ~1,500
@@ -242,7 +242,7 @@
 - **Primary Keyword**: [varies by tour slug]
 - **Meta Title**: Dynamic from tour data
 - **Meta Description**: Dynamic from tour data
-- **Canonical URL**: `https://chichenitzatours.com/tours/{slug}`
+- **Canonical URL**: `https://chichenitzatravel.com/tours/{slug}`
 - **Schema Markup**: Product, BreadcrumbList, FAQPage
 - **Internal Links OUT**: Related tours, category pages, departure city pages, guide pages
 - **CTA Type**: Hard CTA (QuickBookingForm, StickyBookingBar)
