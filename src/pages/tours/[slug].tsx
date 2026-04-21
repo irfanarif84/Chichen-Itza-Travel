@@ -458,57 +458,10 @@ const TourDetailPage = () => {
               </section>
             )}
 
-            {/* Related Tours */}
-            {relatedTours.length > 0 && (
-              <section aria-labelledby="related-heading">
-                <h2 id="related-heading" className="font-heading font-bold text-2xl mb-6">
-                  {l.youMightLike}
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                  {relatedTours.map((t) => (
-                    <TourCard key={t.id} tour={t} />
-                  ))}
-                </div>
-                <div className="mt-6 text-center">
-                  <Button variant="outline" asChild>
-                    <LocaleLink to="/tours">
-                      {l.seeAll} <ArrowRight className="h-4 w-4 ml-1" />
-                    </LocaleLink>
-                  </Button>
-                </div>
-              </section>
-            )}
-
             {/* FAQ */}
             {combinedFaqs.length > 0 && (
               <FAQSection faqs={combinedFaqs} title={l.faq} />
             )}
-
-            {/* Internal links */}
-            <section className="border-t border-border pt-8">
-              <h3 className="font-heading font-semibold text-lg mb-4">{l.exploreMore}</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {[
-                  { label: l.allTours, href: "/tours" },
-                  { label: l.privateTours, href: "/tours/private-tours" },
-                  { label: l.sunriseTours, href: "/tours/sunrise-tours" },
-                  { label: l.fromCancun, href: "/tours-from/cancun" },
-                  { label: l.fromPlaya, href: "/tours-from/playa-del-carmen" },
-                  { label: l.travelGuide, href: "/guide/best-time-to-visit" },
-                  { label: l.entranceFees, href: "/guide/entrance-fees" },
-                  { label: l.faqLink, href: "/practical/faq" },
-                ].map((link) => (
-                  <LocaleLink
-                    key={link.href}
-                    to={link.href}
-                    className="text-sm text-primary hover:underline flex items-center gap-1"
-                  >
-                    <ArrowRight className="h-3 w-3" />
-                    {link.label}
-                  </LocaleLink>
-                ))}
-              </div>
-            </section>
           </article>
 
           {/* ── Right: Sticky Sidebar ── */}
@@ -582,6 +535,82 @@ const TourDetailPage = () => {
           </aside>
         </div>
       </div>
+
+      {/* ── Plan Your Visit ── */}
+      <section className="py-12 lg:py-16 border-t border-border">
+        <div className="container">
+          <h2 className="font-heading font-bold text-2xl mb-8">
+            {isEs ? "Planifica Tu Visita" : "Plan Your Visit"}
+          </h2>
+
+          <div className="space-y-10">
+            {/* Section 1 — Tours from your city */}
+            {tour.departureCity.length > 0 && (
+              <div>
+                <h3 className="font-heading font-semibold text-lg mb-4">
+                  {isEs ? "Tours Desde Tu Ciudad" : "Tours From Your City"}
+                </h3>
+                <div className="flex gap-3 flex-wrap">
+                  {tour.departureCity.slice(0, 3).map((city) => (
+                    <LocaleLink
+                      key={city}
+                      to={`/tours-from/${city}`}
+                      className="bg-secondary text-foreground text-sm px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      {isEs ? "Tours desde" : "Tours from"} {cityLabels[city] ?? city} →
+                    </LocaleLink>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Section 2 — Related tours */}
+            {relatedTours.length > 0 && (
+              <div>
+                <h3 className="font-heading font-semibold text-lg mb-6">
+                  {isEs ? "Tours Relacionados" : "Related Tours"}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {relatedTours.map((t) => (
+                    <TourCard key={t.id} tour={t} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Section 3 — Planning guides */}
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-4">
+                {isEs ? "Planificando Tu Visita" : "Planning Your Visit"}
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <LocaleLink to="/guide/what-to-bring" className="text-primary hover:underline">
+                    → {isEs ? "Qué Llevar" : "What to Bring"}
+                  </LocaleLink>
+                </li>
+                <li>
+                  <LocaleLink to="/guide/entrance-fees" className="text-primary hover:underline">
+                    → {isEs ? "Precios de Entrada 2026" : "Entrance Fees 2026"}
+                  </LocaleLink>
+                </li>
+                {tour.category.includes("sunrise-tours") && (
+                  <li>
+                    <LocaleLink to="/guide/best-time-to-visit" className="text-primary hover:underline">
+                      → {isEs ? "Mejor Época para Visitar" : "Best Time to Visit"}
+                    </LocaleLink>
+                  </li>
+                )}
+                <li>
+                  <LocaleLink to="/guide/how-to-get-there" className="text-primary hover:underline">
+                    → {isEs ? "Cómo Llegar" : "How to Get There"}
+                  </LocaleLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA Section ── */}
       <CTASection />
