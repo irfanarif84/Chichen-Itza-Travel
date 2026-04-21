@@ -18,10 +18,10 @@
 | | | `src/pages/practical/cancellation-policy.tsx` | `+52 998 123 4567` | §1 |
 | | | `src/components/features/tours/CTABox.tsx` | `"+52-984-123-4567"` | §1 |
 | | | `src/pages/tours/[slug].tsx` | `+52 984 123 4567` | §1 |
-| 2 | **Email address** | `src/components/layout/Footer.tsx` | `info@chichenitzatours.com` | §1 |
+| 2 | **Email address** | `src/components/layout/Footer.tsx` | `info@chichenitzatravel.com` | §1 |
 | | | `src/lib/schema.ts` | `email:` | §1 |
-| | | `src/pages/practical/contact.tsx` | `info@chichenitzatours.com` | §1 |
-| | | `src/pages/practical/cancellation-policy.tsx` | `info@chichenitzatours.com` | §1 |
+| | | `src/pages/practical/contact.tsx` | `info@chichenitzatravel.com` | §1 |
+| | | `src/pages/practical/cancellation-policy.tsx` | `info@chichenitzatravel.com` | §1 |
 | 3 | **Tour price** | `src/lib/tourData.ts` | tour `id` → `price: { adult:` | §2 |
 | 4 | **Tour text (English)** | `src/lib/tourData.ts` | tour `id` → `title`, `description`, `highlights` | §2 |
 | 5 | **Tour text (Spanish)** | `src/lib/tourData.es.ts` | same tour `id` → same fields | §2 |
@@ -133,7 +133,7 @@ telephone: "+52-984-567-8901",
 
 ### Email Address
 
-Currently: `info@chichenitzatours.com`
+Currently: `info@chichenitzatravel.com`
 
 **All 4 files that contain the email address — update every one:**
 
@@ -147,8 +147,8 @@ Currently: `info@chichenitzatours.com`
 **Before (Footer.tsx):**
 ```tsx
 // src/components/layout/Footer.tsx
-<a href="mailto:info@chichenitzatours.com" className="...">
-  <Mail className="h-4 w-4" /> info@chichenitzatours.com
+<a href="mailto:info@chichenitzatravel.com" className="...">
+  <Mail className="h-4 w-4" /> info@chichenitzatravel.com
 </a>
 ```
 
@@ -162,7 +162,7 @@ Currently: `info@chichenitzatours.com`
 
 **Before (cancellation-policy.tsx ~line 44):**
 ```ts
-"Or email us at info@chichenitzatours.com with your booking reference number",
+"Or email us at info@chichenitzatravel.com with your booking reference number",
 ```
 
 **After:**
@@ -262,21 +262,21 @@ sameAs: [
 
 ### Website Domain
 
-Currently: `https://chichenitzatours.com`
+Currently: `https://chichenitzatravel.com`
 
 This appears in **4 locations** and must all be updated together when you go live with a new domain:
 
 | File | Line | What to search for |
 |------|------|--------------------|
-| `src/lib/schema.ts` | 4 | `const BASE_URL = "https://chichenitzatours.com"` |
-| `src/lib/seo.ts` | 5 | `const BASE_URL = "https://chichenitzatours.com"` |
-| `public/sitemap.xml` | Every `<loc>` tag | `https://chichenitzatours.com` |
-| `public/robots.txt` | Last line | `Sitemap: https://chichenitzatours.com/sitemap.xml` |
+| `src/lib/schema.ts` | 4 | `const BASE_URL = "https://chichenitzatravel.com"` |
+| `src/lib/seo.ts` | 5 | `const BASE_URL = "https://chichenitzatravel.com"` |
+| `public/sitemap.xml` | Every `<loc>` tag | `https://chichenitzatravel.com` |
+| `public/robots.txt` | Last line | `Sitemap: https://chichenitzatravel.com/sitemap.xml` |
 
 **Before:**
 ```ts
 // src/lib/schema.ts  AND  src/lib/seo.ts
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 ```
 
 **After:**
@@ -1159,7 +1159,7 @@ This section covers every SEO-related file and setting across the codebase. The 
 
 ## 9A. Domain / BASE_URL — Update All 4 Files When Going Live
 
-The placeholder domain `https://chichenitzatours.com` appears in **4 separate files**. When you go live with a real domain, all 4 must be updated — missing any one of them will cause broken canonical links or incorrect schema data.
+The placeholder domain `https://chichenitzatravel.com` appears in **4 separate files**. When you go live with a real domain, all 4 must be updated — missing any one of them will cause broken canonical links or incorrect schema data.
 
 ---
 
@@ -1167,7 +1167,7 @@ The placeholder domain `https://chichenitzatours.com` appears in **4 separate fi
 
 ```ts
 // src/lib/seo.ts
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 ```
 Change to:
 ```ts
@@ -1180,7 +1180,7 @@ const BASE_URL = "https://yournewdomain.com";
 
 ```ts
 // src/lib/schema.ts
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 ```
 Change to:
 ```ts
@@ -1195,9 +1195,9 @@ This file has **three separate values** to update:
 
 ```ts
 // src/components/common/SEOHead.tsx
-const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg";
+const DEFAULT_OG_IMAGE = "https://chichenitzatravel.com/images/chichen-itza-hero.jpg";
 const SITE_NAME = "Chichen Itza Tours";
-const BASE_URL = "https://chichenitzatours.com";
+const BASE_URL = "https://chichenitzatravel.com";
 ```
 
 Change to:
@@ -1214,12 +1214,12 @@ const BASE_URL = "https://yournewdomain.com";
 **FILE 4: `public/sitemap.xml`**
 
 The domain appears **100+ times** in this file. Use Find & Replace in VS Code:
-- Find: `https://chichenitzatours.com`
+- Find: `https://chichenitzatravel.com`
 - Replace all with: `https://yournewdomain.com`
 
 Also update `public/robots.txt` — the last line:
 ```
-Sitemap: https://chichenitzatours.com/sitemap.xml
+Sitemap: https://chichenitzatravel.com/sitemap.xml
 ```
 Change to:
 ```
@@ -1234,7 +1234,7 @@ Sitemap: https://yournewdomain.com/sitemap.xml
 
 ```ts
 // src/pages/tours/[slug].tsx — line ~200
-canonical: `https://chichenitzatours.com/tours/${tour.slug}`,
+canonical: `https://chichenitzatravel.com/tours/${tour.slug}`,
 ```
 
 Change to (replacing only the domain part):
@@ -1244,9 +1244,9 @@ canonical: `https://yournewdomain.com/tours/${tour.slug}`,
 
 Also on lines ~127–129 of the same file, the breadcrumb schema has hardcoded URLs:
 ```ts
-{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: "https://chichenitzatours.com" },
-{ "@type": "ListItem", position: 2, name: "Tours", item: "https://chichenitzatours.com/tours" },
-{ "@type": "ListItem", position: 3, name: catMeta.label, item: `https://chichenitzatours.com${catMeta.href}` },
+{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: "https://chichenitzatravel.com" },
+{ "@type": "ListItem", position: 2, name: "Tours", item: "https://chichenitzatravel.com/tours" },
+{ "@type": "ListItem", position: 3, name: catMeta.label, item: `https://chichenitzatravel.com${catMeta.href}` },
 ```
 
 Change all three to use `https://yournewdomain.com`.
@@ -1293,7 +1293,7 @@ Then update the Spanish version in `src/lib/i18n/translations/es.ts`:
 
 ```ts
 // src/components/common/SEOHead.tsx
-const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg";
+const DEFAULT_OG_IMAGE = "https://chichenitzatravel.com/images/chichen-itza-hero.jpg";
 ```
 
 This is the image that appears when someone shares your website link on Facebook, WhatsApp, Instagram Stories, or Twitter/X. It should be:
@@ -1328,7 +1328,7 @@ export const organizationSchema = {
   logo: `${BASE_URL}/logo.png`,
   image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
   telephone: "+52-984-123-4567",                  // ← your real phone (dashes allowed here)
-  email: "info@chichenitzatours.com",             // ← your real email
+  email: "info@chichenitzatravel.com",             // ← your real email
   address: {
     "@type": "PostalAddress",
     streetAddress: "5th Avenue #123",             // ← your real street address
@@ -1548,10 +1548,10 @@ export const enToEsRoutes: Record<string, string> = {
 **Step 3:** Add both URL versions to `public/sitemap.xml`:
 ```xml
 <url>
-  <loc>https://chichenitzatours.com/your-new-page</loc>
-  <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/your-new-page"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/tu-nueva-pagina"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/your-new-page"/>
+  <loc>https://chichenitzatravel.com/your-new-page</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatravel.com/your-new-page"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatravel.com/es/tu-nueva-pagina"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatravel.com/your-new-page"/>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
@@ -1651,7 +1651,7 @@ Allow: /
 Disallow: /api/
 Disallow: /*?*
 
-Sitemap: https://chichenitzatours.com/sitemap.xml
+Sitemap: https://chichenitzatravel.com/sitemap.xml
 ```
 
 **What each rule does:**
@@ -1767,7 +1767,7 @@ fontFamily: {
 The sitemap tells Google about all the pages on your website.
 
 - **Location:** `public/sitemap.xml`
-- **Current domain:** `https://chichenitzatours.com` (appears on every line)
+- **Current domain:** `https://chichenitzatravel.com` (appears on every line)
 
 **When to update sitemap.xml:**
 1. When you change the domain
@@ -1775,7 +1775,7 @@ The sitemap tells Google about all the pages on your website.
 3. When you change a tour's slug
 
 **To change the domain — use Find & Replace:**
-- Find: `https://chichenitzatours.com`
+- Find: `https://chichenitzatravel.com`
 - Replace with: `https://yournewdomain.com`
 
 This will update all occurrences at once.
@@ -1783,10 +1783,10 @@ This will update all occurrences at once.
 **To add a new page, copy this block and insert it with the correct URL:**
 ```xml
 <url>
-  <loc>https://chichenitzatours.com/your-new-page</loc>
-  <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatours.com/your-new-page"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatours.com/es/your-new-page"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatours.com/your-new-page"/>
+  <loc>https://chichenitzatravel.com/your-new-page</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://chichenitzatravel.com/your-new-page"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://chichenitzatravel.com/es/your-new-page"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://chichenitzatravel.com/your-new-page"/>
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
@@ -1807,7 +1807,7 @@ Allow: /
 Disallow: /api/
 Disallow: /*?*
 
-Sitemap: https://chichenitzatours.com/sitemap.xml   ← update this URL when changing domain
+Sitemap: https://chichenitzatravel.com/sitemap.xml   ← update this URL when changing domain
 ```
 
 **When to update robots.txt:**
@@ -2250,7 +2250,7 @@ Canonical tag Google ko batata hai ke agar same content multiple URLs pe accessi
 - `src/components/common/SEOHead.tsx` — lines 44–57:
   - `og:type`, `og:title`, `og:description`, `og:image`, `og:site_name`, `og:locale`, `og:url`
   - `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`
-- Default OG image: `const DEFAULT_OG_IMAGE = "https://chichenitzatours.com/images/chichen-itza-hero.jpg"` (line 8)
+- Default OG image: `const DEFAULT_OG_IMAGE = "https://chichenitzatravel.com/images/chichen-itza-hero.jpg"` (line 8)
 - `const SITE_NAME = "Chichen Itza Tours"` (line 9)
 
 **Google ranking pe impact:**
@@ -2272,7 +2272,7 @@ Open Graph tags directly Google ranking factor nahi hain, lekin social sharing p
 
 **Google ranking pe impact:**
 `BreadcrumbList` schema Google ko enable karta hai ke SERP mein URL ki jagah breadcrumb path dikhaye, e.g.:
-`chichenitzatours.com > Tours > Day Tours`
+`chichenitzatravel.com > Tours > Day Tours`
 Yeh SERP result zyada informative lagta hai → higher CTR. Sath hi internal linking hierarchy bhi establish hoti hai.
 
 **Agar theek na kiya jaye to nuksan:**
@@ -2288,7 +2288,7 @@ Yeh SERP result zyada informative lagta hai → higher CTR. Sath hi internal lin
 - `public/sitemap.xml` — manually maintained file
 - Har URL ke liye: `<loc>`, `<changefreq>`, `<priority>`, aur `<xhtml:link>` alternate hreflang tags
 - Homepage priority: `1.0`; Tour category pages: `0.9`; Individual tours: `0.8`; Guide pages: `0.7`
-- `public/robots.txt` — line 18: `Sitemap: https://chichenitzatours.com/sitemap.xml`
+- `public/robots.txt` — line 18: `Sitemap: https://chichenitzatravel.com/sitemap.xml`
 
 **Google ranking pe impact:**
 Sitemap Google ko poore site structure ki map deta hai — naye pages jaldi discover aur index hote hain. Sitemap mein hreflang alternate tags international SEO signals reinforce karte hain. Priority values Googlebot ko batate hain konse pages zyada important hain.
@@ -2325,7 +2325,7 @@ Allow: /
 Disallow: /api/
 Disallow: /*?*
 
-Sitemap: https://chichenitzatours.com/sitemap.xml
+Sitemap: https://chichenitzatravel.com/sitemap.xml
 ```
 
 **Google ranking pe impact:**
