@@ -39,7 +39,7 @@ export const organizationSchema = {
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
   image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
-  telephone: "+52-984-123-4567",
+  telephone: "+1-814-593-9266",
   email: "info@chichenitzatravel.com",
   address: {
     "@type": "PostalAddress",
@@ -58,9 +58,9 @@ export const organizationSchema = {
   },
   priceRange: "$89 - $299",
   sameAs: [
-    "https://www.facebook.com/chichenitzatours",
-    "https://www.instagram.com/chichenitzatours",
-    "https://twitter.com/chichenitza_tours",
+    "https://www.facebook.com/chichenitzatravel",
+    "https://www.instagram.com/chichenitzatravel",
+    "https://twitter.com/chichenitzatravel",
   ],
 };
 
@@ -209,7 +209,7 @@ export function generateContactPageSchema(config: {
       "@type": "Organization",
       name: "Maya Explorer Tours",
       url: BASE_URL,
-      telephone: "+52-984-123-4567",
+      telephone: "+1-814-593-9266",
       email: "info@chichenitzatravel.com",
       address: {
         "@type": "PostalAddress",
@@ -222,7 +222,7 @@ export function generateContactPageSchema(config: {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer service",
-        telephone: "+52-984-123-4567",
+        telephone: "+1-814-593-9266",
         email: "info@chichenitzatravel.com",
         areaServed: ["MX", "US", "CA", "GB"],
         availableLanguage: ["English", "Spanish", "French"],
