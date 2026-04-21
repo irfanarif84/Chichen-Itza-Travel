@@ -129,9 +129,9 @@ const TourDetailPage = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: "https://chichenitzatours.com" },
-      { "@type": "ListItem", position: 2, name: "Tours", item: "https://chichenitzatours.com/tours" },
-      { "@type": "ListItem", position: 3, name: catMeta.label, item: `https://chichenitzatours.com${catMeta.href}` },
+      { "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: "https://chichenitzatravel.com" },
+      { "@type": "ListItem", position: 2, name: "Tours", item: "https://chichenitzatravel.com/tours" },
+      { "@type": "ListItem", position: 3, name: catMeta.label, item: `https://chichenitzatravel.com${catMeta.href}` },
       { "@type": "ListItem", position: 4, name: loc.title },
     ],
   };
@@ -202,7 +202,7 @@ const TourDetailPage = () => {
         meta={{
           title: tour.metaTitle,
           description: tour.metaDescription,
-          canonical: `https://chichenitzatours.com/tours/${tour.slug}`,
+          canonical: `https://chichenitzatravel.com/tours/${tour.slug}`,
           ogImage: heroImg,
           jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
         }}
