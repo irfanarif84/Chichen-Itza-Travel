@@ -64,7 +64,7 @@ const MultiDayYucatanPage = () => {
           ? "Paquete de 2-4 días por la Península de Yucatán: Chichén Itzá, Uxmal, Mérida y cenotes con hoteles incluidos."
           : "2-4 day package through the Yucatan Peninsula: Chichen Itza, Uxmal, Mérida and cenotes with hotels included.",
         slug: "multi-day-yucatan",
-        image: "https://chichenitzatours.com/images/chichen-itza-hero.jpg",
+        image: "https://chichenitzatravel.com/images/chichen-itza-hero.jpg",
         priceFrom: 299,
         rating: "4.9",
         reviewCount: "850",
