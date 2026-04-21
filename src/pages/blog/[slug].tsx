@@ -6,6 +6,7 @@ import { getPageMeta, createBreadcrumbSchema, createFAQSchema } from "@/lib/seo"
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
+import TrustBadges from "@/components/features/booking/TrustBadges";
 import { blogPosts } from "@/lib/blogData";
 import { blogPostsEs } from "@/lib/blogData.es";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -127,6 +128,36 @@ const BlogPostPage = () => {
     { label: post.title },
   ];
 
+  const relatedLinks: Record<string, { label: string; labelEs: string; href: string }[]> = {
+    "spring-equinox-chichen-itza-guide": [
+      { label: "Sunrise Tours",       labelEs: "Tours al Amanecer",         href: "/tours/sunrise-tours" },
+      { label: "Best Time to Visit",  labelEs: "Mejor Época para Visitar",  href: "/guide/best-time-to-visit" },
+      { label: "Photography Tips",    labelEs: "Consejos de Fotografía",    href: "/guide/photography-tips" },
+    ],
+    "cenotes-near-chichen-itza": [
+      { label: "Cenote Tours",        labelEs: "Tours de Cenotes",          href: "/tours/cenote-tours" },
+      { label: "Cenote Ik Kil Combo", labelEs: "Combo Cenote Ik Kil",      href: "/combo-tours/cenote-ik-kil" },
+      { label: "What to Bring",       labelEs: "Qué Llevar",                href: "/guide/what-to-bring" },
+    ],
+    "chichen-itza-vs-tulum-ruins": [
+      { label: "Day Tours",           labelEs: "Tours de Día",              href: "/tours/day-tours" },
+      { label: "Private Tours",       labelEs: "Tours Privados",            href: "/tours/private-tours" },
+      { label: "Ruins Comparison Guide", labelEs: "Comparación de Ruinas", href: "/guide/vs-other-ruins" },
+    ],
+    "photographing-chichen-itza-like-a-pro": [
+      { label: "Sunrise Tours",         labelEs: "Tours al Amanecer",        href: "/tours/sunrise-tours" },
+      { label: "Photography Tips Guide",labelEs: "Guía de Fotografía",       href: "/guide/photography-tips" },
+      { label: "Best Time to Visit",    labelEs: "Mejor Época para Visitar", href: "/guide/best-time-to-visit" },
+    ],
+    "mayan-history-beginners-guide": [
+      { label: "History & Facts Guide", labelEs: "Historia y Datos",         href: "/guide/history-and-facts" },
+      { label: "Private Tours",         labelEs: "Tours Privados",           href: "/tours/private-tours" },
+      { label: "Entrance Fees 2026",    labelEs: "Precios de Entrada 2026",  href: "/guide/entrance-fees" },
+    ],
+  };
+
+  const currentRelatedLinks = relatedLinks[post.slug] ?? [];
+
   return (
     <>
       <SEOHead meta={meta} />
@@ -147,6 +178,10 @@ const BlogPostPage = () => {
           </div>
         </div>
       </section>
+
+      <div className="container pb-2">
+        <TrustBadges />
+      </div>
 
       <article className="py-12 lg:py-16">
         <div className="container">
@@ -170,6 +205,61 @@ const BlogPostPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Booking CTA */}
+      <section className="py-10 border-t border-border bg-muted/30">
+        <div className="container max-w-3xl">
+          <div className="bg-card rounded-xl border border-border p-6 lg:p-8 text-center">
+            <h2 className="font-heading font-bold text-xl lg:text-2xl mb-2">
+              {isEs ? "¿Listo para Visitar Chichén Itzá?" : "Ready to Visit Chichen Itza?"}
+            </h2>
+            <p className="text-muted-foreground text-sm mb-6">
+              {isEs
+                ? "Tours privados guiados · Cancelación gratuita · Recogida en hotel incluida"
+                : "Private guided tours · Free cancellation · Hotel pickup included"}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <LocaleLink
+                to="/tours"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                {isEs ? "Ver Todos los Tours →" : "Explore All Tours →"}
+              </LocaleLink>
+              <a
+                href="https://wa.me/18145939266?text=Hi!%20I%27d%20like%20to%20book%20a%20Chichen%20Itza%20tour"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-border bg-card font-semibold px-6 py-3 rounded-lg hover:bg-muted transition-colors text-sm"
+              >
+                💬 {isEs ? "Reservar por WhatsApp" : "Book via WhatsApp"}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Resources */}
+      {currentRelatedLinks.length > 0 && (
+        <section className="py-10 border-t border-border">
+          <div className="container max-w-3xl">
+            <h2 className="font-heading font-bold text-lg mb-6">
+              {isEs ? "Recursos Relacionados" : "Continue Planning"}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {currentRelatedLinks.map((link) => (
+                <LocaleLink
+                  key={link.href}
+                  to={link.href}
+                  className="flex items-center gap-2 p-4 bg-card border border-border rounded-lg text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                >
+                  <span className="text-primary shrink-0">→</span>
+                  {isEs ? link.labelEs : link.label}
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Prev / Next */}
       <section className="py-8 border-t border-border">
