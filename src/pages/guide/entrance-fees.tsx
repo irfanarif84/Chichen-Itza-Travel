@@ -15,6 +15,7 @@ import QuickBookingForm from "@/components/features/booking/QuickBookingForm";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
 import { guideImages } from "@/lib/tourImages";
+import TableOfContents from "@/components/common/TableOfContents";
 
 const faqData = [
   { question: "How much is the entrance fee to Chichen Itza in 2026?", answer: "The total entrance fee is approximately 533 Mexican pesos (about $27-30 USD) per person. This includes both the federal INAH fee (185 pesos) and the Yucatan state fee (348 pesos). Children under 13 enter free. Guided tours typically include entrance fees in the package price." },
@@ -60,6 +61,14 @@ const EntranceFeesPage = () => {
   const breadcrumbs = [
     { label: isEs ? "Guía" : "Guide", href: "/guide" },
     { label: isEs ? "Precios de Entrada" : "Entrance Fees" },
+  ];
+
+  const tocItems = [
+    { id: "entrance-fees-breakdown", title: isEs ? "Desglose de Tarifas de Entrada" : "Current Entrance Fees" },
+    { id: "additional-fees",         title: isEs ? "Tarifas y Costos Adicionales"   : "Additional Fees & Costs" },
+    { id: "tour-vs-diy",             title: isEs ? "Tour Guiado vs Independiente"   : "Guided Tour vs DIY Comparison" },
+    { id: "money-saving-tips",       title: isEs ? "Consejos para Ahorrar Dinero"   : "Money-Saving Tips" },
+    { id: "faq",                     title: isEs ? "Preguntas Frecuentes"           : "FAQ" },
   ];
 
   const additionalFees = [
@@ -121,6 +130,8 @@ const EntranceFeesPage = () => {
           <div className="grid lg:grid-cols-[1fr_340px] gap-10">
             {/* Main Content */}
             <div className="space-y-14">
+              <TableOfContents items={tocItems} isEs={isEs} />
+
               {/* Quick Answer */}
               <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 lg:p-8">
                 <h2 className="font-heading font-bold text-xl mb-4 flex items-center gap-2">
@@ -153,7 +164,7 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* Current Entrance Fees */}
-              <div>
+              <div id="entrance-fees-breakdown">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4 flex items-center gap-2">
                   <DollarSign className="h-6 w-6 text-primary" />
                   {isEs ? "Desglose de Tarifas de Entrada Actuales" : "Current Entrance Fees Breakdown"}
@@ -249,7 +260,7 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* Additional Fees */}
-              <div>
+              <div id="additional-fees">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
                   {isEs ? "Tarifas y Costos Adicionales" : "Additional Fees & Costs"}
                 </h2>
@@ -292,7 +303,7 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* Tour vs DIY Comparison */}
-              <div>
+              <div id="tour-vs-diy">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-4">
                   {isEs ? "Tour Guiado vs Independiente: Comparación Total de Costos" : "Guided Tour vs DIY: Total Cost Comparison"}
                 </h2>
@@ -373,7 +384,7 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* Money-Saving Tips */}
-              <div>
+              <div id="money-saving-tips">
                 <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6">
                   {isEs ? "Consejos para Ahorrar Dinero" : "Money-Saving Tips"}
                 </h2>
@@ -395,7 +406,9 @@ const EntranceFeesPage = () => {
               </div>
 
               {/* FAQ */}
-              <FAQSection title={isEs ? "Preguntas Frecuentes sobre Precios de Entrada" : "Entrance Fees FAQ"} faqs={isEs ? faqDataEs : faqData} />
+              <div id="faq">
+                <FAQSection title={isEs ? "Preguntas Frecuentes sobre Precios de Entrada" : "Entrance Fees FAQ"} faqs={isEs ? faqDataEs : faqData} />
+              </div>
             </div>
 
             {/* Sidebar */}
