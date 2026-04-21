@@ -16,6 +16,8 @@ import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
 
 const multiDayFAQs = [
   {
@@ -75,6 +77,8 @@ const MultiDayYucatanPage = () => {
       createFAQSchema(multiDayFAQs),
     ],
   });
+
+  const reviews = getReviewsByTourCategory("day-tour").slice(0, 3);
 
   const topTours = useMemo(() => tours.filter((t) => t.featured).slice(0, 6), []);
 
@@ -258,6 +262,13 @@ const MultiDayYucatanPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={reviews} />
+        </div>
+      </section>
+
       <FAQSection faqs={multiDayFAQs} />
       <CTASection />
 
