@@ -108,6 +108,9 @@ const VsOtherRuinsPage = () => {
                 ? "Chichén Itzá vs Otras Ruinas Mayas — Guía Comparativa Completa"
                 : "Chichen Itza vs Other Mayan Ruins — Complete Comparison Guide"}
             </h1>
+            <p className="text-sm text-muted-foreground mt-2 mb-6">
+              {isEs ? "Actualizado: abril 2026" : "Last updated: April 2026"}
+            </p>
             <p className="text-lg text-muted-foreground mb-6">
               {isEs
                 ? "¿Decidiendo qué ruinas mayas visitar? Compara Chichén Itzá con Tulum, Cobá, Ek Balam y Uxmal en multitudes, escalabilidad, tarifas de entrada y más."

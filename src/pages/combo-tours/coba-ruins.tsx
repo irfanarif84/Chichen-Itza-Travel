@@ -16,6 +16,8 @@ import { useLocale } from "@/lib/i18n/useLocale";
 import { tours } from "@/lib/tourData";
 import { comboHeroImages, comboGalleryImages, comboGalleryAltTexts } from "@/lib/tourImages";
 import { useMemo } from "react";
+import ReviewGrid from "@/components/features/reviews/ReviewGrid";
+import { getReviewsByTourCategory } from "@/lib/reviewsData";
 
 const cobaRuinsFAQs = [
   {
@@ -75,6 +77,8 @@ const CobaRuinsComboPage = () => {
       createFAQSchema(cobaRuinsFAQs),
     ],
   });
+
+  const reviews = getReviewsByTourCategory("day-tour").slice(0, 3);
 
   const comboTours = useMemo(
     () => tours.filter((t) => t.category.includes("combo") || t.category.includes("ek-balam")),
@@ -229,6 +233,13 @@ const CobaRuinsComboPage = () => {
       </section>
 
       <div className="container py-8"><TrustBadges /></div>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container">
+          <ReviewGrid reviews={reviews} />
+        </div>
+      </section>
+
       <FAQSection faqs={cobaRuinsFAQs} />
       <CTASection />
 

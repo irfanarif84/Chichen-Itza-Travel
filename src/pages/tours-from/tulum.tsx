@@ -304,7 +304,7 @@ const TulumToursPage = () => {
 
       <section className="relative py-12 lg:py-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={locationImages["tulum"]} alt="Tulum Mayan ruins overlooking the Caribbean Sea" className="w-full h-full object-cover" width={1920} height={1080} />
+          <img src={locationImages["tulum"]} alt="Tulum Mayan ruins overlooking the Caribbean Sea" className="w-full h-full object-cover" width={1920} height={1080} loading="eager" fetchPriority="high" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
         </div>
         <div className="container relative z-10">

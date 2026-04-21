@@ -206,7 +206,7 @@ const WhatToBringPage = () => {
                 : "Pack smart for your visit to one of the New Seven Wonders. Our essential checklist covers sun protection, hydration, clothing, photography gear, prohibited items, and seasonal variations."}
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-              <span>{isEs ? "Actualizado: Febrero 2026" : "Updated: February 2026"}</span>
+              <span>{isEs ? "Actualizado: abril 2026" : "Updated: April 2026"}</span>
               <span>•</span>
               <span>{isEs ? "10 min lectura" : "10 min read"}</span>
             </div>

@@ -124,7 +124,7 @@ const DressCodePage = () => {
                 : "Everything you need to know about what to wear, what's prohibited, site regulations, and cultural etiquette at this UNESCO World Heritage Site."}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
-              {isEs ? "Actualizado: Febrero 2026 • 8 min lectura" : "Updated: February 2026 • 8 min read"}
+              {isEs ? "Actualizado: abril 2026 • 8 min lectura" : "Updated: April 2026 • 8 min read"}
             </p>
             <Button variant="cta" size="lg" asChild>
               <LocaleLink to="/tours">
