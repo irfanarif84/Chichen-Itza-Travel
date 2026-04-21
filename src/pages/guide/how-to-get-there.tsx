@@ -147,7 +147,7 @@ const HowToGetTherePage = () => {
                 : "Compare all transport options — guided tours, rental cars, and public buses — from every major departure city in the Yucatan."}
             </p>
             <div className="flex items-center gap-3 text-sm text-muted-foreground mb-6">
-              <span>{isEs ? "Actualizado: Febrero 2026" : "Updated: February 2026"}</span>
+              <span>{isEs ? "Actualizado: abril 2026" : "Updated: April 2026"}</span>
               <span>•</span>
               <span>{isEs ? "8 min lectura" : "8 min read"}</span>
             </div>

@@ -149,7 +149,7 @@ const BestTimeToVisitPage = () => {
                 : "Plan your perfect visit with our comprehensive guide to weather, crowds, and special events at Mexico's most famous archaeological site."}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
-              {isEs ? "Actualizado: Febrero 2026 · 12 min lectura · Por Maya Explorer Team" : "Updated: February 2026 · 12 min read · By Maya Explorer Team"}
+              {isEs ? "Actualizado: abril 2026 · 12 min lectura · Por Maya Explorer Team" : "Updated: April 2026 · 12 min read · By Maya Explorer Team"}
             </p>
             <div className="flex flex-wrap gap-3">
               <Button variant="cta" size="lg" asChild>

@@ -185,7 +185,7 @@ const PhotographyTipsPage = () => {
                 : "Expert tips for capturing stunning photos of El Castillo and the ancient ruins — best times, camera settings, composition techniques, and equipment rules."}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
-              {isEs ? "Actualizado: Febrero 2026 • 9 min lectura • Consejos Expertos" : "Updated: February 2026 • 9 min read • Expert Tips"}
+              {isEs ? "Actualizado: abril 2026 • 9 min lectura • Consejos Expertos" : "Updated: April 2026 • 9 min read • Expert Tips"}
             </p>
             <Button variant="cta" size="lg" asChild>
               <LocaleLink to="/tours/sunrise-tours">

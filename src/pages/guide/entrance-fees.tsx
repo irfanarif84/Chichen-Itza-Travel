@@ -104,7 +104,7 @@ const EntranceFeesPage = () => {
                 : "Everything you need to know about Chichen Itza entrance costs, ticket types, payment methods, discounts, and how guided tours compare to visiting independently."}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
-              {isEs ? "Actualizado: Febrero 2026 • 8 min lectura" : "Updated: February 2026 • 8 min read"}
+              {isEs ? "Actualizado: abril 2026 • 8 min lectura" : "Updated: April 2026 • 8 min read"}
             </p>
             <Button variant="cta" size="lg" asChild>
               <LocaleLink to="/tours">

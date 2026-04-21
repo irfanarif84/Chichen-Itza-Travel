@@ -190,7 +190,7 @@ const HistoryAndFactsPage = () => {
                 : "Explore the fascinating 1,400-year history of one of the New Seven Wonders of the World — from its founding around 600 AD to its status as a UNESCO World Heritage Site today."}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
-              {isEs ? "Actualizado: Febrero 2026 • 10 min lectura • Guía Histórica" : "Updated: February 2026 • 10 min read • Historical Guide"}
+              {isEs ? "Actualizado: abril 2026 • 10 min lectura • Guía Histórica" : "Updated: April 2026 • 10 min read • Historical Guide"}
             </p>
             <Button variant="cta" size="lg" asChild>
               <LocaleLink to="/tours">

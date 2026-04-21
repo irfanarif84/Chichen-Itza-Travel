@@ -177,6 +177,9 @@ const GuideIndexPage = () => {
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4">
               {isEs ? "Guía del Visitante de Chichén Itzá" : "Chichen Itza Visitor Guide"}
             </h1>
+            <p className="text-sm text-muted-foreground mt-2 mb-6">
+              {isEs ? "Actualizado: abril 2026" : "Last updated: April 2026"}
+            </p>
             <p className="text-lg text-muted-foreground mb-6">
               {isEs
                 ? "Todo lo que necesitas para planificar la visita perfecta — desde qué vestir y cuándo ir, hasta precios de entrada, opciones de transporte y consejos de fotografía."

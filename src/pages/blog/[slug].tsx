@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
+import AuthorBio from "@/components/common/AuthorBio";
 import { blogPosts } from "@/lib/blogData";
 import { blogPostsEs } from "@/lib/blogData.es";
 import { useLocale } from "@/lib/i18n/useLocale";
@@ -192,6 +193,10 @@ const BlogPostPage = () => {
           </div>
         </div>
       </article>
+
+      <div className="container max-w-3xl">
+        <AuthorBio authorName={post.author} isEs={isEs} />
+      </div>
 
       {/* Tags */}
       <section className="pb-8">
