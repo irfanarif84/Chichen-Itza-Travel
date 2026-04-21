@@ -17,6 +17,7 @@ import PopularToursWidget from "@/components/features/tours/PopularToursWidget";
 import ImageGallery from "@/components/common/ImageGallery";
 import { guideSchemas } from "@/lib/schema";
 import { guideImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
+import TableOfContents from "@/components/common/TableOfContents";
 
 const timingFAQs = [
   {
@@ -105,22 +106,22 @@ const getMeta = (locale: "en" | "es") => {
   });
 };
 
-const tocLinks = [
-  { href: "#overview", label: "Overview" },
-  { href: "#weather", label: "Weather by Month" },
-  { href: "#crowds", label: "Crowd Levels" },
-  { href: "#prices", label: "Prices & Value" },
-  { href: "#equinox", label: "Spring & Fall Equinoxes" },
-  { href: "#day-of-week", label: "Best Day of the Week" },
-  { href: "#time-of-day", label: "Best Time of Day" },
-];
-
 const BestTimeToVisitPage = () => {
   const { locale, isEs } = useLocale();
   const meta = getMeta(locale);
   const breadcrumbs = [
     { label: isEs ? "Guía" : "Guide", href: "/guide" },
     { label: isEs ? "Mejor Época para Visitar" : "Best Time to Visit" },
+  ];
+
+  const tocItems = [
+    { id: "overview",    title: isEs ? "Resumen General"                  : "At a Glance" },
+    { id: "weather",     title: isEs ? "Clima Mes a Mes"                  : "Weather by Month" },
+    { id: "crowds",      title: isEs ? "Niveles de Multitudes"            : "Crowd Levels" },
+    { id: "prices",      title: isEs ? "Precios y Valor"                  : "Prices & Value" },
+    { id: "equinox",     title: isEs ? "Equinoccios de Primavera y Otoño" : "Spring & Fall Equinoxes" },
+    { id: "day-of-week", title: isEs ? "Mejor Día de la Semana"           : "Best Day of the Week" },
+    { id: "time-of-day", title: isEs ? "Mejor Hora del Día"               : "Best Time of Day" },
   ];
 
   return (
@@ -169,6 +170,8 @@ const BestTimeToVisitPage = () => {
           <div className="grid lg:grid-cols-[1fr_340px] gap-10">
             {/* Main Content */}
             <div className="space-y-14">
+              <TableOfContents items={tocItems} isEs={isEs} />
+
               {/* Overview */}
               <div id="overview">
                 <h2 className="font-heading font-bold text-2xl mb-4">
@@ -297,20 +300,6 @@ const BestTimeToVisitPage = () => {
             <div className="sticky top-0 py-4">
               <QuickBookingForm />
               <TrustBadges />
-              <div className="bg-card rounded-md p-4 mt-6 border border-border">
-                <h3 className="font-heading font-semibold text-lg mb-4">
-                  {isEs ? "Tabla de Contenidos" : "Table of Contents"}
-                </h3>
-                <ul className="text-sm text-muted-foreground">
-                  {tocLinks.map((link) => (
-                    <li key={link.href} className="mb-2">
-                      <Link to={link.href} className="hover:text-primary transition-colors underline-offset-4 hover:underline">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
               <PopularToursWidget />
             </div>
           </div>
