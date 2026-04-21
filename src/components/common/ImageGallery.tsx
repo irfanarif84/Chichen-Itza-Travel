@@ -53,6 +53,8 @@ export default function ImageGallery({ images, columns = 3 }: ImageGalleryProps)
             src={images[activeIdx]?.src}
             alt={images[activeIdx]?.alt}
             className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+            loading="lazy"
+            decoding="async"
           />
           <p className="text-center text-background/80 text-sm py-3">
             {images[activeIdx]?.alt}

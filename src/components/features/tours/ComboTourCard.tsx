@@ -21,10 +21,12 @@ export default function ComboTourCard({
   return (
     <div className="group border border-border rounded-lg overflow-hidden hover:shadow-card-hover transition-all duration-300">
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={image} 
+        <img
+          src={image}
           alt={`${title} combo tour`}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full font-semibold">
           ${price}

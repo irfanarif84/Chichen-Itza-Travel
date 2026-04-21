@@ -217,6 +217,8 @@ const TourGallery = ({ images, altTexts, heroImage, tourTitle }: TourGalleryProp
             alt={getAlt(lightboxIndex)}
             className="max-h-[70vh] max-w-[90vw] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
+            loading="lazy"
+            decoding="async"
           />
 
           {/* Alt text caption */}

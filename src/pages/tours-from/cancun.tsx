@@ -313,6 +313,8 @@ const CancunToursPage = () => {
             className="w-full h-full object-cover"
             width={1920}
             height={1080}
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
         </div>
