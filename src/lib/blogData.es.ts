@@ -2,7 +2,7 @@ import type { BlogPost } from "./blogData";
 
 export const blogPostsEs: BlogPost[] = [
   {
-    slug: "spring-equinox-chichen-itza-guide",
+    slug: "guia-equinoccio-de-primavera-chichen-itza",
     title: "El Equinoccio de Primavera en Chichén Itzá: Todo lo que Necesitas Saber",
     metaTitle: "Equinoccio de Primavera en Chichén Itzá 2026 – Guía Completa",
     metaDescription: "Planifica tu visita al equinoccio de primavera en Chichén Itzá. La serpiente de luz en El Castillo, consejos, mejores ubicaciones y reservas.",
@@ -32,7 +32,7 @@ export const blogPostsEs: BlogPost[] = [
     tags: ["equinoccio", "el castillo", "eventos", "fotografía"],
   },
   {
-    slug: "cenotes-near-chichen-itza",
+    slug: "cenotes-cerca-de-chichen-itza",
     title: "7 Mejores Cenotes Cerca de Chichén Itzá para Nadar",
     metaTitle: "7 Mejores Cenotes Cerca de Chichén Itzá – Guía de Nado 2026",
     metaDescription: "Descubre los 7 mejores cenotes cerca de Chichén Itzá para nadar. Distancias, niveles de afluencia, regla del protector solar biodegradable y qué llevar.",
@@ -109,7 +109,7 @@ export const blogPostsEs: BlogPost[] = [
     tags: ["cenotes", "nado", "ik kil", "naturaleza"],
   },
   {
-    slug: "chichen-itza-vs-tulum-ruins",
+    slug: "chichen-itza-vs-ruinas-de-tulum",
     title: "Chichén Itzá vs Tulum: ¿Cuál Deberías Visitar?",
     metaTitle: "Chichén Itzá vs Tulum – Comparación Honesta 2026",
     metaDescription: "¿Chichén Itzá o Tulum? Compara tamaño, multitudes, historia, costo y accesibilidad. Nuestra guía honesta te ayuda a elegir las ruinas mayas correctas.",
@@ -131,7 +131,7 @@ export const blogPostsEs: BlogPost[] = [
     tags: ["comparación", "tulum", "ruinas mayas", "planificación"],
   },
   {
-    slug: "photographing-chichen-itza-like-a-pro",
+    slug: "fotografiar-chichen-itza-como-un-profesional",
     title: "Cómo Fotografiar Chichén Itzá Como un Profesional",
     metaTitle: "Guía de Fotografía de Chichén Itzá – Consejos Pro y Mejores Spots",
     metaDescription: "Domina la fotografía de Chichén Itzá con consejos profesionales sobre horarios, ángulos, equipo y spots ocultos. Obtén fotos impresionantes de El Castillo.",
@@ -153,7 +153,7 @@ export const blogPostsEs: BlogPost[] = [
     tags: ["fotografía", "consejos", "cámara", "hora dorada"],
   },
   {
-    slug: "mayan-history-beginners-guide",
+    slug: "guia-historia-maya-para-principiantes",
     title: "Civilización Maya: Guía para Principiantes Antes de Visitar Chichén Itzá",
     metaTitle: "Guía de Historia Maya – Qué Saber Antes de Chichén Itzá",
     metaDescription: "Historia maya esencial para visitantes de Chichén Itzá. Aprende sobre la civilización, El Castillo, Kukulkán y el juego de pelota antes de tu viaje.",

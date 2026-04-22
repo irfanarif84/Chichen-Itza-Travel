@@ -100,6 +100,7 @@ const EntranceFeesPage = () => {
           alt={isEs ? "Entrada y área de boletos de Chichén Itzá para visitantes" : "Chichen Itza entrance and ticket area for visitors"}
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

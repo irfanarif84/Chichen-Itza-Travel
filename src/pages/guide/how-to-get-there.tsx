@@ -132,6 +132,7 @@ const HowToGetTherePage = () => {
           alt={isEs ? "Camino escénico por la selva yucateca hacia Chichén Itzá" : "Scenic road through Yucatan jungle leading to Chichen Itza"}
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

@@ -135,6 +135,7 @@ const BestTimeToVisitPage = () => {
           alt="Chichen Itza El Castillo pyramid in golden afternoon light"
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

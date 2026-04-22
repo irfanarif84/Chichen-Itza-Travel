@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Head } from "vite-react-ssg";
 import type { PageMeta } from "@/types/seo";
 
 interface SEOHeadProps {
@@ -34,7 +34,7 @@ const SEOHead = ({ meta }: SEOHeadProps) => {
   };
 
   return (
-    <Helmet>
+    <Head>
       <html lang={htmlLang} />
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
@@ -69,7 +69,7 @@ const SEOHead = ({ meta }: SEOHeadProps) => {
       <meta name="theme-color" content="#D2691E" />
 
       {renderJsonLd()}
-    </Helmet>
+    </Head>
   );
 };
 

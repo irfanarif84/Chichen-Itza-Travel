@@ -11,7 +11,6 @@ const getPriceValidUntil = (): string => {
   return `${year}-12-31`;
 };
 
-// WebSite schema with SearchAction (sitelinks search box eligibility)
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -19,14 +18,6 @@ export const websiteSchema = {
   alternateName: "Maya Explorer Tours",
   url: BASE_URL,
   inLanguage: ["en", "es"],
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 // Generate Organization schema (use on homepage)
