@@ -28,6 +28,22 @@ const blogFAQs: Record<string, { question: string; answer: string }[]> = {
       question: "Do I need to book a tour for the equinox in advance?",
       answer: "Yes — book at least 3 months in advance for equinox week. Our sunrise tours include early access, expert archaeological commentary, and strategic positioning for the best views."
     },
+    {
+      question: "What happens if it's cloudy on equinox day at Chichen Itza?",
+      answer: "Light cloud cover still allows the shadow effect — the triangles remain partially visible. Heavy overcast eliminates the shadow entirely. March has roughly a 15% chance of significant cloud interference versus 60%+ in September. Our guides recommend March for the highest probability of a clear equinox view."
+    },
+    {
+      question: "Is the fall equinox at Chichen Itza worth visiting?",
+      answer: "The fall equinox (September 21) produces the same serpent shadow effect as March. However, September is Yucatan's rainiest month, with afternoon storms frequently arriving between 2:00–5:00 PM — exactly when the shadow appears. If March isn't possible, position early and hope for one of September's occasional clear afternoons."
+    },
+    {
+      question: "Exactly where should I stand to see the equinox shadow?",
+      answer: "Stand on the north side of El Castillo, slightly left of center facing the pyramid, aligned with the northwest corner of the staircase balustrade — the shadow forms on the left balustrade. Claim your spot by 2:00 PM. By 2:30 PM the viewing area is four to five people deep."
+    },
+    {
+      question: "What does the descending serpent shadow symbolize?",
+      answer: "Kukulkan descending the pyramid marked the beginning of the Maya planting season — a sign that divine power was returning to earth. The feathered serpent deity represented wind, rain, and Venus. The shadow was the god arriving to bless the soil: a sacred agricultural calendar carved in stone."
+    },
   ],
   "cenotes-near-chichen-itza": [
     {
