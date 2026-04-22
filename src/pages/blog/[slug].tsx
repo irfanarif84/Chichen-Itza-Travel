@@ -8,7 +8,7 @@ import FAQSection from "@/components/common/FAQ";
 import CTASection from "@/components/features/home/CTASection";
 import TrustBadges from "@/components/features/booking/TrustBadges";
 import AuthorBio from "@/components/common/AuthorBio";
-import { blogPosts } from "@/lib/blogData";
+import { blogPosts, type BlogContentBlock } from "@/lib/blogData";
 import { blogPostsEs } from "@/lib/blogData.es";
 import { useLocale } from "@/lib/i18n/useLocale";
 import LocaleLink from "@/components/LocaleLink";
@@ -57,6 +57,18 @@ const blogFAQs: Record<string, { question: string; answer: string }[]> = {
     {
       question: "Are cenote visits included in Chichen Itza tours?",
       answer: "Yes — our Chichen Itza + Cenote combo tours include a stop at Cenote Ik Kil, Hubiku, or Suytun depending on your tour. Entry fees and transport are included in the tour price."
+    },
+    {
+      question: "Which cenote near Chichen Itza is least crowded?",
+      answer: "Cenote Oxman is the least crowded major cenote near the Chichen Itza route. Arrive before 9 AM for a near-empty experience. Cenote Hubiku is also significantly quieter than Ik Kil and sits only 30 km from the ruins."
+    },
+    {
+      question: "Where can I buy biodegradable sunscreen near Chichen Itza?",
+      answer: "Buy biodegradable sunscreen at Cancun airport pharmacies (Farmacias del Ahorro) before your tour. In Valladolid, pharmacies on Calle 39 stock it. On-site cenote vendors sell small bottles for 80–120 MXN but stock is not guaranteed."
+    },
+    {
+      question: "Can I visit multiple cenotes in one day?",
+      answer: "Yes — most combo tours include one cenote. On a private tour you can visit two: Ik Kil after Chichen Itza, then Suytun or Oxman in Valladolid. Allow 1.5–2 hours per cenote including travel time."
     },
   ],
   "chichen-itza-vs-tulum-ruins": [
@@ -202,10 +214,69 @@ const BlogPostPage = () => {
 
       <article className="py-12 lg:py-16">
         <div className="container">
-          <div className="max-w-3xl mx-auto prose prose-neutral">
-            {post.content.map((paragraph, i) => (
-              <p key={i} className="text-foreground leading-relaxed mb-6">{paragraph}</p>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            {post.tocItems && post.tocItems.length > 0 && (
+              <nav className="bg-muted/50 border border-border rounded-lg p-5 mb-8">
+                <p className="font-semibold text-sm mb-3 text-foreground">
+                  {isEs ? "En este artículo" : "In this article"}
+                </p>
+                <ol className="space-y-1.5 list-decimal list-inside">
+                  {post.tocItems.map((item) => (
+                    <li key={item.id}>
+                      <a href={`#${item.id}`} className="text-sm text-primary hover:underline">
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+            <div className="prose prose-neutral">
+              {post.content.map((block, i) => {
+                if (typeof block === "string") {
+                  return <p key={i} className="text-foreground leading-relaxed mb-6">{block}</p>;
+                }
+                const b = block as BlogContentBlock;
+                switch (b.type) {
+                  case "quick-answer":
+                    return (
+                      <div key={i} className="bg-secondary/10 border-l-4 border-secondary rounded-r-lg p-4 mb-6">
+                        <p className="text-foreground font-medium leading-relaxed">{b.text}</p>
+                      </div>
+                    );
+                  case "h2":
+                    return (
+                      <h2 key={i} id={b.id} className="font-heading font-bold text-2xl mt-10 mb-4 scroll-mt-20">
+                        {b.text}
+                      </h2>
+                    );
+                  case "h3":
+                    return (
+                      <h3 key={i} id={b.id} className="font-heading font-semibold text-xl mt-8 mb-3 scroll-mt-20">
+                        {b.text}
+                      </h3>
+                    );
+                  case "tip":
+                    return (
+                      <div key={i} className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6 flex gap-3">
+                        <span className="text-primary font-bold shrink-0 mt-0.5">★</span>
+                        <p className="text-foreground leading-relaxed">{b.text}</p>
+                      </div>
+                    );
+                  case "list":
+                    return (
+                      <ul key={i} className="list-disc list-inside space-y-2 mb-6 text-foreground pl-2">
+                        {b.items.map((item, j) => (
+                          <li key={j} className="leading-relaxed">{item}</li>
+                        ))}
+                      </ul>
+                    );
+                  case "p":
+                  default:
+                    return <p key={i} className="text-foreground leading-relaxed mb-6">{b.text}</p>;
+                }
+              })}
+            </div>
           </div>
         </div>
       </article>

@@ -1,10 +1,18 @@
+export type BlogContentBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string; id?: string }
+  | { type: "h3"; text: string; id?: string }
+  | { type: "quick-answer"; text: string }
+  | { type: "tip"; text: string }
+  | { type: "list"; items: string[] };
+
 export interface BlogPost {
   slug: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
   excerpt: string;
-  content: string[];
+  content: (string | BlogContentBlock)[];
   author: string;
   date: string;
   category: string;
@@ -12,6 +20,7 @@ export interface BlogPost {
   image: string;
   imageAlt: string;
   tags: string[];
+  tocItems?: { id: string; title: string }[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -49,20 +58,75 @@ export const blogPosts: BlogPost[] = [
     slug: "cenotes-near-chichen-itza",
     title: "7 Best Cenotes Near Chichen Itza Worth Swimming In",
     metaTitle: "7 Best Cenotes Near Chichen Itza – Swimming Guide 2026",
-    metaDescription: "Discover the 7 best cenotes near Chichen Itza for swimming. From famous Ik Kil to hidden gems. Tips, prices, and what to bring.",
-    excerpt: "The Yucatan's crystal-clear cenotes are the perfect complement to a day exploring ancient ruins. Here are 7 you shouldn't miss.",
+    metaDescription: "Discover the 7 best cenotes near Chichen Itza for swimming. From famous Ik Kil to hidden gems. Distances, crowd levels, biodegradable sunscreen rule, and what to bring.",
+    excerpt: "The Yucatan's crystal-clear cenotes are the perfect complement to a day exploring ancient ruins. Here are 7 you shouldn't miss — with distances, crowd rankings, and a guide's honest pick.",
     content: [
-      "The Yucatan Peninsula is home to over 6,000 cenotes — natural sinkholes filled with crystal-clear groundwater. Many of the most spectacular cenotes are located within easy reach of Chichen Itza, making a cenote swim the perfect way to cool off after exploring the ruins.",
-      "Cenote Ik Kil tops most lists for good reason. Located just 3 km from Chichen Itza, this open-air cenote features dramatic hanging vines, waterfalls, and a swimming area 26 meters below ground level. It's well-maintained with stairs, changing rooms, and life vests. Expect crowds midday — visit before 10 AM or after 3 PM.",
-      "Cenote Saamal in Valladolid offers a more intimate experience. This semi-open cenote is located right in the town center, making it perfect for combo tours that include Valladolid exploration. The turquoise waters and lush vegetation create a magical atmosphere.",
-      "For the adventurous, Cenote Suytun is an underground cathedral cenote with a single shaft of light illuminating a stone platform in the center — incredibly photogenic. Cenote Oxman features a rope swing and is surrounded by a beautiful hacienda property.",
-      "Cenote Hubiku, Cenote Samulá, and Cenote Xkekén round out our top 7, each offering unique geological formations and swimming experiences. Our combo tours visit the cenotes best suited to your group size and interests.",
-      "Essential tips: Bring biodegradable sunscreen (regular sunscreen is prohibited), a waterproof phone pouch, and water shoes. Most cenotes charge $5-10 USD entry and provide life vests. Arrive early for the best experience."
+      { type: "quick-answer", text: "The 7 best cenotes near Chichen Itza are: Ik Kil (3 km), Suytun (45 km), Oxman (40 km), Hubiku (30 km), Saamal (45 km), Samulá and Xkekén (80 km). All have crystal-clear freshwater, natural light, and easy access from the Chichen Itza–Valladolid corridor. Most require biodegradable sunscreen only." },
+      { type: "p", text: "The Yucatan Peninsula is home to over 6,000 cenotes — natural sinkholes filled with crystal-clear groundwater. Many of the most spectacular cenotes are located within easy reach of Chichen Itza, making a cenote swim the perfect way to cool off after exploring the ruins." },
+      { type: "p", text: "Cenote Ik Kil tops most lists for good reason. Located just 3 km from Chichen Itza, this open-air cenote features dramatic hanging vines, waterfalls, and a swimming area 26 meters below ground level. It's well-maintained with stairs, changing rooms, and life vests. Expect crowds midday — visit before 10 AM or after 3 PM." },
+      { type: "p", text: "Cenote Saamal in Valladolid offers a more intimate experience. This semi-open cenote is located right in the town center, making it perfect for combo tours that include Valladolid exploration. The turquoise waters and lush vegetation create a magical atmosphere." },
+      { type: "p", text: "For the adventurous, Cenote Suytun is an underground cathedral cenote with a single shaft of light illuminating a stone platform in the center — incredibly photogenic. Cenote Oxman features a rope swing and is surrounded by a beautiful hacienda property." },
+      { type: "p", text: "Cenote Hubiku, Cenote Samulá, and Cenote Xkekén round out our top 7, each offering unique geological formations and swimming experiences. Our combo tours visit the cenotes best suited to your group size and interests." },
+      { type: "p", text: "Essential tips: Bring biodegradable sunscreen (regular sunscreen is prohibited), a waterproof phone pouch, and water shoes. Most cenotes charge $5-10 USD entry and provide life vests. Arrive early for the best experience." },
+      { type: "h2", text: "Distance & Travel Time from Chichen Itza", id: "distance-travel-time-from-chichen-itza" },
+      { type: "list", items: [
+        "Cenote Ik Kil — 3 km / 5 min drive (on-site combo tours)",
+        "Cenote Hubiku — 30 km / 25 min drive (Pisté direction)",
+        "Cenote Oxman — 40 km / 35 min toward Valladolid",
+        "Cenote Saamal — 45 km / 40 min, Valladolid town center",
+        "Cenote Suytun — 45 km / 40 min, Valladolid outskirts",
+        "Cenote Samulá — 80 km / 65 min, Dzitnup village",
+        "Cenote Xkekén — 80 km / 65 min, Dzitnup (same entrance as Samulá)"
+      ]},
+      { type: "h2", text: "Cenote Suytun — The Underground Cathedral", id: "cenote-suytun-the-underground-cathedral" },
+      { type: "p", text: "Suytun is a fully underground cenote with crystal-blue water at a constant 26°C/79°F. A narrow stone platform extends into the center of the water, directly beneath a circular skylight that floods the chamber with a dramatic shaft of sunlight between 11:00 AM and 1:00 PM. Access is via a steep staircase (82 steps down) — manageable for most but not ideal for those with mobility limitations. Crowd levels peak at 11:30 AM when tour buses arrive from Cancun; arriving before 10:00 AM or after 2:00 PM cuts wait times by half." },
+      { type: "h2", text: "Cenote Oxman — Rope Swings and Hacienda Grounds", id: "cenote-oxman-rope-swings-and-hacienda-grounds" },
+      { type: "p", text: "Oxman sits inside the grounds of Hacienda San Lorenzo Oxman, a 17th-century henequen estate now converted to a boutique hotel. The cenote is semi-open with turquoise-green water 12 meters deep, accessible via a wooden ladder and rope. The famous rope swing hangs from a 15-meter tree root — usable by anyone comfortable with heights. Unlike Ik Kil, Oxman sees significantly fewer visitors; early mornings (8:00–9:30 AM) are nearly empty. Entry costs around 100 MXN separately from the hacienda restaurant." },
+      { type: "h2", text: "Cenote Samulá and Xkekén — Twin Cenotes of Dzitnup", id: "cenote-samula-and-xkeken-twin-cenotes-of-dzitnup" },
+      { type: "p", text: "Samulá and Xkekén sit 200 meters apart under the village of Dzitnup and share a single entrance fee (~180 MXN for both). Xkekén is semi-open with a narrow ceiling gap that creates a single spotlight beam on the blue-black water — best photographed at midday. Samulá is fully underground with a cathedral-like ceiling covered in stalactites and dangling tree roots; the water glows an ethereal turquoise from refracted light. Both are 45–55 minutes from Chichen Itza. Crowd levels are moderate — busier on weekends but quieter than Ik Kil on weekdays." },
+      { type: "h2", text: "Crowd Levels Ranked — Least to Most Busy", id: "crowd-levels-ranked-least-to-most-busy" },
+      { type: "list", items: [
+        "1. Cenote Oxman — quietest, mostly independent travelers",
+        "2. Cenote Hubiku — off the main tour circuit, local favorite",
+        "3. Cenote Samulá + Xkekén — moderate, peaks on weekends",
+        "4. Cenote Saamal — steady flow, Valladolid town location",
+        "5. Cenote Suytun — busy at midday, quiet before 10 AM",
+        "6. Cenote Ik Kil — busiest of all, major group tour stop"
+      ]},
+      { type: "h2", text: "Why Biodegradable Sunscreen Is Required", id: "why-biodegradable-sunscreen-is-required" },
+      { type: "p", text: "Cenotes are not connected to the sea — they are freshwater sinkholes fed by underground rivers filtered through porous limestone. Regular sunscreen contains oxybenzone and octinoxate, chemicals that do not break down in UV-free underground water. These accumulate in the ecosystem, harming the micro-organisms, fish, and blind crustaceans that live in the water table. The Yucatan government mandates biodegradable sunscreen at all cenotes by law. Buy it before you go — airport pharmacies in Cancun stock it (Farmacias del Ahorro, Walmart), as do pharmacies in Valladolid on Calle 39. On-site vendors sell small bottles for 80–120 MXN." },
+      { type: "h2", text: "Can Non-Swimmers Visit Cenotes?", id: "can-non-swimmers-visit-cenotes" },
+      { type: "p", text: "Yes — all major cenotes near Chichen Itza provide life vests at no extra cost. Non-swimmers can float freely in any cenote with a vest. At Suytun, the stone platform allows you to stand in shallow areas near the edge without entering deep water. Ik Kil has shallow ledges around the perimeter. Oxman and Saamal are deeper with no wading areas — life vests are essential for non-swimmers there. Children under 5 are not recommended at Oxman due to the ladder-only access. All cenotes have trained lifeguards on duty." },
+      { type: "h2", text: "Hidden Cenotes Along the Route", id: "hidden-cenotes-along-the-route" },
+      { type: "p", text: "Beyond the famous seven, the Chichen Itza–Valladolid corridor has dozens of lesser-visited cenotes. Cenote X'Batún near Temozón is a series of connected pools rarely visited by tour groups — access is through a local family's property (small entry fee, basic facilities). Cenote Lol-Há near Pisté is a roadside cenote popular with locals but missed by most tourists. Cenote Yokdzonot, 20 km from Chichen Itza, is community-run with a zip line and platform — significantly less crowded than Ik Kil with similar open-sky experience." },
+      { type: "h2", text: "Which Cenote Is on Which Tour?", id: "which-cenote-is-on-which-tour" },
+      { type: "list", items: [
+        "Day tours from Cancun/Playa → Cenote Ik Kil (included in most)",
+        "Cenote combo tours → Ik Kil + Hubiku or Saamal options",
+        "Valladolid combo tours → Suytun or Saamal (in town)",
+        "Private tours → any cenote of your choice, flexible",
+        "Sunrise tours → Ik Kil add-on available after site visit",
+        "Multi-day Yucatan tours → Samulá + Xkekén at Dzitnup"
+      ]},
+      { type: "h2", text: "Our Guide's Pick", id: "our-guides-pick" },
+      { type: "tip", text: "After leading thousands of tours through the Yucatan, Cenote Oxman is my personal recommendation for anyone who wants a cenote experience without the crowds. Arrive at 8:30 AM, skip the rope swing queue (it gets long by 10 AM), float in water that genuinely glows turquoise in the morning light, and have your photos taken before the first tour bus arrives. Pair it with a coffee at the hacienda courtyard — it is worth every extra kilometer." },
+    ],
+    tocItems: [
+      { id: "distance-travel-time-from-chichen-itza", title: "Distance & Travel Time" },
+      { id: "cenote-suytun-the-underground-cathedral", title: "Cenote Suytun" },
+      { id: "cenote-oxman-rope-swings-and-hacienda-grounds", title: "Cenote Oxman" },
+      { id: "cenote-samula-and-xkeken-twin-cenotes-of-dzitnup", title: "Cenote Samulá & Xkekén" },
+      { id: "crowd-levels-ranked-least-to-most-busy", title: "Crowd Levels Ranked" },
+      { id: "why-biodegradable-sunscreen-is-required", title: "Biodegradable Sunscreen" },
+      { id: "can-non-swimmers-visit-cenotes", title: "Non-Swimmers Guide" },
+      { id: "hidden-cenotes-along-the-route", title: "Hidden Cenotes" },
+      { id: "which-cenote-is-on-which-tour", title: "Which Tour Includes What" },
+      { id: "our-guides-pick", title: "Our Guide's Pick" },
     ],
     author: "Maya Explorer Tours",
     date: "2026-01-28",
     category: "Travel Tips",
-    readTime: "8 min read",
+    readTime: "11 min read",
     image: "/images/blog/cenotes.jpg",
     imageAlt: "Crystal clear turquoise water inside Cenote Ik Kil near Chichen Itza with hanging vines",
     tags: ["cenotes", "swimming", "ik kil", "nature"],
