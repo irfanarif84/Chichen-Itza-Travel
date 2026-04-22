@@ -175,6 +175,7 @@ const HistoryAndFactsPage = () => {
           alt="El Castillo pyramid at Chichen Itza, ancient Maya wonder"
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

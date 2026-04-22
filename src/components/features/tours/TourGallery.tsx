@@ -69,6 +69,7 @@ const TourGallery = ({ images, altTexts, heroImage, tourTitle }: TourGalleryProp
             alt={getAlt(0)}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="eager"
+            fetchPriority="high"
             width={800}
             height={600}
             decoding="async"

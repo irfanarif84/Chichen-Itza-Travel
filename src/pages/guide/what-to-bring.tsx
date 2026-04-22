@@ -203,6 +203,7 @@ const WhatToBringPage = () => {
           alt="Travel essentials flat lay for visiting Chichen Itza"
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

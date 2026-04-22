@@ -39,11 +39,11 @@ export const enToEsRoutes: Record<string, string> = {
   "/combo-tours/isla-mujeres": "/es/combo-tours/isla-mujeres",
   "/combo-tours/multi-day-yucatan": "/es/combo-tours/yucatan-varios-dias",
   "/blog": "/es/blog",
-  "/blog/spring-equinox-chichen-itza-guide": "/es/blog/spring-equinox-chichen-itza-guide",
-  "/blog/cenotes-near-chichen-itza": "/es/blog/cenotes-near-chichen-itza",
-  "/blog/chichen-itza-vs-tulum-ruins": "/es/blog/chichen-itza-vs-tulum-ruins",
-  "/blog/photographing-chichen-itza-like-a-pro": "/es/blog/photographing-chichen-itza-like-a-pro",
-  "/blog/mayan-history-beginners-guide": "/es/blog/mayan-history-beginners-guide",
+  "/blog/spring-equinox-chichen-itza-guide": "/es/blog/guia-equinoccio-de-primavera-chichen-itza",
+  "/blog/cenotes-near-chichen-itza": "/es/blog/cenotes-cerca-de-chichen-itza",
+  "/blog/chichen-itza-vs-tulum-ruins": "/es/blog/chichen-itza-vs-ruinas-de-tulum",
+  "/blog/photographing-chichen-itza-like-a-pro": "/es/blog/fotografiar-chichen-itza-como-un-profesional",
+  "/blog/mayan-history-beginners-guide": "/es/blog/guia-historia-maya-para-principiantes",
 };
 
 // Build reverse map

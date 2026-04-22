@@ -109,6 +109,7 @@ const DressCodePage = () => {
           alt={isEs ? "Visitantes en Chichén Itzá vestidos apropiadamente para el sitio arqueológico" : "Visitors at Chichen Itza dressed appropriately for the archaeological site"}
           className="absolute inset-0 w-full h-full object-cover opacity-15"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="container relative z-10">
           <Breadcrumbs items={breadcrumbs} />

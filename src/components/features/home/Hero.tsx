@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Star, ArrowRight, ShieldCheck } from "lucide-react";
-import heroImage from "@/assets/hero-chichen-itza.jpg";
+import heroImage from "@/assets/hero-chichen-itza.webp";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 const Hero = () => {
@@ -17,6 +17,7 @@ const Hero = () => {
           alt="El Castillo pyramid at Chichen Itza during golden hour sunset"
           className="w-full h-full object-cover"
           loading="eager"
+          fetchPriority="high"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
