@@ -10,7 +10,7 @@ import CTASection from "@/components/features/home/CTASection";
 import { useLocale } from "@/lib/i18n/useLocale";
 
 const ToursPage = () => {
-  const { locale, t } = useLocale();
+  const { locale, t, localePath } = useLocale();
 
   const c = locale === "es" ? {
     seoTitle: "Todos los Tours a Chichén Itzá – Compara y Reserva | 2026",
@@ -39,7 +39,7 @@ const ToursPage = () => {
   const meta = getPageMeta({
     title: c.seoTitle,
     description: c.seoDesc,
-    canonical: "/tours",
+    canonical: localePath("/tours"),
     locale,
     jsonLd: [
       createBreadcrumbSchema([

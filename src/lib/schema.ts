@@ -24,7 +24,8 @@ export const websiteSchema = {
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Maya Explorer Tours",
+  name: "Chichen Itza Tours",
+  alternateName: "Maya Explorer Tours",
   description:
     "Premier Chichen Itza tour operator offering day trips, private tours, and guided experiences from Cancun, Playa del Carmen, and Tulum.",
   url: BASE_URL,
