@@ -384,6 +384,7 @@ function createGuideArticleSchema(config: {
     },
     image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
     author: { "@type": "Organization", name: "Chichen Itza Tours" },
+    author: { "@type": "Organization", name: "Chichen Itza Tours" },
     publisher: {
       "@type": "Organization",
       name: "Chichen Itza Tours",

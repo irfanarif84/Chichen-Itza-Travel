@@ -1,4 +1,4 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Check, X, Clock, Users, MapPin, Star, ArrowRight, ChevronRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -22,6 +22,7 @@ import { useLocale } from "@/lib/i18n/useLocale";
 import { useLocalizedTour } from "@/hooks/useTourLocale";
 import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import type { FAQItem } from "@/lib/faqData";
+import NotFound from "@/pages/NotFound";
 
 // Map category IDs to review category strings
 const categoryToReviewMap: Record<string, string> = {
@@ -74,7 +75,20 @@ const TourDetailPage = () => {
 
   // 404 guard
   if (!tour) {
-    return <Navigate to="/tours" replace />;
+    const missingMeta = getPageMeta({
+      title: isEs ? "Página no encontrada | Chichen Itza Tours" : "Page not found | Chichen Itza Tours",
+      description: isEs ? "El tour solicitado no existe." : "The requested tour does not exist.",
+      canonical: isEs ? `/es/tours/${slug ?? ""}` : `/tours/${slug ?? ""}`,
+      locale,
+      robots: "noindex, nofollow",
+    });
+
+    return (
+      <>
+        <SEOHead meta={missingMeta} />
+        <NotFound />
+      </>
+    );
   }
 
   const loc = useLocalizedTour(tour);
