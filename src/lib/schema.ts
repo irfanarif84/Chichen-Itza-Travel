@@ -15,7 +15,7 @@ export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Chichen Itza Tours",
-  alternateName: "Maya Explorer Tours",
+  alternateName: "Chichen Itza Tours",
   url: BASE_URL,
   inLanguage: ["en", "es"],
 };
@@ -25,7 +25,7 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   name: "Chichen Itza Tours",
-  alternateName: "Maya Explorer Tours",
+  alternateName: "Chichen Itza Tours",
   description:
     "Premier Chichen Itza tour operator offering day trips, private tours, and guided experiences from Cancun, Playa del Carmen, and Tulum.",
   url: BASE_URL,
@@ -97,7 +97,7 @@ export function generateTourProductSchema(tour: Tour) {
     image: tour.images.map((img) => img.url),
     brand: {
       "@type": "Brand",
-      name: "Maya Explorer Tours",
+      name: "Chichen Itza Tours",
     },
     offers: {
       "@type": "Offer",
@@ -110,7 +110,7 @@ export function generateTourProductSchema(tour: Tour) {
       priceValidUntil: getPriceValidUntil(),
       seller: {
         "@type": "Organization",
-        name: "Maya Explorer Tours",
+        name: "Chichen Itza Tours",
       },
     },
     aggregateRating: {
@@ -199,7 +199,7 @@ export function generateContactPageSchema(config: {
     isPartOf: { "@type": "WebSite", url: BASE_URL, name: "Chichen Itza Tours" },
     mainEntity: {
       "@type": "Organization",
-      name: "Maya Explorer Tours",
+      name: "Chichen Itza Tours",
       url: BASE_URL,
       telephone: "+1-814-593-9266",
       email: "info@chichenitzatravel.com",
@@ -243,7 +243,7 @@ export function generateWebPageSchema(config: {
     isPartOf: { "@type": "WebSite", url: BASE_URL, name: "Chichen Itza Tours" },
     publisher: {
       "@type": "Organization",
-      name: "Maya Explorer Tours",
+      name: "Chichen Itza Tours",
       logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
     },
     ...(config.datePublished ? { datePublished: config.datePublished } : {}),
@@ -272,7 +272,7 @@ export function generateComboTouristTripSchema(config: {
     touristType: ["Sightseeing", "Adventure", "Cultural"],
     provider: {
       "@type": "TravelAgency",
-      name: "Maya Explorer Tours",
+      name: "Chichen Itza Tours",
       url: BASE_URL,
     },
     offers: {
@@ -383,10 +383,10 @@ function createGuideArticleSchema(config: {
       "@id": `${BASE_URL}/guide/${config.slug}`,
     },
     image: `${BASE_URL}/images/guides/${config.slug}.jpg`,
-    author: { "@type": "Organization", name: "Maya Explorer Tours" },
+    author: { "@type": "Organization", name: "Chichen Itza Tours" },
     publisher: {
       "@type": "Organization",
-      name: "Maya Explorer Tours",
+      name: "Chichen Itza Tours",
       logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
     },
     datePublished: config.datePublished,
