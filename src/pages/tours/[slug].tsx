@@ -14,6 +14,7 @@ import FAQSection from "@/components/common/FAQ";
 import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { LocaleLink } from "@/components/LocaleLink";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
+import { getPageMeta } from "@/lib/seo";
 import { tourImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
 import { getReviewsByTourCategory, generateReviewSchema } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
@@ -68,7 +69,7 @@ const categoryLabelsMap: Record<string, { en: { label: string; href: string }; e
 const TourDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const tour = getTourBySlug(slug ?? "");
-  const { isEs, locale } = useLocale();
+  const { isEs, locale, alternatePath } = useLocale();
   const { getFAQs } = useLocalizedFAQs();
 
   // 404 guard
@@ -196,17 +197,21 @@ const TourDetailPage = () => {
     faqLink: isEs ? "Preguntas Frecuentes" : "FAQ",
   };
 
+  const canonicalPath = isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}`;
+  const { en, es } = alternatePath();
+  const meta = getPageMeta({
+    title: tour.metaTitle,
+    description: tour.metaDescription,
+    canonical: canonicalPath,
+    locale,
+    alternateUrls: { en, es },
+    ogImage: heroImg,
+    jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
+  });
+
   return (
     <>
-      <SEOHead
-        meta={{
-          title: tour.metaTitle,
-          description: tour.metaDescription,
-          canonical: `https://chichenitzatravel.com/tours/${tour.slug}`,
-          ogImage: heroImg,
-          jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
-        }}
-      />
+      <SEOHead meta={meta} />
 
       {/* ── Hero ── */}
       <section
