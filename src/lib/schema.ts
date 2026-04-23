@@ -24,7 +24,8 @@ export const websiteSchema = {
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Maya Explorer Tours",
+  name: "Chichen Itza Tours",
+  alternateName: "Maya Explorer Tours",
   description:
     "Premier Chichen Itza tour operator offering day trips, private tours, and guided experiences from Cancun, Playa del Carmen, and Tulum.",
   url: BASE_URL,
@@ -62,7 +63,7 @@ export const chichenItzaAttractionSchema = {
   name: "Chichen Itza",
   description:
     "One of the New Seven Wonders of the World and UNESCO World Heritage Site, featuring the iconic El Castillo pyramid and ancient Mayan ruins.",
-  image: `${BASE_URL}/images/chichen-itza-el-castillo.jpg`,
+  image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
   url: BASE_URL,
   address: {
     "@type": "PostalAddress",
@@ -381,7 +382,7 @@ function createGuideArticleSchema(config: {
       "@type": "WebPage",
       "@id": `${BASE_URL}/guide/${config.slug}`,
     },
-    image: `${BASE_URL}/images/guides/${config.slug}.jpg`,
+    image: `${BASE_URL}/images/chichen-itza-hero.jpg`,
     author: { "@type": "Organization", name: "Maya Explorer Tours" },
     publisher: {
       "@type": "Organization",

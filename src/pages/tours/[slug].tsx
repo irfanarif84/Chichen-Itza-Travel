@@ -1,4 +1,4 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Check, X, Clock, Users, MapPin, Star, ArrowRight, ChevronRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -14,6 +14,7 @@ import FAQSection from "@/components/common/FAQ";
 import StickyBookingBar from "@/components/layout/StickyBookingBar";
 import { LocaleLink } from "@/components/LocaleLink";
 import { getTourBySlug, getToursByCategory } from "@/lib/tourData";
+import { getPageMeta } from "@/lib/seo";
 import { tourImages, tourGalleryImages, tourGalleryAltTexts } from "@/lib/tourImages";
 import { getReviewsByTourCategory, generateReviewSchema } from "@/lib/reviewsData";
 import { generateTourProductSchema } from "@/lib/schema";
@@ -21,6 +22,7 @@ import { useLocale } from "@/lib/i18n/useLocale";
 import { useLocalizedTour } from "@/hooks/useTourLocale";
 import { useLocalizedFAQs } from "@/hooks/useFAQLocale";
 import type { FAQItem } from "@/lib/faqData";
+import NotFound from "@/pages/NotFound";
 
 // Map category IDs to review category strings
 const categoryToReviewMap: Record<string, string> = {
@@ -68,12 +70,25 @@ const categoryLabelsMap: Record<string, { en: { label: string; href: string }; e
 const TourDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const tour = getTourBySlug(slug ?? "");
-  const { isEs, locale } = useLocale();
+  const { isEs, locale, alternatePath } = useLocale();
   const { getFAQs } = useLocalizedFAQs();
 
   // 404 guard
   if (!tour) {
-    return <Navigate to="/tours" replace />;
+    const missingMeta = getPageMeta({
+      title: isEs ? "Página no encontrada | Chichen Itza Tours" : "Page not found | Chichen Itza Tours",
+      description: isEs ? "El tour solicitado no existe." : "The requested tour does not exist.",
+      canonical: isEs ? `/es/tours/${slug ?? ""}` : `/tours/${slug ?? ""}`,
+      locale,
+      robots: "noindex, nofollow",
+    });
+
+    return (
+      <>
+        <SEOHead meta={missingMeta} />
+        <NotFound />
+      </>
+    );
   }
 
   const loc = useLocalizedTour(tour);
@@ -196,17 +211,21 @@ const TourDetailPage = () => {
     faqLink: isEs ? "Preguntas Frecuentes" : "FAQ",
   };
 
+  const canonicalPath = isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}`;
+  const { en, es } = alternatePath();
+  const meta = getPageMeta({
+    title: tour.metaTitle,
+    description: tour.metaDescription,
+    canonical: canonicalPath,
+    locale,
+    alternateUrls: { en, es },
+    ogImage: heroImg,
+    jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
+  });
+
   return (
     <>
-      <SEOHead
-        meta={{
-          title: tour.metaTitle,
-          description: tour.metaDescription,
-          canonical: `https://chichenitzatravel.com/tours/${tour.slug}`,
-          ogImage: heroImg,
-          jsonLd: [productSchema, breadcrumbSchema, faqSchema, ...(imageObjectSchema ? [imageObjectSchema] : [])],
-        }}
-      />
+      <SEOHead meta={meta} />
 
       {/* ── Hero ── */}
       <section

@@ -1,4 +1,4 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
@@ -12,6 +12,7 @@ import { blogPosts, type BlogContentBlock } from "@/lib/blogData";
 import { blogPostsEs } from "@/lib/blogData.es";
 import { useLocale } from "@/lib/i18n/useLocale";
 import LocaleLink from "@/components/LocaleLink";
+import NotFound from "@/pages/NotFound";
 
 // Per-post FAQs keyed by slug
 const blogFAQs: Record<string, { question: string; answer: string }[]> = {
@@ -122,7 +123,22 @@ const BlogPostPage = () => {
   const posts = isEs ? blogPostsEs : blogPosts;
   const post = posts.find((p) => p.slug === slug);
 
-  if (!post) return <Navigate to={isEs ? "/es/blog" : "/blog"} replace />;
+  if (!post) {
+    const missingMeta = getPageMeta({
+      title: isEs ? "Página no encontrada | Chichen Itza Tours" : "Page not found | Chichen Itza Tours",
+      description: isEs ? "La página solicitada no existe." : "The requested page does not exist.",
+      canonical: isEs ? `/es/blog/${slug ?? ""}` : `/blog/${slug ?? ""}`,
+      locale,
+      robots: "noindex, nofollow",
+    });
+
+    return (
+      <>
+        <SEOHead meta={missingMeta} />
+        <NotFound />
+      </>
+    );
+  }
 
   const currentIndex = posts.indexOf(post);
   const nextPost = posts[currentIndex + 1];
