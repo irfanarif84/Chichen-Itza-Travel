@@ -1,12 +1,24 @@
 import type { PageMeta } from "@/types/seo";
 import type { Locale } from "@/lib/i18n/useLocale";
-import { enToEsRoutes } from "@/lib/i18n/routeMap";
+import { enToEsRoutes, esToEnRoutes } from "@/lib/i18n/routeMap";
 
 const BASE_URL = "https://chichenitzatravel.com";
 
 export const getPageMeta = (meta: Partial<PageMeta> & { locale?: Locale }): PageMeta => {
   const locale = meta.locale || "en";
-  const enPath = locale === "en" ? (meta.canonical || "/") : (meta.canonical || "/").replace(/^\/es/, "") || "/";
+  const canonicalPath = meta.canonical || "/";
+
+  const enPath = (() => {
+    if (locale === "en") return canonicalPath;
+
+    const isSpanishBlogDetail = /^\/es\/blog\/[^/]+$/.test(canonicalPath);
+    if (isSpanishBlogDetail) {
+      return esToEnRoutes[canonicalPath] || canonicalPath.replace(/^\/es/, "") || "/";
+    }
+
+    return canonicalPath.replace(/^\/es/, "") || "/";
+  })();
+
   const esPath = enToEsRoutes[enPath] || `/es${enPath}`;
 
   return {

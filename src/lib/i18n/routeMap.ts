@@ -41,8 +41,8 @@ export const enToEsRoutes: Record<string, string> = {
   "/blog": "/es/blog",
   "/blog/spring-equinox-chichen-itza-guide": "/es/blog/guia-equinoccio-de-primavera-chichen-itza",
   "/blog/cenotes-near-chichen-itza": "/es/blog/cenotes-cerca-de-chichen-itza",
-  "/blog/chichen-itza-vs-tulum-ruins": "/es/blog/chichen-itza-vs-ruinas-de-tulum",
-  "/blog/photographing-chichen-itza-like-a-pro": "/es/blog/fotografiar-chichen-itza-como-un-profesional",
+  "/blog/chichen-itza-vs-tulum-ruins": "/es/blog/chichen-itza-vs-ruinas-tulum",
+  "/blog/photographing-chichen-itza-like-a-pro": "/es/blog/fotografiar-chichen-itza-como-profesional",
   "/blog/mayan-history-beginners-guide": "/es/blog/guia-historia-maya-para-principiantes",
 };
 
