@@ -57,13 +57,9 @@ const SEOHead = ({ meta }: SEOHeadProps) => {
       <meta name="twitter:image" content={ogImage} />
 
       {/* Hreflang alternate links */}
-      {meta.alternateUrls && (
-        <>
-          <link rel="alternate" hrefLang="en" href={`${BASE_URL}${meta.alternateUrls.en}`} />
-          <link rel="alternate" hrefLang="es" href={`${BASE_URL}${meta.alternateUrls.es}`} />
-          <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}${meta.alternateUrls.en}`} />
-        </>
-      )}
+      {meta.alternateUrls && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${meta.alternateUrls.en}`} />}
+      {meta.alternateUrls && <link rel="alternate" hrefLang="es" href={`${BASE_URL}${meta.alternateUrls.es}`} />}
+      {meta.alternateUrls && <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}${meta.alternateUrls.en}`} />}
 
       {/* Theme color */}
       <meta name="theme-color" content="#D2691E" />
