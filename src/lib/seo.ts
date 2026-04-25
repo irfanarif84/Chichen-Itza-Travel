@@ -24,7 +24,9 @@ export const getPageMeta = (meta: Partial<PageMeta> & { locale?: Locale }): Page
   return {
     title: meta.title || "Chichen Itza Tours – Best Guided Tours 2026",
     description: meta.description || "Book the best Chichen Itza tours from Cancun, Playa del Carmen & Tulum. Free cancellation & instant confirmation.",
-    canonical: meta.canonical ? `${BASE_URL}${meta.canonical}` : BASE_URL,
+    canonical: meta.canonical
+      ? `${BASE_URL}${locale === "es" ? esPath : enPath}`
+      : BASE_URL,
     ogImage: meta.ogImage,
     jsonLd: meta.jsonLd,
     robots: meta.robots,
