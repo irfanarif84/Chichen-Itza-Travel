@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => ({
   },
   ssgOptions: {
     entry: "src/main.ssr.tsx",
-    formatting: "prettify",
+    formatting: "minify",
     script: "async",
   },
 }));

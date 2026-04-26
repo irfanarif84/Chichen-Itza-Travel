@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" fill="#ffffff"/>
-  <rect x="0" y="440" width="512" height="72" fill="#D2691E"/>
-  <polygon points="256,60 420,360 92,360" fill="#2C2C2A"/>
-  <rect x="156" y="340" width="200" height="20" fill="#2C2C2A"/>
-  <text x="256" y="420" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#2C2C2A" text-anchor="middle">Maya Explorer Tours</text>
-</svg>
