@@ -126,6 +126,134 @@ for (const file of files) {
   if (route !== "/404" && robots && /noindex/i.test(robots))
     warnings.push(`Page is noindex (robots="${robots}")`);
 
+  // ---- JSON-LD schema validation ----
+  const jsonLdBlocks = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const schemaTypes = [];
+  const schemaDetails = [];
+  let parseErrors = 0;
+
+  jsonLdBlocks.forEach((m, i) => {
+    const raw = m[1].trim();
+    if (!raw) {
+      errors.push(`JSON-LD block #${i + 1} is empty`);
+      parseErrors++;
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (e) {
+      errors.push(`JSON-LD block #${i + 1} parse error: ${e.message}`);
+      parseErrors++;
+      return;
+    }
+    const items = Array.isArray(parsed) ? parsed : [parsed];
+    items.forEach((item, j) => {
+      if (!item || typeof item !== "object") {
+        warnings.push(`JSON-LD block #${i + 1}[${j}] is not an object`);
+        return;
+      }
+      if (!item["@context"]) warnings.push(`JSON-LD block #${i + 1}[${j}] missing @context`);
+      const type = item["@type"];
+      if (!type) {
+        warnings.push(`JSON-LD block #${i + 1}[${j}] missing @type`);
+        return;
+      }
+      const types = Array.isArray(type) ? type : [type];
+      types.forEach(t => schemaTypes.push(t));
+      schemaDetails.push({ type: types.join(","), keys: Object.keys(item).length });
+
+      // Per-type required field checks
+      if (types.includes("FAQPage")) {
+        const me = item.mainEntity;
+        if (!Array.isArray(me) || me.length === 0)
+          errors.push(`FAQPage missing mainEntity questions`);
+        else {
+          const bad = me.find(q => !q?.name || !q?.acceptedAnswer?.text);
+          if (bad) errors.push(`FAQPage has Question without name/acceptedAnswer.text`);
+        }
+      }
+      if (types.includes("Product")) {
+        if (!item.name) errors.push(`Product schema missing name`);
+        if (!item.offers) warnings.push(`Product schema missing offers`);
+        if (item.aggregateRating) {
+          const ar = item.aggregateRating;
+          if (!ar.ratingValue || !ar.reviewCount)
+            errors.push(`Product.aggregateRating missing ratingValue/reviewCount`);
+        }
+      }
+      if (types.includes("AggregateRating")) {
+        if (!item.ratingValue || !item.reviewCount)
+          errors.push(`AggregateRating missing ratingValue/reviewCount`);
+      }
+      if (types.includes("Review")) {
+        if (!item.reviewRating || !item.author)
+          errors.push(`Review missing reviewRating/author`);
+      }
+      if (types.includes("BreadcrumbList")) {
+        if (!Array.isArray(item.itemListElement) || item.itemListElement.length === 0)
+          errors.push(`BreadcrumbList missing itemListElement`);
+      }
+      if (types.includes("ItemList")) {
+        if (!Array.isArray(item.itemListElement) || item.itemListElement.length === 0)
+          warnings.push(`ItemList has no itemListElement`);
+      }
+      if (types.includes("Article")) {
+        if (!item.headline) errors.push(`Article missing headline`);
+        if (!item.author) warnings.push(`Article missing author`);
+        if (!item.datePublished) warnings.push(`Article missing datePublished`);
+      }
+      if (types.includes("Offer") || (item.offers && typeof item.offers === "object")) {
+        const off = types.includes("Offer") ? item : item.offers;
+        const offers = Array.isArray(off) ? off : [off];
+        offers.forEach(o => {
+          if (o && o.price !== undefined && !o.priceCurrency)
+            warnings.push(`Offer has price but no priceCurrency`);
+        });
+      }
+    });
+  });
+
+  if (jsonLdBlocks.length === 0 && route !== "/404") {
+    warnings.push("No JSON-LD schema found on page");
+  }
+
+  // Route-based expected-schema heuristics
+  const expectSchema = (typeName, msg) => {
+    if (!schemaTypes.includes(typeName))
+      warnings.push(`Expected ${typeName} schema (${msg})`);
+  };
+  if (route === "/" || route === "/es") {
+    expectSchema("WebSite", "homepage");
+    if (!schemaTypes.some(t => ["Organization", "TravelAgency", "LocalBusiness"].includes(t)))
+      warnings.push("Expected Organization/TravelAgency schema (homepage)");
+    expectSchema("FAQPage", "homepage has FAQ section");
+  }
+  if (/^\/(es\/)?tours\/[^/]+$/.test(route) && !route.endsWith("/tours")) {
+    expectSchema("Product", "tour detail page");
+  }
+  if (/^\/(es\/)?combo-tours\/[^/]+$/.test(route)) {
+    if (!schemaTypes.some(t => ["TouristTrip", "Product"].includes(t)))
+      warnings.push("Expected TouristTrip/Product schema (combo tour page)");
+  }
+  if (/^\/(es\/)?guide\/[^/]+$/.test(route)) {
+    expectSchema("Article", "guide article page");
+  }
+  if (/^\/(es\/)?blog\/[^/]+$/.test(route)) {
+    if (!schemaTypes.some(t => ["Article", "BlogPosting"].includes(t)))
+      warnings.push("Expected Article/BlogPosting schema (blog post)");
+  }
+  if (/^\/(es\/)?practical\/contact$/.test(route)) {
+    expectSchema("ContactPage", "contact page");
+  }
+  if (/^\/(es\/)?practical\/faq$/.test(route)) {
+    expectSchema("FAQPage", "FAQ page");
+  }
+  if (/^\/(es\/)?tours-from\/[^/]+$/.test(route)) {
+    if (!schemaTypes.some(t => ["TouristDestination", "ItemList"].includes(t)))
+      warnings.push("Expected TouristDestination/ItemList schema (tours-from page)");
+  }
+
   totalErrors += errors.length;
   totalWarnings += warnings.length;
 
@@ -140,6 +268,10 @@ for (const file of files) {
     ogLocale,
     hreflangs,
     robots,
+    jsonLdCount: jsonLdBlocks.length,
+    jsonLdParseErrors: parseErrors,
+    schemaTypes,
+    schemaDetails,
     errors,
     warnings,
     status: errors.length ? "fail" : warnings.length ? "warn" : "pass",
