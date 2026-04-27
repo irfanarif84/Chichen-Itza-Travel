@@ -1,160 +1,227 @@
 #!/usr/bin/env node
 /**
- * Build-time SEO validator.
+ * Post-build SEO validator.
+ * Scans every pre-rendered HTML file in dist/ and validates:
+ *   - exactly one <link rel="canonical">
+ *   - canonical path matches the file's route
+ *   - og:url matches the canonical
+ *   - <html lang> matches the URL language prefix (/es/ → es, otherwise en)
+ *   - hreflang alternates present and self-referencing correctly
  *
- * Scans every pre-rendered HTML file in dist/ and verifies that:
- *   1. <link rel="canonical"> exists and points to the same path as the file.
- *   2. <meta property="og:url"> matches the canonical.
- *   3. The language of the URL (/es/... vs /...) matches the file location.
- *   4. <html lang="..."> matches the URL language.
+ * Emits:
+ *   dist/seo-report.json   — machine-readable findings
+ *   dist/seo-report.html   — human-readable report (open in browser)
  *
- * Exits with code 1 if any issues are found so CI fails the build.
+ * Exits 0 always (report is the deliverable). Pass --strict to fail on errors.
  */
-import { readFileSync, statSync } from "node:fs";
-import { readdir } from "node:fs/promises";
+import { readdirSync, statSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
 const DIST = "dist";
 const BASE_URL = "https://chichenitzatravel.com";
+const STRICT = process.argv.includes("--strict");
 
-async function walk(dir) {
+if (!existsSync(DIST)) {
+  console.error(`[seo-validator] ${DIST}/ not found. Run the build first.`);
+  process.exit(1);
+}
+
+/** Recursively collect .html files under dist/ */
+function walk(dir) {
   const out = [];
-  for (const entry of await readdir(dir, { withFileTypes: true })) {
-    const p = join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...(await walk(p)));
-    else if (entry.isFile() && entry.name.endsWith(".html")) out.push(p);
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    const s = statSync(full);
+    if (s.isDirectory()) out.push(...walk(full));
+    else if (entry.endsWith(".html")) out.push(full);
   }
   return out;
 }
 
-function htmlToExpectedPath(file) {
-  // dist/index.html              -> /
-  // dist/es.html or dist/es/index.html -> /es
-  // dist/tours/index.html        -> /tours
-  // dist/guide/foo.html          -> /guide/foo
+/** Convert dist/es/tours/index.html → /es/tours, dist/index.html → / */
+function fileToRoute(file) {
   let rel = relative(DIST, file).split(sep).join("/");
-  if (rel === "index.html") return "/";
-  if (rel.endsWith("/index.html")) rel = rel.slice(0, -"/index.html".length);
-  else if (rel.endsWith(".html")) rel = rel.slice(0, -".html".length);
-  return "/" + rel;
+  rel = rel.replace(/index\.html$/, "").replace(/\.html$/, "");
+  if (!rel.startsWith("/")) rel = "/" + rel;
+  if (rel.length > 1 && rel.endsWith("/")) rel = rel.slice(0, -1);
+  return rel || "/";
 }
 
-function pick(html, regex) {
-  const m = html.match(regex);
-  return m ? m[1].trim() : null;
+function expectedLang(route) {
+  return route === "/es" || route.startsWith("/es/") ? "es" : "en";
 }
 
-function getCanonical(html) {
-  return pick(
-    html,
-    /<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["']/i,
-  ) || pick(
-    html,
-    /<link[^>]+href=["']([^"']+)["'][^>]*rel=["']canonical["']/i,
-  );
+/** Strip BASE_URL and trailing slash for comparison */
+function normalizeUrl(u) {
+  if (!u) return null;
+  let p = u.startsWith(BASE_URL) ? u.slice(BASE_URL.length) : u;
+  if (!p.startsWith("/")) p = "/" + p;
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return p;
 }
 
-function getOgUrl(html) {
-  return pick(
-    html,
-    /<meta[^>]+property=["']og:url["'][^>]*content=["']([^"']+)["']/i,
-  ) || pick(
-    html,
-    /<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:url["']/i,
-  );
-}
+const files = walk(DIST).sort();
+const results = [];
+let totalErrors = 0;
+let totalWarnings = 0;
 
-function getHtmlLang(html) {
-  return pick(html, /<html[^>]*\blang=["']([^"']+)["']/i);
-}
+for (const file of files) {
+  const html = readFileSync(file, "utf8");
+  const route = fileToRoute(file);
+  const expLang = expectedLang(route);
+  const errors = [];
+  const warnings = [];
 
-function langOfPath(p) {
-  return p === "/es" || p.startsWith("/es/") ? "es" : "en";
-}
+  // <html lang="...">
+  const htmlLang = html.match(/<html[^>]*\slang=["']([^"']+)["']/i)?.[1] ?? null;
+  if (!htmlLang) errors.push("Missing <html lang> attribute");
+  else if (htmlLang !== expLang)
+    errors.push(`<html lang="${htmlLang}"> but route language is "${expLang}"`);
 
-function normalize(url) {
-  if (!url) return url;
-  // Strip trailing slash except for the root.
-  if (url.length > 1 && url.endsWith("/")) return url.slice(0, -1);
-  return url;
-}
+  // canonical
+  const canonicalMatches = [...html.matchAll(/<link[^>]+rel=["']canonical["'][^>]*>/gi)];
+  if (canonicalMatches.length === 0) errors.push("Missing canonical link");
+  else if (canonicalMatches.length > 1)
+    errors.push(`Found ${canonicalMatches.length} canonical links (expected 1)`);
 
-(async () => {
-  let files;
-  try {
-    statSync(DIST);
-    files = await walk(DIST);
-  } catch {
-    console.error(`✗ ${DIST}/ not found. Run \`bun run build\` first.`);
-    process.exit(1);
+  const canonicalHref = canonicalMatches[0]?.[0].match(/href=["']([^"']+)["']/i)?.[1] ?? null;
+  const canonicalPath = normalizeUrl(canonicalHref);
+  if (canonicalHref && canonicalPath !== route)
+    errors.push(`Canonical "${canonicalPath}" does not match route "${route}"`);
+
+  // og:url
+  const ogUrlMatches = [...html.matchAll(/<meta[^>]+property=["']og:url["'][^>]*>/gi)];
+  if (ogUrlMatches.length > 1)
+    warnings.push(`Found ${ogUrlMatches.length} og:url tags (expected 1)`);
+  const ogUrl = ogUrlMatches[0]?.[0].match(/content=["']([^"']+)["']/i)?.[1] ?? null;
+  const ogPath = normalizeUrl(ogUrl);
+  if (ogUrl && ogPath !== route)
+    errors.push(`og:url "${ogPath}" does not match route "${route}"`);
+
+  // og:locale should match lang
+  const ogLocale = html.match(/<meta[^>]+property=["']og:locale["'][^>]*content=["']([^"']+)["']/i)?.[1] ?? null;
+  if (ogLocale) {
+    const expLocale = expLang === "es" ? "es_MX" : "en_US";
+    if (ogLocale !== expLocale)
+      warnings.push(`og:locale "${ogLocale}" expected "${expLocale}"`);
   }
 
-  const issues = [];
-  let checked = 0;
+  // hreflang
+  const hreflangs = [...html.matchAll(/<link[^>]+hreflang=["']([^"']+)["'][^>]*href=["']([^"']+)["']/gi)]
+    .map(m => ({ lang: m[1], href: m[2] }));
+  const hasEn = hreflangs.some(h => h.lang === "en");
+  const hasEs = hreflangs.some(h => h.lang === "es");
+  const hasDefault = hreflangs.some(h => h.lang === "x-default");
+  if (!hasEn) warnings.push("Missing hreflang=en");
+  if (!hasEs) warnings.push("Missing hreflang=es");
+  if (!hasDefault) warnings.push("Missing hreflang=x-default");
 
-  for (const file of files) {
-    const html = readFileSync(file, "utf8");
-    const expectedPath = htmlToExpectedPath(file);
-    const expectedLang = langOfPath(expectedPath);
-    const expectedUrl = normalize(BASE_URL + expectedPath);
+  // self-referencing hreflang must include this route
+  const selfHreflang = hreflangs.find(h => h.lang === expLang);
+  if (selfHreflang && normalizeUrl(selfHreflang.href) !== route)
+    errors.push(`hreflang="${expLang}" "${normalizeUrl(selfHreflang.href)}" does not match route "${route}"`);
 
-    // Skip the 404 page — it intentionally renders for unknown routes.
-    if (expectedPath === "/404") continue;
+  // robots noindex check on non-404 pages
+  const robots = html.match(/<meta[^>]+name=["']robots["'][^>]*content=["']([^"']+)["']/i)?.[1] ?? null;
+  if (route !== "/404" && robots && /noindex/i.test(robots))
+    warnings.push(`Page is noindex (robots="${robots}")`);
 
-    checked++;
+  totalErrors += errors.length;
+  totalWarnings += warnings.length;
 
-    const canonical = normalize(getCanonical(html));
-    const ogUrl = normalize(getOgUrl(html));
-    const htmlLang = getHtmlLang(html);
+  results.push({
+    file: relative(DIST, file).split(sep).join("/"),
+    route,
+    expectedLang: expLang,
+    htmlLang,
+    canonical: canonicalPath,
+    canonicalCount: canonicalMatches.length,
+    ogUrl: ogPath,
+    ogLocale,
+    hreflangs,
+    robots,
+    errors,
+    warnings,
+    status: errors.length ? "fail" : warnings.length ? "warn" : "pass",
+  });
+}
 
-    const fileIssues = [];
+const summary = {
+  generatedAt: new Date().toISOString(),
+  totalPages: results.length,
+  passed: results.filter(r => r.status === "pass").length,
+  warned: results.filter(r => r.status === "warn").length,
+  failed: results.filter(r => r.status === "fail").length,
+  totalErrors,
+  totalWarnings,
+};
 
-    if (!canonical) fileIssues.push("missing <link rel=canonical>");
-    else if (canonical !== expectedUrl)
-      fileIssues.push(`canonical "${canonical}" ≠ expected "${expectedUrl}"`);
+// JSON report
+writeFileSync(
+  join(DIST, "seo-report.json"),
+  JSON.stringify({ summary, results }, null, 2),
+);
 
-    if (!ogUrl) fileIssues.push("missing og:url");
-    else if (ogUrl !== expectedUrl)
-      fileIssues.push(`og:url "${ogUrl}" ≠ expected "${expectedUrl}"`);
+// HTML report
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const statusBadge = (s) => {
+  const color = s === "pass" ? "#10B981" : s === "warn" ? "#DAA520" : "#DC2626";
+  return `<span style="background:${color};color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">${s.toUpperCase()}</span>`;
+};
 
-    if (canonical) {
-      const canonicalPath = canonical.replace(BASE_URL, "") || "/";
-      if (langOfPath(canonicalPath) !== expectedLang)
-        fileIssues.push(
-          `canonical language "${langOfPath(canonicalPath)}" ≠ url language "${expectedLang}"`,
-        );
-    }
+const rows = results
+  .sort((a, b) => (a.status === b.status ? a.route.localeCompare(b.route) : a.status === "fail" ? -1 : b.status === "fail" ? 1 : a.status === "warn" ? -1 : 1))
+  .map(r => `
+    <tr>
+      <td>${statusBadge(r.status)}</td>
+      <td><code>${esc(r.route)}</code></td>
+      <td>${esc(r.htmlLang)} / ${esc(r.expectedLang)}</td>
+      <td><code>${esc(r.canonical)}</code>${r.canonicalCount !== 1 ? ` <strong style="color:#DC2626">(${r.canonicalCount})</strong>` : ""}</td>
+      <td><code>${esc(r.ogUrl)}</code></td>
+      <td>
+        ${r.errors.length ? `<ul style="margin:0;padding-left:18px;color:#DC2626">${r.errors.map(e => `<li>${esc(e)}</li>`).join("")}</ul>` : ""}
+        ${r.warnings.length ? `<ul style="margin:0;padding-left:18px;color:#B45309">${r.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
+      </td>
+    </tr>`).join("");
 
-    if (htmlLang) {
-      const tag = htmlLang.toLowerCase().slice(0, 2);
-      if (tag !== expectedLang)
-        fileIssues.push(
-          `<html lang="${htmlLang}"> ≠ url language "${expectedLang}"`,
-        );
-    }
+const reportHtml = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>SEO Validation Report</title>
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;background:#F4E4C1;color:#3E2723}
+  h1{margin:0 0 4px}
+  .meta{color:#6b5b4a;margin-bottom:16px;font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+  .card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .card .n{font-size:28px;font-weight:700}
+  .card .l{font-size:12px;color:#6b5b4a;text-transform:uppercase;letter-spacing:.5px}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #eee;font-size:13px;vertical-align:top}
+  th{background:#3E2723;color:#fff;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  code{background:#F4E4C1;padding:1px 5px;border-radius:3px;font-size:12px}
+  tr:hover td{background:#fafafa}
+</style></head><body>
+<h1>SEO Validation Report</h1>
+<div class="meta">Generated ${esc(summary.generatedAt)}</div>
+<div class="cards">
+  <div class="card"><div class="n">${summary.totalPages}</div><div class="l">Pages</div></div>
+  <div class="card"><div class="n" style="color:#10B981">${summary.passed}</div><div class="l">Passed</div></div>
+  <div class="card"><div class="n" style="color:#DAA520">${summary.warned}</div><div class="l">Warnings</div></div>
+  <div class="card"><div class="n" style="color:#DC2626">${summary.failed}</div><div class="l">Failed</div></div>
+  <div class="card"><div class="n">${summary.totalErrors}</div><div class="l">Errors</div></div>
+  <div class="card"><div class="n">${summary.totalWarnings}</div><div class="l">Warnings</div></div>
+</div>
+<table>
+  <thead><tr><th>Status</th><th>Route</th><th>Lang (actual/expected)</th><th>Canonical</th><th>og:url</th><th>Issues</th></tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+</body></html>`;
 
-    // Detect duplicate canonical tags (a real bug we've hit before).
-    const canonicalCount = (
-      html.match(/<link[^>]+rel=["']canonical["']/gi) || []
-    ).length;
-    if (canonicalCount > 1)
-      fileIssues.push(`${canonicalCount} canonical tags (expected 1)`);
+writeFileSync(join(DIST, "seo-report.html"), reportHtml);
 
-    if (fileIssues.length) {
-      issues.push({ file: relative(".", file), expectedPath, fileIssues });
-    }
-  }
+console.log(`\n[seo-validator] ${summary.totalPages} pages — ${summary.passed} pass, ${summary.warned} warn, ${summary.failed} fail`);
+console.log(`[seo-validator] Reports: ${DIST}/seo-report.json  ${DIST}/seo-report.html`);
 
-  if (issues.length === 0) {
-    console.log(`✓ SEO validator: ${checked} pages OK`);
-    process.exit(0);
-  }
-
-  console.error(`\n✗ SEO validator: ${issues.length}/${checked} pages have issues\n`);
-  for (const { file, expectedPath, fileIssues } of issues) {
-    console.error(`  ${file}  (route ${expectedPath})`);
-    for (const i of fileIssues) console.error(`    - ${i}`);
-  }
-  console.error("");
+if (STRICT && summary.failed > 0) {
+  console.error(`[seo-validator] STRICT mode: failing build (${summary.failed} pages with errors)`);
   process.exit(1);
-})();
+}

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite-react-ssg build && node scripts/validate-seo.mjs",
+    "build:strict": "vite-react-ssg build && node scripts/validate-seo.mjs --strict",
     "validate:seo": "node scripts/validate-seo.mjs",
     "build:csr": "vite build",
     "build:dev": "vite build --mode development",
