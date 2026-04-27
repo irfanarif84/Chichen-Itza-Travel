@@ -2,11 +2,14 @@
 /**
  * Post-build SEO validator.
  * Scans every pre-rendered HTML file in dist/ and validates:
- *   - exactly one <link rel="canonical">
- *   - canonical path matches the file's route
- *   - og:url matches the canonical
+ *   - exactly one <link rel="canonical">; canonical/og:url match the route
  *   - <html lang> matches the URL language prefix (/es/ → es, otherwise en)
  *   - hreflang alternates present and self-referencing correctly
+ *   - JSON-LD blocks parse as valid JSON
+ *   - Per-type schema integrity (FAQPage, Product, AggregateRating, Review,
+ *     BreadcrumbList, ItemList, Article, Offer)
+ *   - Route-based expected schemas (homepage WebSite/Org, /tours/[slug] Product,
+ *     /guide/[slug] Article, /practical/contact ContactPage, etc.)
  *
  * Emits:
  *   dist/seo-report.json   — machine-readable findings
