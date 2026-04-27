@@ -344,7 +344,7 @@ const reportHtml = `<!doctype html>
   <div class="card"><div class="n">${summary.totalWarnings}</div><div class="l">Warnings</div></div>
 </div>
 <table>
-  <thead><tr><th>Status</th><th>Route</th><th>Lang (actual/expected)</th><th>Canonical</th><th>og:url</th><th>Issues</th></tr></thead>
+  <thead><tr><th>Status</th><th>Route</th><th>Lang (actual/expected)</th><th>Canonical</th><th>og:url</th><th>JSON-LD</th><th>Issues</th></tr></thead>
   <tbody>${rows}</tbody>
 </table>
 </body></html>`;
