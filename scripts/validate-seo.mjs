@@ -310,6 +310,7 @@ const rows = results
       <td>${esc(r.htmlLang)} / ${esc(r.expectedLang)}</td>
       <td><code>${esc(r.canonical)}</code>${r.canonicalCount !== 1 ? ` <strong style="color:#DC2626">(${r.canonicalCount})</strong>` : ""}</td>
       <td><code>${esc(r.ogUrl)}</code></td>
+      <td>${r.jsonLdCount} block${r.jsonLdCount === 1 ? "" : "s"}${r.jsonLdParseErrors ? ` <strong style="color:#DC2626">(${r.jsonLdParseErrors} parse err)</strong>` : ""}<br><span style="font-size:11px;color:#6b5b4a">${esc(r.schemaTypes.join(", ") || "—")}</span></td>
       <td>
         ${r.errors.length ? `<ul style="margin:0;padding-left:18px;color:#DC2626">${r.errors.map(e => `<li>${esc(e)}</li>`).join("")}</ul>` : ""}
         ${r.warnings.length ? `<ul style="margin:0;padding-left:18px;color:#B45309">${r.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}
