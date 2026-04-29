@@ -6,14 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite-react-ssg build && node scripts/validate-seo.mjs",
-    "build:strict": "vite-react-ssg build && node scripts/validate-seo.mjs --strict",
+    "build:strict": "vite-react-ssg build && node scripts/validate-seo.mjs --strict-canonical --strict-hreflang",
     "validate:seo": "node scripts/validate-seo.mjs",
     "build:csr": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "seo:validate": "node scripts/validate-seo.mjs",
+    "seo:strict": "node scripts/validate-seo.mjs --strict-canonical --strict-hreflang"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
