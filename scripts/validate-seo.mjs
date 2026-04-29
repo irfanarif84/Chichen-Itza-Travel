@@ -17,12 +17,31 @@
  *
  * Exits 0 always (report is the deliverable). Pass --strict to fail on errors.
  */
-import { readdirSync, statSync, readFileSync, writeFileSync, existsSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { readdirSync, statSync, readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from "node:fs";
+import { join, relative, sep, dirname } from "node:path";
 
 const DIST = "dist";
 const BASE_URL = "https://chichenitzatravel.com";
 const STRICT = process.argv.includes("--strict");
+const STRICT_CANONICAL = STRICT || process.argv.includes("--strict-canonical");
+const STRICT_HREFLANG = STRICT || process.argv.includes("--strict-hreflang");
+
+// Tour-category slugs (collection pages, NOT individual tour detail pages)
+const TOUR_CATEGORY_SLUGS_EN = new Set([
+  "day-tours", "private-tours", "sunrise-tours", "cenote-tours",
+  "valladolid-tours", "ek-balam-tours", "night-tours",
+]);
+const TOUR_CATEGORY_SLUGS_ES = new Set([
+  "excursiones-de-dia", "tours-privados", "tours-al-amanecer", "tours-de-cenotes",
+  "tours-valladolid", "tours-ek-balam", "tours-nocturnos",
+]);
+
+/** Build the set of all valid routes by walking dist/ before validation */
+function buildRouteSet(files) {
+  const set = new Set();
+  for (const f of files) set.add(fileToRoute(f));
+  return set;
+}
 
 if (!existsSync(DIST)) {
   console.error(`[seo-validator] ${DIST}/ not found. Run the build first.`);
@@ -64,9 +83,12 @@ function normalizeUrl(u) {
 }
 
 const files = walk(DIST).sort();
+const routeSet = buildRouteSet(files);
 const results = [];
 let totalErrors = 0;
 let totalWarnings = 0;
+let canonicalIssueCount = 0;
+let hreflangIssueCount = 0;
 
 for (const file of files) {
   const html = readFileSync(file, "utf8");
@@ -83,14 +105,20 @@ for (const file of files) {
 
   // canonical
   const canonicalMatches = [...html.matchAll(/<link[^>]+rel=["']canonical["'][^>]*>/gi)];
-  if (canonicalMatches.length === 0) errors.push("Missing canonical link");
-  else if (canonicalMatches.length > 1)
-    errors.push(`Found ${canonicalMatches.length} canonical links (expected 1)`);
+  let canonicalIssue = false;
+  if (canonicalMatches.length === 0) { errors.push("Missing canonical link"); canonicalIssue = true; }
+  else if (canonicalMatches.length > 1) {
+    errors.push(`Found ${canonicalMatches.length} canonical links (expected exactly 1)`);
+    canonicalIssue = true;
+  }
 
   const canonicalHref = canonicalMatches[0]?.[0].match(/href=["']([^"']+)["']/i)?.[1] ?? null;
   const canonicalPath = normalizeUrl(canonicalHref);
-  if (canonicalHref && canonicalPath !== route)
+  if (canonicalHref && canonicalPath !== route) {
     errors.push(`Canonical "${canonicalPath}" does not match route "${route}"`);
+    canonicalIssue = true;
+  }
+  if (canonicalIssue) canonicalIssueCount++;
 
   // og:url
   const ogUrlMatches = [...html.matchAll(/<meta[^>]+property=["']og:url["'][^>]*>/gi)];
@@ -109,20 +137,46 @@ for (const file of files) {
       warnings.push(`og:locale "${ogLocale}" expected "${expLocale}"`);
   }
 
-  // hreflang
+  // hreflang — required set, no duplicates, destinations must exist & resolve to right lang
   const hreflangs = [...html.matchAll(/<link[^>]+hreflang=["']([^"']+)["'][^>]*href=["']([^"']+)["']/gi)]
     .map(m => ({ lang: m[1], href: m[2] }));
-  const hasEn = hreflangs.some(h => h.lang === "en");
-  const hasEs = hreflangs.some(h => h.lang === "es");
-  const hasDefault = hreflangs.some(h => h.lang === "x-default");
-  if (!hasEn) warnings.push("Missing hreflang=en");
-  if (!hasEs) warnings.push("Missing hreflang=es");
-  if (!hasDefault) warnings.push("Missing hreflang=x-default");
-
-  // self-referencing hreflang must include this route
+  const langCounts = hreflangs.reduce((a, h) => (a[h.lang] = (a[h.lang] || 0) + 1, a), {});
+  let hreflangIssue = false;
+  for (const required of ["en", "es", "x-default"]) {
+    if (!langCounts[required]) { errors.push(`Missing hreflang="${required}"`); hreflangIssue = true; }
+    else if (langCounts[required] > 1) {
+      errors.push(`Duplicate hreflang="${required}" (${langCounts[required]} tags, expected 1)`);
+      hreflangIssue = true;
+    }
+  }
+  // self-reference must equal current route
   const selfHreflang = hreflangs.find(h => h.lang === expLang);
-  if (selfHreflang && normalizeUrl(selfHreflang.href) !== route)
-    errors.push(`hreflang="${expLang}" "${normalizeUrl(selfHreflang.href)}" does not match route "${route}"`);
+  if (selfHreflang && normalizeUrl(selfHreflang.href) !== route) {
+    errors.push(`hreflang="${expLang}" "${normalizeUrl(selfHreflang.href)}" does not match own route "${route}"`);
+    hreflangIssue = true;
+  }
+  // every alternate destination must resolve to a real built route AND match its declared lang
+  for (const h of hreflangs) {
+    const dest = normalizeUrl(h.href);
+    if (!dest) continue;
+    if (!routeSet.has(dest)) {
+      errors.push(`hreflang="${h.lang}" target "${dest}" is not a built route`);
+      hreflangIssue = true;
+      continue;
+    }
+    if (h.lang === "en" && expectedLang(dest) !== "en") {
+      errors.push(`hreflang="en" target "${dest}" is not an English route`);
+      hreflangIssue = true;
+    }
+    if (h.lang === "es" && expectedLang(dest) !== "es") {
+      errors.push(`hreflang="es" target "${dest}" is not a Spanish route`);
+      hreflangIssue = true;
+    }
+    if (h.lang === "x-default" && expectedLang(dest) !== "en") {
+      warnings.push(`hreflang="x-default" target "${dest}" is not the English version`);
+    }
+  }
+  if (hreflangIssue) hreflangIssueCount++;
 
   // robots noindex check on non-404 pages
   const robots = html.match(/<meta[^>]+name=["']robots["'][^>]*content=["']([^"']+)["']/i)?.[1] ?? null;
@@ -232,29 +286,39 @@ for (const file of files) {
       warnings.push("Expected Organization/TravelAgency schema (homepage)");
     expectSchema("FAQPage", "homepage has FAQ section");
   }
-  if (/^\/(es\/)?tours\/[^/]+$/.test(route) && !route.endsWith("/tours")) {
-    expectSchema("Product", "tour detail page");
+  // /tours/[slug] — distinguish category collection pages from individual tour detail pages
+  const tourSlugMatch = route.match(/^\/(?:es\/)?tours\/([^/]+)$/);
+  if (tourSlugMatch) {
+    const slug = tourSlugMatch[1];
+    const isCategory = TOUR_CATEGORY_SLUGS_EN.has(slug) || TOUR_CATEGORY_SLUGS_ES.has(slug);
+    if (isCategory) {
+      if (!schemaTypes.some(t => ["ItemList", "CollectionPage"].includes(t)))
+        warnings.push("Expected ItemList/CollectionPage schema (tour category page)");
+    } else {
+      expectSchema("Product", "tour detail page");
+    }
   }
-  if (/^\/(es\/)?combo-tours\/[^/]+$/.test(route)) {
+  // /tours-from/[city], /tour-types/[type] — collection pages
+  if (/^\/(?:es\/)?(tours-from|tours-desde|tour-types|tipos-de-tours)\/[^/]+$/.test(route)) {
+    if (!schemaTypes.some(t => ["TouristDestination", "ItemList", "CollectionPage"].includes(t)))
+      warnings.push("Expected TouristDestination/ItemList schema (collection page)");
+  }
+  if (/^\/(?:es\/)?(combo-tours)\/[^/]+$/.test(route)) {
     if (!schemaTypes.some(t => ["TouristTrip", "Product"].includes(t)))
       warnings.push("Expected TouristTrip/Product schema (combo tour page)");
   }
-  if (/^\/(es\/)?guide\/[^/]+$/.test(route)) {
+  if (/^\/(?:es\/)?(guide|guia)\/[^/]+$/.test(route) && !/\/(guide|guia)$/.test(route)) {
     expectSchema("Article", "guide article page");
   }
-  if (/^\/(es\/)?blog\/[^/]+$/.test(route)) {
+  if (/^\/(?:es\/)?blog\/[^/]+$/.test(route)) {
     if (!schemaTypes.some(t => ["Article", "BlogPosting"].includes(t)))
       warnings.push("Expected Article/BlogPosting schema (blog post)");
   }
-  if (/^\/(es\/)?practical\/contact$/.test(route)) {
+  if (/^\/(?:es\/)?(practical|practico)\/(contact|contacto)$/.test(route)) {
     expectSchema("ContactPage", "contact page");
   }
-  if (/^\/(es\/)?practical\/faq$/.test(route)) {
+  if (/^\/(?:es\/)?(practical|practico)\/(faq|preguntas-frecuentes)$/.test(route)) {
     expectSchema("FAQPage", "FAQ page");
-  }
-  if (/^\/(es\/)?tours-from\/[^/]+$/.test(route)) {
-    if (!schemaTypes.some(t => ["TouristDestination", "ItemList"].includes(t)))
-      warnings.push("Expected TouristDestination/ItemList schema (tours-from page)");
   }
 
   totalErrors += errors.length;
@@ -289,6 +353,8 @@ const summary = {
   failed: results.filter(r => r.status === "fail").length,
   totalErrors,
   totalWarnings,
+  canonicalIssues: canonicalIssueCount,
+  hreflangIssues: hreflangIssueCount,
 };
 
 // JSON report
@@ -354,10 +420,34 @@ const reportHtml = `<!doctype html>
 
 writeFileSync(join(DIST, "seo-report.html"), reportHtml);
 
+// Export downloadable artifacts to /mnt/documents/ when available
+try {
+  const ART_DIR = "/mnt/documents";
+  if (existsSync(ART_DIR)) {
+    copyFileSync(join(DIST, "seo-report.json"), join(ART_DIR, "seo-report.json"));
+    copyFileSync(join(DIST, "seo-report.html"), join(ART_DIR, "seo-report.html"));
+    console.log(`[seo-validator] Artifacts copied to ${ART_DIR}/seo-report.{html,json}`);
+  }
+} catch (e) {
+  console.warn(`[seo-validator] Could not copy artifacts: ${e.message}`);
+}
+
 console.log(`\n[seo-validator] ${summary.totalPages} pages — ${summary.passed} pass, ${summary.warned} warn, ${summary.failed} fail`);
+console.log(`[seo-validator] Errors: ${summary.totalErrors}  Warnings: ${summary.totalWarnings}  Canonical issues: ${summary.canonicalIssues}  Hreflang issues: ${summary.hreflangIssues}`);
 console.log(`[seo-validator] Reports: ${DIST}/seo-report.json  ${DIST}/seo-report.html`);
 
+let exitCode = 0;
 if (STRICT && summary.failed > 0) {
-  console.error(`[seo-validator] STRICT mode: failing build (${summary.failed} pages with errors)`);
-  process.exit(1);
+  console.error(`[seo-validator] STRICT: failing build (${summary.failed} pages with errors)`);
+  exitCode = 1;
 }
+if (STRICT_CANONICAL && summary.canonicalIssues > 0) {
+  console.error(`[seo-validator] STRICT_CANONICAL: failing build (${summary.canonicalIssues} pages with canonical issues)`);
+  exitCode = 1;
+}
+if (STRICT_HREFLANG && summary.hreflangIssues > 0) {
+  console.error(`[seo-validator] STRICT_HREFLANG: failing build (${summary.hreflangIssues} pages with hreflang issues)`);
+  exitCode = 1;
+}
+process.exit(exitCode);
+
