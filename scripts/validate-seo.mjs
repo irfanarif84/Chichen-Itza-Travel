@@ -353,6 +353,8 @@ const summary = {
   failed: results.filter(r => r.status === "fail").length,
   totalErrors,
   totalWarnings,
+  canonicalIssues: canonicalIssueCount,
+  hreflangIssues: hreflangIssueCount,
 };
 
 // JSON report
