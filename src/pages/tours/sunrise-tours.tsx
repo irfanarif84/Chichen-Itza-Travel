@@ -3,7 +3,8 @@ import { useState, useMemo } from "react";
 import { Sunrise, Clock, ChevronRight, Star, Camera, Moon, Coffee, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createFAQSchema, createBreadcrumbSchema, createItemListSchema } from "@/lib/seo";
+import { tourTranslationsEs } from "@/lib/tourData.es";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -162,14 +163,19 @@ const SunriseToursPage = () => {
     clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({
-    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/sunrise-tours", locale,
-    jsonLd: [createFAQSchema(sunriseToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])],
-  });
-
   const sunriseTours = useMemo(() => tours.filter((t) => t.category.includes("sunrise-tours")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(sunriseTours, filters), [sunriseTours, filters]);
+
+  const itemListItems = sunriseTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({
+    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/sunrise-tours", locale,
+    jsonLd: [createFAQSchema(sunriseToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-al-amanecer" : "/tours/sunrise-tours", items: itemListItems })],
+  });
 
   return (
     <>

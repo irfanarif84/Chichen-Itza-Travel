@@ -1,0 +1,27 @@
+# Chichen Itza Travel — llms.txt
+# https://chichenitzatravel.com
+
+> Chichen Itza Travel offers expert-guided tours to Chichen Itza and the Yucatan Peninsula,
+> departing from Cancun, Playa del Carmen, Tulum, Merida, and Riviera Maya.
+
+## Key Pages
+- https://chichenitzatravel.com/ — Homepage
+- https://chichenitzatravel.com/tours/day-tours — Day Tours
+- https://chichenitzatravel.com/tours/private-tours — Private Tours
+- https://chichenitzatravel.com/tours/sunrise-tours — Sunrise Tours
+- https://chichenitzatravel.com/tours/night-tours — Night Tours
+- https://chichenitzatravel.com/combo-tours/ — Combo Tours
+- https://chichenitzatravel.com/blog — Travel Blog
+- https://chichenitzatravel.com/guide/ — Visitor Guide
+- https://chichenitzatravel.com/practical/faq — FAQ
+- https://chichenitzatravel.com/practical/contact — Contact
+
+## Tours by Departure City
+- https://chichenitzatravel.com/tours-from/cancun — Tours from Cancun
+- https://chichenitzatravel.com/tours-from/playa-del-carmen — Tours from Playa del Carmen
+- https://chichenitzatravel.com/tours-from/tulum — Tours from Tulum
+- https://chichenitzatravel.com/tours-from/merida — Tours from Merida
+- https://chichenitzatravel.com/tours-from/riviera-maya — Tours from Riviera Maya
+
+## Spanish Version
+- https://chichenitzatravel.com/es/ — Inicio (Spanish homepage)

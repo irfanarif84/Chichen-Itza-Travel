@@ -9,6 +9,26 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="geo.region" content="MX-ROO" />
     <meta name="geo.placename" content="Chichen Itza" />
+
+    <!-- Google Search Console verification -->
+    <meta name="google-site-verification" content="%VITE_GSC_CODE%" />
+
+    <!-- Google Analytics 4 (loads only when VITE_GA4_ID is configured) -->
+    <script>
+      (function() {
+        var id = '%VITE_GA4_ID%';
+        if (!id || id === 'undefined' || id.indexOf('VITE_') === 0 || id.indexOf('XXXX') !== -1) return;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', id);
+      })();
+    </script>
     <meta property="og:title" content="Chichen Itza Tours - Best Guided Tours & Day Trips 2026" />
     <meta property="og:description" content="Book the best Chichen Itza tours. Private tours, sunrise visits, cenote combos. Free cancellation & instant confirmation." />
     <meta property="og:type" content="website" />

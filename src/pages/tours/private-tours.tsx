@@ -3,7 +3,8 @@ import { useState, useMemo } from "react";
 import { Crown, Clock, Users, ChevronRight, Star, Shield, Car, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createFAQSchema, createBreadcrumbSchema, createItemListSchema } from "@/lib/seo";
+import { tourTranslationsEs } from "@/lib/tourData.es";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -160,6 +161,15 @@ const PrivateToursPage = () => {
     clearFilters: "Clear All Filters",
   };
 
+  const privateTours = useMemo(() => tours.filter((t) => t.category.includes("private-tours") || t.tourType === "private"), []);
+  const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
+  const filteredTours = useMemo(() => filterTours(privateTours, filters), [privateTours, filters]);
+
+  const itemListItems = privateTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
   const meta = getPageMeta({
     title: c.metaTitle,
     description: c.metaDesc,
@@ -172,12 +182,9 @@ const PrivateToursPage = () => {
         { name: "Tours", url: "/tours" },
         { name: c.breadcrumb },
       ]),
+      createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-privados" : "/tours/private-tours", items: itemListItems }),
     ],
   });
-
-  const privateTours = useMemo(() => tours.filter((t) => t.category.includes("private-tours") || t.tourType === "private"), []);
-  const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
-  const filteredTours = useMemo(() => filterTours(privateTours, filters), [privateTours, filters]);
 
   return (
     <>

@@ -249,6 +249,7 @@ const TourGallery = ({ images, altTexts, heroImage, tourTitle }: TourGalleryProp
                   <img
                     src={src}
                     alt=""
+                    role="presentation"
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"

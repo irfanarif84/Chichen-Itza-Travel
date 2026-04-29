@@ -46,6 +46,9 @@ const SEOHead = ({ meta }: SEOHeadProps) => {
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={meta.ogImageAlt || meta.title || "Chichen Itza Travel"} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content={ogLocale} />
       {meta.canonical && <meta property="og:url" content={meta.canonical} />}
@@ -55,6 +58,7 @@ const SEOHead = ({ meta }: SEOHeadProps) => {
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:description" content={meta.description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={meta.ogImageAlt || meta.title || "Chichen Itza Travel"} />
 
       {/* Hreflang alternate links */}
       {meta.alternateUrls && <link rel="alternate" hrefLang="en" href={`${BASE_URL}${meta.alternateUrls.en}`} />}
