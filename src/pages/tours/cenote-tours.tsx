@@ -145,14 +145,19 @@ const CenoteToursPage = () => {
     clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({
-    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/cenote-tours", locale,
-    jsonLd: [createFAQSchema(cenoteToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])],
-  });
-
   const cenoteTours = useMemo(() => tours.filter((t) => t.category.includes("cenote-tours")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(cenoteTours, filters), [cenoteTours, filters]);
+
+  const itemListItems = cenoteTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({
+    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/cenote-tours", locale,
+    jsonLd: [createFAQSchema(cenoteToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-de-cenotes" : "/tours/cenote-tours", items: itemListItems })],
+  });
 
   return (
     <>

@@ -162,14 +162,19 @@ const SunriseToursPage = () => {
     clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({
-    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/sunrise-tours", locale,
-    jsonLd: [createFAQSchema(sunriseToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])],
-  });
-
   const sunriseTours = useMemo(() => tours.filter((t) => t.category.includes("sunrise-tours")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(sunriseTours, filters), [sunriseTours, filters]);
+
+  const itemListItems = sunriseTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({
+    title: c.metaTitle, description: c.metaDesc, canonical: "/tours/sunrise-tours", locale,
+    jsonLd: [createFAQSchema(sunriseToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-al-amanecer" : "/tours/sunrise-tours", items: itemListItems })],
+  });
 
   return (
     <>

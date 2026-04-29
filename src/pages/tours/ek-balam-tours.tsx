@@ -98,11 +98,16 @@ const EkBalamToursPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/ek-balam-tours", locale, jsonLd: [createFAQSchema(ekBalamFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])] });
-
   const ekBalamTours = useMemo(() => tours.filter((t) => t.category.includes("ek-balam")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(ekBalamTours, filters), [ekBalamTours, filters]);
+
+  const itemListItems = ekBalamTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/ek-balam-tours", locale, jsonLd: [createFAQSchema(ekBalamFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-ek-balam" : "/tours/ek-balam-tours", items: itemListItems })] });
 
   return (
     <>

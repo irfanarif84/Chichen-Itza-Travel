@@ -100,11 +100,16 @@ const NightToursPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/night-tours", locale, jsonLd: [createFAQSchema(nightToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])] });
-
   const nightTours = useMemo(() => tours.filter((t) => t.category.includes("night-tours")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(nightTours, filters), [nightTours, filters]);
+
+  const itemListItems = nightTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/night-tours", locale, jsonLd: [createFAQSchema(nightToursFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-nocturnos" : "/tours/night-tours", items: itemListItems })] });
 
   return (
     <>

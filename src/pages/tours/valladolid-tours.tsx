@@ -98,11 +98,16 @@ const ValladolidToursPage = () => {
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
 
-  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/valladolid-tours", locale, jsonLd: [createFAQSchema(valladolidFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }])] });
-
   const valladolidTours = useMemo(() => tours.filter((t) => t.category.includes("valladolid")), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
   const filteredTours = useMemo(() => filterTours(valladolidTours, filters), [valladolidTours, filters]);
+
+  const itemListItems = valladolidTours.map((tour) => {
+    const es = isEs ? tourTranslationsEs[tour.id] : null;
+    return { name: es?.title ?? tour.title, url: isEs ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}` };
+  });
+
+  const meta = getPageMeta({ title: c.metaTitle, description: c.metaDesc, canonical: "/tours/valladolid-tours", locale, jsonLd: [createFAQSchema(valladolidFAQs), createBreadcrumbSchema([{ name: isEs ? "Inicio" : "Home", url: "/" }, { name: "Tours", url: "/tours" }, { name: c.breadcrumb }]), createItemListSchema({ name: c.metaTitle, url: isEs ? "/es/tours/tours-valladolid" : "/tours/valladolid-tours", items: itemListItems })] });
 
   return (
     <>
