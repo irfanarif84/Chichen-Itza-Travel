@@ -83,9 +83,12 @@ function normalizeUrl(u) {
 }
 
 const files = walk(DIST).sort();
+const routeSet = buildRouteSet(files);
 const results = [];
 let totalErrors = 0;
 let totalWarnings = 0;
+let canonicalIssueCount = 0;
+let hreflangIssueCount = 0;
 
 for (const file of files) {
   const html = readFileSync(file, "utf8");
