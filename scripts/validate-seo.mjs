@@ -420,10 +420,34 @@ const reportHtml = `<!doctype html>
 
 writeFileSync(join(DIST, "seo-report.html"), reportHtml);
 
+// Export downloadable artifacts to /mnt/documents/ when available
+try {
+  const ART_DIR = "/mnt/documents";
+  if (existsSync(ART_DIR)) {
+    copyFileSync(join(DIST, "seo-report.json"), join(ART_DIR, "seo-report.json"));
+    copyFileSync(join(DIST, "seo-report.html"), join(ART_DIR, "seo-report.html"));
+    console.log(`[seo-validator] Artifacts copied to ${ART_DIR}/seo-report.{html,json}`);
+  }
+} catch (e) {
+  console.warn(`[seo-validator] Could not copy artifacts: ${e.message}`);
+}
+
 console.log(`\n[seo-validator] ${summary.totalPages} pages — ${summary.passed} pass, ${summary.warned} warn, ${summary.failed} fail`);
+console.log(`[seo-validator] Errors: ${summary.totalErrors}  Warnings: ${summary.totalWarnings}  Canonical issues: ${summary.canonicalIssues}  Hreflang issues: ${summary.hreflangIssues}`);
 console.log(`[seo-validator] Reports: ${DIST}/seo-report.json  ${DIST}/seo-report.html`);
 
+let exitCode = 0;
 if (STRICT && summary.failed > 0) {
-  console.error(`[seo-validator] STRICT mode: failing build (${summary.failed} pages with errors)`);
-  process.exit(1);
+  console.error(`[seo-validator] STRICT: failing build (${summary.failed} pages with errors)`);
+  exitCode = 1;
 }
+if (STRICT_CANONICAL && summary.canonicalIssues > 0) {
+  console.error(`[seo-validator] STRICT_CANONICAL: failing build (${summary.canonicalIssues} pages with canonical issues)`);
+  exitCode = 1;
+}
+if (STRICT_HREFLANG && summary.hreflangIssues > 0) {
+  console.error(`[seo-validator] STRICT_HREFLANG: failing build (${summary.hreflangIssues} pages with hreflang issues)`);
+  exitCode = 1;
+}
+process.exit(exitCode);
+
