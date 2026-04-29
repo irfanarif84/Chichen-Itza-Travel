@@ -17,12 +17,31 @@
  *
  * Exits 0 always (report is the deliverable). Pass --strict to fail on errors.
  */
-import { readdirSync, statSync, readFileSync, writeFileSync, existsSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { readdirSync, statSync, readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from "node:fs";
+import { join, relative, sep, dirname } from "node:path";
 
 const DIST = "dist";
 const BASE_URL = "https://chichenitzatravel.com";
 const STRICT = process.argv.includes("--strict");
+const STRICT_CANONICAL = STRICT || process.argv.includes("--strict-canonical");
+const STRICT_HREFLANG = STRICT || process.argv.includes("--strict-hreflang");
+
+// Tour-category slugs (collection pages, NOT individual tour detail pages)
+const TOUR_CATEGORY_SLUGS_EN = new Set([
+  "day-tours", "private-tours", "sunrise-tours", "cenote-tours",
+  "valladolid-tours", "ek-balam-tours", "night-tours",
+]);
+const TOUR_CATEGORY_SLUGS_ES = new Set([
+  "excursiones-de-dia", "tours-privados", "tours-al-amanecer", "tours-de-cenotes",
+  "tours-valladolid", "tours-ek-balam", "tours-nocturnos",
+]);
+
+/** Build the set of all valid routes by walking dist/ before validation */
+function buildRouteSet(files) {
+  const set = new Set();
+  for (const f of files) set.add(fileToRoute(f));
+  return set;
+}
 
 if (!existsSync(DIST)) {
   console.error(`[seo-validator] ${DIST}/ not found. Run the build first.`);
