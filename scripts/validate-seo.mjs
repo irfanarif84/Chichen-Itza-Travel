@@ -286,29 +286,39 @@ for (const file of files) {
       warnings.push("Expected Organization/TravelAgency schema (homepage)");
     expectSchema("FAQPage", "homepage has FAQ section");
   }
-  if (/^\/(es\/)?tours\/[^/]+$/.test(route) && !route.endsWith("/tours")) {
-    expectSchema("Product", "tour detail page");
+  // /tours/[slug] — distinguish category collection pages from individual tour detail pages
+  const tourSlugMatch = route.match(/^\/(?:es\/)?tours\/([^/]+)$/);
+  if (tourSlugMatch) {
+    const slug = tourSlugMatch[1];
+    const isCategory = TOUR_CATEGORY_SLUGS_EN.has(slug) || TOUR_CATEGORY_SLUGS_ES.has(slug);
+    if (isCategory) {
+      if (!schemaTypes.some(t => ["ItemList", "CollectionPage"].includes(t)))
+        warnings.push("Expected ItemList/CollectionPage schema (tour category page)");
+    } else {
+      expectSchema("Product", "tour detail page");
+    }
   }
-  if (/^\/(es\/)?combo-tours\/[^/]+$/.test(route)) {
+  // /tours-from/[city], /tour-types/[type] — collection pages
+  if (/^\/(?:es\/)?(tours-from|tours-desde|tour-types|tipos-de-tours)\/[^/]+$/.test(route)) {
+    if (!schemaTypes.some(t => ["TouristDestination", "ItemList", "CollectionPage"].includes(t)))
+      warnings.push("Expected TouristDestination/ItemList schema (collection page)");
+  }
+  if (/^\/(?:es\/)?(combo-tours)\/[^/]+$/.test(route)) {
     if (!schemaTypes.some(t => ["TouristTrip", "Product"].includes(t)))
       warnings.push("Expected TouristTrip/Product schema (combo tour page)");
   }
-  if (/^\/(es\/)?guide\/[^/]+$/.test(route)) {
+  if (/^\/(?:es\/)?(guide|guia)\/[^/]+$/.test(route) && !/\/(guide|guia)$/.test(route)) {
     expectSchema("Article", "guide article page");
   }
-  if (/^\/(es\/)?blog\/[^/]+$/.test(route)) {
+  if (/^\/(?:es\/)?blog\/[^/]+$/.test(route)) {
     if (!schemaTypes.some(t => ["Article", "BlogPosting"].includes(t)))
       warnings.push("Expected Article/BlogPosting schema (blog post)");
   }
-  if (/^\/(es\/)?practical\/contact$/.test(route)) {
+  if (/^\/(?:es\/)?(practical|practico)\/(contact|contacto)$/.test(route)) {
     expectSchema("ContactPage", "contact page");
   }
-  if (/^\/(es\/)?practical\/faq$/.test(route)) {
+  if (/^\/(?:es\/)?(practical|practico)\/(faq|preguntas-frecuentes)$/.test(route)) {
     expectSchema("FAQPage", "FAQ page");
-  }
-  if (/^\/(es\/)?tours-from\/[^/]+$/.test(route)) {
-    if (!schemaTypes.some(t => ["TouristDestination", "ItemList"].includes(t)))
-      warnings.push("Expected TouristDestination/ItemList schema (tours-from page)");
   }
 
   totalErrors += errors.length;
