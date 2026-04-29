@@ -54,3 +54,22 @@ export const createBreadcrumbSchema = (items: { name: string; url?: string }[]) 
     ...(item.url ? { item: `${BASE_URL}${item.url}` } : {}),
   })),
 });
+
+/** Generate ItemList schema for tour collection / category pages */
+export const createItemListSchema = (params: {
+  name: string;
+  url: string;
+  items: { name: string; url: string }[];
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: params.name,
+  url: `${BASE_URL}${params.url}`,
+  numberOfItems: params.items.length,
+  itemListElement: params.items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.name,
+    url: `${BASE_URL}${item.url}`,
+  })),
+});
