@@ -3,7 +3,8 @@ import { useState, useMemo } from "react";
 import { Sun, Clock, Users, ChevronRight, Star, Utensils, Droplets, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/common/SEOHead";
-import { getPageMeta, createFAQSchema, createBreadcrumbSchema } from "@/lib/seo";
+import { getPageMeta, createFAQSchema, createBreadcrumbSchema, createItemListSchema } from "@/lib/seo";
+import { tourTranslationsEs } from "@/lib/tourData.es";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TourCard from "@/components/features/tours/TourCard";
 import TourFilters, { type FilterState } from "@/components/features/tours/TourFilters";
@@ -139,6 +140,15 @@ const DayToursPage = () => {
     ],
   };
 
+  const itemListUrl = locale === "es" ? "/es/tours/excursiones-de-dia" : "/tours/day-tours";
+  const itemListItems = dayTours.map((tour) => {
+    const es = locale === "es" ? tourTranslationsEs[tour.id] : null;
+    return {
+      name: es?.title ?? tour.title,
+      url: locale === "es" ? `/es/tours/${tour.slug}` : `/tours/${tour.slug}`,
+    };
+  });
+
   const meta = getPageMeta({
     title: c.seoTitle,
     description: c.seoDesc,
@@ -151,6 +161,7 @@ const DayToursPage = () => {
         { name: "Tours", url: "/tours" },
         { name: locale === "es" ? "Tours de Día" : "Day Tours" },
       ]),
+      createItemListSchema({ name: c.seoTitle, url: itemListUrl, items: itemListItems }),
     ],
   });
 
