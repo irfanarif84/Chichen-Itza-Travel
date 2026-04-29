@@ -105,14 +105,20 @@ for (const file of files) {
 
   // canonical
   const canonicalMatches = [...html.matchAll(/<link[^>]+rel=["']canonical["'][^>]*>/gi)];
-  if (canonicalMatches.length === 0) errors.push("Missing canonical link");
-  else if (canonicalMatches.length > 1)
-    errors.push(`Found ${canonicalMatches.length} canonical links (expected 1)`);
+  let canonicalIssue = false;
+  if (canonicalMatches.length === 0) { errors.push("Missing canonical link"); canonicalIssue = true; }
+  else if (canonicalMatches.length > 1) {
+    errors.push(`Found ${canonicalMatches.length} canonical links (expected exactly 1)`);
+    canonicalIssue = true;
+  }
 
   const canonicalHref = canonicalMatches[0]?.[0].match(/href=["']([^"']+)["']/i)?.[1] ?? null;
   const canonicalPath = normalizeUrl(canonicalHref);
-  if (canonicalHref && canonicalPath !== route)
+  if (canonicalHref && canonicalPath !== route) {
     errors.push(`Canonical "${canonicalPath}" does not match route "${route}"`);
+    canonicalIssue = true;
+  }
+  if (canonicalIssue) canonicalIssueCount++;
 
   // og:url
   const ogUrlMatches = [...html.matchAll(/<meta[^>]+property=["']og:url["'][^>]*>/gi)];
@@ -131,20 +137,46 @@ for (const file of files) {
       warnings.push(`og:locale "${ogLocale}" expected "${expLocale}"`);
   }
 
-  // hreflang
+  // hreflang — required set, no duplicates, destinations must exist & resolve to right lang
   const hreflangs = [...html.matchAll(/<link[^>]+hreflang=["']([^"']+)["'][^>]*href=["']([^"']+)["']/gi)]
     .map(m => ({ lang: m[1], href: m[2] }));
-  const hasEn = hreflangs.some(h => h.lang === "en");
-  const hasEs = hreflangs.some(h => h.lang === "es");
-  const hasDefault = hreflangs.some(h => h.lang === "x-default");
-  if (!hasEn) warnings.push("Missing hreflang=en");
-  if (!hasEs) warnings.push("Missing hreflang=es");
-  if (!hasDefault) warnings.push("Missing hreflang=x-default");
-
-  // self-referencing hreflang must include this route
+  const langCounts = hreflangs.reduce((a, h) => (a[h.lang] = (a[h.lang] || 0) + 1, a), {});
+  let hreflangIssue = false;
+  for (const required of ["en", "es", "x-default"]) {
+    if (!langCounts[required]) { errors.push(`Missing hreflang="${required}"`); hreflangIssue = true; }
+    else if (langCounts[required] > 1) {
+      errors.push(`Duplicate hreflang="${required}" (${langCounts[required]} tags, expected 1)`);
+      hreflangIssue = true;
+    }
+  }
+  // self-reference must equal current route
   const selfHreflang = hreflangs.find(h => h.lang === expLang);
-  if (selfHreflang && normalizeUrl(selfHreflang.href) !== route)
-    errors.push(`hreflang="${expLang}" "${normalizeUrl(selfHreflang.href)}" does not match route "${route}"`);
+  if (selfHreflang && normalizeUrl(selfHreflang.href) !== route) {
+    errors.push(`hreflang="${expLang}" "${normalizeUrl(selfHreflang.href)}" does not match own route "${route}"`);
+    hreflangIssue = true;
+  }
+  // every alternate destination must resolve to a real built route AND match its declared lang
+  for (const h of hreflangs) {
+    const dest = normalizeUrl(h.href);
+    if (!dest) continue;
+    if (!routeSet.has(dest)) {
+      errors.push(`hreflang="${h.lang}" target "${dest}" is not a built route`);
+      hreflangIssue = true;
+      continue;
+    }
+    if (h.lang === "en" && expectedLang(dest) !== "en") {
+      errors.push(`hreflang="en" target "${dest}" is not an English route`);
+      hreflangIssue = true;
+    }
+    if (h.lang === "es" && expectedLang(dest) !== "es") {
+      errors.push(`hreflang="es" target "${dest}" is not a Spanish route`);
+      hreflangIssue = true;
+    }
+    if (h.lang === "x-default" && expectedLang(dest) !== "en") {
+      warnings.push(`hreflang="x-default" target "${dest}" is not the English version`);
+    }
+  }
+  if (hreflangIssue) hreflangIssueCount++;
 
   // robots noindex check on non-404 pages
   const robots = html.match(/<meta[^>]+name=["']robots["'][^>]*content=["']([^"']+)["']/i)?.[1] ?? null;
