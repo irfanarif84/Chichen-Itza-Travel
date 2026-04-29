@@ -24,7 +24,7 @@ const TestimonialsPage = () => {
       ? "Lee reseñas reales de más de 10,000 viajeros que amaron nuestros tours a Chichén Itzá. Calificación 4.8/5 estrellas."
       : "Read real reviews from 10,000+ travelers who loved our Chichen Itza tours. Rated 4.8/5 stars. See why we're the #1 rated tour operator.",
     canonical: "/practical/testimonials",
-    robots: "noindex, follow",
+    robots: "index, follow",
     locale,
     jsonLd: [
       {
