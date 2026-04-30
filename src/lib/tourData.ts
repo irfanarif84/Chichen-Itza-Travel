@@ -344,7 +344,7 @@ export const tours: Tour[] = [
     featured: true,
     available: true,
     badge: "Family Pick",
-    category: ["family-friendly", "day-tours", "cenote-tours"],
+    category: ["family-friendly", "day-tours", "cenote-tours", "private-tours"],
   },
   {
     id: "night-light-show",
@@ -449,7 +449,7 @@ export const tours: Tour[] = [
     featured: false,
     available: true,
     badge: "Culture Pick",
-    category: ["combo", "valladolid", "day-tours"],
+    category: ["combo", "valladolid", "day-tours", "private-tours"],
   },
   {
     id: "private-sunrise-tour",
@@ -622,7 +622,7 @@ export const tours: Tour[] = [
     featured: true,
     available: true,
     badge: "3-in-1 Value",
-    category: ["cenote-tours", "combo", "valladolid", "day-tours", "small-group"],
+    category: ["cenote-tours", "combo", "valladolid", "day-tours", "small-group", "private-tours"],
   },
   {
     id: "ek-balam-combo",
@@ -681,7 +681,7 @@ export const tours: Tour[] = [
     featured: true,
     available: true,
     badge: "Adventure Pick",
-    category: ["combo", "ek-balam", "day-tours", "small-group"],
+    category: ["combo", "ek-balam", "day-tours", "small-group", "private-tours"],
   },
   {
     id: "merida-cultural-tour",
@@ -736,7 +736,7 @@ export const tours: Tour[] = [
     featured: false,
     available: true,
     badge: "Local Favorite",
-    category: ["day-tours", "cenote-tours", "small-group"],
+    category: ["day-tours", "cenote-tours", "small-group", "private-tours"],
   },
 ];
 
