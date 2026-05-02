@@ -245,7 +245,7 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
-      <section id="tours" className="py-12 lg:py-16 bg-muted/30">
+      <section id="tours" className="py-12 lg:py-16">
         <div className="container">
           <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2 text-center">{c.toursTitle}</h2>
           <p className="text-center text-muted-foreground mb-8">{smallGroupTours.length} {c.toursSuffix}</p>
