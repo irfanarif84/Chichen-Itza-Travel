@@ -42,6 +42,14 @@ const SmallGroupPage = () => {
     subtitle: "Máximo 8-15 viajeros por grupo. Más atención personal de tu guía, mejores fotos y un ritmo más relajado que los grandes autobuses turísticos.",
     badges: [{ icon: Users, text: "Máx. 15 personas" }, { icon: MessageCircle, text: "Atención personal" }, { icon: Camera, text: "Mejores fotos" }, { icon: Shield, text: "Vehículos de calidad" }],
     cta: "Ver Tours Grupo Pequeño",
+    recTitle: "Tours en Grupo Pequeño Recomendados",
+    recSubtitle: "Tres opciones populares seleccionadas para distintos viajeros.",
+    recommended: [
+      { slug: "chichen-itza-day-tour-from-cancun", name: "Tour Clásico de un Día desde Cancún", desc: "El Castillo, Cenote Sagrado, almuerzo buffet y nado en cenote con guía bilingüe experto." },
+      { slug: "chichen-itza-cenote-ik-kil-combo-tour", name: "Grupo Pequeño + Cenote Ik Kil", desc: "Combina las ruinas con 45 minutos de nado en el icónico cenote Ik Kil." },
+      { slug: "chichen-itza-valladolid-colonial-tour", name: "Grupo Pequeño + Valladolid", desc: "Añade la Valladolid colonial con paseo por el centro histórico y degustación local." },
+    ],
+    fromLabel: "Desde", viewTour: "Ver tour",
     compTitle: "Grupo Pequeño vs. Grupo Grande vs. Privado",
     compHeaders: ["Grupo Pequeño", "Grupo Grande", "Privado"],
     compRows: [
@@ -55,6 +63,18 @@ const SmallGroupPage = () => {
     ],
     tipTitle: "Mejor Relación Calidad-Precio",
     tipContent: "Los tours en grupo pequeño ofrecen el mejor equilibrio entre calidad y precio. Obtienes el 80% de la experiencia privada a la mitad del costo. Son nuestra opción más recomendada para parejas, viajeros solos y familias pequeñas.",
+    comp2Title: "Grupo Pequeño vs. Manejar Solo vs. Autobús Turístico",
+    comp2Headers: ["Grupo Pequeño", "Manejar Solo", "Autobús Turístico"],
+    comp2Rows: [
+      { label: "Costo total (2 personas)", values: ["$180-$260", "$150-$220", "$100-$160"] },
+      { label: "Tiempo de organización", values: ["Mínimo", "Alto (auto, mapas, entradas)", "Mínimo"] },
+      { label: "Nivel de estrés", values: ["Bajo", "Alto (tráfico, peajes)", "Bajo"] },
+      { label: "Conocimiento local", values: ["Guía experto", "Solo investigación propia", "Guía estándar"] },
+      { label: "Acceso sin filas", values: [true, false, false] },
+      { label: "Tiempo para fotos", values: ["Bueno", "Total pero apurado", "Limitado"] },
+      { label: "Dinámica de grupo", values: ["Íntima, social", "Solo tu grupo", "Multitud impersonal"] },
+      { label: "Ideal para", values: ["La mayoría de viajeros", "Aventureros independientes", "Presupuesto estricto"] },
+    ],
     benefitsTitle: "Por Qué Elegir un Tour en Grupo Pequeño",
     benefits: [
       { icon: MessageCircle, title: "Haz Preguntas Libremente", desc: "Con menos personas, puedes interactuar directamente con tu guía y obtener respuestas detalladas sobre la historia maya." },
@@ -75,6 +95,14 @@ const SmallGroupPage = () => {
     subtitle: "Maximum 8-15 travelers per group. More personal attention from your guide, better photos, and a more relaxed pace than large bus tours.",
     badges: [{ icon: Users, text: "Max 15 people" }, { icon: MessageCircle, text: "Personal attention" }, { icon: Camera, text: "Better photos" }, { icon: Shield, text: "Quality vehicles" }],
     cta: "Browse Small Group Tours",
+    recTitle: "Recommended Small Group Tours",
+    recSubtitle: "Three popular options curated for different travelers.",
+    recommended: [
+      { slug: "chichen-itza-day-tour-from-cancun", name: "Classic Small Group Day Tour", desc: "El Castillo, Sacred Cenote, buffet lunch and a cenote swim with an expert bilingual guide." },
+      { slug: "chichen-itza-cenote-ik-kil-combo-tour", name: "Small Group + Cenote Ik Kil", desc: "Pair the ruins with 45 minutes of swim time at the iconic Ik Kil cenote." },
+      { slug: "chichen-itza-valladolid-colonial-tour", name: "Small Group + Valladolid", desc: "Add colonial Valladolid with a walk through the historic center and local tasting." },
+    ],
+    fromLabel: "From", viewTour: "View tour",
     compTitle: "Small Group vs. Large Group vs. Private",
     compHeaders: ["Small Group", "Large Group", "Private"],
     compRows: [
@@ -88,6 +116,18 @@ const SmallGroupPage = () => {
     ],
     tipTitle: "Best Value Choice",
     tipContent: "Small group tours offer the best balance of quality and affordability. You get 80% of the private tour experience at roughly half the cost. They're our most recommended option for couples, solo travelers, and small families.",
+    comp2Title: "Small Group vs. Self-Drive vs. Joining a Large Bus",
+    comp2Headers: ["Small Group", "Self-Drive", "Large Bus"],
+    comp2Rows: [
+      { label: "Total cost (2 people)", values: ["$180-$260", "$150-$220", "$100-$160"] },
+      { label: "Planning time", values: ["Minimal", "High (car, maps, tickets)", "Minimal"] },
+      { label: "Stress level", values: ["Low", "High (traffic, tolls)", "Low"] },
+      { label: "Local expertise", values: ["Expert guide", "Self-research only", "Standard guide"] },
+      { label: "Skip-the-line", values: [true, false, false] },
+      { label: "Photo time", values: ["Good", "Full but rushed", "Limited"] },
+      { label: "Group dynamic", values: ["Intimate, social", "Just your group", "Impersonal crowd"] },
+      { label: "Best for", values: ["Most travelers", "Independent adventurers", "Tight budget"] },
+    ],
     benefitsTitle: "Why Choose a Small Group Tour",
     benefits: [
       { icon: MessageCircle, title: "Ask Questions Freely", desc: "With fewer people, you can engage directly with your guide and get detailed answers about Mayan history." },
@@ -101,6 +141,11 @@ const SmallGroupPage = () => {
     exploreLinks: [{ label: "Day Tours", href: "/tours/day-tours" }, { label: "Private Tours", href: "/tours/private-tours" }, { label: "Sunrise Tours", href: "/tours/sunrise-tours" }, { label: "Cenote Tours", href: "/tours/cenote-tours" }, { label: "From Cancún", href: "/tours-from/cancun" }, { label: "All Tours", href: "/tours" }],
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
+
+  const recommendedTours = useMemo(
+    () => c.recommended.map((r) => ({ ...r, tour: tours.find((t) => t.slug === r.slug) })).filter((r) => r.tour),
+    [c.recommended]
+  );
 
   const smallGroupTours = useMemo(() => tours.filter((t) => t.category.includes("small-group") || (t.groupSize.type === "small-group" && t.groupSize.max <= 15)), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
