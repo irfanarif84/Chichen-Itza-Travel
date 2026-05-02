@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { FAQItem } from "@/lib/faqData";
 import { useLocale } from "@/lib/i18n/useLocale";
+import { LocaleLink } from "@/components/LocaleLink";
 
 interface FAQSectionProps {
   title?: string;
@@ -67,9 +68,23 @@ const FAQSection = ({ title, subtitle, faqs }: FAQSectionProps) => {
                   transition: "max-height 0.3s ease",
                 }}
               >
-                <p className="px-5 pb-4 text-muted-foreground leading-relaxed">
+                <p className="px-5 pb-3 text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </p>
+                {faq.links && faq.links.length > 0 && (
+                  <ul className="px-5 pb-4 flex flex-wrap gap-x-4 gap-y-1.5 text-sm">
+                    {faq.links.map((l) => (
+                      <li key={l.to}>
+                        <LocaleLink
+                          to={l.to}
+                          className="text-primary hover:underline font-medium inline-flex items-center gap-1"
+                        >
+                          {l.label} <span aria-hidden>→</span>
+                        </LocaleLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           ))}

@@ -2,6 +2,8 @@ export interface FAQItem {
   question: string;
   answer: string;
   category?: string;
+  /** Optional contextual links rendered below the answer. Hrefs are locale-prefixed automatically. */
+  links?: { label: string; to: string }[];
 }
 
 export const homepageFAQs: FAQItem[] = [
