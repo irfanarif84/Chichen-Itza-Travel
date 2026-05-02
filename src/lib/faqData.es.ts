@@ -248,6 +248,21 @@ export const smallGroupFAQsEs: FAQItem[] = [
     answer: "¡Sí! Los tours de grupo pequeño son ideales para viajeros solos. El tamaño íntimo del grupo facilita conectar con otros viajeros, y recibirás más atención personal del guía. Muchos viajeros solos prefieren grupos pequeños sobre tours privados.",
     category: "solo",
   },
+  {
+    question: "¿Qué tour de grupo pequeño es mejor para visitantes por primera vez?",
+    answer: "Para la mayoría de los visitantes por primera vez recomendamos el Tour de un Día a Chichén Itzá desde Cancún: incluye El Castillo, el Cenote Sagrado, almuerzo buffet y nado en cenote con guía bilingüe experto y máximo 15 personas. Ver detalles en /es/tours/chichen-itza-day-tour-from-cancun.",
+    category: "recommendation",
+  },
+  {
+    question: "¿Tienen tours de grupo pequeño que incluyan un cenote?",
+    answer: "Sí: nuestra opción más popular es el combo Chichén Itzá + Cenote Ik Kil, con entrada sin filas y 45 minutos de nado en el cenote. Detalles en /es/tours/chichen-itza-cenote-ik-kil-combo-tour.",
+    category: "inclusions",
+  },
+  {
+    question: "¿Hay un tour de grupo pequeño desde Playa del Carmen?",
+    answer: "Sí. Nuestro tour económico en grupo pequeño desde Playa del Carmen sale diariamente con recogida en hoteles de la Riviera Maya, con un máximo de 15 viajeros. Itinerario completo en /es/tours/chichen-itza-budget-tour-playa-del-carmen.",
+    category: "departure",
+  },
 ];
 
 // ── Cancún FAQs ──

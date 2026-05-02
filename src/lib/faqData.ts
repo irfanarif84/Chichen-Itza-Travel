@@ -418,6 +418,21 @@ export const smallGroupFAQs: FAQItem[] = [
     answer: "Yes! Small group tours are ideal for solo travelers. The intimate group size makes it easy to connect with fellow travelers, and you'll receive more personal attention from the guide. Many solo travelers prefer small groups over private tours.",
     category: "solo",
   },
+  {
+    question: "Which small group tour is best for first-time visitors?",
+    answer: "For most first-time visitors we recommend the Chichen Itza Day Tour from Cancun — it covers El Castillo, the Sacred Cenote, a buffet lunch and a cenote swim with an expert bilingual guide and a max group size of 15. See full details on /tours/chichen-itza-day-tour-from-cancun.",
+    category: "recommendation",
+  },
+  {
+    question: "Do you have small group tours that include a cenote?",
+    answer: "Yes — our most popular cenote-inclusive small group option is the Chichen Itza + Cenote Ik Kil combo, with skip-the-line entrance and 45 minutes of swim time at the cenote. Details at /tours/chichen-itza-cenote-ik-kil-combo-tour.",
+    category: "inclusions",
+  },
+  {
+    question: "Is there a small group tour from Playa del Carmen?",
+    answer: "Yes. Our small group budget tour from Playa del Carmen runs daily with hotel pickup along the Riviera Maya, capped at 15 travelers. Full itinerary on /tours/chichen-itza-budget-tour-playa-del-carmen.",
+    category: "departure",
+  },
 ];
 
 // Practical / General FAQ page data
