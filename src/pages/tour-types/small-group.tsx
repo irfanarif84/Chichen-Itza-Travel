@@ -199,6 +199,29 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
+      {/* Recommended Small Group Tours */}
+      <section className="py-12 lg:py-16">
+        <div className="container">
+          <div className="text-center mb-8 max-w-2xl mx-auto">
+            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-3">{c.recTitle}</h2>
+            <p className="text-muted-foreground">{c.recSubtitle}</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {recommendedTours.map((r) => (
+              <Link key={r.slug} to={`/tours/${r.slug}`} className="group bg-card rounded-lg p-6 border border-border hover:border-secondary hover:shadow-md transition-all flex flex-col">
+                <Users className="h-6 w-6 text-secondary mb-3" />
+                <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">{r.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4 flex-1">{r.desc}</p>
+                <div className="flex items-center justify-between mt-auto pt-3 border-t border-border">
+                  <span className="text-sm text-muted-foreground">{c.fromLabel} <span className="font-semibold text-foreground">${r.tour!.price.adult}</span></span>
+                  <span className="text-sm font-semibold text-primary inline-flex items-center gap-1">{c.viewTour} <ChevronRight className="h-4 w-4" /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container"><h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">{c.compTitle}</h2>
           <div className="max-w-4xl mx-auto"><ComparisonTable headers={c.compHeaders} highlightColumn={1} rows={c.compRows} /></div>
@@ -206,7 +229,15 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
+      {/* Secondary comparison: Small Group vs Self-Drive vs Large Bus */}
       <section className="py-12 lg:py-16">
+        <div className="container">
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">{c.comp2Title}</h2>
+          <div className="max-w-4xl mx-auto"><ComparisonTable headers={c.comp2Headers} highlightColumn={1} rows={c.comp2Rows} /></div>
+        </div>
+      </section>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container"><h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">{c.benefitsTitle}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {c.benefits.map((item, i) => (<div key={i} className="bg-card rounded-lg p-6 border border-border text-center"><div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4"><item.icon className="h-6 w-6 text-secondary" /></div><h3 className="font-semibold mb-2">{item.title}</h3><p className="text-sm text-muted-foreground">{item.desc}</p></div>))}
