@@ -42,6 +42,14 @@ const SmallGroupPage = () => {
     subtitle: "Máximo 8-15 viajeros por grupo. Más atención personal de tu guía, mejores fotos y un ritmo más relajado que los grandes autobuses turísticos.",
     badges: [{ icon: Users, text: "Máx. 15 personas" }, { icon: MessageCircle, text: "Atención personal" }, { icon: Camera, text: "Mejores fotos" }, { icon: Shield, text: "Vehículos de calidad" }],
     cta: "Ver Tours Grupo Pequeño",
+    recTitle: "Tours en Grupo Pequeño Recomendados",
+    recSubtitle: "Tres opciones populares seleccionadas para distintos viajeros.",
+    recommended: [
+      { slug: "chichen-itza-day-tour-from-cancun", name: "Tour Clásico de un Día desde Cancún", desc: "El Castillo, Cenote Sagrado, almuerzo buffet y nado en cenote con guía bilingüe experto." },
+      { slug: "chichen-itza-cenote-ik-kil-combo-tour", name: "Grupo Pequeño + Cenote Ik Kil", desc: "Combina las ruinas con 45 minutos de nado en el icónico cenote Ik Kil." },
+      { slug: "chichen-itza-valladolid-colonial-tour", name: "Grupo Pequeño + Valladolid", desc: "Añade la Valladolid colonial con paseo por el centro histórico y degustación local." },
+    ],
+    fromLabel: "Desde", viewTour: "Ver tour",
     compTitle: "Grupo Pequeño vs. Grupo Grande vs. Privado",
     compHeaders: ["Grupo Pequeño", "Grupo Grande", "Privado"],
     compRows: [
@@ -55,6 +63,18 @@ const SmallGroupPage = () => {
     ],
     tipTitle: "Mejor Relación Calidad-Precio",
     tipContent: "Los tours en grupo pequeño ofrecen el mejor equilibrio entre calidad y precio. Obtienes el 80% de la experiencia privada a la mitad del costo. Son nuestra opción más recomendada para parejas, viajeros solos y familias pequeñas.",
+    comp2Title: "Grupo Pequeño vs. Manejar Solo vs. Autobús Turístico",
+    comp2Headers: ["Grupo Pequeño", "Manejar Solo", "Autobús Turístico"],
+    comp2Rows: [
+      { label: "Costo total (2 personas)", values: ["$180-$260", "$150-$220", "$100-$160"] },
+      { label: "Tiempo de organización", values: ["Mínimo", "Alto (auto, mapas, entradas)", "Mínimo"] },
+      { label: "Nivel de estrés", values: ["Bajo", "Alto (tráfico, peajes)", "Bajo"] },
+      { label: "Conocimiento local", values: ["Guía experto", "Solo investigación propia", "Guía estándar"] },
+      { label: "Acceso sin filas", values: [true, false, false] },
+      { label: "Tiempo para fotos", values: ["Bueno", "Total pero apurado", "Limitado"] },
+      { label: "Dinámica de grupo", values: ["Íntima, social", "Solo tu grupo", "Multitud impersonal"] },
+      { label: "Ideal para", values: ["La mayoría de viajeros", "Aventureros independientes", "Presupuesto estricto"] },
+    ],
     benefitsTitle: "Por Qué Elegir un Tour en Grupo Pequeño",
     benefits: [
       { icon: MessageCircle, title: "Haz Preguntas Libremente", desc: "Con menos personas, puedes interactuar directamente con tu guía y obtener respuestas detalladas sobre la historia maya." },
@@ -75,6 +95,14 @@ const SmallGroupPage = () => {
     subtitle: "Maximum 8-15 travelers per group. More personal attention from your guide, better photos, and a more relaxed pace than large bus tours.",
     badges: [{ icon: Users, text: "Max 15 people" }, { icon: MessageCircle, text: "Personal attention" }, { icon: Camera, text: "Better photos" }, { icon: Shield, text: "Quality vehicles" }],
     cta: "Browse Small Group Tours",
+    recTitle: "Recommended Small Group Tours",
+    recSubtitle: "Three popular options curated for different travelers.",
+    recommended: [
+      { slug: "chichen-itza-day-tour-from-cancun", name: "Classic Small Group Day Tour", desc: "El Castillo, Sacred Cenote, buffet lunch and a cenote swim with an expert bilingual guide." },
+      { slug: "chichen-itza-cenote-ik-kil-combo-tour", name: "Small Group + Cenote Ik Kil", desc: "Pair the ruins with 45 minutes of swim time at the iconic Ik Kil cenote." },
+      { slug: "chichen-itza-valladolid-colonial-tour", name: "Small Group + Valladolid", desc: "Add colonial Valladolid with a walk through the historic center and local tasting." },
+    ],
+    fromLabel: "From", viewTour: "View tour",
     compTitle: "Small Group vs. Large Group vs. Private",
     compHeaders: ["Small Group", "Large Group", "Private"],
     compRows: [
@@ -88,6 +116,18 @@ const SmallGroupPage = () => {
     ],
     tipTitle: "Best Value Choice",
     tipContent: "Small group tours offer the best balance of quality and affordability. You get 80% of the private tour experience at roughly half the cost. They're our most recommended option for couples, solo travelers, and small families.",
+    comp2Title: "Small Group vs. Self-Drive vs. Joining a Large Bus",
+    comp2Headers: ["Small Group", "Self-Drive", "Large Bus"],
+    comp2Rows: [
+      { label: "Total cost (2 people)", values: ["$180-$260", "$150-$220", "$100-$160"] },
+      { label: "Planning time", values: ["Minimal", "High (car, maps, tickets)", "Minimal"] },
+      { label: "Stress level", values: ["Low", "High (traffic, tolls)", "Low"] },
+      { label: "Local expertise", values: ["Expert guide", "Self-research only", "Standard guide"] },
+      { label: "Skip-the-line", values: [true, false, false] },
+      { label: "Photo time", values: ["Good", "Full but rushed", "Limited"] },
+      { label: "Group dynamic", values: ["Intimate, social", "Just your group", "Impersonal crowd"] },
+      { label: "Best for", values: ["Most travelers", "Independent adventurers", "Tight budget"] },
+    ],
     benefitsTitle: "Why Choose a Small Group Tour",
     benefits: [
       { icon: MessageCircle, title: "Ask Questions Freely", desc: "With fewer people, you can engage directly with your guide and get detailed answers about Mayan history." },
@@ -101,6 +141,11 @@ const SmallGroupPage = () => {
     exploreLinks: [{ label: "Day Tours", href: "/tours/day-tours" }, { label: "Private Tours", href: "/tours/private-tours" }, { label: "Sunrise Tours", href: "/tours/sunrise-tours" }, { label: "Cenote Tours", href: "/tours/cenote-tours" }, { label: "From Cancún", href: "/tours-from/cancun" }, { label: "All Tours", href: "/tours" }],
     noMatch: "No tours match your filters.", clearFilters: "Clear All Filters",
   };
+
+  const recommendedTours = useMemo(
+    () => c.recommended.map((r) => ({ ...r, tour: tours.find((t) => t.slug === r.slug) })).filter((r) => r.tour),
+    [c.recommended]
+  );
 
   const smallGroupTours = useMemo(() => tours.filter((t) => t.category.includes("small-group") || (t.groupSize.type === "small-group" && t.groupSize.max <= 15)), []);
   const [filters, setFilters] = useState<FilterState>({ priceRange: "all", duration: [], tourType: [], category: [] });
@@ -154,6 +199,29 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
+      {/* Recommended Small Group Tours */}
+      <section className="py-12 lg:py-16">
+        <div className="container">
+          <div className="text-center mb-8 max-w-2xl mx-auto">
+            <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-3">{c.recTitle}</h2>
+            <p className="text-muted-foreground">{c.recSubtitle}</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {recommendedTours.map((r) => (
+              <Link key={r.slug} to={`/tours/${r.slug}`} className="group bg-card rounded-lg p-6 border border-border hover:border-secondary hover:shadow-md transition-all flex flex-col">
+                <Users className="h-6 w-6 text-secondary mb-3" />
+                <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-primary transition-colors">{r.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4 flex-1">{r.desc}</p>
+                <div className="flex items-center justify-between mt-auto pt-3 border-t border-border">
+                  <span className="text-sm text-muted-foreground">{c.fromLabel} <span className="font-semibold text-foreground">${r.tour!.price.adult}</span></span>
+                  <span className="text-sm font-semibold text-primary inline-flex items-center gap-1">{c.viewTour} <ChevronRight className="h-4 w-4" /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container"><h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">{c.compTitle}</h2>
           <div className="max-w-4xl mx-auto"><ComparisonTable headers={c.compHeaders} highlightColumn={1} rows={c.compRows} /></div>
@@ -161,7 +229,15 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
+      {/* Secondary comparison: Small Group vs Self-Drive vs Large Bus */}
       <section className="py-12 lg:py-16">
+        <div className="container">
+          <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-6 text-center">{c.comp2Title}</h2>
+          <div className="max-w-4xl mx-auto"><ComparisonTable headers={c.comp2Headers} highlightColumn={1} rows={c.comp2Rows} /></div>
+        </div>
+      </section>
+
+      <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container"><h2 className="font-heading font-bold text-2xl lg:text-3xl mb-8 text-center">{c.benefitsTitle}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {c.benefits.map((item, i) => (<div key={i} className="bg-card rounded-lg p-6 border border-border text-center"><div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4"><item.icon className="h-6 w-6 text-secondary" /></div><h3 className="font-semibold mb-2">{item.title}</h3><p className="text-sm text-muted-foreground">{item.desc}</p></div>))}
@@ -169,7 +245,7 @@ const SmallGroupPage = () => {
         </div>
       </section>
 
-      <section id="tours" className="py-12 lg:py-16 bg-muted/30">
+      <section id="tours" className="py-12 lg:py-16">
         <div className="container">
           <h2 className="font-heading font-bold text-2xl lg:text-3xl mb-2 text-center">{c.toursTitle}</h2>
           <p className="text-center text-muted-foreground mb-8">{smallGroupTours.length} {c.toursSuffix}</p>
