@@ -399,41 +399,75 @@ export const smallGroupFAQs: FAQItem[] = [
     question: "How many people are in a small group tour?",
     answer: "Our small group tours are limited to 8-15 participants, depending on the specific tour. This ensures personalized attention from your guide, easier communication, and a more intimate experience compared to large 30+ person tours.",
     category: "logistics",
+    links: [
+      { label: "Classic small group day tour", to: "/tours/chichen-itza-day-tour-from-cancun" },
+      { label: "All small group tours", to: "/tour-types/small-group" },
+    ],
   },
   {
     question: "Why choose a small group over a large group tour?",
     answer: "Small groups offer better guide interaction, more flexibility for questions, less waiting time at each stop, quieter experience at the ruins, and often include higher-quality transport. You'll also get better photo opportunities without crowds blocking your shots.",
     category: "comparison",
+    links: [
+      { label: "Compare with private tours", to: "/tours/private-tours" },
+      { label: "Compare with budget tours", to: "/tour-types/budget" },
+    ],
   },
   {
     question: "Are small group tours more expensive?",
     answer: "Small group tours typically cost $10-30 more than large group options but offer significantly better value through personalized attention, better vehicles, and more intimate experiences. They're the sweet spot between budget and private tours.",
     category: "pricing",
+    links: [
+      { label: "Budget express tour", to: "/tours/chichen-itza-budget-express-tour" },
+      { label: "Luxury VIP options", to: "/tour-types/luxury" },
+    ],
   },
   {
     question: "Can I request a specific language for my small group?",
     answer: "Most small group tours operate in English and Spanish. Due to smaller group sizes, you're more likely to be in a group that matches your language preference. Contact us for tours in French, German, or Italian.",
     category: "logistics",
+    links: [
+      { label: "Contact us for languages", to: "/practical/contact" },
+      { label: "Booking info", to: "/practical/booking-info" },
+    ],
   },
   {
     question: "Are small group tours suitable for solo travelers?",
     answer: "Yes! Small group tours are ideal for solo travelers. The intimate group size makes it easy to connect with fellow travelers, and you'll receive more personal attention from the guide. Many solo travelers prefer small groups over private tours.",
     category: "solo",
+    links: [
+      { label: "Family adventure tour", to: "/tours/chichen-itza-family-adventure-tour" },
+      { label: "Day tours from Cancún", to: "/tours-from/cancun" },
+    ],
   },
   {
     question: "Which small group tour is best for first-time visitors?",
-    answer: "For most first-time visitors we recommend the Chichen Itza Day Tour from Cancun — it covers El Castillo, the Sacred Cenote, a buffet lunch and a cenote swim with an expert bilingual guide and a max group size of 15. See full details on /tours/chichen-itza-day-tour-from-cancun.",
+    answer: "For most first-time visitors we recommend the Chichen Itza Day Tour from Cancun — it covers El Castillo, the Sacred Cenote, a buffet lunch and a cenote swim with an expert bilingual guide and a max group size of 15.",
     category: "recommendation",
+    links: [
+      { label: "Chichen Itza day tour from Cancún", to: "/tours/chichen-itza-day-tour-from-cancun" },
+      { label: "All day tours", to: "/tours/day-tours" },
+    ],
   },
   {
     question: "Do you have small group tours that include a cenote?",
-    answer: "Yes — our most popular cenote-inclusive small group option is the Chichen Itza + Cenote Ik Kil combo, with skip-the-line entrance and 45 minutes of swim time at the cenote. Details at /tours/chichen-itza-cenote-ik-kil-combo-tour.",
+    answer: "Yes — our most popular cenote-inclusive small group option is the Chichen Itza + Cenote Ik Kil combo, with skip-the-line entrance and 45 minutes of swim time at the cenote.",
     category: "inclusions",
+    links: [
+      { label: "Chichen Itza + Cenote Ik Kil combo", to: "/tours/chichen-itza-cenote-ik-kil-combo-tour" },
+      { label: "Cenote Saamal combo", to: "/tours/chichen-itza-cenote-saamal-combo-tour" },
+      { label: "All cenote tours", to: "/tours/cenote-tours" },
+    ],
   },
   {
     question: "Is there a small group tour from Playa del Carmen?",
-    answer: "Yes. Our small group budget tour from Playa del Carmen runs daily with hotel pickup along the Riviera Maya, capped at 15 travelers. Full itinerary on /tours/chichen-itza-budget-tour-playa-del-carmen.",
+    answer: "Yes. Our small group budget tour from Playa del Carmen runs daily with hotel pickup along the Riviera Maya, capped at 15 travelers.",
     category: "departure",
+    links: [
+      { label: "Small group tour from Playa del Carmen", to: "/tours/chichen-itza-budget-tour-playa-del-carmen" },
+      { label: "All tours from Playa del Carmen", to: "/tours-from/playa-del-carmen" },
+      { label: "Tours from Riviera Maya", to: "/tours-from/riviera-maya" },
+    ],
   },
 ];
 

@@ -227,41 +227,75 @@ export const smallGroupFAQsEs: FAQItem[] = [
     question: "¿Cuántas personas hay en un tour de grupo pequeño?",
     answer: "Nuestros tours de grupo pequeño están limitados a 8-15 participantes, dependiendo del tour específico. Esto asegura atención personalizada de tu guía, comunicación más fácil y una experiencia más íntima comparada con tours de más de 30 personas.",
     category: "logistics",
+    links: [
+      { label: "Tour clásico de un día en grupo pequeño", to: "/tours/chichen-itza-day-tour-from-cancun" },
+      { label: "Todos los tours en grupo pequeño", to: "/tour-types/small-group" },
+    ],
   },
   {
     question: "¿Por qué elegir un grupo pequeño sobre un grupo grande?",
     answer: "Los grupos pequeños ofrecen mejor interacción con el guía, más flexibilidad para preguntas, menos tiempo de espera en cada parada, experiencia más tranquila en las ruinas y a menudo incluyen transporte de mayor calidad. También tendrás mejores oportunidades fotográficas sin multitudes bloqueando tus tomas.",
     category: "comparison",
+    links: [
+      { label: "Comparar con tours privados", to: "/tours/private-tours" },
+      { label: "Comparar con tours económicos", to: "/tour-types/budget" },
+    ],
   },
   {
     question: "¿Son más caros los tours de grupo pequeño?",
     answer: "Los tours de grupo pequeño típicamente cuestan $10-30 más que las opciones de grupo grande pero ofrecen un valor significativamente mejor a través de atención personalizada, mejores vehículos y experiencias más íntimas. Son el punto ideal entre tours económicos y privados.",
     category: "pricing",
+    links: [
+      { label: "Tour express económico", to: "/tours/chichen-itza-budget-express-tour" },
+      { label: "Opciones VIP de lujo", to: "/tour-types/luxury" },
+    ],
   },
   {
     question: "¿Puedo solicitar un idioma específico para mi grupo pequeño?",
     answer: "La mayoría de los tours de grupo pequeño operan en inglés y español. Debido al tamaño reducido del grupo, es más probable que estés en un grupo que coincida con tu preferencia de idioma. Contáctanos para tours en francés, alemán o italiano.",
     category: "logistics",
+    links: [
+      { label: "Contáctanos para idiomas", to: "/practical/contact" },
+      { label: "Información de reserva", to: "/practical/booking-info" },
+    ],
   },
   {
     question: "¿Son adecuados los tours de grupo pequeño para viajeros solos?",
     answer: "¡Sí! Los tours de grupo pequeño son ideales para viajeros solos. El tamaño íntimo del grupo facilita conectar con otros viajeros, y recibirás más atención personal del guía. Muchos viajeros solos prefieren grupos pequeños sobre tours privados.",
     category: "solo",
+    links: [
+      { label: "Tour de aventura familiar", to: "/tours/chichen-itza-family-adventure-tour" },
+      { label: "Tours desde Cancún", to: "/tours-from/cancun" },
+    ],
   },
   {
     question: "¿Qué tour de grupo pequeño es mejor para visitantes por primera vez?",
-    answer: "Para la mayoría de los visitantes por primera vez recomendamos el Tour de un Día a Chichén Itzá desde Cancún: incluye El Castillo, el Cenote Sagrado, almuerzo buffet y nado en cenote con guía bilingüe experto y máximo 15 personas. Ver detalles en /es/tours/chichen-itza-day-tour-from-cancun.",
+    answer: "Para la mayoría de los visitantes por primera vez recomendamos el Tour de un Día a Chichén Itzá desde Cancún: incluye El Castillo, el Cenote Sagrado, almuerzo buffet y nado en cenote con guía bilingüe experto y máximo 15 personas.",
     category: "recommendation",
+    links: [
+      { label: "Tour de un día desde Cancún", to: "/tours/chichen-itza-day-tour-from-cancun" },
+      { label: "Todos los tours de un día", to: "/tours/day-tours" },
+    ],
   },
   {
     question: "¿Tienen tours de grupo pequeño que incluyan un cenote?",
-    answer: "Sí: nuestra opción más popular es el combo Chichén Itzá + Cenote Ik Kil, con entrada sin filas y 45 minutos de nado en el cenote. Detalles en /es/tours/chichen-itza-cenote-ik-kil-combo-tour.",
+    answer: "Sí: nuestra opción más popular es el combo Chichén Itzá + Cenote Ik Kil, con entrada sin filas y 45 minutos de nado en el cenote.",
     category: "inclusions",
+    links: [
+      { label: "Combo Chichén Itzá + Cenote Ik Kil", to: "/tours/chichen-itza-cenote-ik-kil-combo-tour" },
+      { label: "Combo Cenote Saamal", to: "/tours/chichen-itza-cenote-saamal-combo-tour" },
+      { label: "Todos los tours de cenotes", to: "/tours/cenote-tours" },
+    ],
   },
   {
     question: "¿Hay un tour de grupo pequeño desde Playa del Carmen?",
-    answer: "Sí. Nuestro tour económico en grupo pequeño desde Playa del Carmen sale diariamente con recogida en hoteles de la Riviera Maya, con un máximo de 15 viajeros. Itinerario completo en /es/tours/chichen-itza-budget-tour-playa-del-carmen.",
+    answer: "Sí. Nuestro tour económico en grupo pequeño desde Playa del Carmen sale diariamente con recogida en hoteles de la Riviera Maya, con un máximo de 15 viajeros.",
     category: "departure",
+    links: [
+      { label: "Tour en grupo pequeño desde Playa del Carmen", to: "/tours/chichen-itza-budget-tour-playa-del-carmen" },
+      { label: "Todos los tours desde Playa del Carmen", to: "/tours-from/playa-del-carmen" },
+      { label: "Tours desde Riviera Maya", to: "/tours-from/riviera-maya" },
+    ],
   },
 ];
 
